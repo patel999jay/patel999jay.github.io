@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SDR | Jay Patel</title>
+    <link>https://patel999jay.github.io/tag/sdr/</link>
+      <atom:link href="https://patel999jay.github.io/tag/sdr/index.xml" rel="self" type="application/rss+xml" />
+    <description>SDR</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2020</copyright><lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_2.png</url>
+      <title>SDR</title>
+      <link>https://patel999jay.github.io/tag/sdr/</link>
+    </image>
+    
+    <item>
+      <title>ADALM PlutoSDR</title>
+      <link>https://patel999jay.github.io/project/internal-project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>https://patel999jay.github.io/project/internal-project/</guid>
+      <description>&lt;h1 id=&#34;adm-pluto-file-transfer--fm-receiver-plutosdr&#34;&gt;&lt;strong&gt;ADM-Pluto-File-Transfer &amp;amp; FM Receiver PlutoSDR&lt;/strong&gt;&lt;/h1&gt;
+&lt;hr&gt;
+&lt;p&gt;Software-defined radio (SDR) is a radio communication system where components that have been traditionally implemented in hardware (e.g. mixers, filters, amplifiers, modulators/demodulators, detectors, etc.) are instead implemented by means of software on a personal computer or embedded system.[1] While the concept of SDR is not new, the rapidly evolving capabilities of digital electronics render practical many processes which were once only theoretically possible.&lt;/p&gt;
+&lt;h2 id=&#34;software-requirement-&#34;&gt;Software Requirement :&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;  1. GNU Radio software with IIO_Support (win_64) - (https://wiki.analog.com/resources/tools-software/linux-software/gnuradio_windows) 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;hardware-&#34;&gt;Hardware :&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;  1. ADM-Pluto SDR Active Learning Module
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;steps-to-perform-&#34;&gt;Steps to perform :&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Please make sure your pluto sdr connected properly and found from iio, To make sure please perform following command on terminal&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;iio_info -s
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You should have something like this in your command prompt:&lt;/p&gt;
+ &lt;img src=&#34;Images/cmd.PNG&#34;&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;If you found your pluto successfully, Go ahead and open GNU Radio on your computer and open FileTxRx.grc and run the file.(Assuming you know how to run the file in GNU Radio, If not please look for Play arrow in the GNU Radio or press F5).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img src=&#34;Images/FileTxRx.PNG&#34;&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;You may have to provide text file path again in GNU Radio in File Source and File Sink Block. You can use any text file for transmission. You can use the same text file from here - transmissionfile.txt (Please put this file on desktop and browse the same from File source block.)&lt;/li&gt;
+&lt;/ol&gt;
+ &lt;img src=&#34;Images/filesourceblock.PNG&#34;&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Open transmissionfile.txt and review the contents in the file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Make new text file on your desktop and name whatever you want but make sure you have same file extension. (you can also use file here name receivedfile.txt, This may have data in it, Please go aheah and delete all data from file and save that file again, Make it blank so you can see after transmission what data did you receive from Pluto).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;While transmission, you can also see the Python based WX GUI For FFT TX and FFT Rx.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img src=&#34;Images/GUI-TxRx.PNG&#34;&gt;
+&lt;p&gt;If you come across an error on GNU Radio saying that RuntimeError: Unable to set BB rate, Please make sure you provide correct sampling rate in PlutoSDR blocks in GNU Radio. If you don&amp;rsquo;t know how to find out correct sampling rate, Please perform following command on your command prompt and it will give you exact sampling rate.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    iio_attr -u &amp;lt;uri&amp;gt; -c cf-ad9361-lpc voltage0 sampling_frequency_available
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You should have something like this in your command prompt:&lt;/p&gt;
+ &lt;img src=&#34;Images/cmd1.PNG&#34;&gt;
+&lt;p&gt;P.S. If you have more than one sampling rate, try each one and see what is the difference.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;Images/PlutoSink.PNG&#34;&gt;&lt;img src=&#34;Images/PlutoSource.PNG&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;fm-receiver-with-pluto&#34;&gt;FM Receiver with Pluto&lt;/h1&gt;
+&lt;h2 id=&#34;this-version-is-tested-for-gnuradio-38&#34;&gt;&lt;strong&gt;This version is tested for GNURadio 3.8&lt;/strong&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Just download the files from source folder and open fmradio_pluto_3.8.grc in GNU Radio application. You will see something like this:&lt;/li&gt;
+&lt;/ol&gt;
+ &lt;img src=&#34;FMReceiverPluto/images/FMRadio_PlutoSDR_3.8.png&#34;&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Run the file or press F5. It will open the real time FM station (in my case i configure to receive 100.1 MHz station, Halifax, NS, Canada). You can see real time waterfall of FM Station and also can hear the sound too. If you have problem with audio change sampling rate accordingly.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Frequency Display&lt;/strong&gt;
+&lt;img src=&#34;FMReceiverPluto/images/Freq_Display.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Time Domain Display&lt;/strong&gt;
+&lt;img src=&#34;FMReceiverPluto/images/TimeDomain.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Waterfall Display&lt;/strong&gt;
+&lt;img src=&#34;FMReceiverPluto/images/Waterfall_freq_Disp.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Constellation Display&lt;/strong&gt;
+&lt;img src=&#34;FMReceiverPluto/images/Constellation.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;this-version-is-tested-for-gnuradio-37&#34;&gt;&lt;strong&gt;This version is tested for GNURadio 3.7&lt;/strong&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Just download the files from source folder and open fmradio_pluto.grc in GNU Radio application. You will see something like this:&lt;/li&gt;
+&lt;/ol&gt;
+ &lt;img src=&#34;FMReceiverPluto/images/fmradiopluto.PNG&#34;&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Run the file or press F5. It will open the real time FM station (in my case i configure to receive 100.1 MHz station, Halifax, NS, Canada). You can see real time waterfall of FM Station and also can hear the sound too. If you have problem with audio change sampling rate accordingly.&lt;/li&gt;
+&lt;/ol&gt;
+ &lt;img src=&#34;FMReceiverPluto/images/FMwaterfall.PNG&#34;&gt;
+&lt;h2 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;1. Wikipedia, https://en.wikipedia.org/wiki/Software-defined_radio&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

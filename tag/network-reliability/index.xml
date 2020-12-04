@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network reliability | Jay Patel</title>
+    <link>https://patel999jay.github.io/tag/network-reliability/</link>
+      <atom:link href="https://patel999jay.github.io/tag/network-reliability/index.xml" rel="self" type="application/rss+xml" />
+    <description>Network reliability</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2020</copyright><lastBuildDate>Mon, 23 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_2.png</url>
+      <title>Network reliability</title>
+      <link>https://patel999jay.github.io/tag/network-reliability/</link>
+    </image>
+    
+    <item>
+      <title>CDMA-Based Multi-Domain Communications Network for Marine Robots</title>
+      <link>https://patel999jay.github.io/publication/conference-paper/</link>
+      <pubDate>Mon, 23 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>https://patel999jay.github.io/publication/conference-paper/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;This paper reports on a cross-domain communication system for marine robots based on code-division multiple access (CDMA). The underwater communications channel is a difficult transmission medium due to its link quality variability which depends on location and the application. It also depends on environmental parameters which can vary temporally from hours to days to months to season. Understanding the channel characteristics for data transmission is essential to the development and evaluation of existing or new MAC and Routing Level protocols which better utilize the limited resources within this unpredictable channel. CDMA is the most promising physical layer and multiple access technique for underwater acoustic sensor networks because it: i) is robust to frequency selective fading, ii) compensates for multi-path effects at the receiver, and iii) allows receivers to distinguish among signals
+simultaneously transmitted by multiple devices. For these reasons, CDMA increases channel re-use and reduces packet retransmissions, which results in decreased energy consumption and increased network throughput. Development of a framework for autonomous co-ordination and networking of marine robot teams from extended ranges to transmit images/information from underwater to above
+water is proposed using CDMA which is a complete stack of communications protocol from the physical to the application layer for marine robots that spans multiple domains, i.e. under, on and above water. Simulation of the proposed network was performed using network simulator-3 (NS-3). The proposed protocol edge CDMA properties provide multiple access to the limited underwater bandwidth whereas previous reported work only considered CDMA for the physical layer. Simulations show the proposed protocol outperforms existing underwater acoustic network protocols.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

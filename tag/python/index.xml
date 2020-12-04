@@ -1,0 +1,1916 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python | Jay Patel</title>
+    <link>https://patel999jay.github.io/tag/python/</link>
+      <atom:link href="https://patel999jay.github.io/tag/python/index.xml" rel="self" type="application/rss+xml" />
+    <description>python</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2020</copyright><lastBuildDate>Fri, 04 Sep 2020 14:30:36 -0300</lastBuildDate>
+    <image>
+      <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_2.png</url>
+      <title>python</title>
+      <link>https://patel999jay.github.io/tag/python/</link>
+    </image>
+    
+    <item>
+      <title>FFT Fun</title>
+      <link>https://patel999jay.github.io/post/fft-fun/</link>
+      <pubDate>Fri, 04 Sep 2020 14:30:36 -0300</pubDate>
+      <guid>https://patel999jay.github.io/post/fft-fun/</guid>
+      <description>&lt;h1 id=&#34;fft-magic---time-domain-to-frequency-domain-signal-visualization&#34;&gt;FFT Magic - Time Domain to Frequency Domain Signal Visualization&lt;/h1&gt;
+&lt;p&gt;Anyone with a background in Physics or Engineering knows to some degree about signal analysis techniques, what these technique are and how they can be used to analyze, model and classify signals.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s start with Fun stuff ! Everyone heard of FFT word in their lifetime. Let&amp;rsquo;s dive deep into Frequency Domain for more details.&lt;/p&gt;
+&lt;h2 id=&#34;lets-plot-some-sound-files-in-time-domain&#34;&gt;Let&amp;rsquo;s plot some sound files in time domain.&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# required library imports
+import librosa
+import librosa.display
+import scipy as sp
+import IPython.display as ipd
+import matplotlib.pyplot as plt
+import numpy as np
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# load audio file in the player
+audio_path = &amp;quot;audio/Data_00023.wav&amp;quot;
+ipd.Audio(audio_path)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# load audio file
+signal, sr = librosa.load(audio_path)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;below-is-the-time-domain-representation-of-the-signal&#34;&gt;Below is the time domain representation of the signal.&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# plot waveform
+plt.figure(1)
+plt.figure(figsize=(18,5))
+plt.plot(signal,&#39;b&#39;)
+plt.xlabel(&#39;sample rate * time&#39;)
+plt.ylabel(&#39;energy&#39;)
+plt.grid()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_6_2.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Isn&amp;rsquo;t that interesting ?&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s take this time domain signal into frequency domain and do some more interesting stuff !&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import scipy as sp
+from scipy import fftpack
+
+import matplotlib as mpl       
+
+tf = 60         # Final time
+dt = 0.1        # Time step
+
+t = np.arange(0,tf,dt)  # Signal sample times
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;calculate-fft&#34;&gt;Calculate FFT&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;sample_freq = sp.fftpack.fftfreq(len(signal),d=dt) # Frequency values (+,-)
+sig_fft = sp.fftpack.fft(signal)                   # Calculate FFT
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.rc(&#39;figure&#39;, figsize = (18, 5))            # Reduces overall size of figures
+plt.rc(&#39;axes&#39;, labelsize=24, titlesize=24)
+plt.rc(&#39;figure&#39;, autolayout = True)             # Adjusts supblot parameters for new size
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(2)
+plt.title(&amp;quot;FFT&amp;quot;,fontsize=24)
+plt.plot(sig_fft.real, label=&#39;real&#39;)
+plt.plot(sig_fft.imag,label=&#39;imag&#39;)
+plt.legend(loc=1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_12_2.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Calculate and plot power spectrum for $f&amp;gt;0$.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;pfs = np.where(sample_freq&amp;gt;0) # Select postive frequencies
+freqs = sample_freq[pfs]
+power = abs(sig_fft)[pfs]**2      
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(3)
+plt.title(&amp;quot;FFT (power)&amp;quot;,fontsize=24)
+plt.xlabel(&amp;quot;$f$&amp;quot;)
+plt.plot(freqs,power,&#39;b&#39;)
+plt.grid()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;/home/jay/anaconda3/lib/python3.7/site-packages/matplotlib/figure.py:2366: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  warnings.warn(&amp;quot;This figure includes Axes that are not compatible &amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_15_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;filter-and-inverse-transform&#34;&gt;Filter and inverse transform&lt;/h1&gt;
+&lt;p&gt;Crude low-pass filter: cut out all frequencies greater than 25 KHz.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;sig_fft[abs(sample_freq)&amp;gt; 25] = 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;calculate-inverse-fft&#34;&gt;Calculate inverse FFT:&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;sig_filtered = sp.fftpack.ifft(sig_fft)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(4)
+plt.title(&amp;quot;filtered signal&amp;quot;,fontsize=14)
+plt.xlabel(&amp;quot;$t$&amp;quot;)
+plt.plot(np.real(sig_filtered),&#39;b&#39;)
+plt.grid()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_21_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;voila-&#34;&gt;Voila !&lt;/h3&gt;
+&lt;p&gt;This is our original time domain signal !&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s Have More deep understanding of Time domain signal, Frequency Domain signal and Time-Frequency Representation! Let Plot all three things together and Have python fun !&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
+from scipy.fftpack import fft
+import matplotlib.pyplot as plt
+from matplotlib import animation
+from matplotlib import cm
+
+t_n = 10
+N = 1000
+T = t_n / N
+f_s = 1 / T
+
+
+def get_fft_values(y_values, T, N, f_s):
+    f_values = np.linspace(0.0, 1.0 / (2.0 * T), N // 2)
+    fft_values_ = fft(y_values)
+    fft_values = 2.0 / N * np.abs(fft_values_[0:N // 2])
+    return f_values, fft_values
+
+
+x_value = np.linspace(0, t_n, N)
+amplitudes = [4, 6, 8, 10, 14]
+frequencies = [6.5, 5, 3, 1.5, 1]
+y_values = [amplitudes[ii] * np.sin(2 * np.pi * frequencies[ii] * x_value) for ii in range(0, len(amplitudes))]
+composite_y_value = np.sum(y_values, axis=0)
+
+f_values, fft_values = get_fft_values(composite_y_value, T, N, f_s)
+
+colors = [&#39;k&#39;, &#39;b&#39;, &#39;b&#39;, &#39;b&#39;, &#39;b&#39;, &#39;b&#39;, &#39;b&#39;, &#39;b&#39;, &#39;b&#39;]
+
+fig = plt.figure(figsize=(8, 8))
+ax = fig.add_subplot(111, projection=&#39;3d&#39;)
+ax.set_xlabel(&amp;quot;\nTime [s]&amp;quot;, fontsize=16)
+ax.set_ylabel(&amp;quot;\nFrequency [Hz]&amp;quot;, fontsize=16)
+ax.set_zlabel(&amp;quot;\nAmplitude&amp;quot;, fontsize=16)
+
+y_values_ = [composite_y_value] + list(reversed(y_values))
+frequencies = [1, 1.5, 3, 5, 6.5]
+
+def init():
+    # Plot the surface.
+    for ii in range(0, len(frequencies)):
+        signal = y_values_[ii]
+        color = colors[ii]
+        length = signal.shape[0]
+        x = np.linspace(0, 10, 1000)
+        y = np.array([frequencies[ii]] * length)
+        z = signal
+
+        if ii == 0:
+            linewidth = 4
+        else:
+            linewidth = 2
+        ax.plot(list(x), list(y), zs=list(z), linewidth=linewidth, color=color)
+
+        x = [10] * 75
+        y = f_values[:75]
+        z = fft_values[:75] * 3
+        ax.plot(list(x), list(y), zs=list(z), linewidth=2, color=&#39;red&#39;)
+
+        plt.tight_layout()
+
+    return fig,
+
+def animate(i):
+    # azimuth angle : 0 deg to 360 deg
+    ax.view_init(elev=10, azim=i*4)
+    return fig,
+
+# Animate
+ani = animation.FuncAnimation(fig, animate, init_func=init,
+                               frames=90, interval=50, blit=True)
+
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;fn = &#39;rotate_azimuth_angle_3d_surf&#39;
+ani.save(fn+&#39;.gif&#39;,writer=&#39;imagemagick&#39;,fps=1000/50)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;lets-get-ready-to-blow-your-mind-&#34;&gt;Let&amp;rsquo;s get ready to blow your Mind !&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;rotate_azimuth_angle_3d_surf.gif&#34; alt=&#34;rotate_azimuth_angle_3d_surf&#34; title=&#34;3D rotating image&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;references-&#34;&gt;References :&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://ataspinar.com/2018/04/04/machine-learning-with-signal-processing-techniques/&#34;&gt;http://ataspinar.com/2018/04/04/machine-learning-with-signal-processing-techniques/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;FFT, Valerio Velardo - The Sound of AI, &lt;a href=&#34;https://github.com/musikalkemist/AudioSignalProcessingForML&#34;&gt;https://github.com/musikalkemist/AudioSignalProcessingForML&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CDMA signal using python</title>
+      <link>https://patel999jay.github.io/post/cdma-using-python/</link>
+      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://patel999jay.github.io/post/cdma-using-python/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Author : Jay Patel
+# CDMA using Python
+
+import random
+import numpy as np
+%matplotlib inline
+from numpy import sin, pi
+
+from matplotlib import rcParams
+import matplotlib.pylab as plt
+rcParams.update({&#39;font.size&#39;: 12})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;25000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;25000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f = 25000
+t=np.linspace(0,8/f,400)
+
+carrier = lambda t: sin(2*pi*f*t)
+plt.figure(figsize=(16,6))
+plt.plot(t,carrier(t),&#39;b&#39;, lw=3)
+plt.title(&#39;25 KHz Carrier Wave&#39;,size=20)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.xlabel(&#39;Time[s]&#39;,size=&#39;16&#39;)
+plt.grid()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_2_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;random.seed(&amp;quot;GPS PRN&amp;quot;)
+prn_seq = [random.choice([1,-1]) for i in range(16)]
+
+print(&amp;quot;Our PRN chip:&amp;quot;, str(prn_seq).replace(&#39;-1&#39;,&#39;0&#39;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Our PRN chip: [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f_prn =  25e3 / 10
+prn_seq[int(100*f_prn)%16]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;-1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;25e3 / 10
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;2500.0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f_prn =  25e3 / .10
+prn_seq[int(100*f_prn)%16]
+
+def prn_np(t):
+    return [ prn_seq[int(ti*f_prn)%16] for ti in t]
+plt.figure(figsize=(16,6))
+plt.plot(t,prn_np(t), color=&#39;red&#39;,lw=4)
+plt.title(&#39;CDMA Psuedo Random Noise&#39;,size=&#39;20&#39;)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.xlabel(&#39;Time(s)&#39;,size=&#39;16&#39;)
+plt.grid()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_6_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;np.size([ prn_seq[int(ti*f_prn)%16] for ti in t])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;400
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;binary-phase-shift-keying-bpsk&#34;&gt;Binary Phase Shift Keying (BPSK)&lt;/h2&gt;
+&lt;p&gt;The transmited GPS signal uses 
+&lt;a href=&#34;http://en.wikipedia.org/wiki/Phase-shift_keying&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;binary phase shift keying&lt;/a&gt;, signal changed by shift $\pi=180^\circ$ while it turns from 1 to -1, which can be done by multiplying the carefully constructed PRN above with the carrier!&lt;/p&gt;
+&lt;p&gt;This works because a $\sin(x)\times(-1) = \sin(x-180^\circ)$, in other words it&amp;rsquo;s exactly a 180 degree phase shift. We should see this as blips in sine wave every time our data changes from 1 to 0 or visa-versa :&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f = 25e3
+f_prn =  25e3 /10
+
+carrier = lambda t: sin(2*pi*f*t)
+def prn_np(t):
+    return [ prn_seq[int(ti*f_prn)%16] for ti in t]
+
+#t=np.linspace(0,8/f_prn,400)
+t=np.linspace(0,16/f_prn,1400)
+signal = lambda t: carrier(t) * prn_np(t)
+plt.figure(figsize=(16,6))
+plt.plot(t,prn_np(t),color=&#39;red&#39;,lw=4)
+plt.plot(t,signal(t),&#39;b&#39;,lw=4,alpha=0.6)
+plt.title(&#39;CDMA BPSK&#39;,size=20)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.xlabel(&#39;Time[s]&#39;,size=12)
+plt.grid()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_9_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;#t=np.linspace(0,8/f_prn,400)
+t=np.linspace(0,16/f_prn,1400)
+signal = lambda t: carrier(t) * prn_np(t)
+plt.figure(figsize=(16,6))
+#plt.plot(t,prn_np(t),color=&#39;red&#39;,lw=4)
+plt.plot(t,signal(t),&#39;b&#39;,lw=4,alpha=0.6)
+plt.title(&#39;CDMA BPSK&#39;,size=20)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.xlabel(&#39;Time[s]&#39;,size=12)
+plt.grid()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_10_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Too hard to be decipherable! The problem is that the carrier is running three orders of magnintude faster than the PRN!!! Unless we zoom into one spot where the phase shift happens we can see anything at this scale.&lt;/p&gt;
+&lt;p&gt;For the sake of argument lets make the prn modulation much faster.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f_prn =  25e3/10
+t=np.linspace(0, 12/f_prn,1400)
+signal = lambda t: carrier(t) * prn_np(t)
+plt.figure(figsize=(16,6))
+plt.plot(t,signal(t),&#39;b&#39;,lw=2)
+plt.title(&#39;CDMA BPSK&#39;,size=20)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.grid()
+plt.xlabel(&#39;Time(s)&#39;,size=16)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Text(0.5, 0, &#39;Time(s)&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_12_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now we see the phase shifts! To make what&amp;rsquo;s going on even clearer, lets overlay the PRN back on the chart to see how the phase shifts coincide with the edges of our PRN:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f_prn = f_prn =  25e3/10
+t=np.linspace(0,12/f_prn,1400)
+
+def prn_np(t):
+    return [ prn_seq[int(ti*f_prn)%16] for ti in t]
+plt.figure(figsize=(16,6))
+plt.plot(t,prn_np(t),color=&#39;red&#39;,lw=4)
+plt.plot(t,signal(t),&#39;b&#39;,lw=2)
+plt.title(&#39;CDMA BPSK&#39;,size=20)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.grid()
+
+plt.xlabel(&#39;Time(s)&#39;,size=16)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Text(0.5, 0, &#39;Time(s)&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_14_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f_prn = f_prn =  25e3/10
+t=np.linspace(0,12/f_prn,1400)
+
+def prn_np(t):
+    return [ prn_seq[int(ti*f_prn)%16] for ti in t]
+plt.figure(figsize=(16,6))
+plt.plot(t,prn_np(t),color=&#39;red&#39;,lw=4)
+plt.plot(t,signal(t),&#39;b&#39;,lw=2)
+plt.title(&#39;CDMA BPSK&#39;,size=20)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.grid()
+#plt.text(0.15e-8,1.2,&#39;-1,-1&#39;)
+xt=t[-1]/16.
+for i in np.arange(16):
+    plt.text((i+1/2.)*xt,1.2,prn_seq[i])
+
+plt.xlabel(&#39;Time(s)&#39;,size=16)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Text(0.5, 0, &#39;Time(s)&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_15_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;t[-1]/16.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;0.0003
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Exercise&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;generate a sequence of codes with size 32 (PRN).&lt;/li&gt;
+&lt;li&gt;generate the PRN BPSK graph.&lt;/li&gt;
+&lt;li&gt;check the concideness between codes and graph.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;prn_seq = [random.choice([1,-1]) for i in range(32)]
+print(prn_seq)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[1, -1, -1, 1, 1, -1, -1, 1, 1, -1, 1, -1, -1, -1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, -1, 1, 1, -1]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def prn_np(t):
+    return [ prn_seq[int(ti*f_prn)%32] for ti in t]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f_prn = f_prn =  25e3/10
+t=np.linspace(0,4/f_prn,400)
+
+plt.figure(figsize=(16,6))
+plt.plot(t,prn_np(t),color=&#39;red&#39;,lw=4)
+plt.plot(t,signal(t),&#39;b&#39;,lw=2)
+plt.title(&#39;CDMA BPSK&#39;,size=20)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.grid()
+
+
+plt.xlabel(&#39;Time[s]&#39;,size=16)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Text(0.5, 0, &#39;Time[s]&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_20_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f_prn = f_prn =  25e3/10
+t=np.linspace(0,4/f_prn,400)
+
+plt.figure(figsize=(16,6))
+plt.plot(t,prn_np(t),color=&#39;red&#39;,lw=4)
+plt.plot(t,signal(t),&#39;b&#39;,lw=2)
+plt.title(&#39;CDMA BPSK&#39;,size=20)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.grid()
+xt=t[-1]/32.
+for i in np.arange(32):
+    plt.text((i+1/2.)*xt,1.2*prn_seq[i],prn_seq[i])
+plt.xlabel(&#39;Time[s]&#39;,size=16)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Text(0.5, 0, &#39;Time[s]&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_21_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Bedford Bathy Plotting using python</title>
+      <link>https://patel999jay.github.io/project/bedford-bathy/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>https://patel999jay.github.io/project/bedford-bathy/</guid>
+      <description>&lt;h1 id=&#34;bedford-bathy-plotting-using-python&#34;&gt;&lt;strong&gt;Bedford Bathy Plotting using Python&lt;/strong&gt;&lt;/h1&gt;
+&lt;hr&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Author : Jay Patel
+# 3D Bedford basin bathy
+
+import plotly.graph_objects as go
+
+import pandas as pd
+
+# Read data from a csv
+z_data = pd.read_csv(&#39;bathy_bedford.csv&#39;)
+
+fig = go.Figure(data=[go.Surface(z=z_data.values)])
+
+fig.update_layout(title=&#39;Bedford Basin Elevation&#39;, autosize=True,
+                   width=900, height=900,
+                   margin=dict(l=65, r=50, b=65, t=90))
+
+fig.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;#  cmap=plt.cm.viridis, linewidth=0.2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;fig.update_traces(contours_z=dict(show=True, usecolormap=True,
+                                  highlightcolor=&amp;quot;limegreen&amp;quot;, project_z=True))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./2.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;surface-plot-with-contours&#34;&gt;Surface Plot With Contours&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import plotly.graph_objects as go
+
+import pandas as pd
+
+# Read data from a csv
+z_data = pd.read_csv(&#39;bathy_bedford.csv&#39;)
+
+fig = go.Figure(data=[go.Surface(z=z_data.values)])
+fig.update_traces(contours_z=dict(show=True, usecolormap=True,
+                                  highlightcolor=&amp;quot;limegreen&amp;quot;, project_z=True))
+fig.update_layout(title=&#39;Bedford Basin Elevation&#39;, autosize=True,
+                   width=900, height=900,
+                   margin=dict(l=65, r=50, b=65, t=90))
+
+fig.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./3.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import plotly.graph_objects as go
+import numpy as np
+import pandas as pd
+
+# Read data from a csv
+z_data = pd.read_csv(&#39;bathy_bedford.csv&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;z = z_data.values
+sh_0, sh_1 = z.shape
+x, y = np.linspace(44.66875, 44.74791667, sh_0), np.linspace(-63.69791667, -63.52708333, sh_1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import plotly.graph_objects as go
+import pandas as pd
+import numpy as np
+# Read data from a csv
+z_data = pd.read_csv(&#39;bathy_bedford.csv&#39;)
+z = z_data.values
+sh_0, sh_1 = z.shape
+x, y = np.linspace(44.66875, 44.74791667, sh_0), np.linspace(-63.69791667, -63.52708333, sh_1)
+fig = go.Figure(data=[go.Surface(z=z, x=x, y=y)])
+fig.update_traces(contours_z=dict(show=True, usecolormap=True,
+                                  highlightcolor=&amp;quot;limegreen&amp;quot;, project_z=True))
+fig.update_layout(title=&#39;Bedford Basin Elevation&#39;, autosize=True,
+                  width=900, height=900, 
+                  margin=dict(l=65, r=50, b=65, t=90))
+fig.update_layout=dict(xaxis=dict(title=&#39;Latitude&#39;),
+                  yaxis=dict(title=&#39;Longitude&#39;))
+fig.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./4.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;configure-surface-contour-levels&#34;&gt;Configure Surface Contour Levels&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import plotly.graph_objects as go
+import pandas as pd
+import numpy as np
+
+# Read data from a csv
+z_data = pd.read_csv(&#39;bathy_bedford.csv&#39;)
+z = z_data.values
+sh_0, sh_1 = z.shape
+x, y = np.linspace(44.66875, 44.74791667, sh_0), np.linspace(-63.69791667, -63.52708333, sh_1)
+# fig = go.Figure(data=[go.Surface(z=z, x=x, y=y)])
+
+fig = go.Figure(go.Surface(
+    contours = {
+        &amp;quot;x&amp;quot;: {&amp;quot;show&amp;quot;: True, &amp;quot;start&amp;quot;: 44.66875, &amp;quot;end&amp;quot;: 44.74791667, &amp;quot;size&amp;quot;: 0.04, &amp;quot;color&amp;quot;:&amp;quot;white&amp;quot;},
+        &amp;quot;z&amp;quot;: {&amp;quot;show&amp;quot;: True, &amp;quot;start&amp;quot;: -63.69791667, &amp;quot;end&amp;quot;: -63.52708333, &amp;quot;size&amp;quot;: 0.05}
+    },
+    z=z, x=x, y=y))
+fig.update_layout(
+        scene = {
+            &amp;quot;xaxis&amp;quot;: {&amp;quot;nticks&amp;quot;: 20},
+            &amp;quot;zaxis&amp;quot;: {&amp;quot;nticks&amp;quot;: 8},
+            &#39;camera_eye&#39;: {&amp;quot;x&amp;quot;: 0, &amp;quot;y&amp;quot;: -1, &amp;quot;z&amp;quot;: 0.5},
+            &amp;quot;aspectratio&amp;quot;: {&amp;quot;x&amp;quot;: 1, &amp;quot;y&amp;quot;: 1, &amp;quot;z&amp;quot;: 0.2}
+        })
+fig.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./5.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import plotly.graph_objects as go
+import pandas as pd
+import numpy as np
+# Read data from a csv
+z_data = pd.read_csv(&#39;bathy_bedford.csv&#39;)
+z = z_data.values
+sh_0, sh_1 = z.shape
+x, y = np.linspace(44.66875, 44.74791667, sh_0), np.linspace(-63.69791667, -63.52708333, sh_1)
+fig = go.Figure(data=[go.Surface(z=z, x=x, y=y)])
+fig.update_traces(contours_z=dict(show=True, usecolormap=True,
+                                  highlightcolor=&amp;quot;limegreen&amp;quot;, project_z=True))
+fig.update_layout(title=&#39;&amp;lt;b&amp;gt;Bedford Basin Elevation&amp;lt;/b&amp;gt;&#39;,xaxis_title=&amp;quot;Latitude&amp;quot;, 
+                  yaxis_title=&amp;quot;Longitude&amp;quot;,autosize=True,
+                  margin=dict(l=65, r=50, b=65, t=90))
+fig.update_layout(scene = dict(
+                    xaxis_title=&#39;Latitude&#39;,
+                    yaxis_title=&#39;Longitude&#39;,
+                    zaxis_title=&#39;Elevation&#39;)
+                    )  
+# fig.update_layout(color=&#39;Elevation&#39;)
+fig.update_layout(coloraxis_colorbar=dict(
+    title=&amp;quot;Elevation&amp;quot;,
+    thicknessmode=&amp;quot;pixels&amp;quot;, thickness=50,
+    lenmode=&amp;quot;pixels&amp;quot;, len=200,
+    yanchor=&amp;quot;top&amp;quot;, y=1,
+    ticks=&amp;quot;outside&amp;quot;, ticksuffix=&amp;quot;&amp;quot;,
+    dtick=5
+))
+fig.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./6.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import plotly.graph_objects as go
+import pandas as pd
+import numpy as np
+# Read data from a csv
+z_data = pd.read_csv(&#39;bathy_bedford.csv&#39;)
+z = z_data.values
+sh_0, sh_1 = z.shape
+x, y = np.linspace(44.66875, 44.74791667, sh_0), np.linspace(-63.69791667, -63.52708333, sh_1)
+fig = go.Figure(data=[go.Surface(z=z, x=x, y=y,colorscale=&#39;Viridis&#39;)])
+&amp;quot;&amp;quot;&amp;quot;The &#39;colorscale&#39; property is a colorscale and may be
+    specified as:
+      - A list of colors that will be spaced evenly to create the colorscale.
+        Many predefined colorscale lists are included in the sequential, diverging,
+        and cyclical modules in the plotly.colors package.
+      - A list of 2-element lists where the first element is the
+        normalized color level value (starting at 0 and ending at 1), 
+        and the second item is a valid color string.
+        (e.g. [[0, &#39;green&#39;], [0.5, &#39;red&#39;], [1.0, &#39;rgb(0, 0, 255)&#39;]])
+      - One of the following named colorscales:
+            [&#39;aggrnyl&#39;, &#39;agsunset&#39;, &#39;algae&#39;, &#39;amp&#39;, &#39;armyrose&#39;, &#39;balance&#39;,
+             &#39;blackbody&#39;, &#39;bluered&#39;, &#39;blues&#39;, &#39;blugrn&#39;, &#39;bluyl&#39;, &#39;brbg&#39;,
+             &#39;brwnyl&#39;, &#39;bugn&#39;, &#39;bupu&#39;, &#39;burg&#39;, &#39;burgyl&#39;, &#39;cividis&#39;, &#39;curl&#39;,
+             &#39;darkmint&#39;, &#39;deep&#39;, &#39;delta&#39;, &#39;dense&#39;, &#39;earth&#39;, &#39;edge&#39;, &#39;electric&#39;,
+             &#39;emrld&#39;, &#39;fall&#39;, &#39;geyser&#39;, &#39;gnbu&#39;, &#39;gray&#39;, &#39;greens&#39;, &#39;greys&#39;,
+             &#39;haline&#39;, &#39;hot&#39;, &#39;hsv&#39;, &#39;ice&#39;, &#39;icefire&#39;, &#39;inferno&#39;, &#39;jet&#39;,
+             &#39;magenta&#39;, &#39;magma&#39;, &#39;matter&#39;, &#39;mint&#39;, &#39;mrybm&#39;, &#39;mygbm&#39;, &#39;oranges&#39;,
+             &#39;orrd&#39;, &#39;oryel&#39;, &#39;peach&#39;, &#39;phase&#39;, &#39;picnic&#39;, &#39;pinkyl&#39;, &#39;piyg&#39;,
+             &#39;plasma&#39;, &#39;plotly3&#39;, &#39;portland&#39;, &#39;prgn&#39;, &#39;pubu&#39;, &#39;pubugn&#39;, &#39;puor&#39;,
+             &#39;purd&#39;, &#39;purp&#39;, &#39;purples&#39;, &#39;purpor&#39;, &#39;rainbow&#39;, &#39;rdbu&#39;, &#39;rdgy&#39;,
+             &#39;rdpu&#39;, &#39;rdylbu&#39;, &#39;rdylgn&#39;, &#39;redor&#39;, &#39;reds&#39;, &#39;solar&#39;, &#39;spectral&#39;,
+             &#39;speed&#39;, &#39;sunset&#39;, &#39;sunsetdark&#39;, &#39;teal&#39;, &#39;tealgrn&#39;, &#39;tealrose&#39;,
+             &#39;tempo&#39;, &#39;temps&#39;, &#39;thermal&#39;, &#39;tropic&#39;, &#39;turbid&#39;, &#39;twilight&#39;,
+             &#39;viridis&#39;, &#39;ylgn&#39;, &#39;ylgnbu&#39;, &#39;ylorbr&#39;, &#39;ylorrd&#39;].
+        Appending &#39;_r&#39; to a named colorscale reverses it.&amp;quot;&amp;quot;&amp;quot;
+fig.update_traces(contours_z=dict(show=True, usecolormap=True,
+                                  highlightcolor=&amp;quot;limegreen&amp;quot;, project_z=True))
+fig.update_layout(title=&#39;Bedford Basin Elevation&#39;,xaxis_title=&amp;quot;Latitude&amp;quot;, 
+                  yaxis_title=&amp;quot;Longitude&amp;quot;,autosize=False,
+                  width=900, height=900, 
+                  margin=dict(l=65, r=50, b=65, t=90))
+fig.update_layout(scene = dict(
+                    xaxis_title=&#39;Latitude&#39;,
+                    yaxis_title=&#39;Longitude&#39;,
+                    zaxis_title=&#39;Elevation&#39;),
+                    margin=dict(r=20, b=10, l=10, t=10))  
+# fig.update_layout(color=&#39;Elevation&#39;)
+fig.update_layout(coloraxis_colorbar=dict(
+    title=&amp;quot;Elevation&amp;quot;,
+    thicknessmode=&amp;quot;pixels&amp;quot;, thickness=50,
+    lenmode=&amp;quot;pixels&amp;quot;, len=200,
+    yanchor=&amp;quot;top&amp;quot;, y=1,
+    ticks=&amp;quot;outside&amp;quot;, ticksuffix=&amp;quot;&amp;quot;,
+    dtick=5
+))
+fig.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./7.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;appendix-bathy-data&#34;&gt;Appendix Bathy Data&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;z_data
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&lt;pre&gt;&lt;code&gt;.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;/style&gt;&lt;/p&gt;
+&lt;table border=&#34;1&#34; class=&#34;dataframe&#34;&gt;
+  &lt;thead&gt;
+    &lt;tr style=&#34;text-align: right;&#34;&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;Unnamed: 0&lt;/th&gt;
+      &lt;th&gt;44.66875&lt;/th&gt;
+      &lt;th&gt;44.67291667&lt;/th&gt;
+      &lt;th&gt;44.67708333&lt;/th&gt;
+      &lt;th&gt;44.68125&lt;/th&gt;
+      &lt;th&gt;44.68541667&lt;/th&gt;
+      &lt;th&gt;44.68958333&lt;/th&gt;
+      &lt;th&gt;44.69375&lt;/th&gt;
+      &lt;th&gt;44.69791667&lt;/th&gt;
+      &lt;th&gt;44.70208333&lt;/th&gt;
+      &lt;th&gt;...&lt;/th&gt;
+      &lt;th&gt;44.71041667&lt;/th&gt;
+      &lt;th&gt;44.71458333&lt;/th&gt;
+      &lt;th&gt;44.71875&lt;/th&gt;
+      &lt;th&gt;44.72291667&lt;/th&gt;
+      &lt;th&gt;44.72708333&lt;/th&gt;
+      &lt;th&gt;44.73125&lt;/th&gt;
+      &lt;th&gt;44.73541667&lt;/th&gt;
+      &lt;th&gt;44.73958333&lt;/th&gt;
+      &lt;th&gt;44.74375&lt;/th&gt;
+      &lt;th&gt;44.74791667&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;lon&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;-63.697917&lt;/td&gt;
+      &lt;td&gt;76.949219&lt;/td&gt;
+      &lt;td&gt;77.085938&lt;/td&gt;
+      &lt;td&gt;94.507813&lt;/td&gt;
+      &lt;td&gt;109.914060&lt;/td&gt;
+      &lt;td&gt;111.292970&lt;/td&gt;
+      &lt;td&gt;88.378906&lt;/td&gt;
+      &lt;td&gt;51.730469&lt;/td&gt;
+      &lt;td&gt;47.687500&lt;/td&gt;
+      &lt;td&gt;59.089844&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;46.628906&lt;/td&gt;
+      &lt;td&gt;39.363281&lt;/td&gt;
+      &lt;td&gt;44.792969&lt;/td&gt;
+      &lt;td&gt;52.582031&lt;/td&gt;
+      &lt;td&gt;41.074219&lt;/td&gt;
+      &lt;td&gt;32.304688&lt;/td&gt;
+      &lt;td&gt;31.945313&lt;/td&gt;
+      &lt;td&gt;37.171875&lt;/td&gt;
+      &lt;td&gt;31.265625&lt;/td&gt;
+      &lt;td&gt;35.207031&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;-63.693750&lt;/td&gt;
+      &lt;td&gt;74.859375&lt;/td&gt;
+      &lt;td&gt;75.480469&lt;/td&gt;
+      &lt;td&gt;88.718750&lt;/td&gt;
+      &lt;td&gt;104.511720&lt;/td&gt;
+      &lt;td&gt;102.984380&lt;/td&gt;
+      &lt;td&gt;72.757813&lt;/td&gt;
+      &lt;td&gt;51.261719&lt;/td&gt;
+      &lt;td&gt;57.562500&lt;/td&gt;
+      &lt;td&gt;68.406250&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;46.140625&lt;/td&gt;
+      &lt;td&gt;35.457031&lt;/td&gt;
+      &lt;td&gt;41.566406&lt;/td&gt;
+      &lt;td&gt;46.582031&lt;/td&gt;
+      &lt;td&gt;44.464844&lt;/td&gt;
+      &lt;td&gt;43.144531&lt;/td&gt;
+      &lt;td&gt;48.738281&lt;/td&gt;
+      &lt;td&gt;41.949219&lt;/td&gt;
+      &lt;td&gt;28.066406&lt;/td&gt;
+      &lt;td&gt;41.425781&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;-63.689583&lt;/td&gt;
+      &lt;td&gt;76.234375&lt;/td&gt;
+      &lt;td&gt;75.566406&lt;/td&gt;
+      &lt;td&gt;80.800781&lt;/td&gt;
+      &lt;td&gt;85.156250&lt;/td&gt;
+      &lt;td&gt;76.046875&lt;/td&gt;
+      &lt;td&gt;55.621094&lt;/td&gt;
+      &lt;td&gt;57.980469&lt;/td&gt;
+      &lt;td&gt;73.234375&lt;/td&gt;
+      &lt;td&gt;78.527344&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;51.320313&lt;/td&gt;
+      &lt;td&gt;30.578125&lt;/td&gt;
+      &lt;td&gt;33.000000&lt;/td&gt;
+      &lt;td&gt;44.218750&lt;/td&gt;
+      &lt;td&gt;57.890625&lt;/td&gt;
+      &lt;td&gt;63.746094&lt;/td&gt;
+      &lt;td&gt;67.226563&lt;/td&gt;
+      &lt;td&gt;60.589844&lt;/td&gt;
+      &lt;td&gt;43.121094&lt;/td&gt;
+      &lt;td&gt;37.597656&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;-63.685417&lt;/td&gt;
+      &lt;td&gt;78.855469&lt;/td&gt;
+      &lt;td&gt;77.718750&lt;/td&gt;
+      &lt;td&gt;70.976563&lt;/td&gt;
+      &lt;td&gt;61.859375&lt;/td&gt;
+      &lt;td&gt;52.851563&lt;/td&gt;
+      &lt;td&gt;54.816406&lt;/td&gt;
+      &lt;td&gt;72.570313&lt;/td&gt;
+      &lt;td&gt;84.394531&lt;/td&gt;
+      &lt;td&gt;86.800781&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;56.378906&lt;/td&gt;
+      &lt;td&gt;30.882813&lt;/td&gt;
+      &lt;td&gt;33.000000&lt;/td&gt;
+      &lt;td&gt;52.328125&lt;/td&gt;
+      &lt;td&gt;71.847656&lt;/td&gt;
+      &lt;td&gt;84.273438&lt;/td&gt;
+      &lt;td&gt;86.675781&lt;/td&gt;
+      &lt;td&gt;79.574219&lt;/td&gt;
+      &lt;td&gt;53.785156&lt;/td&gt;
+      &lt;td&gt;28.941406&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;-63.681250&lt;/td&gt;
+      &lt;td&gt;75.035156&lt;/td&gt;
+      &lt;td&gt;67.761719&lt;/td&gt;
+      &lt;td&gt;68.031250&lt;/td&gt;
+      &lt;td&gt;65.218750&lt;/td&gt;
+      &lt;td&gt;56.160156&lt;/td&gt;
+      &lt;td&gt;68.144531&lt;/td&gt;
+      &lt;td&gt;88.738281&lt;/td&gt;
+      &lt;td&gt;93.468750&lt;/td&gt;
+      &lt;td&gt;92.445313&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;49.884766&lt;/td&gt;
+      &lt;td&gt;24.603516&lt;/td&gt;
+      &lt;td&gt;39.861328&lt;/td&gt;
+      &lt;td&gt;64.859375&lt;/td&gt;
+      &lt;td&gt;78.960938&lt;/td&gt;
+      &lt;td&gt;86.257813&lt;/td&gt;
+      &lt;td&gt;86.726563&lt;/td&gt;
+      &lt;td&gt;84.812500&lt;/td&gt;
+      &lt;td&gt;65.078125&lt;/td&gt;
+      &lt;td&gt;40.824219&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;5&lt;/th&gt;
+      &lt;td&gt;-63.677083&lt;/td&gt;
+      &lt;td&gt;76.906250&lt;/td&gt;
+      &lt;td&gt;68.015625&lt;/td&gt;
+      &lt;td&gt;77.792969&lt;/td&gt;
+      &lt;td&gt;76.507813&lt;/td&gt;
+      &lt;td&gt;65.015625&lt;/td&gt;
+      &lt;td&gt;77.984375&lt;/td&gt;
+      &lt;td&gt;93.171875&lt;/td&gt;
+      &lt;td&gt;95.757813&lt;/td&gt;
+      &lt;td&gt;91.152344&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;38.843773&lt;/td&gt;
+      &lt;td&gt;14.459333&lt;/td&gt;
+      &lt;td&gt;32.611832&lt;/td&gt;
+      &lt;td&gt;63.052898&lt;/td&gt;
+      &lt;td&gt;77.476563&lt;/td&gt;
+      &lt;td&gt;83.761719&lt;/td&gt;
+      &lt;td&gt;84.460938&lt;/td&gt;
+      &lt;td&gt;82.933594&lt;/td&gt;
+      &lt;td&gt;75.851563&lt;/td&gt;
+      &lt;td&gt;53.343750&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;6&lt;/th&gt;
+      &lt;td&gt;-63.672917&lt;/td&gt;
+      &lt;td&gt;86.007813&lt;/td&gt;
+      &lt;td&gt;81.906250&lt;/td&gt;
+      &lt;td&gt;84.183594&lt;/td&gt;
+      &lt;td&gt;79.460938&lt;/td&gt;
+      &lt;td&gt;68.863281&lt;/td&gt;
+      &lt;td&gt;74.460938&lt;/td&gt;
+      &lt;td&gt;85.843750&lt;/td&gt;
+      &lt;td&gt;89.839844&lt;/td&gt;
+      &lt;td&gt;85.406250&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;26.064667&lt;/td&gt;
+      &lt;td&gt;-1.506614&lt;/td&gt;
+      &lt;td&gt;12.861200&lt;/td&gt;
+      &lt;td&gt;38.809372&lt;/td&gt;
+      &lt;td&gt;63.070324&lt;/td&gt;
+      &lt;td&gt;80.605469&lt;/td&gt;
+      &lt;td&gt;85.308594&lt;/td&gt;
+      &lt;td&gt;90.867188&lt;/td&gt;
+      &lt;td&gt;82.867188&lt;/td&gt;
+      &lt;td&gt;51.437500&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;7&lt;/th&gt;
+      &lt;td&gt;-63.668750&lt;/td&gt;
+      &lt;td&gt;95.003906&lt;/td&gt;
+      &lt;td&gt;87.734375&lt;/td&gt;
+      &lt;td&gt;72.562500&lt;/td&gt;
+      &lt;td&gt;59.613281&lt;/td&gt;
+      &lt;td&gt;62.312500&lt;/td&gt;
+      &lt;td&gt;71.199219&lt;/td&gt;
+      &lt;td&gt;72.628906&lt;/td&gt;
+      &lt;td&gt;75.960938&lt;/td&gt;
+      &lt;td&gt;75.221703&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;9.954909&lt;/td&gt;
+      &lt;td&gt;-11.974573&lt;/td&gt;
+      &lt;td&gt;-4.805872&lt;/td&gt;
+      &lt;td&gt;10.340685&lt;/td&gt;
+      &lt;td&gt;43.335861&lt;/td&gt;
+      &lt;td&gt;69.769524&lt;/td&gt;
+      &lt;td&gt;76.273438&lt;/td&gt;
+      &lt;td&gt;85.203125&lt;/td&gt;
+      &lt;td&gt;71.476563&lt;/td&gt;
+      &lt;td&gt;42.464844&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;8&lt;/th&gt;
+      &lt;td&gt;-63.664583&lt;/td&gt;
+      &lt;td&gt;97.148438&lt;/td&gt;
+      &lt;td&gt;82.492188&lt;/td&gt;
+      &lt;td&gt;64.988281&lt;/td&gt;
+      &lt;td&gt;39.218735&lt;/td&gt;
+      &lt;td&gt;43.938225&lt;/td&gt;
+      &lt;td&gt;61.325375&lt;/td&gt;
+      &lt;td&gt;49.881237&lt;/td&gt;
+      &lt;td&gt;48.452190&lt;/td&gt;
+      &lt;td&gt;52.963917&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;-1.673647&lt;/td&gt;
+      &lt;td&gt;-8.128887&lt;/td&gt;
+      &lt;td&gt;-10.653625&lt;/td&gt;
+      &lt;td&gt;-4.688946&lt;/td&gt;
+      &lt;td&gt;14.444967&lt;/td&gt;
+      &lt;td&gt;40.492226&lt;/td&gt;
+      &lt;td&gt;61.402344&lt;/td&gt;
+      &lt;td&gt;61.308594&lt;/td&gt;
+      &lt;td&gt;36.449219&lt;/td&gt;
+      &lt;td&gt;18.914063&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;9&lt;/th&gt;
+      &lt;td&gt;-63.660417&lt;/td&gt;
+      &lt;td&gt;93.011719&lt;/td&gt;
+      &lt;td&gt;83.011719&lt;/td&gt;
+      &lt;td&gt;67.464821&lt;/td&gt;
+      &lt;td&gt;28.027519&lt;/td&gt;
+      &lt;td&gt;13.340724&lt;/td&gt;
+      &lt;td&gt;22.575760&lt;/td&gt;
+      &lt;td&gt;15.632376&lt;/td&gt;
+      &lt;td&gt;6.809888&lt;/td&gt;
+      &lt;td&gt;5.132569&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;-11.897992&lt;/td&gt;
+      &lt;td&gt;-4.807637&lt;/td&gt;
+      &lt;td&gt;3.286820&lt;/td&gt;
+      &lt;td&gt;2.604772&lt;/td&gt;
+      &lt;td&gt;5.671644&lt;/td&gt;
+      &lt;td&gt;15.168005&lt;/td&gt;
+      &lt;td&gt;27.855469&lt;/td&gt;
+      &lt;td&gt;26.628906&lt;/td&gt;
+      &lt;td&gt;10.945313&lt;/td&gt;
+      &lt;td&gt;9.710938&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;10&lt;/th&gt;
+      &lt;td&gt;-63.656250&lt;/td&gt;
+      &lt;td&gt;92.898438&lt;/td&gt;
+      &lt;td&gt;83.511719&lt;/td&gt;
+      &lt;td&gt;55.145008&lt;/td&gt;
+      &lt;td&gt;13.209535&lt;/td&gt;
+      &lt;td&gt;-12.264346&lt;/td&gt;
+      &lt;td&gt;-15.117385&lt;/td&gt;
+      &lt;td&gt;-14.321301&lt;/td&gt;
+      &lt;td&gt;-25.995922&lt;/td&gt;
+      &lt;td&gt;-33.472305&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;-10.248625&lt;/td&gt;
+      &lt;td&gt;8.080005&lt;/td&gt;
+      &lt;td&gt;22.323267&lt;/td&gt;
+      &lt;td&gt;20.934570&lt;/td&gt;
+      &lt;td&gt;18.535183&lt;/td&gt;
+      &lt;td&gt;15.214840&lt;/td&gt;
+      &lt;td&gt;10.484375&lt;/td&gt;
+      &lt;td&gt;12.101563&lt;/td&gt;
+      &lt;td&gt;13.371094&lt;/td&gt;
+      &lt;td&gt;24.375000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;11&lt;/th&gt;
+      &lt;td&gt;-63.652083&lt;/td&gt;
+      &lt;td&gt;84.066406&lt;/td&gt;
+      &lt;td&gt;64.296883&lt;/td&gt;
+      &lt;td&gt;34.605164&lt;/td&gt;
+      &lt;td&gt;2.242018&lt;/td&gt;
+      &lt;td&gt;-22.517729&lt;/td&gt;
+      &lt;td&gt;-30.148781&lt;/td&gt;
+      &lt;td&gt;-34.749718&lt;/td&gt;
+      &lt;td&gt;-41.952374&lt;/td&gt;
+      &lt;td&gt;-41.779312&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;-3.999856&lt;/td&gt;
+      &lt;td&gt;18.022432&lt;/td&gt;
+      &lt;td&gt;42.588451&lt;/td&gt;
+      &lt;td&gt;54.158203&lt;/td&gt;
+      &lt;td&gt;35.542969&lt;/td&gt;
+      &lt;td&gt;23.964844&lt;/td&gt;
+      &lt;td&gt;23.730469&lt;/td&gt;
+      &lt;td&gt;32.246094&lt;/td&gt;
+      &lt;td&gt;38.230469&lt;/td&gt;
+      &lt;td&gt;42.855469&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;12&lt;/th&gt;
+      &lt;td&gt;-63.647917&lt;/td&gt;
+      &lt;td&gt;65.445313&lt;/td&gt;
+      &lt;td&gt;35.112190&lt;/td&gt;
+      &lt;td&gt;6.273511&lt;/td&gt;
+      &lt;td&gt;-16.426867&lt;/td&gt;
+      &lt;td&gt;-32.295547&lt;/td&gt;
+      &lt;td&gt;-41.835163&lt;/td&gt;
+      &lt;td&gt;-51.907791&lt;/td&gt;
+      &lt;td&gt;-56.872074&lt;/td&gt;
+      &lt;td&gt;-45.036800&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;-2.225338&lt;/td&gt;
+      &lt;td&gt;19.091228&lt;/td&gt;
+      &lt;td&gt;53.738281&lt;/td&gt;
+      &lt;td&gt;79.640625&lt;/td&gt;
+      &lt;td&gt;58.265625&lt;/td&gt;
+      &lt;td&gt;38.929688&lt;/td&gt;
+      &lt;td&gt;38.921875&lt;/td&gt;
+      &lt;td&gt;47.968750&lt;/td&gt;
+      &lt;td&gt;60.488281&lt;/td&gt;
+      &lt;td&gt;57.257813&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;13&lt;/th&gt;
+      &lt;td&gt;-63.643750&lt;/td&gt;
+      &lt;td&gt;43.226688&lt;/td&gt;
+      &lt;td&gt;9.875418&lt;/td&gt;
+      &lt;td&gt;-14.144128&lt;/td&gt;
+      &lt;td&gt;-31.821207&lt;/td&gt;
+      &lt;td&gt;-45.913952&lt;/td&gt;
+      &lt;td&gt;-56.445293&lt;/td&gt;
+      &lt;td&gt;-62.944271&lt;/td&gt;
+      &lt;td&gt;-68.338936&lt;/td&gt;
+      &lt;td&gt;-49.653156&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;-0.736164&lt;/td&gt;
+      &lt;td&gt;20.028435&lt;/td&gt;
+      &lt;td&gt;52.000000&lt;/td&gt;
+      &lt;td&gt;77.394531&lt;/td&gt;
+      &lt;td&gt;72.148438&lt;/td&gt;
+      &lt;td&gt;60.503906&lt;/td&gt;
+      &lt;td&gt;59.429688&lt;/td&gt;
+      &lt;td&gt;56.027344&lt;/td&gt;
+      &lt;td&gt;61.492188&lt;/td&gt;
+      &lt;td&gt;60.273438&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;14&lt;/th&gt;
+      &lt;td&gt;-63.639583&lt;/td&gt;
+      &lt;td&gt;14.007681&lt;/td&gt;
+      &lt;td&gt;-8.914713&lt;/td&gt;
+      &lt;td&gt;-18.772408&lt;/td&gt;
+      &lt;td&gt;-34.815582&lt;/td&gt;
+      &lt;td&gt;-55.949837&lt;/td&gt;
+      &lt;td&gt;-66.089462&lt;/td&gt;
+      &lt;td&gt;-65.168015&lt;/td&gt;
+      &lt;td&gt;-66.465927&lt;/td&gt;
+      &lt;td&gt;-45.641136&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;9.421118&lt;/td&gt;
+      &lt;td&gt;38.420048&lt;/td&gt;
+      &lt;td&gt;67.453125&lt;/td&gt;
+      &lt;td&gt;75.691406&lt;/td&gt;
+      &lt;td&gt;78.402344&lt;/td&gt;
+      &lt;td&gt;80.929688&lt;/td&gt;
+      &lt;td&gt;79.390625&lt;/td&gt;
+      &lt;td&gt;64.707031&lt;/td&gt;
+      &lt;td&gt;54.890625&lt;/td&gt;
+      &lt;td&gt;51.156250&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;15&lt;/th&gt;
+      &lt;td&gt;-63.635417&lt;/td&gt;
+      &lt;td&gt;-7.310585&lt;/td&gt;
+      &lt;td&gt;-18.513680&lt;/td&gt;
+      &lt;td&gt;-22.575047&lt;/td&gt;
+      &lt;td&gt;-35.414024&lt;/td&gt;
+      &lt;td&gt;-54.700890&lt;/td&gt;
+      &lt;td&gt;-63.991642&lt;/td&gt;
+      &lt;td&gt;-62.630890&lt;/td&gt;
+      &lt;td&gt;-56.582676&lt;/td&gt;
+      &lt;td&gt;-35.162735&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;26.824617&lt;/td&gt;
+      &lt;td&gt;60.225838&lt;/td&gt;
+      &lt;td&gt;77.328125&lt;/td&gt;
+      &lt;td&gt;71.515625&lt;/td&gt;
+      &lt;td&gt;79.382813&lt;/td&gt;
+      &lt;td&gt;91.691406&lt;/td&gt;
+      &lt;td&gt;88.488281&lt;/td&gt;
+      &lt;td&gt;75.808594&lt;/td&gt;
+      &lt;td&gt;57.250000&lt;/td&gt;
+      &lt;td&gt;43.339844&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;16&lt;/th&gt;
+      &lt;td&gt;-63.631250&lt;/td&gt;
+      &lt;td&gt;-12.959548&lt;/td&gt;
+      &lt;td&gt;-20.553957&lt;/td&gt;
+      &lt;td&gt;-24.011562&lt;/td&gt;
+      &lt;td&gt;-33.425610&lt;/td&gt;
+      &lt;td&gt;-49.952095&lt;/td&gt;
+      &lt;td&gt;-57.807667&lt;/td&gt;
+      &lt;td&gt;-58.452568&lt;/td&gt;
+      &lt;td&gt;-50.320042&lt;/td&gt;
+      &lt;td&gt;-22.114317&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;39.627213&lt;/td&gt;
+      &lt;td&gt;56.666016&lt;/td&gt;
+      &lt;td&gt;64.625000&lt;/td&gt;
+      &lt;td&gt;60.617188&lt;/td&gt;
+      &lt;td&gt;69.382813&lt;/td&gt;
+      &lt;td&gt;84.894531&lt;/td&gt;
+      &lt;td&gt;89.250000&lt;/td&gt;
+      &lt;td&gt;83.457031&lt;/td&gt;
+      &lt;td&gt;64.105469&lt;/td&gt;
+      &lt;td&gt;44.339844&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;17&lt;/th&gt;
+      &lt;td&gt;-63.627083&lt;/td&gt;
+      &lt;td&gt;-13.959131&lt;/td&gt;
+      &lt;td&gt;-20.879896&lt;/td&gt;
+      &lt;td&gt;-24.619675&lt;/td&gt;
+      &lt;td&gt;-30.599531&lt;/td&gt;
+      &lt;td&gt;-42.064625&lt;/td&gt;
+      &lt;td&gt;-46.732735&lt;/td&gt;
+      &lt;td&gt;-45.736958&lt;/td&gt;
+      &lt;td&gt;-38.605583&lt;/td&gt;
+      &lt;td&gt;-8.134238&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;38.142117&lt;/td&gt;
+      &lt;td&gt;44.251953&lt;/td&gt;
+      &lt;td&gt;49.472656&lt;/td&gt;
+      &lt;td&gt;46.933594&lt;/td&gt;
+      &lt;td&gt;51.566406&lt;/td&gt;
+      &lt;td&gt;70.160156&lt;/td&gt;
+      &lt;td&gt;81.511719&lt;/td&gt;
+      &lt;td&gt;80.933594&lt;/td&gt;
+      &lt;td&gt;70.406250&lt;/td&gt;
+      &lt;td&gt;52.523438&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;18&lt;/th&gt;
+      &lt;td&gt;-63.622917&lt;/td&gt;
+      &lt;td&gt;0.690808&lt;/td&gt;
+      &lt;td&gt;-9.467150&lt;/td&gt;
+      &lt;td&gt;-21.900442&lt;/td&gt;
+      &lt;td&gt;-26.936838&lt;/td&gt;
+      &lt;td&gt;-27.090944&lt;/td&gt;
+      &lt;td&gt;-28.230453&lt;/td&gt;
+      &lt;td&gt;-25.843157&lt;/td&gt;
+      &lt;td&gt;-19.252031&lt;/td&gt;
+      &lt;td&gt;-2.559922&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;29.576172&lt;/td&gt;
+      &lt;td&gt;41.527344&lt;/td&gt;
+      &lt;td&gt;44.617188&lt;/td&gt;
+      &lt;td&gt;40.628906&lt;/td&gt;
+      &lt;td&gt;38.910156&lt;/td&gt;
+      &lt;td&gt;55.820313&lt;/td&gt;
+      &lt;td&gt;72.777344&lt;/td&gt;
+      &lt;td&gt;76.660156&lt;/td&gt;
+      &lt;td&gt;72.941406&lt;/td&gt;
+      &lt;td&gt;60.238281&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;19&lt;/th&gt;
+      &lt;td&gt;-63.618750&lt;/td&gt;
+      &lt;td&gt;33.239319&lt;/td&gt;
+      &lt;td&gt;19.398363&lt;/td&gt;
+      &lt;td&gt;-8.281146&lt;/td&gt;
+      &lt;td&gt;-21.531794&lt;/td&gt;
+      &lt;td&gt;-14.405942&lt;/td&gt;
+      &lt;td&gt;-5.457515&lt;/td&gt;
+      &lt;td&gt;-5.439976&lt;/td&gt;
+      &lt;td&gt;-7.815783&lt;/td&gt;
+      &lt;td&gt;-0.274054&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;29.634766&lt;/td&gt;
+      &lt;td&gt;42.472656&lt;/td&gt;
+      &lt;td&gt;45.640625&lt;/td&gt;
+      &lt;td&gt;40.773438&lt;/td&gt;
+      &lt;td&gt;37.476563&lt;/td&gt;
+      &lt;td&gt;48.804688&lt;/td&gt;
+      &lt;td&gt;69.843750&lt;/td&gt;
+      &lt;td&gt;79.410156&lt;/td&gt;
+      &lt;td&gt;73.281250&lt;/td&gt;
+      &lt;td&gt;65.578125&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;20&lt;/th&gt;
+      &lt;td&gt;-63.614583&lt;/td&gt;
+      &lt;td&gt;63.578960&lt;/td&gt;
+      &lt;td&gt;33.142456&lt;/td&gt;
+      &lt;td&gt;-8.284787&lt;/td&gt;
+      &lt;td&gt;-10.527703&lt;/td&gt;
+      &lt;td&gt;4.501016&lt;/td&gt;
+      &lt;td&gt;15.951009&lt;/td&gt;
+      &lt;td&gt;6.856074&lt;/td&gt;
+      &lt;td&gt;-5.995221&lt;/td&gt;
+      &lt;td&gt;2.971732&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;31.964844&lt;/td&gt;
+      &lt;td&gt;38.089844&lt;/td&gt;
+      &lt;td&gt;43.308594&lt;/td&gt;
+      &lt;td&gt;42.519531&lt;/td&gt;
+      &lt;td&gt;44.750000&lt;/td&gt;
+      &lt;td&gt;54.101563&lt;/td&gt;
+      &lt;td&gt;69.886719&lt;/td&gt;
+      &lt;td&gt;82.687500&lt;/td&gt;
+      &lt;td&gt;73.929688&lt;/td&gt;
+      &lt;td&gt;67.136719&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;21&lt;/th&gt;
+      &lt;td&gt;-63.610417&lt;/td&gt;
+      &lt;td&gt;70.817719&lt;/td&gt;
+      &lt;td&gt;25.925608&lt;/td&gt;
+      &lt;td&gt;-10.230622&lt;/td&gt;
+      &lt;td&gt;9.744920&lt;/td&gt;
+      &lt;td&gt;24.152803&lt;/td&gt;
+      &lt;td&gt;21.304670&lt;/td&gt;
+      &lt;td&gt;7.644289&lt;/td&gt;
+      &lt;td&gt;-0.897256&lt;/td&gt;
+      &lt;td&gt;6.740877&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;33.261719&lt;/td&gt;
+      &lt;td&gt;35.636719&lt;/td&gt;
+      &lt;td&gt;38.226563&lt;/td&gt;
+      &lt;td&gt;43.644531&lt;/td&gt;
+      &lt;td&gt;51.324219&lt;/td&gt;
+      &lt;td&gt;59.398438&lt;/td&gt;
+      &lt;td&gt;65.488281&lt;/td&gt;
+      &lt;td&gt;77.003906&lt;/td&gt;
+      &lt;td&gt;81.035156&lt;/td&gt;
+      &lt;td&gt;76.835938&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;22&lt;/th&gt;
+      &lt;td&gt;-63.606250&lt;/td&gt;
+      &lt;td&gt;55.557236&lt;/td&gt;
+      &lt;td&gt;14.203660&lt;/td&gt;
+      &lt;td&gt;-1.720311&lt;/td&gt;
+      &lt;td&gt;16.641088&lt;/td&gt;
+      &lt;td&gt;17.982437&lt;/td&gt;
+      &lt;td&gt;11.728527&lt;/td&gt;
+      &lt;td&gt;5.558494&lt;/td&gt;
+      &lt;td&gt;5.703025&lt;/td&gt;
+      &lt;td&gt;13.886730&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;35.199219&lt;/td&gt;
+      &lt;td&gt;36.750000&lt;/td&gt;
+      &lt;td&gt;35.355469&lt;/td&gt;
+      &lt;td&gt;40.335938&lt;/td&gt;
+      &lt;td&gt;48.804688&lt;/td&gt;
+      &lt;td&gt;53.933594&lt;/td&gt;
+      &lt;td&gt;57.835938&lt;/td&gt;
+      &lt;td&gt;67.910156&lt;/td&gt;
+      &lt;td&gt;80.523438&lt;/td&gt;
+      &lt;td&gt;86.218750&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;23&lt;/th&gt;
+      &lt;td&gt;-63.602083&lt;/td&gt;
+      &lt;td&gt;36.025299&lt;/td&gt;
+      &lt;td&gt;2.190290&lt;/td&gt;
+      &lt;td&gt;-1.339007&lt;/td&gt;
+      &lt;td&gt;7.554595&lt;/td&gt;
+      &lt;td&gt;6.734375&lt;/td&gt;
+      &lt;td&gt;5.597656&lt;/td&gt;
+      &lt;td&gt;4.179688&lt;/td&gt;
+      &lt;td&gt;11.597656&lt;/td&gt;
+      &lt;td&gt;26.957031&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;44.718750&lt;/td&gt;
+      &lt;td&gt;45.003906&lt;/td&gt;
+      &lt;td&gt;39.687500&lt;/td&gt;
+      &lt;td&gt;39.195313&lt;/td&gt;
+      &lt;td&gt;46.054688&lt;/td&gt;
+      &lt;td&gt;47.675781&lt;/td&gt;
+      &lt;td&gt;51.292969&lt;/td&gt;
+      &lt;td&gt;58.550781&lt;/td&gt;
+      &lt;td&gt;69.648438&lt;/td&gt;
+      &lt;td&gt;80.183594&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;24&lt;/th&gt;
+      &lt;td&gt;-63.597917&lt;/td&gt;
+      &lt;td&gt;8.810258&lt;/td&gt;
+      &lt;td&gt;-4.524801&lt;/td&gt;
+      &lt;td&gt;3.006743&lt;/td&gt;
+      &lt;td&gt;5.879006&lt;/td&gt;
+      &lt;td&gt;13.291016&lt;/td&gt;
+      &lt;td&gt;18.996094&lt;/td&gt;
+      &lt;td&gt;20.617188&lt;/td&gt;
+      &lt;td&gt;26.906250&lt;/td&gt;
+      &lt;td&gt;43.632813&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;63.082031&lt;/td&gt;
+      &lt;td&gt;58.554688&lt;/td&gt;
+      &lt;td&gt;49.054688&lt;/td&gt;
+      &lt;td&gt;45.753906&lt;/td&gt;
+      &lt;td&gt;52.464844&lt;/td&gt;
+      &lt;td&gt;47.886719&lt;/td&gt;
+      &lt;td&gt;43.769531&lt;/td&gt;
+      &lt;td&gt;49.820313&lt;/td&gt;
+      &lt;td&gt;60.265625&lt;/td&gt;
+      &lt;td&gt;69.031250&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;25&lt;/th&gt;
+      &lt;td&gt;-63.593750&lt;/td&gt;
+      &lt;td&gt;-10.357846&lt;/td&gt;
+      &lt;td&gt;-2.310211&lt;/td&gt;
+      &lt;td&gt;18.718382&lt;/td&gt;
+      &lt;td&gt;29.412100&lt;/td&gt;
+      &lt;td&gt;43.144531&lt;/td&gt;
+      &lt;td&gt;47.375000&lt;/td&gt;
+      &lt;td&gt;47.613281&lt;/td&gt;
+      &lt;td&gt;46.789063&lt;/td&gt;
+      &lt;td&gt;59.468750&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;75.718750&lt;/td&gt;
+      &lt;td&gt;64.488281&lt;/td&gt;
+      &lt;td&gt;52.425781&lt;/td&gt;
+      &lt;td&gt;54.796875&lt;/td&gt;
+      &lt;td&gt;58.187500&lt;/td&gt;
+      &lt;td&gt;51.171875&lt;/td&gt;
+      &lt;td&gt;40.628906&lt;/td&gt;
+      &lt;td&gt;39.328125&lt;/td&gt;
+      &lt;td&gt;48.031250&lt;/td&gt;
+      &lt;td&gt;54.558594&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;26&lt;/th&gt;
+      &lt;td&gt;-63.589583&lt;/td&gt;
+      &lt;td&gt;-4.446059&lt;/td&gt;
+      &lt;td&gt;15.267798&lt;/td&gt;
+      &lt;td&gt;35.644077&lt;/td&gt;
+      &lt;td&gt;52.505859&lt;/td&gt;
+      &lt;td&gt;66.007813&lt;/td&gt;
+      &lt;td&gt;64.027344&lt;/td&gt;
+      &lt;td&gt;60.007813&lt;/td&gt;
+      &lt;td&gt;61.343750&lt;/td&gt;
+      &lt;td&gt;70.480469&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;73.003906&lt;/td&gt;
+      &lt;td&gt;57.976563&lt;/td&gt;
+      &lt;td&gt;57.664063&lt;/td&gt;
+      &lt;td&gt;70.316406&lt;/td&gt;
+      &lt;td&gt;61.886719&lt;/td&gt;
+      &lt;td&gt;50.070313&lt;/td&gt;
+      &lt;td&gt;41.804688&lt;/td&gt;
+      &lt;td&gt;32.093750&lt;/td&gt;
+      &lt;td&gt;34.121094&lt;/td&gt;
+      &lt;td&gt;39.796875&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;27&lt;/th&gt;
+      &lt;td&gt;-63.585417&lt;/td&gt;
+      &lt;td&gt;10.070802&lt;/td&gt;
+      &lt;td&gt;28.118652&lt;/td&gt;
+      &lt;td&gt;42.909988&lt;/td&gt;
+      &lt;td&gt;55.316406&lt;/td&gt;
+      &lt;td&gt;68.027344&lt;/td&gt;
+      &lt;td&gt;68.339844&lt;/td&gt;
+      &lt;td&gt;63.441406&lt;/td&gt;
+      &lt;td&gt;68.449219&lt;/td&gt;
+      &lt;td&gt;72.671875&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;68.878906&lt;/td&gt;
+      &lt;td&gt;57.375000&lt;/td&gt;
+      &lt;td&gt;72.867188&lt;/td&gt;
+      &lt;td&gt;88.558594&lt;/td&gt;
+      &lt;td&gt;67.378906&lt;/td&gt;
+      &lt;td&gt;46.589844&lt;/td&gt;
+      &lt;td&gt;40.140625&lt;/td&gt;
+      &lt;td&gt;31.371094&lt;/td&gt;
+      &lt;td&gt;26.300781&lt;/td&gt;
+      &lt;td&gt;28.425781&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;28&lt;/th&gt;
+      &lt;td&gt;-63.581250&lt;/td&gt;
+      &lt;td&gt;23.047089&lt;/td&gt;
+      &lt;td&gt;35.031254&lt;/td&gt;
+      &lt;td&gt;47.410156&lt;/td&gt;
+      &lt;td&gt;55.835938&lt;/td&gt;
+      &lt;td&gt;64.968750&lt;/td&gt;
+      &lt;td&gt;65.921875&lt;/td&gt;
+      &lt;td&gt;65.269531&lt;/td&gt;
+      &lt;td&gt;69.433594&lt;/td&gt;
+      &lt;td&gt;68.640625&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;70.011719&lt;/td&gt;
+      &lt;td&gt;68.484375&lt;/td&gt;
+      &lt;td&gt;81.964844&lt;/td&gt;
+      &lt;td&gt;88.378906&lt;/td&gt;
+      &lt;td&gt;71.328125&lt;/td&gt;
+      &lt;td&gt;54.429688&lt;/td&gt;
+      &lt;td&gt;46.496094&lt;/td&gt;
+      &lt;td&gt;37.613281&lt;/td&gt;
+      &lt;td&gt;29.402344&lt;/td&gt;
+      &lt;td&gt;24.605469&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;29&lt;/th&gt;
+      &lt;td&gt;-63.577083&lt;/td&gt;
+      &lt;td&gt;29.660294&lt;/td&gt;
+      &lt;td&gt;43.933594&lt;/td&gt;
+      &lt;td&gt;54.765625&lt;/td&gt;
+      &lt;td&gt;58.503906&lt;/td&gt;
+      &lt;td&gt;59.875000&lt;/td&gt;
+      &lt;td&gt;61.269531&lt;/td&gt;
+      &lt;td&gt;65.808594&lt;/td&gt;
+      &lt;td&gt;68.250000&lt;/td&gt;
+      &lt;td&gt;67.292969&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;70.148438&lt;/td&gt;
+      &lt;td&gt;77.992188&lt;/td&gt;
+      &lt;td&gt;85.140625&lt;/td&gt;
+      &lt;td&gt;82.308594&lt;/td&gt;
+      &lt;td&gt;73.621094&lt;/td&gt;
+      &lt;td&gt;66.183594&lt;/td&gt;
+      &lt;td&gt;63.078125&lt;/td&gt;
+      &lt;td&gt;57.390625&lt;/td&gt;
+      &lt;td&gt;40.878906&lt;/td&gt;
+      &lt;td&gt;25.000000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;30&lt;/th&gt;
+      &lt;td&gt;-63.572917&lt;/td&gt;
+      &lt;td&gt;31.014334&lt;/td&gt;
+      &lt;td&gt;53.011719&lt;/td&gt;
+      &lt;td&gt;65.511719&lt;/td&gt;
+      &lt;td&gt;69.812500&lt;/td&gt;
+      &lt;td&gt;67.406250&lt;/td&gt;
+      &lt;td&gt;64.480469&lt;/td&gt;
+      &lt;td&gt;65.234375&lt;/td&gt;
+      &lt;td&gt;66.082031&lt;/td&gt;
+      &lt;td&gt;67.046875&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;70.800781&lt;/td&gt;
+      &lt;td&gt;80.218750&lt;/td&gt;
+      &lt;td&gt;82.531250&lt;/td&gt;
+      &lt;td&gt;79.597656&lt;/td&gt;
+      &lt;td&gt;74.093750&lt;/td&gt;
+      &lt;td&gt;72.089844&lt;/td&gt;
+      &lt;td&gt;72.535156&lt;/td&gt;
+      &lt;td&gt;68.304688&lt;/td&gt;
+      &lt;td&gt;53.062500&lt;/td&gt;
+      &lt;td&gt;32.714844&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;31&lt;/th&gt;
+      &lt;td&gt;-63.568750&lt;/td&gt;
+      &lt;td&gt;26.085461&lt;/td&gt;
+      &lt;td&gt;48.626953&lt;/td&gt;
+      &lt;td&gt;68.445313&lt;/td&gt;
+      &lt;td&gt;77.644531&lt;/td&gt;
+      &lt;td&gt;72.324219&lt;/td&gt;
+      &lt;td&gt;64.750000&lt;/td&gt;
+      &lt;td&gt;60.253906&lt;/td&gt;
+      &lt;td&gt;59.281250&lt;/td&gt;
+      &lt;td&gt;59.570313&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;74.175781&lt;/td&gt;
+      &lt;td&gt;85.882813&lt;/td&gt;
+      &lt;td&gt;81.031250&lt;/td&gt;
+      &lt;td&gt;76.011719&lt;/td&gt;
+      &lt;td&gt;74.222656&lt;/td&gt;
+      &lt;td&gt;71.539063&lt;/td&gt;
+      &lt;td&gt;68.039063&lt;/td&gt;
+      &lt;td&gt;67.273438&lt;/td&gt;
+      &lt;td&gt;59.007813&lt;/td&gt;
+      &lt;td&gt;35.109375&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;32&lt;/th&gt;
+      &lt;td&gt;-63.564583&lt;/td&gt;
+      &lt;td&gt;15.733856&lt;/td&gt;
+      &lt;td&gt;28.271484&lt;/td&gt;
+      &lt;td&gt;46.269531&lt;/td&gt;
+      &lt;td&gt;63.753906&lt;/td&gt;
+      &lt;td&gt;64.000000&lt;/td&gt;
+      &lt;td&gt;55.468750&lt;/td&gt;
+      &lt;td&gt;47.593750&lt;/td&gt;
+      &lt;td&gt;43.093750&lt;/td&gt;
+      &lt;td&gt;44.507813&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;73.300781&lt;/td&gt;
+      &lt;td&gt;93.609375&lt;/td&gt;
+      &lt;td&gt;85.214844&lt;/td&gt;
+      &lt;td&gt;72.902344&lt;/td&gt;
+      &lt;td&gt;68.187500&lt;/td&gt;
+      &lt;td&gt;62.113281&lt;/td&gt;
+      &lt;td&gt;55.867188&lt;/td&gt;
+      &lt;td&gt;57.050781&lt;/td&gt;
+      &lt;td&gt;48.832031&lt;/td&gt;
+      &lt;td&gt;41.835938&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;33&lt;/th&gt;
+      &lt;td&gt;-63.560417&lt;/td&gt;
+      &lt;td&gt;16.391357&lt;/td&gt;
+      &lt;td&gt;28.580078&lt;/td&gt;
+      &lt;td&gt;28.265625&lt;/td&gt;
+      &lt;td&gt;37.042969&lt;/td&gt;
+      &lt;td&gt;50.828125&lt;/td&gt;
+      &lt;td&gt;42.882813&lt;/td&gt;
+      &lt;td&gt;29.406250&lt;/td&gt;
+      &lt;td&gt;26.296875&lt;/td&gt;
+      &lt;td&gt;34.031250&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;65.316406&lt;/td&gt;
+      &lt;td&gt;89.085938&lt;/td&gt;
+      &lt;td&gt;79.992188&lt;/td&gt;
+      &lt;td&gt;62.281250&lt;/td&gt;
+      &lt;td&gt;57.343750&lt;/td&gt;
+      &lt;td&gt;50.035156&lt;/td&gt;
+      &lt;td&gt;42.109375&lt;/td&gt;
+      &lt;td&gt;37.054688&lt;/td&gt;
+      &lt;td&gt;40.128906&lt;/td&gt;
+      &lt;td&gt;63.527344&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;34&lt;/th&gt;
+      &lt;td&gt;-63.556250&lt;/td&gt;
+      &lt;td&gt;35.735107&lt;/td&gt;
+      &lt;td&gt;51.728516&lt;/td&gt;
+      &lt;td&gt;35.523438&lt;/td&gt;
+      &lt;td&gt;20.843750&lt;/td&gt;
+      &lt;td&gt;34.964844&lt;/td&gt;
+      &lt;td&gt;29.890625&lt;/td&gt;
+      &lt;td&gt;18.320313&lt;/td&gt;
+      &lt;td&gt;21.328125&lt;/td&gt;
+      &lt;td&gt;33.257813&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;47.628906&lt;/td&gt;
+      &lt;td&gt;59.199219&lt;/td&gt;
+      &lt;td&gt;56.316406&lt;/td&gt;
+      &lt;td&gt;43.554688&lt;/td&gt;
+      &lt;td&gt;39.011719&lt;/td&gt;
+      &lt;td&gt;34.664063&lt;/td&gt;
+      &lt;td&gt;31.308594&lt;/td&gt;
+      &lt;td&gt;35.773438&lt;/td&gt;
+      &lt;td&gt;59.132813&lt;/td&gt;
+      &lt;td&gt;83.457031&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;35&lt;/th&gt;
+      &lt;td&gt;-63.552083&lt;/td&gt;
+      &lt;td&gt;53.774876&lt;/td&gt;
+      &lt;td&gt;60.871094&lt;/td&gt;
+      &lt;td&gt;40.660156&lt;/td&gt;
+      &lt;td&gt;18.941406&lt;/td&gt;
+      &lt;td&gt;21.210938&lt;/td&gt;
+      &lt;td&gt;20.207031&lt;/td&gt;
+      &lt;td&gt;18.796875&lt;/td&gt;
+      &lt;td&gt;25.796875&lt;/td&gt;
+      &lt;td&gt;40.980469&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;30.445313&lt;/td&gt;
+      &lt;td&gt;29.199219&lt;/td&gt;
+      &lt;td&gt;31.417969&lt;/td&gt;
+      &lt;td&gt;28.507813&lt;/td&gt;
+      &lt;td&gt;24.871094&lt;/td&gt;
+      &lt;td&gt;25.457031&lt;/td&gt;
+      &lt;td&gt;33.128906&lt;/td&gt;
+      &lt;td&gt;51.968750&lt;/td&gt;
+      &lt;td&gt;77.597656&lt;/td&gt;
+      &lt;td&gt;94.570313&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;36&lt;/th&gt;
+      &lt;td&gt;-63.547917&lt;/td&gt;
+      &lt;td&gt;59.230469&lt;/td&gt;
+      &lt;td&gt;61.367188&lt;/td&gt;
+      &lt;td&gt;51.703125&lt;/td&gt;
+      &lt;td&gt;33.691406&lt;/td&gt;
+      &lt;td&gt;26.390625&lt;/td&gt;
+      &lt;td&gt;21.757813&lt;/td&gt;
+      &lt;td&gt;19.949219&lt;/td&gt;
+      &lt;td&gt;37.359375&lt;/td&gt;
+      &lt;td&gt;56.464844&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;38.128906&lt;/td&gt;
+      &lt;td&gt;30.468750&lt;/td&gt;
+      &lt;td&gt;30.625000&lt;/td&gt;
+      &lt;td&gt;34.699219&lt;/td&gt;
+      &lt;td&gt;36.746094&lt;/td&gt;
+      &lt;td&gt;40.019531&lt;/td&gt;
+      &lt;td&gt;50.718750&lt;/td&gt;
+      &lt;td&gt;66.621094&lt;/td&gt;
+      &lt;td&gt;84.746094&lt;/td&gt;
+      &lt;td&gt;97.382813&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;37&lt;/th&gt;
+      &lt;td&gt;-63.543750&lt;/td&gt;
+      &lt;td&gt;64.832031&lt;/td&gt;
+      &lt;td&gt;66.406250&lt;/td&gt;
+      &lt;td&gt;59.792969&lt;/td&gt;
+      &lt;td&gt;45.585938&lt;/td&gt;
+      &lt;td&gt;34.242188&lt;/td&gt;
+      &lt;td&gt;29.488281&lt;/td&gt;
+      &lt;td&gt;38.558594&lt;/td&gt;
+      &lt;td&gt;64.308594&lt;/td&gt;
+      &lt;td&gt;76.347656&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;61.476563&lt;/td&gt;
+      &lt;td&gt;45.535156&lt;/td&gt;
+      &lt;td&gt;39.082031&lt;/td&gt;
+      &lt;td&gt;46.347656&lt;/td&gt;
+      &lt;td&gt;49.382813&lt;/td&gt;
+      &lt;td&gt;54.738281&lt;/td&gt;
+      &lt;td&gt;62.695313&lt;/td&gt;
+      &lt;td&gt;77.050781&lt;/td&gt;
+      &lt;td&gt;95.820313&lt;/td&gt;
+      &lt;td&gt;99.855469&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;38&lt;/th&gt;
+      &lt;td&gt;-63.539583&lt;/td&gt;
+      &lt;td&gt;73.113281&lt;/td&gt;
+      &lt;td&gt;61.929688&lt;/td&gt;
+      &lt;td&gt;49.589844&lt;/td&gt;
+      &lt;td&gt;38.644531&lt;/td&gt;
+      &lt;td&gt;39.300781&lt;/td&gt;
+      &lt;td&gt;55.171875&lt;/td&gt;
+      &lt;td&gt;74.441406&lt;/td&gt;
+      &lt;td&gt;85.554688&lt;/td&gt;
+      &lt;td&gt;88.195313&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;72.500000&lt;/td&gt;
+      &lt;td&gt;57.628906&lt;/td&gt;
+      &lt;td&gt;44.191406&lt;/td&gt;
+      &lt;td&gt;47.347656&lt;/td&gt;
+      &lt;td&gt;54.886719&lt;/td&gt;
+      &lt;td&gt;62.109375&lt;/td&gt;
+      &lt;td&gt;73.921875&lt;/td&gt;
+      &lt;td&gt;90.792969&lt;/td&gt;
+      &lt;td&gt;101.320310&lt;/td&gt;
+      &lt;td&gt;99.058594&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;39&lt;/th&gt;
+      &lt;td&gt;-63.535417&lt;/td&gt;
+      &lt;td&gt;63.765625&lt;/td&gt;
+      &lt;td&gt;50.531250&lt;/td&gt;
+      &lt;td&gt;45.089844&lt;/td&gt;
+      &lt;td&gt;43.453125&lt;/td&gt;
+      &lt;td&gt;57.082031&lt;/td&gt;
+      &lt;td&gt;78.214844&lt;/td&gt;
+      &lt;td&gt;90.632813&lt;/td&gt;
+      &lt;td&gt;90.097656&lt;/td&gt;
+      &lt;td&gt;85.585938&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;71.574219&lt;/td&gt;
+      &lt;td&gt;60.835938&lt;/td&gt;
+      &lt;td&gt;50.472656&lt;/td&gt;
+      &lt;td&gt;54.304688&lt;/td&gt;
+      &lt;td&gt;69.460938&lt;/td&gt;
+      &lt;td&gt;77.367188&lt;/td&gt;
+      &lt;td&gt;83.960938&lt;/td&gt;
+      &lt;td&gt;95.863281&lt;/td&gt;
+      &lt;td&gt;101.292970&lt;/td&gt;
+      &lt;td&gt;97.675781&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;40&lt;/th&gt;
+      &lt;td&gt;-63.531250&lt;/td&gt;
+      &lt;td&gt;47.578125&lt;/td&gt;
+      &lt;td&gt;44.156250&lt;/td&gt;
+      &lt;td&gt;48.628906&lt;/td&gt;
+      &lt;td&gt;55.949219&lt;/td&gt;
+      &lt;td&gt;64.972656&lt;/td&gt;
+      &lt;td&gt;76.601563&lt;/td&gt;
+      &lt;td&gt;88.078125&lt;/td&gt;
+      &lt;td&gt;92.406250&lt;/td&gt;
+      &lt;td&gt;87.617188&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;68.554688&lt;/td&gt;
+      &lt;td&gt;61.691406&lt;/td&gt;
+      &lt;td&gt;59.355469&lt;/td&gt;
+      &lt;td&gt;67.031250&lt;/td&gt;
+      &lt;td&gt;82.750000&lt;/td&gt;
+      &lt;td&gt;91.019531&lt;/td&gt;
+      &lt;td&gt;90.761719&lt;/td&gt;
+      &lt;td&gt;94.960938&lt;/td&gt;
+      &lt;td&gt;96.988281&lt;/td&gt;
+      &lt;td&gt;93.632813&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;41&lt;/th&gt;
+      &lt;td&gt;-63.527083&lt;/td&gt;
+      &lt;td&gt;41.800781&lt;/td&gt;
+      &lt;td&gt;44.277344&lt;/td&gt;
+      &lt;td&gt;50.859375&lt;/td&gt;
+      &lt;td&gt;59.894531&lt;/td&gt;
+      &lt;td&gt;68.699219&lt;/td&gt;
+      &lt;td&gt;77.902344&lt;/td&gt;
+      &lt;td&gt;88.875000&lt;/td&gt;
+      &lt;td&gt;92.273438&lt;/td&gt;
+      &lt;td&gt;87.335938&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;70.550781&lt;/td&gt;
+      &lt;td&gt;65.195313&lt;/td&gt;
+      &lt;td&gt;65.718750&lt;/td&gt;
+      &lt;td&gt;73.437500&lt;/td&gt;
+      &lt;td&gt;86.222656&lt;/td&gt;
+      &lt;td&gt;93.308594&lt;/td&gt;
+      &lt;td&gt;92.941406&lt;/td&gt;
+      &lt;td&gt;93.285156&lt;/td&gt;
+      &lt;td&gt;90.976563&lt;/td&gt;
+      &lt;td&gt;90.335938&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;42&lt;/th&gt;
+      &lt;td&gt;-63.527083&lt;/td&gt;
+      &lt;td&gt;41.800781&lt;/td&gt;
+      &lt;td&gt;44.277344&lt;/td&gt;
+      &lt;td&gt;50.859375&lt;/td&gt;
+      &lt;td&gt;59.894531&lt;/td&gt;
+      &lt;td&gt;68.699219&lt;/td&gt;
+      &lt;td&gt;77.902344&lt;/td&gt;
+      &lt;td&gt;88.875000&lt;/td&gt;
+      &lt;td&gt;92.273438&lt;/td&gt;
+      &lt;td&gt;87.335938&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;70.550781&lt;/td&gt;
+      &lt;td&gt;65.195313&lt;/td&gt;
+      &lt;td&gt;65.718750&lt;/td&gt;
+      &lt;td&gt;73.437500&lt;/td&gt;
+      &lt;td&gt;86.222656&lt;/td&gt;
+      &lt;td&gt;93.308594&lt;/td&gt;
+      &lt;td&gt;92.941406&lt;/td&gt;
+      &lt;td&gt;93.285156&lt;/td&gt;
+      &lt;td&gt;90.976563&lt;/td&gt;
+      &lt;td&gt;90.335938&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;43 rows × 21 columns&lt;/p&gt;
+&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+import plotly.graph_objects as go
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv(&#39;POINT_DATA_TITLE.csv&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;df.head()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&lt;pre&gt;&lt;code&gt;.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;/style&gt;&lt;/p&gt;
+&lt;table border=&#34;1&#34; class=&#34;dataframe&#34;&gt;
+  &lt;thead&gt;
+    &lt;tr style=&#34;text-align: right;&#34;&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;x&lt;/th&gt;
+      &lt;th&gt;y&lt;/th&gt;
+      &lt;th&gt;z&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;-63.690000&lt;/td&gt;
+      &lt;td&gt;44.738333&lt;/td&gt;
+      &lt;td&gt;57&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;-63.689792&lt;/td&gt;
+      &lt;td&gt;44.738333&lt;/td&gt;
+      &lt;td&gt;57&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;-63.689583&lt;/td&gt;
+      &lt;td&gt;44.738333&lt;/td&gt;
+      &lt;td&gt;57&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;-63.689375&lt;/td&gt;
+      &lt;td&gt;44.738333&lt;/td&gt;
+      &lt;td&gt;56&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;-63.689167&lt;/td&gt;
+      &lt;td&gt;44.738333&lt;/td&gt;
+      &lt;td&gt;56&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import cm
+# from matplotlib.ticker import LinearLocator, FormatStrFormatter
+from matplotlib import rc, rcParams
+from mpl_toolkits.mplot3d import Axes3D
+from scipy.interpolate import griddata
+import matplotlib.gridspec as gridspec
+
+# 2D-arrays from DataFrame
+x1 = np.linspace(df[&#39;x&#39;].min(), df[&#39;x&#39;].max(), len(df[&#39;x&#39;].unique()))
+y1 = np.linspace(df[&#39;y&#39;].min(), df[&#39;y&#39;].max(), len(df[&#39;y&#39;].unique()))
+
+&amp;quot;&amp;quot;&amp;quot;
+x, y via meshgrid for vectorized evaluation of
+2 scalar/vector fields over 2-D grids, given
+one-dimensional coordinate arrays x1, x2,..., xn.
+&amp;quot;&amp;quot;&amp;quot;
+
+x2, y2 = np.meshgrid(x1, y1)
+
+# Interpolate unstructured D-dimensional data.
+z2 = griddata((df[&#39;x&#39;], df[&#39;y&#39;]), df[&#39;z&#39;], (x2, y2), method=&#39;cubic&#39;)
+
+# Ready to plot
+
+fig = plt.figure(211,figsize=(15,20))
+ax = fig.add_subplot(211, projection=&#39;3d&#39;)
+spec = gridspec.GridSpec(ncols=1, nrows=2,
+                         height_ratios=[4, 1])
+
+surf = ax.plot_surface(x2, y2, z2, rstride=1, cstride=1, cmap=cm.terrain,
+                       linewidth=1, antialiased=False)
+ax.view_init(45,-55)
+
+cset = ax.contourf(x2, y2, z2, zdir=&#39;z2&#39;, offset=-80, cmap=cm.terrain, antialiased=True)
+
+rcParams[&#39;legend.fontsize&#39;] = 20
+
+rc(&#39;text&#39;, usetex=True)
+rc(&#39;axes&#39;, linewidth=2)
+rc(&#39;font&#39;, weight=&#39;bold&#39;)
+
+
+rcParams[&#39;text.latex.preamble&#39;] = [r&#39;\usepackage{sfmath} \boldmath&#39;]
+
+ax.xaxis.set_tick_params(labelsize=20)
+ax.yaxis.set_tick_params(labelsize=20)
+ax.zaxis.set_tick_params(labelsize=20)
+ax.set_zticks([-70, -50, -30, -10, 10, 30, 50, 70, 90, 110])
+plt.title(r&#39;\textbf{Bedford Basin Bathymatry}&#39;, fontsize=20)
+plt.xlabel(r&#39;\textbf{Latitude}&#39;, fontsize=20, labelpad= 23)
+plt.ylabel(r&#39;\textbf{Longitude}&#39;, fontsize=20, labelpad= 20)
+ax.set_zlabel(r&#39;\textbf{Elevation}&#39;, fontsize=20, labelpad= 10)
+
+fig.savefig(&#39;Bedford_BASIN_BATHY_view5.png&#39;, dpi=600)
+
+
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+
+fig, ax = plt.subplots(figsize=(15, 1))
+# ax = fig.add_subplot(111)
+fig.subplots_adjust(bottom=0.5)
+
+cmap = mpl.cm.terrain
+norm = mpl.colors.Normalize(vmin=-80, vmax=100)
+
+cb1 = mpl.colorbar.ColorbarBase(ax, cmap=cmap,
+                                norm=norm,
+                                orientation=&#39;horizontal&#39;)
+cb1.set_label(&#39;Elevation&#39;, fontsize=20, weight=&#39;bold&#39;)
+plt.setp(ax.get_xticklabels(), fontsize=20)
+
+fig.savefig(&#39;Bedford_BASIN_BATHY_view8.png&#39;, dpi=600)
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_16_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;output_16_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import matplotlib.pyplot as plt
+import matplotlib as mpl
+
+left, width = 0.07, 0.65
+bottom, height = 0.1, .8
+bottom_h = left_h = left+width+0.02
+
+rect_cones = [left, bottom, width, height]
+rect_box = [left_h, bottom, 0.05, height]
+
+fig = plt.figure(figsize=(14,7), dpi=300)
+
+cones = plt.axes(rect_cones,projection=&#39;3d&#39;)
+box = plt.axes(rect_box)
+
+cones.plot_surface(x2, y2, z2, rstride=1, cstride=1, cmap=cm.terrain,
+                        linewidth=1, antialiased=False)
+cones.set_zlim([-80, 110])
+cones.view_init(45,-55)
+cset = cones.contourf(x2, y2, z2, zdir=&#39;z2&#39;, offset=-80, cmap=cm.terrain, antialiased=True)
+
+rcParams[&#39;legend.fontsize&#39;] = 20
+
+rc(&#39;text&#39;, usetex=True)
+rc(&#39;axes&#39;, linewidth=2)
+rc(&#39;font&#39;, weight=&#39;bold&#39;)
+
+rcParams[&#39;text.latex.preamble&#39;] = [r&#39;\usepackage{sfmath} \boldmath&#39;]
+
+cones.xaxis.set_tick_params(labelsize=20)
+cones.yaxis.set_tick_params(labelsize=20)
+cones.zaxis.set_tick_params(labelsize=20)
+cones.set_xlabel(&#39;Latitude&#39;, fontsize=20, labelpad= 23, weight=&#39;bold&#39;)
+cones.set_ylabel(&#39;Longitude&#39;, fontsize=20, labelpad= 20, weight=&#39;bold&#39;)
+cones.set_zlabel(&#39;Elevation&#39;, fontsize=20, labelpad= 10, weight=&#39;bold&#39;)
+
+fig.suptitle(&#39;Bedford Basin Bathymatry&#39;, fontsize=20, weight=&#39;bold&#39;)
+cmap = mpl.cm.terrain
+norm = mpl.colors.Normalize(vmin=-80, vmax=110)
+
+cb1 = mpl.colorbar.ColorbarBase(box, cmap=cmap,
+                                norm=norm,
+                                orientation=&#39;vertical&#39;, extend=&#39;both&#39;)
+plt.setp(box.get_yticklabels(), fontsize=16);
+
+fig.savefig(&#39;Bedford_BASIN_BATHY_Final_fig.png&#39;, dpi=600)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_17_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

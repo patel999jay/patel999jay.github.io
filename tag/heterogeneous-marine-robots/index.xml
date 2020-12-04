@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Heterogeneous marine robots | Jay Patel</title>
+    <link>https://patel999jay.github.io/tag/heterogeneous-marine-robots/</link>
+      <atom:link href="https://patel999jay.github.io/tag/heterogeneous-marine-robots/index.xml" rel="self" type="application/rss+xml" />
+    <description>Heterogeneous marine robots</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2020</copyright><lastBuildDate>Mon, 19 Oct 2020 19:46:19 -0300</lastBuildDate>
+    <image>
+      <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_2.png</url>
+      <title>Heterogeneous marine robots</title>
+      <link>https://patel999jay.github.io/tag/heterogeneous-marine-robots/</link>
+    </image>
+    
+    <item>
+      <title>WOSS Integration with NS-3</title>
+      <link>https://patel999jay.github.io/post/woss-integration-ns3/</link>
+      <pubDate>Mon, 19 Oct 2020 19:46:19 -0300</pubDate>
+      <guid>https://patel999jay.github.io/post/woss-integration-ns3/</guid>
+      <description>&lt;h1 id=&#34;woss-integration-framework-with-acoustic-toolbox-with-ns3-dev-with-database-netcdf4-and-hdf5-support&#34;&gt;WOSS Integration Framework with Acoustic Toolbox with NS3-dev (with Database, NETCDF4 and HDF5 support)&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;WOSS&lt;/code&gt; is a multi-threaded C++ framework that permits the integration of any existing underwater channel simulator that expects environmental data as input and provides as output a channel realization.&lt;/p&gt;
+&lt;p&gt;Currently, &lt;code&gt;WOSS&lt;/code&gt; integrates the &lt;code&gt;Bellhop ray-tracing&lt;/code&gt; program.&lt;/p&gt;
+&lt;p&gt;Thanks to its automation the user only has to specify the location in the world and the time where the simulation should take place. This is done by setting the simulated date and the wanted latitude and longitude of every node involved. The simulator automatically handles the rest (see technical description).&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;WOSS&lt;/code&gt; can be integrated in any network simulator or simulation tool that supports &lt;code&gt;C++&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You can find the &lt;code&gt;WOSS&lt;/code&gt; repository 
+&lt;a href=&#34;https://github.com/MetalKnight/woss-ns3&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; on github&lt;/p&gt;
+&lt;p&gt;&amp;lsquo;woss-ns3&amp;rsquo; relies on the following libraries:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;- WOSS
+- NetCDF
+- Acoustic Toolbox
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;First make sure you have &lt;code&gt;gfortran&lt;/code&gt;,&lt;code&gt;gcc&lt;/code&gt; and &lt;code&gt;gcxx compiler&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Please checked if the GNU Fortran compiler was in my system by typing &lt;code&gt;gfortran --version&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;GNU Fortran (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0
+Copyright (C) 2017 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you go for the GNU compiler, type:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export FC=gfortran
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;install-latest-acoustic-toolbox-march-2019&#34;&gt;Install latest &lt;code&gt;Acoustic Toolbox&lt;/code&gt; (March 2019)&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd ${HOME}/Documents
+wget http://telecom.dei.unipd.it/ns/woss/files/at.zip
+tar -xzf at.zip
+cd at/at
+make
+sudo make install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once installed, let&amp;rsquo;s tell the system where to find our new libraries: (Please replace &lt;code&gt;ns&lt;/code&gt; with your &lt;code&gt;hostname&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export PATH=/home/ns/Documents/at/at/Bellhop:/home/ns/Documents/at/at/:$PATH
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You have to build support for &lt;code&gt;NETCDF4&lt;/code&gt; and &lt;code&gt;HDF5&lt;/code&gt; for &lt;code&gt;NS3&lt;/code&gt;, &lt;code&gt;WOSS&lt;/code&gt; and &lt;code&gt;Acoustic Toolbox&lt;/code&gt;, Please make sure you follow this  steps for installation :&lt;/p&gt;
+&lt;h5 id=&#34;export-environment&#34;&gt;export environment&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export F77=gfortran
+export FC=gfortran
+export CC=gcc
+export CXX=g++
+export CFLAGS=-fPIC
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-1-install-compilers-and-building-tools&#34;&gt;Step 1. Install compilers and building tools&lt;/h2&gt;
+&lt;p&gt;First let&amp;rsquo;s check which Linux are you running with the command:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;lsb_release -ds
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Will return something like:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Debian GNU/Linux 9.8 (stretch)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;For &lt;em&gt;Debian/Ubuntu/Linux Mint&lt;/em&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get update
+sudo apt-get install wget nano gfortran m4 build-essential
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-2-install-netcdf&#34;&gt;Step 2. Install &lt;code&gt;NETCDF&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Until version 4.1.3, &lt;code&gt;NETCDF&lt;/code&gt; was bundled in a single package. Since then, has been split off into independent distributions (&lt;code&gt;netCDF-C&lt;/code&gt;, &lt;code&gt;netCDF-Fortran&lt;/code&gt;, &lt;code&gt;netCDF-Java&lt;/code&gt;, &lt;code&gt;netCDF-Python&lt;/code&gt;, &lt;code&gt;netCDF-C++&lt;/code&gt; and so on).&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s start with downloading and installing &lt;code&gt;netCDF-C&lt;/code&gt; in a new folder called &lt;code&gt;netcdf&lt;/code&gt; in user home directory (e.g. &lt;code&gt;/home/ns/&lt;/code&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://telecom.dei.unipd.it/ns/woss/files/netcdf-c-4.7.3.tar.gz
+tar -xzf netcdf-c-4.7.3.tar.gz
+cd netcdf-c-4.7.3
+./configure --prefix=${HOME}/netcdf --disable-dap --disable-netcdf-4 --enable-shared
+make
+make check
+sudo make install
+cd ${HOME}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-3-now-please-install-hdf5-support-for-netcdf&#34;&gt;Step 3. Now please install &lt;code&gt;HDF5&lt;/code&gt; support for &lt;code&gt;NETCDF&lt;/code&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://telecom.dei.unipd.it/ns/woss/files/hdf5-1.8.13.tar.gz
+tar -xzf hdf5-1.8.13.tar.gz
+cd hdf5-1.8.13
+./configure --enable-shared --prefix=${HOME}/netcdf --disable-dap --enable-fortran #If above command didn&#39;t work then please try ./configure --enable-shared --prefix=${HOME}/netcdf 
+make
+make check
+sudo make install
+cd ${HOME}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-4-again-configure-netcdf-with-hdf5-support&#34;&gt;Step 4. Again configure &lt;code&gt;NETCDF&lt;/code&gt; with &lt;code&gt;HDF5&lt;/code&gt; support&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd netcdf-c-4.7.3
+./configure --prefix=${HOME}/netcdf --disable-dap --enable-netcdf-4 --enable-shared CPPFLAGS=&amp;quot;$CPPFLAGS -I${HOME}/netcdf/include&amp;quot; LDFLAGS=&amp;quot;$LDFLAGS -L${HOME}/netcdf/lib&amp;quot; --enable-fortran --enable-cxx
+make
+make check
+sudo make install
+cd ${HOME}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-5-now-install-netcdf4-c-support&#34;&gt;Step 5. Now install &lt;code&gt;NETCDF4 C++&lt;/code&gt; support&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://telecom.dei.unipd.it/ns/woss/files/netcdf-cxx4-4.3.1.tar.gz
+tar -xzf netcdf-cxx4-4.3.1.tar.gz
+cd netcdf-cxx4-4.3.1
+./configure --prefix=${HOME}/netcdf --enable-shared CPPFLAGS=&amp;quot;$CPPFLAGS -I${HOME}/netcdf/include&amp;quot; LDFLAGS=&amp;quot;$LDFLAGS -L${HOME}/netcdf/lib&amp;quot; 
+make
+make check
+sudo make install
+cd ${HOME}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once installed, let&amp;rsquo;s tell the system where to find our new libraries and export variables to .bashrc:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export NETCDF=${HOME}/netcdf
+export PATH=$NETCDF/bin:$PATH
+export NETCDF_INCDIR=$NETCDF/include 
+export NETCDF_LIBDIR=$NETCDF/lib
+export LD_LIBRARY_PATH=$NETCDF/lib:$LD_LIBRARY_PATH
+export PATH NETCDF
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-6-install-woss-library-support&#34;&gt;Step 6. Install &lt;code&gt;WOSS&lt;/code&gt; library support&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://telecom.dei.unipd.it/ns/woss/files/WOSS-v1.10.0.tar.gz
+tar -xzf WOSS-v1.10.0.tar.gz 
+cd woss-1.10.0
+./autogen.sh 
+./configure --with-netcdf4=${HOME}/netcdf --with-pthread
+make
+make check
+sudo make install
+wget http://telecom.dei.unipd.it/ns/woss/files/WOSS-dbs-v1.4.0.tar.gz
+tar -xzf WOSS-dbs-v1.4.0.tar.gz
+cd dbs/bathymetry
+wget https://www.bodc.ac.uk/data/open_download/gebco/GEBCO_15SEC/zip/  #this is almost ~ 12 GB database.
+tar -xzf GEBCO_2019.zip #This is database used by WOSS, more details are available on http://telecom.dei.unipd.it/ns/woss/doxygen/database.html
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;ns3-dev-installation&#34;&gt;&lt;code&gt;NS3-dev&lt;/code&gt; Installation&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd Documents/
+mkdir workspace
+cd workspace
+wget https://www.nsnam.org/release/ns-allinone-3.30.tar.bz2
+tar xjf ns-allinone-3.30.tar.bz2
+cd ns-allinone-3.30/
+./build.py --enable-examples --enable-tests
+cd ns-3.30/
+./waf --run scratch/scratch-simulator #To check everything working fine 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Please don&amp;rsquo;t use sudo to build ns3-dev as it makes conficts when woss try to call bellhop.exe in runtime, to chech you have correctly set your PATH for acoustic toolbox,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;which bellhop.exe
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It will show you path of your bellhop.exe, same like this,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/home/ns/Documents/at/bin/bellhop.exe
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;configure-woss-libraries-for-ns3-dev&#34;&gt;configure &lt;code&gt;WOSS&lt;/code&gt; libraries for &lt;code&gt;ns3-dev&lt;/code&gt;&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd ${HOME}/Documents/workspace/ns-allinone-3.30/ns-3.30/src
+git clone https://github.com/MetalKnight/woss-ns3.git
+tar xjf woss-ns3-master.zip #Remove zip file from src folder as this will conflict while building NS-3
+mv woss-ns3-master woss-ns3 #Rename folder as woss-ns3, make sure folder name is correct to avoid config errors
+cd ..
+./waf -d debug --enable-tests --enable-examples --enable-sudo --with-woss-source=/home/ns/woss-1.10.0/ --with-woss-library=/home/ns/woss-1.10.0/woss --with-netcdf4-install=${HOME}/netcdf configure CXXFLAGS=&amp;quot;-Wall -Werror -Wno-unused-variable&amp;quot;  #this configure your ns3, Please make sure woss source(in my case i.e /home/ns/woss-1.10.0/) is correct and installed woss library (in my case i.e /home/ns/woss-1.10.0/woss) is provided with correct path, also make sure you put the correct path for netCDF(in my case i.e${HOME}/netcdf)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can see, &lt;code&gt;./waf&lt;/code&gt; will configure and please check if you got message in second last command line saying&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# WOSS Integration Framework    : enabled
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In my case, It looks like,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;medit@medit-Vostro-230:~/Documents/workspace/ns-allinone-3.30/ns-3.30$ ./waf -d debug --enable-tests --enable-examples --enable-sudo --with-woss-source=/home/medit/woss-1.9.0/ --with-woss-library=/home/medit/woss-1.9.0/woss --with-netcdf4-install=${HOME}/netcdf configure
+Setting top to                           : /home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30 
+Setting out to                           : /home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30/build 
+Checking for &#39;gcc&#39; (C compiler)          : /usr/bin/gcc 
+Checking for cc version                  : 7.4.0 
+Checking for &#39;g++&#39; (C++ compiler)        : /usr/bin/g++ 
+Checking for compilation flag -Wl,--soname=foo support : ok 
+Checking for compilation flag -std=c++11 support       : ok 
+Checking boost includes                                : headers not found, please provide a --boost-includes argument (see help) 
+Checking boost includes                                : headers not found, please provide a --boost-includes argument (see help) 
+Checking for program &#39;python&#39;                          : /usr/bin/python3 
+Checking for python version &amp;gt;= 2.3                     : 3.6.9 
+python-config                                          : not found 
+Checking for library python3.6m in LIBDIR              : not found 
+Checking for library python3.6m in python_LIBPL        : yes 
+Checking for header Python.h                           : Distutils not installed? Broken python installation? Get python-config now! 
+Checking for click location                            : not found 
+Checking for program &#39;pkg-config&#39;                      : /usr/bin/pkg-config 
+Checking for &#39;gtk+-3.0&#39;                                : not found 
+Checking for &#39;libxml-2.0&#39;                              : not found 
+checking for uint128_t                                 : not found 
+checking for __uint128_t                               : yes 
+Checking high precision implementation                 : 128-bit integer (default) 
+Checking for header stdint.h                           : yes 
+Checking for header inttypes.h                         : yes 
+Checking for header sys/inttypes.h                     : not found 
+Checking for header sys/types.h                        : yes 
+Checking for header sys/stat.h                         : yes 
+Checking for header dirent.h                           : yes 
+Checking for header stdlib.h                           : yes 
+Checking for header signal.h                           : yes 
+Checking for header pthread.h                          : yes 
+Checking for header stdint.h                           : yes 
+Checking for header inttypes.h                         : yes 
+Checking for header sys/inttypes.h                     : not found 
+Checking for library rt                                : yes 
+Checking for header sys/ioctl.h                        : yes 
+Checking for header net/if.h                           : yes 
+Checking for header net/ethernet.h                     : yes 
+Checking for header linux/if_tun.h                     : yes 
+Checking for header netpacket/packet.h                 : yes 
+Checking for NSC location                              : not found 
+Checking for &#39;sqlite3&#39;                                 : not found 
+Checking for header linux/if_tun.h                     : yes 
+Checking the given WOSS source code path               : /home/ns/woss-1.9.0/ (given) 
+Checking the given WOSS library path                   : /home/ns/woss-1.9.0/woss (given) 
+Checking the given NetCDF4 and HDF5 install path       : /home/ns/netcdf (given) 
+WOSS source code path is valid                         : /home/ns/woss-1.9.0/woss  
+WOSS source code path is valid                         : /home/ns/woss-1.9.0/woss/woss_def  
+WOSS source code path is valid                         : /home/ns/woss-1.9.0/woss/woss_db  
+Checking the given WOSS library                        : yes 
+NetCDF4 and HDF5 source code path                      : /home/ns/netcdf/include  
+Checking the given NETCDF4 and HDF5 libraries          : yes 
+Checking for program &#39;sudo&#39;                            : /usr/bin/sudo 
+Checking for program &#39;valgrind&#39;                        : not found 
+Checking for &#39;gsl&#39;                                     : not found 
+libgcrypt-config                                       : not found 
+Checking for compilation flag -fstrict-aliasing support : ok 
+Checking for compilation flag -fstrict-aliasing support : ok 
+Checking for compilation flag -Wstrict-aliasing support : ok 
+Checking for compilation flag -Wstrict-aliasing support : ok 
+Checking for program &#39;doxygen&#39;                          : not found 
+---- Summary of optional NS-3 features:
+Build profile                 : debug
+Build directory               : 
+BRITE Integration             : not enabled (BRITE not enabled (see option --with-brite))
+DES Metrics event collection  : not enabled (defaults to disabled)
+Emulation FdNetDevice         : enabled
+Examples                      : enabled
+File descriptor NetDevice     : enabled
+GNU Scientific Library (GSL)  : not enabled (GSL not found)
+Gcrypt library                : not enabled (libgcrypt not found: you can use libgcrypt-config to find its location.)
+GtkConfigStore                : not enabled (library &#39;gtk+-3.0 &amp;gt;= 3.0&#39; not found)
+MPI Support                   : not enabled (option --enable-mpi not selected)
+NS-3 Click Integration        : not enabled (nsclick not enabled (see option --with-nsclick))
+NS-3 OpenFlow Integration     : not enabled (Required boost libraries not found)
+Network Simulation Cradle     : not enabled (NSC not found (see option --with-nsc))
+PlanetLab FdNetDevice         : not enabled (PlanetLab operating system not detected (see option --force-planetlab))
+PyViz visualizer              : not enabled (Python Bindings are needed but not enabled)
+Python Bindings               : not enabled (Python library or headers missing)
+Real Time Simulator           : enabled
+SQlite stats data output      : not enabled (library &#39;sqlite3&#39; not found)
+Tap Bridge                    : enabled
+Tap FdNetDevice               : enabled
+Tests                         : enabled
+Threading Primitives          : enabled
+Use sudo to set suid bit      : enabled
+WOSS Integration Framework    : enabled
+XmlIo                         : not enabled (library &#39;libxml-2.0 &amp;gt;= 2.7&#39; not found)
+&#39;configure&#39; finished successfully (2.808s)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Check out second last line to make sure everything is perfectly configure.&lt;/p&gt;
+&lt;p&gt;Then build your &lt;code&gt;ns3&lt;/code&gt; again,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./waf build CXXFLAGS=&amp;quot;-Wall -Werror -Wno-unused-variable&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;you&amp;rsquo;ll see the following,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Waf: Leaving directory `/home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (11m35.055s)
+
+Modules built:
+antenna                   aodv                      applications              
+bridge                    buildings                 config-store              
+core                      csma                      csma-layout               
+dsdv                      dsr                       energy                    
+fd-net-device             flow-monitor              internet                  
+internet-apps             lr-wpan                   lte                       
+mesh                      mobility                  mpi                       
+netanim (no Python)       network                   nix-vector-routing        
+olsr                      point-to-point            point-to-point-layout     
+propagation               sixlowpan                 spectrum                  
+stats                     tap-bridge                test (no Python)          
+topology-read             traffic-control           uan                       
+virtual-net-device        wave                      wifi                      
+wimax                     woss-ns3 (no Python)      
+
+Modules not built (see ns-3 tutorial for explanation):
+brite                     click                     openflow                  
+visualizer                
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Please run one of the example from scratch,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./waf --run scratch/scratch-simulator
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you see the below output, Hola ! Its working now.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Waf: Entering directory `/home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Waf: Leaving directory `/home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (0.749s)
+Scratch Simulator
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then Run WOSS Aloha Example with following example (please note that scratch folder is not yet added to module so you have to manually run your examples from the woss-ns3/examples folder itself.)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;medit@medit-Vostro-230:~/Documents/workspace/ns-allinone-3.30/ns-3.30$ ./waf --run src/woss-ns3/examples/woss-aloha-example 
+Waf: Entering directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Waf: Leaving directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (1.731s)
+WossManagerResDbMT::checkConcurrentThreads() 6
+WossManagerResDbMT::checkConcurrentThreads() 4
+Received a packet of size 1000 bytes
+Received a total of 1000 bytes at sink
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;troubleshoot&#34;&gt;Troubleshoot&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;If you&amp;rsquo;re running example and run into problem with tap-creator like following then you have to manually change few settings.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./waf --run src/woss-ns3/examples/woss-aloha-example --command-template=&amp;quot;gdb --args %s &amp;lt;args&amp;gt;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Waf: Entering directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+* Several tasks use the same identifier. Please check the information on
+   https://waf.io/apidocs/Task.html?highlight=uid#waflib.Task.Task.uid
+  - object &#39;SuidBuild_task&#39; (
+	{task 140252058325512: SuidBuild_task  -&amp;gt; }) defined in &#39;tap-creator&#39;
+  - object &#39;SuidBuild_task&#39; (
+	{task 140252058325624: SuidBuild_task  -&amp;gt; }) defined in &#39;tap-creator&#39;
+  - object &#39;SuidBuild_task&#39; (
+	{task 140252058325736: SuidBuild_task  -&amp;gt; }) defined in &#39;tap-creator&#39;
+Waf: Leaving directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (2.892s)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;first figure out the problem with gdb command by running following command,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./waf --run src/woss-ns3/examples/woss-aloha-example --command-template=&amp;quot;gdb --args %s &amp;lt;args
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then maybe the easier one for the time being, open the /home/usr/netcdf/include/ncGroup.h
+and remove the line 18 from that file, which is not used by the library anyway.&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;If you&amp;rsquo;re not able to find or use the common shared files/library,&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;medit@medit-Vostro-230:~/Documents/workspace/ns-allinone-3.30/ns-3.30$ ./waf --run src/woss-ns3/examples/woss-aloha-example 
+Waf: Entering directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Waf: Leaving directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (1.713s)
+/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build/src/woss-ns3/examples/ns3.30-woss-aloha-example-debug: error while loading shared libraries: libWOSS.so.0: cannot open shared object file: No such file or directory
+Command [&#39;/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build/src/woss-ns3/examples/ns3.30-woss-aloha-example-debug&#39;] exited with code 127
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;please do following to solve the error,&lt;/p&gt;
+&lt;p&gt;Edit /etc/ld.so.conf or create something in /etc/ld.so.conf.d/ to add /usr/local/lib and /usr/local/lib64. Then run ldconfig.&lt;/p&gt;
+&lt;p&gt;In my case,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo nano /etc/ld.so.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Please make sure you have the correct lib in the same file, in my case it was,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;include /etc/ld.so.conf.d/*.conf
+add /usr/local/lib:/usr/local/lib64  //added by Jay to access common or shared libraries
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;save the same file and configure again by&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo ldconfig
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It should work now. In my case, it worked&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;medit@medit-Vostro-230:~/Documents/workspace/ns-allinone-3.30/ns-3.30$ ./waf --run src/woss-ns3/examples/woss-aloha-example 
+Waf: Entering directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Waf: Leaving directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (1.731s)
+WossManagerResDbMT::checkConcurrentThreads() 6
+WossManagerResDbMT::checkConcurrentThreads() 4
+Received a packet of size 1000 bytes
+Received a total of 1000 bytes at sink
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;If you get the error of &lt;code&gt;./autogen.sh: 3: ./autogen.sh: aclocal: not found&lt;/code&gt; or &lt;code&gt;./autogen.sh: 3: ./autogen.sh: libtoolize: not found&lt;/code&gt;
+then please install automake essentials for build in the ubuntu. You can also install with following commands:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get install autotools-dev
+sudo apt-get install automake
+sudo apt-get install libtool m4 automake
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;you-can-also-download-all-this-instruction-to-your-local-machine&#34;&gt;You can also download all this instruction to your local machine.&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;Custom-WOSS.updated-md.pdf&#34;&gt;Download&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://telecom.dei.unipd.it/ns/woss/,&#34;&gt;http://telecom.dei.unipd.it/ns/woss/,&lt;/a&gt; Special Thanks to &lt;strong&gt;
+&lt;a href=&#34;https://github.com/MetalKnight&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Federico Guerra&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.nsnam.org/&#34;&gt;https://www.nsnam.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/MetalKnight/woss-ns3&#34;&gt;https://github.com/MetalKnight/woss-ns3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/javirg/SWAN-Support/blob/master/recipes/build_linux_netcdf.md&#34;&gt;https://github.com/javirg/SWAN-Support/blob/master/recipes/build_linux_netcdf.md&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Underwater channel characterization for shallow water multi-domain communications</title>
+      <link>https://patel999jay.github.io/publication/icua-2020/</link>
+      <pubDate>Wed, 09 Sep 2020 13:31:52 -0300</pubDate>
+      <guid>https://patel999jay.github.io/publication/icua-2020/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;The underwater acoustic (UWA) channel is challenging as a propagation medium for wireless transmissions due to its spatial-temporal variability from high ambient noise, limited bandwidth, frequency-dependent losses, variable latency and time-space-frequency variable multi-path effects. Prior to deploying marine robots, the UWA channel should be characterized for its local sound velocity profile, at both source and receiver(s) depths, bottom cover (e.g. sand, silt, mud, etc.) and bathymetry. At the transmission end, it matters the signal’s carrier frequency, bandwidth, and pulse characteristics. With knowledge of both, it is possible to assess the operational communications range. This is especially so to develop and evaluate new medium access control (MAC) and routing level protocols. As a part of a project, three heterogeneous marine robots (unmanned underwater vehicle (UUV), unmanned surface vehicle (USV), and unmanned aerial vehicle (UAV)) collaboratively acquired situational awareness on a non-responsive floating target. This paper reports on the communications aspect.  It presents models that assess the impact of the relative placement between a transmitter (USV) and receiver (UUV) through ray tracing and several sea-bed environmental/UWA channel conditions on operational communication range between UUV \&amp; USV.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Bellhop Acoustic Toolbox</title>
+      <link>https://patel999jay.github.io/post/bellhop-acoustic-toolbox/</link>
+      <pubDate>Thu, 03 Sep 2020 18:51:27 -0300</pubDate>
+      <guid>https://patel999jay.github.io/post/bellhop-acoustic-toolbox/</guid>
+      <description>&lt;h1 id=&#34;bellhop---ocean-simulation-modeling&#34;&gt;Bellhop - Ocean simulation modeling&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;What is BELLHOP ?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;BELLHOP&lt;/strong&gt; is a beam tracing model for predicting acoustic pressure fields in ocean environments.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BELLHOP&lt;/strong&gt; can produce a variety of useful outputs including transmission loss, eigenrays, arrivals, and received time-series. It also allows for range-dependence in the top and bottom boundaries (altimetry and bathymetry), as well as in the sound speed profile (SSP).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BELLHOP&lt;/strong&gt; is implemented in Fortran, Matlab, and Python and used on multiple platforms (Mac, Windows, and Linux).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;bellhop_structure.png&#34; alt=&#34;Bellhop_Structure&#34; title=&#34;Bellhop_Structure&#34;&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;center&gt; Figure 1: BELLHOP structure &lt;/center&gt;&lt;/h3&gt;
+&lt;h1 id=&#34;why-bellhop&#34;&gt;WHY BELLHOP?&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Underwater communication channel is a relatively difficult transmission medium due to the variability of link quality depending on location and applications.&lt;/li&gt;
+&lt;li&gt;Before deploying any kind of vehicles underwater, one should predict the underwater communication system performance which is based on the sound frequency transmitted underwater.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Why do you need to analyze the uw-comms performance?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;To analyze impact of channel characteristics on underwater communications,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;prior to deploying robots, predict communication system performance,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;provide guidance on best physical layout to deploy underwater vehicles,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;provide estimates on parameters for link budget calculation,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Because&lt;/strong&gt; it will provide you a rough idea about &lt;strong&gt;how far you can communicate within network&lt;/strong&gt; which is also known as an &lt;strong&gt;operation range for communication&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;BELLHOP&lt;/strong&gt; reads these files depending on options selected within the main environmental file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;There are various options for which you can run bellhop are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ray tracing option,&lt;/li&gt;
+&lt;li&gt;eigenray option,&lt;/li&gt;
+&lt;li&gt;transmission loss option,&lt;/li&gt;
+&lt;li&gt;an arrivals calculation option.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;installation&#34;&gt;Installation&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Please download newer version from 
+&lt;a href=&#34;https://oalib-acoustics.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Bellhop&lt;/a&gt; or 
+&lt;a href=&#34;http://telecom.dei.unipd.it/ns/woss/files/at.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Bellhop Mirror&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Unzip the downloaded file to local machine and go to that folder.&lt;/li&gt;
+&lt;li&gt;If you&amp;rsquo;re using the Unix base system then open command prompt and go to the same folder where you extracted your zip.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;cd at/at
+make all
+sudo make install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;If you&amp;rsquo;re using bellhop on Windows 10 machine then you also need to download the Win10 Binary executable files from 
+&lt;a href=&#34;http://oalib.hlsresearch.com/AcousticsToolbox/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;. Please also extract that to the folder at.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;detailed-installation-instructions-based-on-os&#34;&gt;Detailed Installation Instructions based on OS&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;Installation_Manual_draft.pdf&#34;&gt;Windows 10&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;BellhopInstallationGuideUbuntu20.04.pdf&#34;&gt;Ubuntu 20.04&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;MacOS_Installation_Manual.pdf&#34;&gt;Mac OS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://pypi.org/project/arlpy/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;More Details&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;sound-speed-profile&#34;&gt;Sound Speed Profile&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;SSP-all.png&#34; alt=&#34;Sound Speed Profile&#34; title=&#34;Sound Speed Profile of Bedford Basin (taken on 13-10-17)&#34;&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;center&gt; Figure 2: Sound Speed Profile &lt;/center&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;How to Plot SSP&#39;s using ARLPY ?
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# SSP Plotting using ARLPY
+
+import arlpy.uwapm as pm
+import arlpy.plot as plt
+import numpy as np
+
+env = pm.create_env2d()
+ssp = [
+    [ 0, 1540],  # 1540 m/s at the surface
+    [10, 1530],  # 1530 m/s at 10 m depth
+    [20, 1532],  # 1532 m/s at 20 m depth
+    [25, 1533],  # 1533 m/s at 25 m depth
+    [30, 1535]   # 1535 m/s at the seabed
+]
+env = pm.create_env2d(soundspeed=ssp)
+pm.plot_ssp(env, width=500)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;a0bacd1a-271d-46fe-a1e7-f64469b6c690&#34; data-root-id=&#34;16075&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Plotting an Environment
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Plotting an Environment using ARLPY
+
+pm.plot_env(env, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;b93da247-88a6-4697-9087-37648db4f726&#34; data-root-id=&#34;16908&#34;&gt;&lt;/div&gt;
+&lt;h1 id=&#34;eigenrays&#34;&gt;Eigenrays&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Eigenray&lt;/strong&gt; plots show just the rays that connect the source to a receiver.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Eigenrays using ARLPY
+import arlpy.uwapm as pm
+import arlpy.plot as plt
+import numpy as np
+
+env = pm.create_env2d()
+rays = pm.compute_eigenrays(env)
+pm.plot_rays(rays, env=env, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;07ffdb99-a83e-40f2-9174-79fb8ffb398f&#34; data-root-id=&#34;17789&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# compute the arrival structure at the receiver
+
+arrivals = pm.compute_arrivals(env)
+pm.plot_arrivals(arrivals, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;c7d45a3f-b745-451f-9b23-2223610326ec&#34; data-root-id=&#34;19976&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;arrivals[arrivals.arrival_number &amp;lt; 10][[&#39;time_of_arrival&#39;, &#39;angle_of_arrival&#39;, &#39;surface_bounces&#39;, &#39;bottom_bounces&#39;]]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&lt;pre&gt;&lt;code&gt;.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;/style&gt;&lt;/p&gt;
+&lt;table border=&#34;1&#34; class=&#34;dataframe&#34;&gt;
+  &lt;thead&gt;
+    &lt;tr style=&#34;text-align: right;&#34;&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;time_of_arrival&lt;/th&gt;
+      &lt;th&gt;angle_of_arrival&lt;/th&gt;
+      &lt;th&gt;surface_bounces&lt;/th&gt;
+      &lt;th&gt;bottom_bounces&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;0.721796&lt;/td&gt;
+      &lt;td&gt;22.538254&lt;/td&gt;
+      &lt;td&gt;9&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;0.716791&lt;/td&gt;
+      &lt;td&gt;-21.553932&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;0.709687&lt;/td&gt;
+      &lt;td&gt;20.052078&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+      &lt;td&gt;7&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;0.705226&lt;/td&gt;
+      &lt;td&gt;-19.034414&lt;/td&gt;
+      &lt;td&gt;7&lt;/td&gt;
+      &lt;td&gt;7&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;5&lt;/th&gt;
+      &lt;td&gt;0.698960&lt;/td&gt;
+      &lt;td&gt;17.484421&lt;/td&gt;
+      &lt;td&gt;7&lt;/td&gt;
+      &lt;td&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;6&lt;/th&gt;
+      &lt;td&gt;0.695070&lt;/td&gt;
+      &lt;td&gt;-16.436060&lt;/td&gt;
+      &lt;td&gt;6&lt;/td&gt;
+      &lt;td&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;7&lt;/th&gt;
+      &lt;td&gt;0.689678&lt;/td&gt;
+      &lt;td&gt;14.842224&lt;/td&gt;
+      &lt;td&gt;6&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;8&lt;/th&gt;
+      &lt;td&gt;0.686383&lt;/td&gt;
+      &lt;td&gt;-13.766296&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;9&lt;/th&gt;
+      &lt;td&gt;0.681901&lt;/td&gt;
+      &lt;td&gt;12.133879&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;10&lt;/th&gt;
+      &lt;td&gt;0.679223&lt;/td&gt;
+      &lt;td&gt;-11.034208&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# convert to a impulse response time series
+
+ir = pm.arrivals_to_impulse_response(arrivals, fs=96000)
+plt.plot(np.abs(ir), fs=96000, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;d5bf8847-edc7-4005-936c-220cbdf19b56&#34; data-root-id=&#34;21610&#34;&gt;&lt;/div&gt;
+&lt;h1 id=&#34;bathymetry&#34;&gt;Bathymetry&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Let&#39;s first start off by defining our bathymetry, a steep up-slope for the first 300 m, and then a gentle downslope:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# add/change bathy to env
+bathy = [
+    [0, 30],    # 30 m water depth at the transmitter
+    [300, 20],  # 20 m water depth 300 m away
+    [1000, 25]  # 25 m water depth at 1 km
+]
+
+# add/change SSP to env
+ssp = [
+    [ 0, 1540],  # 1540 m/s at the surface
+    [10, 1530],  # 1530 m/s at 10 m depth
+    [20, 1532],  # 1532 m/s at 20 m depth
+    [25, 1533],  # 1533 m/s at 25 m depth
+    [30, 1535]   # 1535 m/s at the seabed
+]
+
+# Appending ssp and bathy to existing env file
+env = pm.create_env2d(
+    depth=bathy,
+    soundspeed=ssp,
+    bottom_soundspeed=1450,
+    bottom_density=1200,
+    bottom_absorption=1.0,
+    tx_depth=15
+)
+pm.print_env(env)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;                name : arlpy
+   bottom_absorption : 1.0
+      bottom_density : 1200
+    bottom_roughness : 0
+   bottom_soundspeed : 1450
+               depth : [[   0.   30.]
+                        [ 300.   20.]
+                        [1000.   25.]]
+        depth_interp : linear
+           frequency : 25000
+           max_angle : 80
+           min_angle : -80
+              nbeams : 0
+            rx_depth : 10
+            rx_range : 1000
+          soundspeed : [[   0. 1540.]
+                        [  10. 1530.]
+                        [  20. 1532.]
+                        [  25. 1533.]
+                        [  30. 1535.]]
+   soundspeed_interp : spline
+             surface : None
+      surface_interp : linear
+            tx_depth : 15
+   tx_directionality : None
+                type : 2D
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;pm.plot_env(env, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;c5164586-1f1f-4d18-8448-3758c15fadd2&#34; data-root-id=&#34;22674&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Looks more interesting! Let&#39;s see what the eigenrays look like, and also the arrival structure:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;rays = pm.compute_eigenrays(env)
+pm.plot_rays(rays, env=env, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;69a277ca-3514-4c29-96fd-abebc426ee09&#34; data-root-id=&#34;23803&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;We could also ignore the receiver, and plot rays launched at various angles:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;rays = pm.compute_rays(env)
+pm.plot_rays(rays, env=env, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;97d64a45-f41f-4ee5-ac01-57747068231c&#34; data-root-id=&#34;25402&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import numpy as np
+from scipy.interpolate import griddata
+import scipy.ndimage as ndimage
+from scipy.ndimage import gaussian_filter
+import scipy
+# from scipy.misc import imsave
+from matplotlib import cm
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from stl import mesh, Mode
+import matplotlib.tri as mtri
+from mpl_toolkits.mplot3d.axes3d import get_test_data
+from pandas import read_csv
+
+
+
+data = read_csv(&#39;bathy.txt&#39;, sep=&#39;\s+&#39;, header=None, names=[&#39;x&#39;, &#39;y&#39;, &#39;depth&#39;])
+
+x = np.arange(data.x.min(), data.x.max()+1)
+y = np.arange(data.y.min(), data.y.max()+1)
+
+X, Y = np.meshgrid(x, y)
+
+Z = griddata(data[[&#39;x&#39;,&#39;y&#39;]].values, -data[&#39;depth&#39;].values, (X, Y), method=&#39;linear&#39;)
+
+# make the grid square
+Z[np.isnan(Z)] = 0
+
+fig = plt.figure(figsize=(14, 8))
+ax = fig.add_subplot(111)
+plt.imshow(Z)
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_30_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;center&gt; Figure 3: Bedford Basin Bathy 2D &lt;/center&gt; &lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;Bedford_Bathy_plotly.png&#34; alt=&#34;Bedford Basin Bathy 3D&#34; title=&#34;Bedford Basin Bathy 3D&#34;&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;center&gt; Figure 4: Bedford Basin Bathy 3D &lt;/center&gt; &lt;/h3&gt;
+&lt;p&gt;or place lots of receivers in a grid to visualize the acoustic pressure field (or equivalently transmission loss). We can modify the environment (env) without having to recreate it, as it is simply a Python dictionary object:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;env[&#39;rx_range&#39;] = np.linspace(0, 1000, 1001)
+env[&#39;rx_depth&#39;] = np.linspace(0, 30, 301)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;transmission-loss&#34;&gt;Transmission Loss&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;- RUN TYPE BELLHOP
+
+OPTION(1:1):           &#39;R&#39; generates a ray file
+                       &#39;E&#39; generates an eigenray file
+                       &#39;A&#39; generates an amplitude-delay file (ascii)
+                       &#39;a&#39; generate  an amplitude-delay file (binary)
+                       &#39;C&#39; Coherent     TL calculation
+                       &#39;I&#39; Incoherent   TL calculation
+                       &#39;S&#39; Semicoherent TL calculation
+                            (Lloyd mirror source pattern)
+                        
+- The number of beams, NBeams, should normally be set to 0, allowing BELLHOP to automatically select the appropriate value. The number
+needed increases with frequency and the maximum range to a receiver. 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;The pressure field, p, is then calculated for the specified grid of receivers, with a scaling such that $20\ log10(|p|)$ is the transmission loss in dB.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tloss = pm.compute_transmission_loss(env)
+pm.plot_transmission_loss(tloss, env=env, clim=[-60,-30], width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;1d9ffcb3-4874-46c9-9d0d-4951a7cd0b9d&#34; data-root-id=&#34;27557&#34;&gt;&lt;/div&gt;
+&lt;p&gt;We see a complicated interference pattern, but an interesting focusing at 800 m at a 15 m depth. The detailed interference pattern is of course sensitive to small changes in the environment. A less sensitive, but more averaged out, transmission loss estimate can be obtained using the incoherent mode:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tloss = pm.compute_transmission_loss(env, mode=&#39;incoherent&#39;)
+pm.plot_transmission_loss(tloss, env=env, clim=[-60,-30], width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;7e97fc3b-0e9e-4475-9ccc-25cf2a7885c4&#34; data-root-id=&#34;28892&#34;&gt;&lt;/div&gt;
+&lt;h1 id=&#34;source-directionality&#34;&gt;Source directionality&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Now, let&#39;s use a directional transmitter instead of an omni-directional one:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;beampattern = np.array([
+    [-180,  10], [-170, -10], [-160,   0], [-150, -20], [-140, -10], [-130, -30],
+    [-120, -20], [-110, -40], [-100, -30], [-90 , -50], [-80 , -30], [-70 , -40],
+    [-60 , -20], [-50 , -30], [-40 , -10], [-30 , -20], [-20 ,   0], [-10 , -10],
+    [  0 ,  10], [ 10 , -10], [ 20 ,   0], [ 30 , -20], [ 40 , -10], [ 50 , -30],
+    [ 60 , -20], [ 70 , -40], [ 80 , -30], [ 90 , -50], [100 , -30], [110 , -40],
+    [120 , -20], [130 , -30], [140 , -10], [150 , -20], [160 ,   0], [170 , -10],
+    [180 ,  10]
+])
+env[&#39;tx_directionality&#39;] = beampattern
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tloss = pm.compute_transmission_loss(env)
+pm.plot_transmission_loss(tloss, env=env, clim=[-60,-30], width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;a435b52d-d78f-4da7-8dcb-b4400d56e61c&#34; data-root-id=&#34;30243&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Now you can see the directionality and the sidelobe structure of the transmitter.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tloss = pm.compute_transmission_loss(env, mode=&#39;incoherent&#39;)
+pm.plot_transmission_loss(tloss, env=env, clim=[-60,-30], width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;9f5afa51-942b-494f-9c27-661c6b034380&#34; data-root-id=&#34;31610&#34;&gt;&lt;/div&gt;
+&lt;h1 id=&#34;undulating-water-surface&#34;&gt;Undulating water surface&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Finally, let&#39;s try adding a long wavelength swell on the water surface:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;surface = np.array([[r, 0.5+0.5*np.sin(2*np.pi*0.005*r)] for r in np.linspace(0,1000,1001)])
+env[&#39;surface&#39;] = surface
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tloss = pm.compute_transmission_loss(env)
+pm.plot_transmission_loss(tloss, env=env, clim=[-60,-30], width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;6444cad4-1e30-4c2f-bdbf-0f75f97b005b&#34; data-root-id=&#34;32993&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tloss = pm.compute_transmission_loss(env, mode=&#39;incoherent&#39;)
+pm.plot_transmission_loss(tloss, env=env, clim=[-60,-30], width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;0757c4b3-0752-4e16-a332-a81931113f4d&#34; data-root-id=&#34;34392&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Now, if I placed a receiver at 800 m, and 15 m depth, roughly where we see some focusing, what would the eigenrays and arrival structure look like?
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;env[&#39;rx_range&#39;] = 800
+env[&#39;rx_depth&#39;] = 15
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;rays = pm.compute_eigenrays(env)
+pm.plot_rays(rays, env=env, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;139c90d1-7728-41ea-98a5-430e8356b006&#34; data-root-id=&#34;35807&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;arrivals = pm.compute_arrivals(env)
+pm.plot_arrivals(arrivals, dB=True, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;2d262be4-2935-4759-8703-788ae855b9bb&#34; data-root-id=&#34;37450&#34;&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; We plotted the amplitudes in dB, as the later arrivals are much weaker than the first one, and better visualized in a logarithmic scale.&lt;/p&gt;
+&lt;h1 id=&#34;bellhop3d&#34;&gt;Bellhop3D&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;BELLHOP3D&lt;/strong&gt; is a beam tracing model for predicting acoustic pressure fields in ocean environments.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It is an extension to 3D environments of the popular BELLHOP model and includes (optionally) horizontal refraction in the lat-long plane.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;3D pressure fields can be calculated by a 2D model simply by running it on a series of radials (bearing lines) from the source.(This is the so-called Nx2D or 2.5D approach.)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;BELLHOP3D&lt;/strong&gt; includes 4 different types of beams:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cerveny Beams,&lt;/li&gt;
+&lt;li&gt;Geometric Hat-Beams,&lt;/li&gt;
+&lt;li&gt;Geometric Gaussian-Beams,&lt;/li&gt;
+&lt;li&gt;Geometric Hat-Beams in Cartesian Coordinates&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You can also download the sample notebook from 
+&lt;a href=&#34;bellhop.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;All code and setup files are also available on 
+&lt;a href=&#34;https://github.com/patel999jay/Bellhop-ARLPY-ECED6575&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://oalib.hlsresearch.com/AcousticsToolbox/&#34;&gt;http://oalib.hlsresearch.com/AcousticsToolbox/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://arlpy.readthedocs.io/en/latest/_static/bellhop.html&#34;&gt;https://arlpy.readthedocs.io/en/latest/_static/bellhop.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

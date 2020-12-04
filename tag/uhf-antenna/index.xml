@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UHF antenna | Jay Patel</title>
+    <link>https://patel999jay.github.io/tag/uhf-antenna/</link>
+      <atom:link href="https://patel999jay.github.io/tag/uhf-antenna/index.xml" rel="self" type="application/rss+xml" />
+    <description>UHF antenna</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2020</copyright><lastBuildDate>Fri, 20 Mar 2020 20:16:50 -0300</lastBuildDate>
+    <image>
+      <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_2.png</url>
+      <title>UHF antenna</title>
+      <link>https://patel999jay.github.io/tag/uhf-antenna/</link>
+    </image>
+    
+    <item>
+      <title>Low Cost Design of UHF Antenna for Roof Mounted Vehicular and Heavy Duty Applications</title>
+      <link>https://patel999jay.github.io/publication/low-cost-design-of-uhf-antenna-for-roof-mounted-vehicular-and-heavy-duty-applications/</link>
+      <pubDate>Fri, 20 Mar 2020 20:16:50 -0300</pubDate>
+      <guid>https://patel999jay.github.io/publication/low-cost-design-of-uhf-antenna-for-roof-mounted-vehicular-and-heavy-duty-applications/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

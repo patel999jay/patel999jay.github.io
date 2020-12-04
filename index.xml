@@ -1,0 +1,3266 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jay Patel</title>
+    <link>https://patel999jay.github.io/</link>
+      <atom:link href="https://patel999jay.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <description>Jay Patel</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2020</copyright><lastBuildDate>Fri, 04 Dec 2020 17:03:18 -0400</lastBuildDate>
+    <image>
+      <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_2.png</url>
+      <title>Jay Patel</title>
+      <link>https://patel999jay.github.io/</link>
+    </image>
+    
+    <item>
+      <title>CDMA-based multi-domain communications network for marine robots</title>
+      <link>https://patel999jay.github.io/talk/asacdma2020/</link>
+      <pubDate>Fri, 04 Dec 2020 17:03:18 -0400</pubDate>
+      <guid>https://patel999jay.github.io/talk/asacdma2020/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;A cross-domain communications network for above and below water marine robots, based on code-division multiple access (CDMA), is reported. CDMA is a promising physical layer and multiple access technique for underwater acoustic sensor networks as it: i) is robust to frequency selective fading, ii) compensates for multi-path effects at the receiver, and iii) allows receivers to distinguish amongst signals simultaneously transmitted by multiple devices. Consequently, CDMA increases channel re-use and reduces packet retransmissions, which results in decreased energy consumption and increased network throughput. The proposed CDMA network for autonomous co-ordination and networking is applied to marine robots separated by extended ranges to transmit images / information from underwater to above-water. The work involves a complete communications protocol stack from the physical to the application layer. Simulations of the proposed network were performed with Network Simulator-3 (NS-3). The proposed protocol leverages CDMA properties to achieve multiple access to the scarce underwater bandwidth while previous reported work with underwater channels only consider CDMA for the physical layer encoding. Simulations shows the proposed underwater acoustic network protocol outperforms other existing ones. The next step is preliminary testing in-water.
+</description>
+    </item>
+    
+    <item>
+      <title>WOSS Integration with NS-3</title>
+      <link>https://patel999jay.github.io/post/woss-integration-ns3/</link>
+      <pubDate>Mon, 19 Oct 2020 19:46:19 -0300</pubDate>
+      <guid>https://patel999jay.github.io/post/woss-integration-ns3/</guid>
+      <description>&lt;h1 id=&#34;woss-integration-framework-with-acoustic-toolbox-with-ns3-dev-with-database-netcdf4-and-hdf5-support&#34;&gt;WOSS Integration Framework with Acoustic Toolbox with NS3-dev (with Database, NETCDF4 and HDF5 support)&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;WOSS&lt;/code&gt; is a multi-threaded C++ framework that permits the integration of any existing underwater channel simulator that expects environmental data as input and provides as output a channel realization.&lt;/p&gt;
+&lt;p&gt;Currently, &lt;code&gt;WOSS&lt;/code&gt; integrates the &lt;code&gt;Bellhop ray-tracing&lt;/code&gt; program.&lt;/p&gt;
+&lt;p&gt;Thanks to its automation the user only has to specify the location in the world and the time where the simulation should take place. This is done by setting the simulated date and the wanted latitude and longitude of every node involved. The simulator automatically handles the rest (see technical description).&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;WOSS&lt;/code&gt; can be integrated in any network simulator or simulation tool that supports &lt;code&gt;C++&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You can find the &lt;code&gt;WOSS&lt;/code&gt; repository 
+&lt;a href=&#34;https://github.com/MetalKnight/woss-ns3&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; on github&lt;/p&gt;
+&lt;p&gt;&amp;lsquo;woss-ns3&amp;rsquo; relies on the following libraries:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;- WOSS
+- NetCDF
+- Acoustic Toolbox
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;First make sure you have &lt;code&gt;gfortran&lt;/code&gt;,&lt;code&gt;gcc&lt;/code&gt; and &lt;code&gt;gcxx compiler&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Please checked if the GNU Fortran compiler was in my system by typing &lt;code&gt;gfortran --version&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;GNU Fortran (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0
+Copyright (C) 2017 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you go for the GNU compiler, type:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export FC=gfortran
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;install-latest-acoustic-toolbox-march-2019&#34;&gt;Install latest &lt;code&gt;Acoustic Toolbox&lt;/code&gt; (March 2019)&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd ${HOME}/Documents
+wget http://telecom.dei.unipd.it/ns/woss/files/at.zip
+tar -xzf at.zip
+cd at/at
+make
+sudo make install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once installed, let&amp;rsquo;s tell the system where to find our new libraries: (Please replace &lt;code&gt;ns&lt;/code&gt; with your &lt;code&gt;hostname&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export PATH=/home/ns/Documents/at/at/Bellhop:/home/ns/Documents/at/at/:$PATH
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You have to build support for &lt;code&gt;NETCDF4&lt;/code&gt; and &lt;code&gt;HDF5&lt;/code&gt; for &lt;code&gt;NS3&lt;/code&gt;, &lt;code&gt;WOSS&lt;/code&gt; and &lt;code&gt;Acoustic Toolbox&lt;/code&gt;, Please make sure you follow this  steps for installation :&lt;/p&gt;
+&lt;h5 id=&#34;export-environment&#34;&gt;export environment&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export F77=gfortran
+export FC=gfortran
+export CC=gcc
+export CXX=g++
+export CFLAGS=-fPIC
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-1-install-compilers-and-building-tools&#34;&gt;Step 1. Install compilers and building tools&lt;/h2&gt;
+&lt;p&gt;First let&amp;rsquo;s check which Linux are you running with the command:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;lsb_release -ds
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Will return something like:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Debian GNU/Linux 9.8 (stretch)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;For &lt;em&gt;Debian/Ubuntu/Linux Mint&lt;/em&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get update
+sudo apt-get install wget nano gfortran m4 build-essential
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-2-install-netcdf&#34;&gt;Step 2. Install &lt;code&gt;NETCDF&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Until version 4.1.3, &lt;code&gt;NETCDF&lt;/code&gt; was bundled in a single package. Since then, has been split off into independent distributions (&lt;code&gt;netCDF-C&lt;/code&gt;, &lt;code&gt;netCDF-Fortran&lt;/code&gt;, &lt;code&gt;netCDF-Java&lt;/code&gt;, &lt;code&gt;netCDF-Python&lt;/code&gt;, &lt;code&gt;netCDF-C++&lt;/code&gt; and so on).&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s start with downloading and installing &lt;code&gt;netCDF-C&lt;/code&gt; in a new folder called &lt;code&gt;netcdf&lt;/code&gt; in user home directory (e.g. &lt;code&gt;/home/ns/&lt;/code&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://telecom.dei.unipd.it/ns/woss/files/netcdf-c-4.7.3.tar.gz
+tar -xzf netcdf-c-4.7.3.tar.gz
+cd netcdf-c-4.7.3
+./configure --prefix=${HOME}/netcdf --disable-dap --disable-netcdf-4 --enable-shared
+make
+make check
+sudo make install
+cd ${HOME}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-3-now-please-install-hdf5-support-for-netcdf&#34;&gt;Step 3. Now please install &lt;code&gt;HDF5&lt;/code&gt; support for &lt;code&gt;NETCDF&lt;/code&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://telecom.dei.unipd.it/ns/woss/files/hdf5-1.8.13.tar.gz
+tar -xzf hdf5-1.8.13.tar.gz
+cd hdf5-1.8.13
+./configure --enable-shared --prefix=${HOME}/netcdf --disable-dap --enable-fortran #If above command didn&#39;t work then please try ./configure --enable-shared --prefix=${HOME}/netcdf 
+make
+make check
+sudo make install
+cd ${HOME}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-4-again-configure-netcdf-with-hdf5-support&#34;&gt;Step 4. Again configure &lt;code&gt;NETCDF&lt;/code&gt; with &lt;code&gt;HDF5&lt;/code&gt; support&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd netcdf-c-4.7.3
+./configure --prefix=${HOME}/netcdf --disable-dap --enable-netcdf-4 --enable-shared CPPFLAGS=&amp;quot;$CPPFLAGS -I${HOME}/netcdf/include&amp;quot; LDFLAGS=&amp;quot;$LDFLAGS -L${HOME}/netcdf/lib&amp;quot; --enable-fortran --enable-cxx
+make
+make check
+sudo make install
+cd ${HOME}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-5-now-install-netcdf4-c-support&#34;&gt;Step 5. Now install &lt;code&gt;NETCDF4 C++&lt;/code&gt; support&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://telecom.dei.unipd.it/ns/woss/files/netcdf-cxx4-4.3.1.tar.gz
+tar -xzf netcdf-cxx4-4.3.1.tar.gz
+cd netcdf-cxx4-4.3.1
+./configure --prefix=${HOME}/netcdf --enable-shared CPPFLAGS=&amp;quot;$CPPFLAGS -I${HOME}/netcdf/include&amp;quot; LDFLAGS=&amp;quot;$LDFLAGS -L${HOME}/netcdf/lib&amp;quot; 
+make
+make check
+sudo make install
+cd ${HOME}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once installed, let&amp;rsquo;s tell the system where to find our new libraries and export variables to .bashrc:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export NETCDF=${HOME}/netcdf
+export PATH=$NETCDF/bin:$PATH
+export NETCDF_INCDIR=$NETCDF/include 
+export NETCDF_LIBDIR=$NETCDF/lib
+export LD_LIBRARY_PATH=$NETCDF/lib:$LD_LIBRARY_PATH
+export PATH NETCDF
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-6-install-woss-library-support&#34;&gt;Step 6. Install &lt;code&gt;WOSS&lt;/code&gt; library support&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://telecom.dei.unipd.it/ns/woss/files/WOSS-v1.10.0.tar.gz
+tar -xzf WOSS-v1.10.0.tar.gz 
+cd woss-1.10.0
+./autogen.sh 
+./configure --with-netcdf4=${HOME}/netcdf --with-pthread
+make
+make check
+sudo make install
+wget http://telecom.dei.unipd.it/ns/woss/files/WOSS-dbs-v1.4.0.tar.gz
+tar -xzf WOSS-dbs-v1.4.0.tar.gz
+cd dbs/bathymetry
+wget https://www.bodc.ac.uk/data/open_download/gebco/GEBCO_15SEC/zip/  #this is almost ~ 12 GB database.
+tar -xzf GEBCO_2019.zip #This is database used by WOSS, more details are available on http://telecom.dei.unipd.it/ns/woss/doxygen/database.html
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;ns3-dev-installation&#34;&gt;&lt;code&gt;NS3-dev&lt;/code&gt; Installation&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd Documents/
+mkdir workspace
+cd workspace
+wget https://www.nsnam.org/release/ns-allinone-3.30.tar.bz2
+tar xjf ns-allinone-3.30.tar.bz2
+cd ns-allinone-3.30/
+./build.py --enable-examples --enable-tests
+cd ns-3.30/
+./waf --run scratch/scratch-simulator #To check everything working fine 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Please don&amp;rsquo;t use sudo to build ns3-dev as it makes conficts when woss try to call bellhop.exe in runtime, to chech you have correctly set your PATH for acoustic toolbox,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;which bellhop.exe
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It will show you path of your bellhop.exe, same like this,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/home/ns/Documents/at/bin/bellhop.exe
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;configure-woss-libraries-for-ns3-dev&#34;&gt;configure &lt;code&gt;WOSS&lt;/code&gt; libraries for &lt;code&gt;ns3-dev&lt;/code&gt;&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd ${HOME}/Documents/workspace/ns-allinone-3.30/ns-3.30/src
+git clone https://github.com/MetalKnight/woss-ns3.git
+tar xjf woss-ns3-master.zip #Remove zip file from src folder as this will conflict while building NS-3
+mv woss-ns3-master woss-ns3 #Rename folder as woss-ns3, make sure folder name is correct to avoid config errors
+cd ..
+./waf -d debug --enable-tests --enable-examples --enable-sudo --with-woss-source=/home/ns/woss-1.10.0/ --with-woss-library=/home/ns/woss-1.10.0/woss --with-netcdf4-install=${HOME}/netcdf configure CXXFLAGS=&amp;quot;-Wall -Werror -Wno-unused-variable&amp;quot;  #this configure your ns3, Please make sure woss source(in my case i.e /home/ns/woss-1.10.0/) is correct and installed woss library (in my case i.e /home/ns/woss-1.10.0/woss) is provided with correct path, also make sure you put the correct path for netCDF(in my case i.e${HOME}/netcdf)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can see, &lt;code&gt;./waf&lt;/code&gt; will configure and please check if you got message in second last command line saying&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# WOSS Integration Framework    : enabled
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In my case, It looks like,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;medit@medit-Vostro-230:~/Documents/workspace/ns-allinone-3.30/ns-3.30$ ./waf -d debug --enable-tests --enable-examples --enable-sudo --with-woss-source=/home/medit/woss-1.9.0/ --with-woss-library=/home/medit/woss-1.9.0/woss --with-netcdf4-install=${HOME}/netcdf configure
+Setting top to                           : /home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30 
+Setting out to                           : /home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30/build 
+Checking for &#39;gcc&#39; (C compiler)          : /usr/bin/gcc 
+Checking for cc version                  : 7.4.0 
+Checking for &#39;g++&#39; (C++ compiler)        : /usr/bin/g++ 
+Checking for compilation flag -Wl,--soname=foo support : ok 
+Checking for compilation flag -std=c++11 support       : ok 
+Checking boost includes                                : headers not found, please provide a --boost-includes argument (see help) 
+Checking boost includes                                : headers not found, please provide a --boost-includes argument (see help) 
+Checking for program &#39;python&#39;                          : /usr/bin/python3 
+Checking for python version &amp;gt;= 2.3                     : 3.6.9 
+python-config                                          : not found 
+Checking for library python3.6m in LIBDIR              : not found 
+Checking for library python3.6m in python_LIBPL        : yes 
+Checking for header Python.h                           : Distutils not installed? Broken python installation? Get python-config now! 
+Checking for click location                            : not found 
+Checking for program &#39;pkg-config&#39;                      : /usr/bin/pkg-config 
+Checking for &#39;gtk+-3.0&#39;                                : not found 
+Checking for &#39;libxml-2.0&#39;                              : not found 
+checking for uint128_t                                 : not found 
+checking for __uint128_t                               : yes 
+Checking high precision implementation                 : 128-bit integer (default) 
+Checking for header stdint.h                           : yes 
+Checking for header inttypes.h                         : yes 
+Checking for header sys/inttypes.h                     : not found 
+Checking for header sys/types.h                        : yes 
+Checking for header sys/stat.h                         : yes 
+Checking for header dirent.h                           : yes 
+Checking for header stdlib.h                           : yes 
+Checking for header signal.h                           : yes 
+Checking for header pthread.h                          : yes 
+Checking for header stdint.h                           : yes 
+Checking for header inttypes.h                         : yes 
+Checking for header sys/inttypes.h                     : not found 
+Checking for library rt                                : yes 
+Checking for header sys/ioctl.h                        : yes 
+Checking for header net/if.h                           : yes 
+Checking for header net/ethernet.h                     : yes 
+Checking for header linux/if_tun.h                     : yes 
+Checking for header netpacket/packet.h                 : yes 
+Checking for NSC location                              : not found 
+Checking for &#39;sqlite3&#39;                                 : not found 
+Checking for header linux/if_tun.h                     : yes 
+Checking the given WOSS source code path               : /home/ns/woss-1.9.0/ (given) 
+Checking the given WOSS library path                   : /home/ns/woss-1.9.0/woss (given) 
+Checking the given NetCDF4 and HDF5 install path       : /home/ns/netcdf (given) 
+WOSS source code path is valid                         : /home/ns/woss-1.9.0/woss  
+WOSS source code path is valid                         : /home/ns/woss-1.9.0/woss/woss_def  
+WOSS source code path is valid                         : /home/ns/woss-1.9.0/woss/woss_db  
+Checking the given WOSS library                        : yes 
+NetCDF4 and HDF5 source code path                      : /home/ns/netcdf/include  
+Checking the given NETCDF4 and HDF5 libraries          : yes 
+Checking for program &#39;sudo&#39;                            : /usr/bin/sudo 
+Checking for program &#39;valgrind&#39;                        : not found 
+Checking for &#39;gsl&#39;                                     : not found 
+libgcrypt-config                                       : not found 
+Checking for compilation flag -fstrict-aliasing support : ok 
+Checking for compilation flag -fstrict-aliasing support : ok 
+Checking for compilation flag -Wstrict-aliasing support : ok 
+Checking for compilation flag -Wstrict-aliasing support : ok 
+Checking for program &#39;doxygen&#39;                          : not found 
+---- Summary of optional NS-3 features:
+Build profile                 : debug
+Build directory               : 
+BRITE Integration             : not enabled (BRITE not enabled (see option --with-brite))
+DES Metrics event collection  : not enabled (defaults to disabled)
+Emulation FdNetDevice         : enabled
+Examples                      : enabled
+File descriptor NetDevice     : enabled
+GNU Scientific Library (GSL)  : not enabled (GSL not found)
+Gcrypt library                : not enabled (libgcrypt not found: you can use libgcrypt-config to find its location.)
+GtkConfigStore                : not enabled (library &#39;gtk+-3.0 &amp;gt;= 3.0&#39; not found)
+MPI Support                   : not enabled (option --enable-mpi not selected)
+NS-3 Click Integration        : not enabled (nsclick not enabled (see option --with-nsclick))
+NS-3 OpenFlow Integration     : not enabled (Required boost libraries not found)
+Network Simulation Cradle     : not enabled (NSC not found (see option --with-nsc))
+PlanetLab FdNetDevice         : not enabled (PlanetLab operating system not detected (see option --force-planetlab))
+PyViz visualizer              : not enabled (Python Bindings are needed but not enabled)
+Python Bindings               : not enabled (Python library or headers missing)
+Real Time Simulator           : enabled
+SQlite stats data output      : not enabled (library &#39;sqlite3&#39; not found)
+Tap Bridge                    : enabled
+Tap FdNetDevice               : enabled
+Tests                         : enabled
+Threading Primitives          : enabled
+Use sudo to set suid bit      : enabled
+WOSS Integration Framework    : enabled
+XmlIo                         : not enabled (library &#39;libxml-2.0 &amp;gt;= 2.7&#39; not found)
+&#39;configure&#39; finished successfully (2.808s)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Check out second last line to make sure everything is perfectly configure.&lt;/p&gt;
+&lt;p&gt;Then build your &lt;code&gt;ns3&lt;/code&gt; again,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./waf build CXXFLAGS=&amp;quot;-Wall -Werror -Wno-unused-variable&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;you&amp;rsquo;ll see the following,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Waf: Leaving directory `/home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (11m35.055s)
+
+Modules built:
+antenna                   aodv                      applications              
+bridge                    buildings                 config-store              
+core                      csma                      csma-layout               
+dsdv                      dsr                       energy                    
+fd-net-device             flow-monitor              internet                  
+internet-apps             lr-wpan                   lte                       
+mesh                      mobility                  mpi                       
+netanim (no Python)       network                   nix-vector-routing        
+olsr                      point-to-point            point-to-point-layout     
+propagation               sixlowpan                 spectrum                  
+stats                     tap-bridge                test (no Python)          
+topology-read             traffic-control           uan                       
+virtual-net-device        wave                      wifi                      
+wimax                     woss-ns3 (no Python)      
+
+Modules not built (see ns-3 tutorial for explanation):
+brite                     click                     openflow                  
+visualizer                
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Please run one of the example from scratch,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./waf --run scratch/scratch-simulator
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you see the below output, Hola ! Its working now.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Waf: Entering directory `/home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Waf: Leaving directory `/home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (0.749s)
+Scratch Simulator
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then Run WOSS Aloha Example with following example (please note that scratch folder is not yet added to module so you have to manually run your examples from the woss-ns3/examples folder itself.)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;medit@medit-Vostro-230:~/Documents/workspace/ns-allinone-3.30/ns-3.30$ ./waf --run src/woss-ns3/examples/woss-aloha-example 
+Waf: Entering directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Waf: Leaving directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (1.731s)
+WossManagerResDbMT::checkConcurrentThreads() 6
+WossManagerResDbMT::checkConcurrentThreads() 4
+Received a packet of size 1000 bytes
+Received a total of 1000 bytes at sink
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;troubleshoot&#34;&gt;Troubleshoot&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;If you&amp;rsquo;re running example and run into problem with tap-creator like following then you have to manually change few settings.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./waf --run src/woss-ns3/examples/woss-aloha-example --command-template=&amp;quot;gdb --args %s &amp;lt;args&amp;gt;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Waf: Entering directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+* Several tasks use the same identifier. Please check the information on
+   https://waf.io/apidocs/Task.html?highlight=uid#waflib.Task.Task.uid
+  - object &#39;SuidBuild_task&#39; (
+	{task 140252058325512: SuidBuild_task  -&amp;gt; }) defined in &#39;tap-creator&#39;
+  - object &#39;SuidBuild_task&#39; (
+	{task 140252058325624: SuidBuild_task  -&amp;gt; }) defined in &#39;tap-creator&#39;
+  - object &#39;SuidBuild_task&#39; (
+	{task 140252058325736: SuidBuild_task  -&amp;gt; }) defined in &#39;tap-creator&#39;
+Waf: Leaving directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (2.892s)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;first figure out the problem with gdb command by running following command,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./waf --run src/woss-ns3/examples/woss-aloha-example --command-template=&amp;quot;gdb --args %s &amp;lt;args
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then maybe the easier one for the time being, open the /home/usr/netcdf/include/ncGroup.h
+and remove the line 18 from that file, which is not used by the library anyway.&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;If you&amp;rsquo;re not able to find or use the common shared files/library,&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;medit@medit-Vostro-230:~/Documents/workspace/ns-allinone-3.30/ns-3.30$ ./waf --run src/woss-ns3/examples/woss-aloha-example 
+Waf: Entering directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Waf: Leaving directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (1.713s)
+/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build/src/woss-ns3/examples/ns3.30-woss-aloha-example-debug: error while loading shared libraries: libWOSS.so.0: cannot open shared object file: No such file or directory
+Command [&#39;/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build/src/woss-ns3/examples/ns3.30-woss-aloha-example-debug&#39;] exited with code 127
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;please do following to solve the error,&lt;/p&gt;
+&lt;p&gt;Edit /etc/ld.so.conf or create something in /etc/ld.so.conf.d/ to add /usr/local/lib and /usr/local/lib64. Then run ldconfig.&lt;/p&gt;
+&lt;p&gt;In my case,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo nano /etc/ld.so.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Please make sure you have the correct lib in the same file, in my case it was,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;include /etc/ld.so.conf.d/*.conf
+add /usr/local/lib:/usr/local/lib64  //added by Jay to access common or shared libraries
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;save the same file and configure again by&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo ldconfig
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It should work now. In my case, it worked&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;medit@medit-Vostro-230:~/Documents/workspace/ns-allinone-3.30/ns-3.30$ ./waf --run src/woss-ns3/examples/woss-aloha-example 
+Waf: Entering directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Waf: Leaving directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (1.731s)
+WossManagerResDbMT::checkConcurrentThreads() 6
+WossManagerResDbMT::checkConcurrentThreads() 4
+Received a packet of size 1000 bytes
+Received a total of 1000 bytes at sink
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;If you get the error of &lt;code&gt;./autogen.sh: 3: ./autogen.sh: aclocal: not found&lt;/code&gt; or &lt;code&gt;./autogen.sh: 3: ./autogen.sh: libtoolize: not found&lt;/code&gt;
+then please install automake essentials for build in the ubuntu. You can also install with following commands:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get install autotools-dev
+sudo apt-get install automake
+sudo apt-get install libtool m4 automake
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;you-can-also-download-all-this-instruction-to-your-local-machine&#34;&gt;You can also download all this instruction to your local machine.&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;Custom-WOSS.updated-md.pdf&#34;&gt;Download&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://telecom.dei.unipd.it/ns/woss/,&#34;&gt;http://telecom.dei.unipd.it/ns/woss/,&lt;/a&gt; Special Thanks to &lt;strong&gt;
+&lt;a href=&#34;https://github.com/MetalKnight&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Federico Guerra&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.nsnam.org/&#34;&gt;https://www.nsnam.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/MetalKnight/woss-ns3&#34;&gt;https://github.com/MetalKnight/woss-ns3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/javirg/SWAN-Support/blob/master/recipes/build_linux_netcdf.md&#34;&gt;https://github.com/javirg/SWAN-Support/blob/master/recipes/build_linux_netcdf.md&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Underwater channel characterization for shallow water multi-domain communications</title>
+      <link>https://patel999jay.github.io/publication/icua-2020/</link>
+      <pubDate>Wed, 09 Sep 2020 13:31:52 -0300</pubDate>
+      <guid>https://patel999jay.github.io/publication/icua-2020/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;The underwater acoustic (UWA) channel is challenging as a propagation medium for wireless transmissions due to its spatial-temporal variability from high ambient noise, limited bandwidth, frequency-dependent losses, variable latency and time-space-frequency variable multi-path effects. Prior to deploying marine robots, the UWA channel should be characterized for its local sound velocity profile, at both source and receiver(s) depths, bottom cover (e.g. sand, silt, mud, etc.) and bathymetry. At the transmission end, it matters the signal’s carrier frequency, bandwidth, and pulse characteristics. With knowledge of both, it is possible to assess the operational communications range. This is especially so to develop and evaluate new medium access control (MAC) and routing level protocols. As a part of a project, three heterogeneous marine robots (unmanned underwater vehicle (UUV), unmanned surface vehicle (USV), and unmanned aerial vehicle (UAV)) collaboratively acquired situational awareness on a non-responsive floating target. This paper reports on the communications aspect.  It presents models that assess the impact of the relative placement between a transmitter (USV) and receiver (UUV) through ray tracing and several sea-bed environmental/UWA channel conditions on operational communication range between UUV \&amp; USV.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Underwater channel characterization for shallow water multi-domain communications</title>
+      <link>https://patel999jay.github.io/talk/icua2020/</link>
+      <pubDate>Wed, 09 Sep 2020 10:30:00 +0000</pubDate>
+      <guid>https://patel999jay.github.io/talk/icua2020/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Go to &lt;a href=&#34;https://patel999jay.github.io/publication/icua-2020/&#34;&gt;&lt;strong&gt;Publication&lt;/strong&gt;&lt;/a&gt; for more details.
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>FFT Fun</title>
+      <link>https://patel999jay.github.io/post/fft-fun/</link>
+      <pubDate>Fri, 04 Sep 2020 14:30:36 -0300</pubDate>
+      <guid>https://patel999jay.github.io/post/fft-fun/</guid>
+      <description>&lt;h1 id=&#34;fft-magic---time-domain-to-frequency-domain-signal-visualization&#34;&gt;FFT Magic - Time Domain to Frequency Domain Signal Visualization&lt;/h1&gt;
+&lt;p&gt;Anyone with a background in Physics or Engineering knows to some degree about signal analysis techniques, what these technique are and how they can be used to analyze, model and classify signals.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s start with Fun stuff ! Everyone heard of FFT word in their lifetime. Let&amp;rsquo;s dive deep into Frequency Domain for more details.&lt;/p&gt;
+&lt;h2 id=&#34;lets-plot-some-sound-files-in-time-domain&#34;&gt;Let&amp;rsquo;s plot some sound files in time domain.&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# required library imports
+import librosa
+import librosa.display
+import scipy as sp
+import IPython.display as ipd
+import matplotlib.pyplot as plt
+import numpy as np
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# load audio file in the player
+audio_path = &amp;quot;audio/Data_00023.wav&amp;quot;
+ipd.Audio(audio_path)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# load audio file
+signal, sr = librosa.load(audio_path)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;below-is-the-time-domain-representation-of-the-signal&#34;&gt;Below is the time domain representation of the signal.&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# plot waveform
+plt.figure(1)
+plt.figure(figsize=(18,5))
+plt.plot(signal,&#39;b&#39;)
+plt.xlabel(&#39;sample rate * time&#39;)
+plt.ylabel(&#39;energy&#39;)
+plt.grid()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_6_2.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Isn&amp;rsquo;t that interesting ?&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s take this time domain signal into frequency domain and do some more interesting stuff !&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import scipy as sp
+from scipy import fftpack
+
+import matplotlib as mpl       
+
+tf = 60         # Final time
+dt = 0.1        # Time step
+
+t = np.arange(0,tf,dt)  # Signal sample times
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;calculate-fft&#34;&gt;Calculate FFT&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;sample_freq = sp.fftpack.fftfreq(len(signal),d=dt) # Frequency values (+,-)
+sig_fft = sp.fftpack.fft(signal)                   # Calculate FFT
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.rc(&#39;figure&#39;, figsize = (18, 5))            # Reduces overall size of figures
+plt.rc(&#39;axes&#39;, labelsize=24, titlesize=24)
+plt.rc(&#39;figure&#39;, autolayout = True)             # Adjusts supblot parameters for new size
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(2)
+plt.title(&amp;quot;FFT&amp;quot;,fontsize=24)
+plt.plot(sig_fft.real, label=&#39;real&#39;)
+plt.plot(sig_fft.imag,label=&#39;imag&#39;)
+plt.legend(loc=1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_12_2.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Calculate and plot power spectrum for $f&amp;gt;0$.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;pfs = np.where(sample_freq&amp;gt;0) # Select postive frequencies
+freqs = sample_freq[pfs]
+power = abs(sig_fft)[pfs]**2      
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(3)
+plt.title(&amp;quot;FFT (power)&amp;quot;,fontsize=24)
+plt.xlabel(&amp;quot;$f$&amp;quot;)
+plt.plot(freqs,power,&#39;b&#39;)
+plt.grid()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;/home/jay/anaconda3/lib/python3.7/site-packages/matplotlib/figure.py:2366: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  warnings.warn(&amp;quot;This figure includes Axes that are not compatible &amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_15_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;filter-and-inverse-transform&#34;&gt;Filter and inverse transform&lt;/h1&gt;
+&lt;p&gt;Crude low-pass filter: cut out all frequencies greater than 25 KHz.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;sig_fft[abs(sample_freq)&amp;gt; 25] = 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;calculate-inverse-fft&#34;&gt;Calculate inverse FFT:&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;sig_filtered = sp.fftpack.ifft(sig_fft)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(4)
+plt.title(&amp;quot;filtered signal&amp;quot;,fontsize=14)
+plt.xlabel(&amp;quot;$t$&amp;quot;)
+plt.plot(np.real(sig_filtered),&#39;b&#39;)
+plt.grid()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_21_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;voila-&#34;&gt;Voila !&lt;/h3&gt;
+&lt;p&gt;This is our original time domain signal !&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s Have More deep understanding of Time domain signal, Frequency Domain signal and Time-Frequency Representation! Let Plot all three things together and Have python fun !&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
+from scipy.fftpack import fft
+import matplotlib.pyplot as plt
+from matplotlib import animation
+from matplotlib import cm
+
+t_n = 10
+N = 1000
+T = t_n / N
+f_s = 1 / T
+
+
+def get_fft_values(y_values, T, N, f_s):
+    f_values = np.linspace(0.0, 1.0 / (2.0 * T), N // 2)
+    fft_values_ = fft(y_values)
+    fft_values = 2.0 / N * np.abs(fft_values_[0:N // 2])
+    return f_values, fft_values
+
+
+x_value = np.linspace(0, t_n, N)
+amplitudes = [4, 6, 8, 10, 14]
+frequencies = [6.5, 5, 3, 1.5, 1]
+y_values = [amplitudes[ii] * np.sin(2 * np.pi * frequencies[ii] * x_value) for ii in range(0, len(amplitudes))]
+composite_y_value = np.sum(y_values, axis=0)
+
+f_values, fft_values = get_fft_values(composite_y_value, T, N, f_s)
+
+colors = [&#39;k&#39;, &#39;b&#39;, &#39;b&#39;, &#39;b&#39;, &#39;b&#39;, &#39;b&#39;, &#39;b&#39;, &#39;b&#39;, &#39;b&#39;]
+
+fig = plt.figure(figsize=(8, 8))
+ax = fig.add_subplot(111, projection=&#39;3d&#39;)
+ax.set_xlabel(&amp;quot;\nTime [s]&amp;quot;, fontsize=16)
+ax.set_ylabel(&amp;quot;\nFrequency [Hz]&amp;quot;, fontsize=16)
+ax.set_zlabel(&amp;quot;\nAmplitude&amp;quot;, fontsize=16)
+
+y_values_ = [composite_y_value] + list(reversed(y_values))
+frequencies = [1, 1.5, 3, 5, 6.5]
+
+def init():
+    # Plot the surface.
+    for ii in range(0, len(frequencies)):
+        signal = y_values_[ii]
+        color = colors[ii]
+        length = signal.shape[0]
+        x = np.linspace(0, 10, 1000)
+        y = np.array([frequencies[ii]] * length)
+        z = signal
+
+        if ii == 0:
+            linewidth = 4
+        else:
+            linewidth = 2
+        ax.plot(list(x), list(y), zs=list(z), linewidth=linewidth, color=color)
+
+        x = [10] * 75
+        y = f_values[:75]
+        z = fft_values[:75] * 3
+        ax.plot(list(x), list(y), zs=list(z), linewidth=2, color=&#39;red&#39;)
+
+        plt.tight_layout()
+
+    return fig,
+
+def animate(i):
+    # azimuth angle : 0 deg to 360 deg
+    ax.view_init(elev=10, azim=i*4)
+    return fig,
+
+# Animate
+ani = animation.FuncAnimation(fig, animate, init_func=init,
+                               frames=90, interval=50, blit=True)
+
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;fn = &#39;rotate_azimuth_angle_3d_surf&#39;
+ani.save(fn+&#39;.gif&#39;,writer=&#39;imagemagick&#39;,fps=1000/50)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;lets-get-ready-to-blow-your-mind-&#34;&gt;Let&amp;rsquo;s get ready to blow your Mind !&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;rotate_azimuth_angle_3d_surf.gif&#34; alt=&#34;rotate_azimuth_angle_3d_surf&#34; title=&#34;3D rotating image&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;references-&#34;&gt;References :&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://ataspinar.com/2018/04/04/machine-learning-with-signal-processing-techniques/&#34;&gt;http://ataspinar.com/2018/04/04/machine-learning-with-signal-processing-techniques/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;FFT, Valerio Velardo - The Sound of AI, &lt;a href=&#34;https://github.com/musikalkemist/AudioSignalProcessingForML&#34;&gt;https://github.com/musikalkemist/AudioSignalProcessingForML&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Bellhop Acoustic Toolbox</title>
+      <link>https://patel999jay.github.io/post/bellhop-acoustic-toolbox/</link>
+      <pubDate>Thu, 03 Sep 2020 18:51:27 -0300</pubDate>
+      <guid>https://patel999jay.github.io/post/bellhop-acoustic-toolbox/</guid>
+      <description>&lt;h1 id=&#34;bellhop---ocean-simulation-modeling&#34;&gt;Bellhop - Ocean simulation modeling&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;What is BELLHOP ?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;BELLHOP&lt;/strong&gt; is a beam tracing model for predicting acoustic pressure fields in ocean environments.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BELLHOP&lt;/strong&gt; can produce a variety of useful outputs including transmission loss, eigenrays, arrivals, and received time-series. It also allows for range-dependence in the top and bottom boundaries (altimetry and bathymetry), as well as in the sound speed profile (SSP).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BELLHOP&lt;/strong&gt; is implemented in Fortran, Matlab, and Python and used on multiple platforms (Mac, Windows, and Linux).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;bellhop_structure.png&#34; alt=&#34;Bellhop_Structure&#34; title=&#34;Bellhop_Structure&#34;&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;center&gt; Figure 1: BELLHOP structure &lt;/center&gt;&lt;/h3&gt;
+&lt;h1 id=&#34;why-bellhop&#34;&gt;WHY BELLHOP?&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Underwater communication channel is a relatively difficult transmission medium due to the variability of link quality depending on location and applications.&lt;/li&gt;
+&lt;li&gt;Before deploying any kind of vehicles underwater, one should predict the underwater communication system performance which is based on the sound frequency transmitted underwater.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Why do you need to analyze the uw-comms performance?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;To analyze impact of channel characteristics on underwater communications,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;prior to deploying robots, predict communication system performance,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;provide guidance on best physical layout to deploy underwater vehicles,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;provide estimates on parameters for link budget calculation,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Because&lt;/strong&gt; it will provide you a rough idea about &lt;strong&gt;how far you can communicate within network&lt;/strong&gt; which is also known as an &lt;strong&gt;operation range for communication&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;BELLHOP&lt;/strong&gt; reads these files depending on options selected within the main environmental file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;There are various options for which you can run bellhop are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ray tracing option,&lt;/li&gt;
+&lt;li&gt;eigenray option,&lt;/li&gt;
+&lt;li&gt;transmission loss option,&lt;/li&gt;
+&lt;li&gt;an arrivals calculation option.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;installation&#34;&gt;Installation&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Please download newer version from 
+&lt;a href=&#34;https://oalib-acoustics.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Bellhop&lt;/a&gt; or 
+&lt;a href=&#34;http://telecom.dei.unipd.it/ns/woss/files/at.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Bellhop Mirror&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Unzip the downloaded file to local machine and go to that folder.&lt;/li&gt;
+&lt;li&gt;If you&amp;rsquo;re using the Unix base system then open command prompt and go to the same folder where you extracted your zip.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;cd at/at
+make all
+sudo make install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;If you&amp;rsquo;re using bellhop on Windows 10 machine then you also need to download the Win10 Binary executable files from 
+&lt;a href=&#34;http://oalib.hlsresearch.com/AcousticsToolbox/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;. Please also extract that to the folder at.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;detailed-installation-instructions-based-on-os&#34;&gt;Detailed Installation Instructions based on OS&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;Installation_Manual_draft.pdf&#34;&gt;Windows 10&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;BellhopInstallationGuideUbuntu20.04.pdf&#34;&gt;Ubuntu 20.04&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;MacOS_Installation_Manual.pdf&#34;&gt;Mac OS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://pypi.org/project/arlpy/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;More Details&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;sound-speed-profile&#34;&gt;Sound Speed Profile&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;SSP-all.png&#34; alt=&#34;Sound Speed Profile&#34; title=&#34;Sound Speed Profile of Bedford Basin (taken on 13-10-17)&#34;&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;center&gt; Figure 2: Sound Speed Profile &lt;/center&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;How to Plot SSP&#39;s using ARLPY ?
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# SSP Plotting using ARLPY
+
+import arlpy.uwapm as pm
+import arlpy.plot as plt
+import numpy as np
+
+env = pm.create_env2d()
+ssp = [
+    [ 0, 1540],  # 1540 m/s at the surface
+    [10, 1530],  # 1530 m/s at 10 m depth
+    [20, 1532],  # 1532 m/s at 20 m depth
+    [25, 1533],  # 1533 m/s at 25 m depth
+    [30, 1535]   # 1535 m/s at the seabed
+]
+env = pm.create_env2d(soundspeed=ssp)
+pm.plot_ssp(env, width=500)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;a0bacd1a-271d-46fe-a1e7-f64469b6c690&#34; data-root-id=&#34;16075&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Plotting an Environment
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Plotting an Environment using ARLPY
+
+pm.plot_env(env, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;b93da247-88a6-4697-9087-37648db4f726&#34; data-root-id=&#34;16908&#34;&gt;&lt;/div&gt;
+&lt;h1 id=&#34;eigenrays&#34;&gt;Eigenrays&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Eigenray&lt;/strong&gt; plots show just the rays that connect the source to a receiver.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Eigenrays using ARLPY
+import arlpy.uwapm as pm
+import arlpy.plot as plt
+import numpy as np
+
+env = pm.create_env2d()
+rays = pm.compute_eigenrays(env)
+pm.plot_rays(rays, env=env, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;07ffdb99-a83e-40f2-9174-79fb8ffb398f&#34; data-root-id=&#34;17789&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# compute the arrival structure at the receiver
+
+arrivals = pm.compute_arrivals(env)
+pm.plot_arrivals(arrivals, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;c7d45a3f-b745-451f-9b23-2223610326ec&#34; data-root-id=&#34;19976&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;arrivals[arrivals.arrival_number &amp;lt; 10][[&#39;time_of_arrival&#39;, &#39;angle_of_arrival&#39;, &#39;surface_bounces&#39;, &#39;bottom_bounces&#39;]]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&lt;pre&gt;&lt;code&gt;.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;/style&gt;&lt;/p&gt;
+&lt;table border=&#34;1&#34; class=&#34;dataframe&#34;&gt;
+  &lt;thead&gt;
+    &lt;tr style=&#34;text-align: right;&#34;&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;time_of_arrival&lt;/th&gt;
+      &lt;th&gt;angle_of_arrival&lt;/th&gt;
+      &lt;th&gt;surface_bounces&lt;/th&gt;
+      &lt;th&gt;bottom_bounces&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;0.721796&lt;/td&gt;
+      &lt;td&gt;22.538254&lt;/td&gt;
+      &lt;td&gt;9&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;0.716791&lt;/td&gt;
+      &lt;td&gt;-21.553932&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;0.709687&lt;/td&gt;
+      &lt;td&gt;20.052078&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+      &lt;td&gt;7&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;0.705226&lt;/td&gt;
+      &lt;td&gt;-19.034414&lt;/td&gt;
+      &lt;td&gt;7&lt;/td&gt;
+      &lt;td&gt;7&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;5&lt;/th&gt;
+      &lt;td&gt;0.698960&lt;/td&gt;
+      &lt;td&gt;17.484421&lt;/td&gt;
+      &lt;td&gt;7&lt;/td&gt;
+      &lt;td&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;6&lt;/th&gt;
+      &lt;td&gt;0.695070&lt;/td&gt;
+      &lt;td&gt;-16.436060&lt;/td&gt;
+      &lt;td&gt;6&lt;/td&gt;
+      &lt;td&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;7&lt;/th&gt;
+      &lt;td&gt;0.689678&lt;/td&gt;
+      &lt;td&gt;14.842224&lt;/td&gt;
+      &lt;td&gt;6&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;8&lt;/th&gt;
+      &lt;td&gt;0.686383&lt;/td&gt;
+      &lt;td&gt;-13.766296&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;9&lt;/th&gt;
+      &lt;td&gt;0.681901&lt;/td&gt;
+      &lt;td&gt;12.133879&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;10&lt;/th&gt;
+      &lt;td&gt;0.679223&lt;/td&gt;
+      &lt;td&gt;-11.034208&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# convert to a impulse response time series
+
+ir = pm.arrivals_to_impulse_response(arrivals, fs=96000)
+plt.plot(np.abs(ir), fs=96000, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;d5bf8847-edc7-4005-936c-220cbdf19b56&#34; data-root-id=&#34;21610&#34;&gt;&lt;/div&gt;
+&lt;h1 id=&#34;bathymetry&#34;&gt;Bathymetry&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Let&#39;s first start off by defining our bathymetry, a steep up-slope for the first 300 m, and then a gentle downslope:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# add/change bathy to env
+bathy = [
+    [0, 30],    # 30 m water depth at the transmitter
+    [300, 20],  # 20 m water depth 300 m away
+    [1000, 25]  # 25 m water depth at 1 km
+]
+
+# add/change SSP to env
+ssp = [
+    [ 0, 1540],  # 1540 m/s at the surface
+    [10, 1530],  # 1530 m/s at 10 m depth
+    [20, 1532],  # 1532 m/s at 20 m depth
+    [25, 1533],  # 1533 m/s at 25 m depth
+    [30, 1535]   # 1535 m/s at the seabed
+]
+
+# Appending ssp and bathy to existing env file
+env = pm.create_env2d(
+    depth=bathy,
+    soundspeed=ssp,
+    bottom_soundspeed=1450,
+    bottom_density=1200,
+    bottom_absorption=1.0,
+    tx_depth=15
+)
+pm.print_env(env)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;                name : arlpy
+   bottom_absorption : 1.0
+      bottom_density : 1200
+    bottom_roughness : 0
+   bottom_soundspeed : 1450
+               depth : [[   0.   30.]
+                        [ 300.   20.]
+                        [1000.   25.]]
+        depth_interp : linear
+           frequency : 25000
+           max_angle : 80
+           min_angle : -80
+              nbeams : 0
+            rx_depth : 10
+            rx_range : 1000
+          soundspeed : [[   0. 1540.]
+                        [  10. 1530.]
+                        [  20. 1532.]
+                        [  25. 1533.]
+                        [  30. 1535.]]
+   soundspeed_interp : spline
+             surface : None
+      surface_interp : linear
+            tx_depth : 15
+   tx_directionality : None
+                type : 2D
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;pm.plot_env(env, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;c5164586-1f1f-4d18-8448-3758c15fadd2&#34; data-root-id=&#34;22674&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Looks more interesting! Let&#39;s see what the eigenrays look like, and also the arrival structure:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;rays = pm.compute_eigenrays(env)
+pm.plot_rays(rays, env=env, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;69a277ca-3514-4c29-96fd-abebc426ee09&#34; data-root-id=&#34;23803&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;We could also ignore the receiver, and plot rays launched at various angles:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;rays = pm.compute_rays(env)
+pm.plot_rays(rays, env=env, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;97d64a45-f41f-4ee5-ac01-57747068231c&#34; data-root-id=&#34;25402&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import numpy as np
+from scipy.interpolate import griddata
+import scipy.ndimage as ndimage
+from scipy.ndimage import gaussian_filter
+import scipy
+# from scipy.misc import imsave
+from matplotlib import cm
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from stl import mesh, Mode
+import matplotlib.tri as mtri
+from mpl_toolkits.mplot3d.axes3d import get_test_data
+from pandas import read_csv
+
+
+
+data = read_csv(&#39;bathy.txt&#39;, sep=&#39;\s+&#39;, header=None, names=[&#39;x&#39;, &#39;y&#39;, &#39;depth&#39;])
+
+x = np.arange(data.x.min(), data.x.max()+1)
+y = np.arange(data.y.min(), data.y.max()+1)
+
+X, Y = np.meshgrid(x, y)
+
+Z = griddata(data[[&#39;x&#39;,&#39;y&#39;]].values, -data[&#39;depth&#39;].values, (X, Y), method=&#39;linear&#39;)
+
+# make the grid square
+Z[np.isnan(Z)] = 0
+
+fig = plt.figure(figsize=(14, 8))
+ax = fig.add_subplot(111)
+plt.imshow(Z)
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_30_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;center&gt; Figure 3: Bedford Basin Bathy 2D &lt;/center&gt; &lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;Bedford_Bathy_plotly.png&#34; alt=&#34;Bedford Basin Bathy 3D&#34; title=&#34;Bedford Basin Bathy 3D&#34;&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;center&gt; Figure 4: Bedford Basin Bathy 3D &lt;/center&gt; &lt;/h3&gt;
+&lt;p&gt;or place lots of receivers in a grid to visualize the acoustic pressure field (or equivalently transmission loss). We can modify the environment (env) without having to recreate it, as it is simply a Python dictionary object:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;env[&#39;rx_range&#39;] = np.linspace(0, 1000, 1001)
+env[&#39;rx_depth&#39;] = np.linspace(0, 30, 301)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;transmission-loss&#34;&gt;Transmission Loss&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;- RUN TYPE BELLHOP
+
+OPTION(1:1):           &#39;R&#39; generates a ray file
+                       &#39;E&#39; generates an eigenray file
+                       &#39;A&#39; generates an amplitude-delay file (ascii)
+                       &#39;a&#39; generate  an amplitude-delay file (binary)
+                       &#39;C&#39; Coherent     TL calculation
+                       &#39;I&#39; Incoherent   TL calculation
+                       &#39;S&#39; Semicoherent TL calculation
+                            (Lloyd mirror source pattern)
+                        
+- The number of beams, NBeams, should normally be set to 0, allowing BELLHOP to automatically select the appropriate value. The number
+needed increases with frequency and the maximum range to a receiver. 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;The pressure field, p, is then calculated for the specified grid of receivers, with a scaling such that $20\ log10(|p|)$ is the transmission loss in dB.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tloss = pm.compute_transmission_loss(env)
+pm.plot_transmission_loss(tloss, env=env, clim=[-60,-30], width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;1d9ffcb3-4874-46c9-9d0d-4951a7cd0b9d&#34; data-root-id=&#34;27557&#34;&gt;&lt;/div&gt;
+&lt;p&gt;We see a complicated interference pattern, but an interesting focusing at 800 m at a 15 m depth. The detailed interference pattern is of course sensitive to small changes in the environment. A less sensitive, but more averaged out, transmission loss estimate can be obtained using the incoherent mode:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tloss = pm.compute_transmission_loss(env, mode=&#39;incoherent&#39;)
+pm.plot_transmission_loss(tloss, env=env, clim=[-60,-30], width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;7e97fc3b-0e9e-4475-9ccc-25cf2a7885c4&#34; data-root-id=&#34;28892&#34;&gt;&lt;/div&gt;
+&lt;h1 id=&#34;source-directionality&#34;&gt;Source directionality&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Now, let&#39;s use a directional transmitter instead of an omni-directional one:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;beampattern = np.array([
+    [-180,  10], [-170, -10], [-160,   0], [-150, -20], [-140, -10], [-130, -30],
+    [-120, -20], [-110, -40], [-100, -30], [-90 , -50], [-80 , -30], [-70 , -40],
+    [-60 , -20], [-50 , -30], [-40 , -10], [-30 , -20], [-20 ,   0], [-10 , -10],
+    [  0 ,  10], [ 10 , -10], [ 20 ,   0], [ 30 , -20], [ 40 , -10], [ 50 , -30],
+    [ 60 , -20], [ 70 , -40], [ 80 , -30], [ 90 , -50], [100 , -30], [110 , -40],
+    [120 , -20], [130 , -30], [140 , -10], [150 , -20], [160 ,   0], [170 , -10],
+    [180 ,  10]
+])
+env[&#39;tx_directionality&#39;] = beampattern
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tloss = pm.compute_transmission_loss(env)
+pm.plot_transmission_loss(tloss, env=env, clim=[-60,-30], width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;a435b52d-d78f-4da7-8dcb-b4400d56e61c&#34; data-root-id=&#34;30243&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Now you can see the directionality and the sidelobe structure of the transmitter.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tloss = pm.compute_transmission_loss(env, mode=&#39;incoherent&#39;)
+pm.plot_transmission_loss(tloss, env=env, clim=[-60,-30], width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;9f5afa51-942b-494f-9c27-661c6b034380&#34; data-root-id=&#34;31610&#34;&gt;&lt;/div&gt;
+&lt;h1 id=&#34;undulating-water-surface&#34;&gt;Undulating water surface&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Finally, let&#39;s try adding a long wavelength swell on the water surface:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;surface = np.array([[r, 0.5+0.5*np.sin(2*np.pi*0.005*r)] for r in np.linspace(0,1000,1001)])
+env[&#39;surface&#39;] = surface
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tloss = pm.compute_transmission_loss(env)
+pm.plot_transmission_loss(tloss, env=env, clim=[-60,-30], width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;6444cad4-1e30-4c2f-bdbf-0f75f97b005b&#34; data-root-id=&#34;32993&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tloss = pm.compute_transmission_loss(env, mode=&#39;incoherent&#39;)
+pm.plot_transmission_loss(tloss, env=env, clim=[-60,-30], width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;0757c4b3-0752-4e16-a332-a81931113f4d&#34; data-root-id=&#34;34392&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Now, if I placed a receiver at 800 m, and 15 m depth, roughly where we see some focusing, what would the eigenrays and arrival structure look like?
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;env[&#39;rx_range&#39;] = 800
+env[&#39;rx_depth&#39;] = 15
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;rays = pm.compute_eigenrays(env)
+pm.plot_rays(rays, env=env, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;139c90d1-7728-41ea-98a5-430e8356b006&#34; data-root-id=&#34;35807&#34;&gt;&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;arrivals = pm.compute_arrivals(env)
+pm.plot_arrivals(arrivals, dB=True, width=900)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;bk-root&#34; id=&#34;2d262be4-2935-4759-8703-788ae855b9bb&#34; data-root-id=&#34;37450&#34;&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; We plotted the amplitudes in dB, as the later arrivals are much weaker than the first one, and better visualized in a logarithmic scale.&lt;/p&gt;
+&lt;h1 id=&#34;bellhop3d&#34;&gt;Bellhop3D&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;BELLHOP3D&lt;/strong&gt; is a beam tracing model for predicting acoustic pressure fields in ocean environments.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It is an extension to 3D environments of the popular BELLHOP model and includes (optionally) horizontal refraction in the lat-long plane.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;3D pressure fields can be calculated by a 2D model simply by running it on a series of radials (bearing lines) from the source.(This is the so-called Nx2D or 2.5D approach.)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;BELLHOP3D&lt;/strong&gt; includes 4 different types of beams:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cerveny Beams,&lt;/li&gt;
+&lt;li&gt;Geometric Hat-Beams,&lt;/li&gt;
+&lt;li&gt;Geometric Gaussian-Beams,&lt;/li&gt;
+&lt;li&gt;Geometric Hat-Beams in Cartesian Coordinates&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You can also download the sample notebook from 
+&lt;a href=&#34;bellhop.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;All code and setup files are also available on 
+&lt;a href=&#34;https://github.com/patel999jay/Bellhop-ARLPY-ECED6575&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://oalib.hlsresearch.com/AcousticsToolbox/&#34;&gt;http://oalib.hlsresearch.com/AcousticsToolbox/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://arlpy.readthedocs.io/en/latest/_static/bellhop.html&#34;&gt;https://arlpy.readthedocs.io/en/latest/_static/bellhop.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Live RF Image Transmission Using OFDM With RPi and PlutoSDR</title>
+      <link>https://patel999jay.github.io/publication/live-rf-image-transmission-using-ofdm-with-rpi-and-plutosdr/</link>
+      <pubDate>Wed, 02 Sep 2020 11:33:35 -0300</pubDate>
+      <guid>https://patel999jay.github.io/publication/live-rf-image-transmission-using-ofdm-with-rpi-and-plutosdr/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;Orthogonal Frequency Division Multiplexing (OFDM) is a multi-carrier digital communication technique which solves most of the digital
+communication problems such as inter-symbol interference (ISI), lower data
+rate, inter-carrier interference (ICI). It adds up an excessive amount of
+low data rate carriers to assemble high data rate communication system.
+Each low data rate carrier provides enough long symbol periods, which
+results in eliminating ISI. Orthogonality enables excellent feature providing each carrier a way to be closed spaced, although overlapped without ICI. The main contribution of this research is to demonstrate the OFDM concept in real time RF Communication while investigating its critical performance analysis. This framework integrates more than one embedded platforms such as RPi, Analog PlutoSDR and MATLAB. This may be an efficient way to transmit live images/video feed from one place to another for surveillance purposes. This research is more focused on transmitting live image taken with constant rate from Rpi video-camera to Analog Pluto, which transmit image over Radio channel and receive the same with different PlutoSDR at remote location.</description>
+    </item>
+    
+    <item>
+      <title>Low Cost Design of UHF Antenna for Roof Mounted Vehicular and Heavy Duty Applications</title>
+      <link>https://patel999jay.github.io/publication/low-cost-design-of-uhf-antenna-for-roof-mounted-vehicular-and-heavy-duty-applications/</link>
+      <pubDate>Fri, 20 Mar 2020 20:16:50 -0300</pubDate>
+      <guid>https://patel999jay.github.io/publication/low-cost-design-of-uhf-antenna-for-roof-mounted-vehicular-and-heavy-duty-applications/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CDMA-Based Multi-Domain Communications Network for Marine Robots</title>
+      <link>https://patel999jay.github.io/publication/conference-paper/</link>
+      <pubDate>Mon, 23 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>https://patel999jay.github.io/publication/conference-paper/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;This paper reports on a cross-domain communication system for marine robots based on code-division multiple access (CDMA). The underwater communications channel is a difficult transmission medium due to its link quality variability which depends on location and the application. It also depends on environmental parameters which can vary temporally from hours to days to months to season. Understanding the channel characteristics for data transmission is essential to the development and evaluation of existing or new MAC and Routing Level protocols which better utilize the limited resources within this unpredictable channel. CDMA is the most promising physical layer and multiple access technique for underwater acoustic sensor networks because it: i) is robust to frequency selective fading, ii) compensates for multi-path effects at the receiver, and iii) allows receivers to distinguish among signals
+simultaneously transmitted by multiple devices. For these reasons, CDMA increases channel re-use and reduces packet retransmissions, which results in decreased energy consumption and increased network throughput. Development of a framework for autonomous co-ordination and networking of marine robot teams from extended ranges to transmit images/information from underwater to above
+water is proposed using CDMA which is a complete stack of communications protocol from the physical to the application layer for marine robots that spans multiple domains, i.e. under, on and above water. Simulation of the proposed network was performed using network simulator-3 (NS-3). The proposed protocol edge CDMA properties provide multiple access to the limited underwater bandwidth whereas previous reported work only considered CDMA for the physical layer. Simulations show the proposed protocol outperforms existing underwater acoustic network protocols.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Collaboration of Multi Domain Marine Robots Towards Above and Below Water Characterization of Floating Targets</title>
+      <link>https://patel999jay.github.io/publication/collaboration-of-multi-domain-marine-robots-towards-above-and-below-water-characterization-of-floating-targets/</link>
+      <pubDate>Sun, 16 Jun 2019 11:45:07 -0300</pubDate>
+      <guid>https://patel999jay.github.io/publication/collaboration-of-multi-domain-marine-robots-towards-above-and-below-water-characterization-of-floating-targets/</guid>
+      <description>&lt;h1 id=&#34;abstract-best-paper&#34;&gt;Abstract (Best Paper)&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;This paper reports on a method to obtain a multi-domain (environment) awareness on a floating target (non-responsive ship, iceberg, other floating structure) using a heterogenous collaborative team of above,
+surface and underwater robots. This allows, for example, a ship approaching
+a non-responsive floating target to get information on the target from a
+safe stand-off prior to getting closer to further investigate or to attempt
+a boarding. This information enhances the safety of the boarding party. The
+ship can be a horizon (6 km) away from the floating target. The above-water
+unmanned aerial vehicles (UAV), integrated with optical cameras, obtains
+measurements of the above-water geometry using visual imagery to create an
+above-water three-dimensional model using photogrammetry methods. The below-water unmanned underwater vehicle is integrated with an imaging and
+profiling bathymetric sonars to capture the submerged hull geometry and
+features. An unmanned surface vehicle (USV) hosts an intelligent node which
+centrally controls the robotic collaboration by autonomously planning and
+distributing the mission for both the UUV and UAV. The results from the two
+are fused to yield a more complete picture of the floating target. We
+present results from simulations and a controlled in-water trial with an
+UUV, USV and UAV. The contributions from this work includes the robotic
+collaboration and autonomy across multiple domains, autonomous mission-planning and the fusing of multi-domain data. The scheduling of
+inter-dependent multi-robot task allocation is addressed in the autonomous
+mission-planning. The approach is validated in simulations and tested
+in-water. The in-water trials highlight the challenges and value of
+integrating sensors on distributed multi-domain robots towards a more
+complete picture on a floating target.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CDMA signal using python</title>
+      <link>https://patel999jay.github.io/post/cdma-using-python/</link>
+      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://patel999jay.github.io/post/cdma-using-python/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Author : Jay Patel
+# CDMA using Python
+
+import random
+import numpy as np
+%matplotlib inline
+from numpy import sin, pi
+
+from matplotlib import rcParams
+import matplotlib.pylab as plt
+rcParams.update({&#39;font.size&#39;: 12})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;25000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;25000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f = 25000
+t=np.linspace(0,8/f,400)
+
+carrier = lambda t: sin(2*pi*f*t)
+plt.figure(figsize=(16,6))
+plt.plot(t,carrier(t),&#39;b&#39;, lw=3)
+plt.title(&#39;25 KHz Carrier Wave&#39;,size=20)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.xlabel(&#39;Time[s]&#39;,size=&#39;16&#39;)
+plt.grid()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_2_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;random.seed(&amp;quot;GPS PRN&amp;quot;)
+prn_seq = [random.choice([1,-1]) for i in range(16)]
+
+print(&amp;quot;Our PRN chip:&amp;quot;, str(prn_seq).replace(&#39;-1&#39;,&#39;0&#39;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Our PRN chip: [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f_prn =  25e3 / 10
+prn_seq[int(100*f_prn)%16]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;-1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;25e3 / 10
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;2500.0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f_prn =  25e3 / .10
+prn_seq[int(100*f_prn)%16]
+
+def prn_np(t):
+    return [ prn_seq[int(ti*f_prn)%16] for ti in t]
+plt.figure(figsize=(16,6))
+plt.plot(t,prn_np(t), color=&#39;red&#39;,lw=4)
+plt.title(&#39;CDMA Psuedo Random Noise&#39;,size=&#39;20&#39;)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.xlabel(&#39;Time(s)&#39;,size=&#39;16&#39;)
+plt.grid()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_6_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;np.size([ prn_seq[int(ti*f_prn)%16] for ti in t])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;400
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;binary-phase-shift-keying-bpsk&#34;&gt;Binary Phase Shift Keying (BPSK)&lt;/h2&gt;
+&lt;p&gt;The transmited GPS signal uses 
+&lt;a href=&#34;http://en.wikipedia.org/wiki/Phase-shift_keying&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;binary phase shift keying&lt;/a&gt;, signal changed by shift $\pi=180^\circ$ while it turns from 1 to -1, which can be done by multiplying the carefully constructed PRN above with the carrier!&lt;/p&gt;
+&lt;p&gt;This works because a $\sin(x)\times(-1) = \sin(x-180^\circ)$, in other words it&amp;rsquo;s exactly a 180 degree phase shift. We should see this as blips in sine wave every time our data changes from 1 to 0 or visa-versa :&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f = 25e3
+f_prn =  25e3 /10
+
+carrier = lambda t: sin(2*pi*f*t)
+def prn_np(t):
+    return [ prn_seq[int(ti*f_prn)%16] for ti in t]
+
+#t=np.linspace(0,8/f_prn,400)
+t=np.linspace(0,16/f_prn,1400)
+signal = lambda t: carrier(t) * prn_np(t)
+plt.figure(figsize=(16,6))
+plt.plot(t,prn_np(t),color=&#39;red&#39;,lw=4)
+plt.plot(t,signal(t),&#39;b&#39;,lw=4,alpha=0.6)
+plt.title(&#39;CDMA BPSK&#39;,size=20)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.xlabel(&#39;Time[s]&#39;,size=12)
+plt.grid()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_9_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;#t=np.linspace(0,8/f_prn,400)
+t=np.linspace(0,16/f_prn,1400)
+signal = lambda t: carrier(t) * prn_np(t)
+plt.figure(figsize=(16,6))
+#plt.plot(t,prn_np(t),color=&#39;red&#39;,lw=4)
+plt.plot(t,signal(t),&#39;b&#39;,lw=4,alpha=0.6)
+plt.title(&#39;CDMA BPSK&#39;,size=20)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.xlabel(&#39;Time[s]&#39;,size=12)
+plt.grid()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_10_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Too hard to be decipherable! The problem is that the carrier is running three orders of magnintude faster than the PRN!!! Unless we zoom into one spot where the phase shift happens we can see anything at this scale.&lt;/p&gt;
+&lt;p&gt;For the sake of argument lets make the prn modulation much faster.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f_prn =  25e3/10
+t=np.linspace(0, 12/f_prn,1400)
+signal = lambda t: carrier(t) * prn_np(t)
+plt.figure(figsize=(16,6))
+plt.plot(t,signal(t),&#39;b&#39;,lw=2)
+plt.title(&#39;CDMA BPSK&#39;,size=20)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.grid()
+plt.xlabel(&#39;Time(s)&#39;,size=16)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Text(0.5, 0, &#39;Time(s)&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_12_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now we see the phase shifts! To make what&amp;rsquo;s going on even clearer, lets overlay the PRN back on the chart to see how the phase shifts coincide with the edges of our PRN:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f_prn = f_prn =  25e3/10
+t=np.linspace(0,12/f_prn,1400)
+
+def prn_np(t):
+    return [ prn_seq[int(ti*f_prn)%16] for ti in t]
+plt.figure(figsize=(16,6))
+plt.plot(t,prn_np(t),color=&#39;red&#39;,lw=4)
+plt.plot(t,signal(t),&#39;b&#39;,lw=2)
+plt.title(&#39;CDMA BPSK&#39;,size=20)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.grid()
+
+plt.xlabel(&#39;Time(s)&#39;,size=16)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Text(0.5, 0, &#39;Time(s)&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_14_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f_prn = f_prn =  25e3/10
+t=np.linspace(0,12/f_prn,1400)
+
+def prn_np(t):
+    return [ prn_seq[int(ti*f_prn)%16] for ti in t]
+plt.figure(figsize=(16,6))
+plt.plot(t,prn_np(t),color=&#39;red&#39;,lw=4)
+plt.plot(t,signal(t),&#39;b&#39;,lw=2)
+plt.title(&#39;CDMA BPSK&#39;,size=20)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.grid()
+#plt.text(0.15e-8,1.2,&#39;-1,-1&#39;)
+xt=t[-1]/16.
+for i in np.arange(16):
+    plt.text((i+1/2.)*xt,1.2,prn_seq[i])
+
+plt.xlabel(&#39;Time(s)&#39;,size=16)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Text(0.5, 0, &#39;Time(s)&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_15_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;t[-1]/16.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;0.0003
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Exercise&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;generate a sequence of codes with size 32 (PRN).&lt;/li&gt;
+&lt;li&gt;generate the PRN BPSK graph.&lt;/li&gt;
+&lt;li&gt;check the concideness between codes and graph.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;prn_seq = [random.choice([1,-1]) for i in range(32)]
+print(prn_seq)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[1, -1, -1, 1, 1, -1, -1, 1, 1, -1, 1, -1, -1, -1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, -1, 1, 1, -1]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def prn_np(t):
+    return [ prn_seq[int(ti*f_prn)%32] for ti in t]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f_prn = f_prn =  25e3/10
+t=np.linspace(0,4/f_prn,400)
+
+plt.figure(figsize=(16,6))
+plt.plot(t,prn_np(t),color=&#39;red&#39;,lw=4)
+plt.plot(t,signal(t),&#39;b&#39;,lw=2)
+plt.title(&#39;CDMA BPSK&#39;,size=20)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.grid()
+
+
+plt.xlabel(&#39;Time[s]&#39;,size=16)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Text(0.5, 0, &#39;Time[s]&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_20_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f_prn = f_prn =  25e3/10
+t=np.linspace(0,4/f_prn,400)
+
+plt.figure(figsize=(16,6))
+plt.plot(t,prn_np(t),color=&#39;red&#39;,lw=4)
+plt.plot(t,signal(t),&#39;b&#39;,lw=2)
+plt.title(&#39;CDMA BPSK&#39;,size=20)
+plt.xlim([0,t[-1]])
+plt.ylim([-1.5,1.5])
+plt.grid()
+xt=t[-1]/32.
+for i in np.arange(32):
+    plt.text((i+1/2.)*xt,1.2*prn_seq[i],prn_seq[i])
+plt.xlabel(&#39;Time[s]&#39;,size=16)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Text(0.5, 0, &#39;Time[s]&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_21_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Display Jupyter Notebooks with Academic</title>
+      <link>https://patel999jay.github.io/post/jupyter/</link>
+      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://patel999jay.github.io/post/jupyter/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from IPython.core.display import Image
+Image(&#39;https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./index_1_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(&amp;quot;Welcome to Academic!&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Welcome to Academic!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;install-python-and-jupyterlab&#34;&gt;Install Python and JupyterLab&lt;/h2&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://www.anaconda.com/distribution/#download-section&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Install Anaconda&lt;/a&gt; which includes Python 3 and JupyterLab.&lt;/p&gt;
+&lt;p&gt;Alternatively, install JupyterLab with &lt;code&gt;pip3 install jupyterlab&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;create-or-upload-a-jupyter-notebook&#34;&gt;Create or upload a Jupyter notebook&lt;/h2&gt;
+&lt;p&gt;Run the following commands in your Terminal, substituting &lt;code&gt;&amp;lt;MY-WEBSITE-FOLDER&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;SHORT-POST-TITLE&amp;gt;&lt;/code&gt; with the file path to your Academic website folder and a short title for your blog post (use hyphens instead of spaces), respectively:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mkdir -p &amp;lt;MY-WEBSITE-FOLDER&amp;gt;/content/post/&amp;lt;SHORT-POST-TITLE&amp;gt;/
+cd &amp;lt;MY-WEBSITE-FOLDER&amp;gt;/content/post/&amp;lt;SHORT-POST-TITLE&amp;gt;/
+jupyter lab index.ipynb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;jupyter&lt;/code&gt; command above will launch the JupyterLab editor, allowing us to add Academic metadata and write the content.&lt;/p&gt;
+&lt;h2 id=&#34;edit-your-post-metadata&#34;&gt;Edit your post metadata&lt;/h2&gt;
+&lt;p&gt;The first cell of your Jupter notebook will contain your post metadata (
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/front-matter/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;front matter&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;In Jupter, choose &lt;em&gt;Markdown&lt;/em&gt; as the type of the first cell and wrap your Academic metadata in three dashes, indicating that it is YAML front matter:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---
+title: My post&#39;s title
+date: 2019-09-01
+
+# Put any other Academic metadata here...
+---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Edit the metadata of your post, using the 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;documentation&lt;/a&gt; as a guide to the available options.&lt;/p&gt;
+&lt;p&gt;To set a 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#featured-image&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;featured image&lt;/a&gt;, place an image named &lt;code&gt;featured&lt;/code&gt; into your post&amp;rsquo;s folder.&lt;/p&gt;
+&lt;p&gt;For other tips, such as using math, see the guide on 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;writing content with Academic&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;convert-notebook-to-markdown&#34;&gt;Convert notebook to Markdown&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;jupyter nbconvert index.ipynb --to markdown --NbConvertApp.output_files_dir=.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+&lt;p&gt;This post was created with Jupyter. The orginal files can be found at &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&#34;&gt;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Underwater Acoustic Ray Tracing in the SOFAR(Sound Fixing and Ranging) Channel using Python</title>
+      <link>https://patel999jay.github.io/post/underwateracousticsonar/</link>
+      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://patel999jay.github.io/post/underwateracousticsonar/</guid>
+      <description>&lt;h1 id=&#34;underwater-acoustic-ray-tracing-in-the-sofarsound-fixing-and-ranging-channel-using-python&#34;&gt;Underwater Acoustic Ray Tracing in the SOFAR(Sound Fixing and Ranging) Channel using Python&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+import seaborn as sns
+sns.set()
+from tqdm import tqdm
+
+from IPython.display import HTML, display, Image
+from matplotlib import animation
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# SPEED_OF_SOUND_SURFACE = 1480  # meters / second
+SOUND_SPEED_MIN = 1480
+SOUND_SPEED_MAX = 1530
+
+DEPTH_MIN = 0  # Ocean Surface
+DEPTH_MAX = 5500  # meters
+DEPTH_MIN_SPEED = 1100 # depth where minimum speed of sound is observed
+DEPTH_RANGE = np.arange(DEPTH_MIN, DEPTH_MAX + 1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;SOUND_GRADIENT_SHALLOW = (SOUND_SPEED_MIN - SOUND_SPEED_MAX) / (DEPTH_MIN_SPEED - DEPTH_MIN)
+SOUND_GRADIENT_DEEP = (SOUND_SPEED_MAX - SOUND_SPEED_MIN) / (DEPTH_MAX - DEPTH_MIN_SPEED)
+
+# vectorize the sound gradients
+# sound velocity gradient up to 1100 meters deep
+sound_grad_shallow_vec  = np.full(
+    (1, np.argwhere(DEPTH_RANGE == DEPTH_MIN_SPEED)[0][0]),
+    SOUND_GRADIENT_SHALLOW
+)
+# sound velocity gradient beyond 1100 meters
+sound_grad_deep_vec = np.full(
+    (1, np.argmax(DEPTH_RANGE) - np.argwhere(DEPTH_RANGE == DEPTH_MIN_SPEED)[0][0]),
+    SOUND_GRADIENT_DEEP
+)
+
+# construct the sound velocity profile
+sound_velocity_profile = SOUND_SPEED_MIN + \
+                            (DEPTH_RANGE[:-1] - DEPTH_MIN_SPEED) * \
+                            np.append(sound_grad_shallow_vec, sound_grad_deep_vec)
+
+# plot the sound velocity profile
+fig = plt.figure(figsize=(8,6))
+plt.plot(sound_velocity_profile, DEPTH_RANGE[:-1])
+plt.plot([SOUND_SPEED_MIN],[DEPTH_MIN_SPEED], &#39;ro&#39;)
+plt.gca().invert_yaxis()
+plt.ylabel(&#39;Depth (m)&#39;)
+plt.xlabel(&#39;Sound Velocity (m/s)&#39;)
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./Underwater%20Acoustic%20Ray%20Tracing_3_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;SOURCE_DEPTH = DEPTH_MIN_SPEED
+SOURCE_SOUND_SPEED = SOUND_SPEED_MIN
+TRANSMISSION_ANGLE_RANGE = np.deg2rad(np.arange(-10, 11, 1))  # angle of transmission in rad
+angle_0_ind = np.argwhere(TRANSMISSION_ANGLE_RANGE == 0)[0][0]  # index of the 0 degree mark
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;SIMULATION_STEPS = 20  # meters
+SIMULATION_RANGE = np.arange(0, 200e3 + SIMULATION_STEPS, SIMULATION_STEPS)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Instantiate our matrices
+R = np.zeros((len(TRANSMISSION_ANGLE_RANGE), len(SIMULATION_RANGE)))
+z = np.zeros_like(R)
+c = np.zeros_like(R)
+theta = np.zeros_like(R)
+
+# Prime the initial conditions
+z[:, 0] = DEPTH_MIN_SPEED  # we put the source at the depth of min sound speed
+R[:, 0] = -SOURCE_SOUND_SPEED / np.append(
+    SOUND_GRADIENT_SHALLOW * np.cos(TRANSMISSION_ANGLE_RANGE[:angle_0_ind+1]),
+    SOUND_GRADIENT_DEEP * np.cos(TRANSMISSION_ANGLE_RANGE[angle_0_ind+1:]),
+)
+c[:, 0] = SOUND_SPEED_MIN
+theta[:, 0] = TRANSMISSION_ANGLE_RANGE
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;for j in tqdm(range(1, len(SIMULATION_RANGE))):
+    for i in range(0, len(TRANSMISSION_ANGLE_RANGE)):
+        
+        if (z[i, j-1] == SOURCE_DEPTH) and (theta[i, j-1] == 0):
+            c[i, j] = SOURCE_SOUND_SPEED
+            theta[i, j] = 0
+            dz = 0
+            z[i, j] = SOURCE_DEPTH
+            
+        elif (z[i, j-1] &amp;lt; SOURCE_DEPTH) or (z[i, j-1] == SOURCE_DEPTH and theta[i, j-1] &amp;gt; 0):
+            R[i, j] = -c[i, j-1] / (SOUND_GRADIENT_SHALLOW * np.cos(theta[i ,j-1]))
+            theta[i, j] = np.arcsin(
+                SIMULATION_STEPS / R[i, j-1] + np.sin(theta[i, j-1])
+            )
+            dz = R[i, j-1] * (np.cos(theta[i, j-1]) - np.cos(theta[i, j]))
+            z[i, j] = z[i, j-1] + dz
+            c[i, j] = SOURCE_SOUND_SPEED + SOUND_GRADIENT_SHALLOW * (z[i, j] - SOURCE_DEPTH)
+            
+        elif (z[i, j-1] &amp;gt; SOURCE_DEPTH) or (z[i, j-1] == SOURCE_DEPTH and theta[i, j-1] &amp;lt; 0):
+            R[i, j] = -c[i, j-1] / (SOUND_GRADIENT_DEEP * np.cos(theta[i ,j-1]))
+            theta[i, j] = np.arcsin(
+                SIMULATION_STEPS / R[i, j-1] + np.sin(theta[i, j-1])
+            )
+            dz = R[i, j-1] * (np.cos(theta[i, j-1]) - np.cos(theta[i, j]))
+            z[i, j] = z[i, j-1] + dz
+            c[i, j] = SOURCE_SOUND_SPEED + SOUND_GRADIENT_DEEP * (z[i, j] - SOURCE_DEPTH)
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;100%|██████████| 10000/10000 [00:03&amp;lt;00:00, 3283.26it/s]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(figsize=(12,8))
+for i in range(0, len(TRANSMISSION_ANGLE_RANGE)):
+    plt.plot(SIMULATION_RANGE, z[i])
+plt.gca().invert_yaxis()
+plt.title(&#39;Acoustic Ray Tracing&#39;)
+plt.xlabel(&#39;Range (m)&#39;)
+plt.ylabel(&#39;Depth (m)&#39;)
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./Underwater%20Acoustic%20Ray%20Tracing_8_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;duration_sec = 2
+dpi = 100
+bitrate = 100
+
+fig, ax = plt.subplots(dpi=dpi)
+fig.text(0.89, 0.14, &#39;@Jay Patel&#39;,
+             fontsize=12, color=&#39;black&#39;,
+             ha=&#39;right&#39;, va=&#39;bottom&#39;, alpha=0.75)
+fps = len(SIMULATION_RANGE) // duration_sec
+
+GifWriter = animation.ImageMagickFileWriter(fps,
+                                             bitrate=bitrate
+                                             )
+save_filename = &#39;SOFAR_ray_trace.gif&#39;
+with GifWriter.saving(fig, save_filename, dpi=dpi):
+    for i in range(0, len(SIMULATION_RANGE) + 75, 75):
+        plt.cla()
+        ax.set_xlim(0, SIMULATION_RANGE[-1])
+        ax.set_ylim(500, 3500)
+        ax.set_title(f&amp;quot;Acoustic Ray Tracing \nSOFAR Channel&amp;quot;)
+        plt.gca().invert_yaxis()
+        plt.xlabel(&#39;Range (m)&#39;)
+        plt.ylabel(&#39;Depth (m)&#39;)
+        for a in range(0, len(TRANSMISSION_ANGLE_RANGE)):
+            ax.plot(SIMULATION_RANGE[:i], z[a,:i])
+        GifWriter.grab_frame()
+plt.close()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;SOFAR_ray_trace.gif&#34; alt=&#34;SegmentLocal&#34; title=&#34;segment&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+SOURCE_DEPTH = DEPTH_MIN_SPEED
+SOURCE_SOUND_SPEED = SOUND_SPEED_MIN
+TRANSMISSION_ANGLE_RANGE = np.deg2rad(np.arange(-20, 20, 1))  # angle of transmission in rad -20 to 20
+angle_0_ind = np.argwhere(TRANSMISSION_ANGLE_RANGE == 0)[0][0]  # index of the 0 degree mark
+
+SIMULATION_STEPS = 20  # meters
+SIMULATION_RANGE = np.arange(0, 200e3 + SIMULATION_STEPS, SIMULATION_STEPS)
+
+# Instantiate our matrices
+R = np.zeros((len(TRANSMISSION_ANGLE_RANGE), len(SIMULATION_RANGE)))
+z = np.zeros_like(R)
+c = np.zeros_like(R)
+theta = np.zeros_like(R)
+
+# Prime the initial conditions
+z[:, 0] = DEPTH_MIN_SPEED  # we put the source at the depth of min sound speed
+R[:, 0] = -SOURCE_SOUND_SPEED / np.append(
+    SOUND_GRADIENT_SHALLOW * np.cos(TRANSMISSION_ANGLE_RANGE[:angle_0_ind+1]),
+    SOUND_GRADIENT_DEEP * np.cos(TRANSMISSION_ANGLE_RANGE[angle_0_ind+1:]),
+)
+c[:, 0] = SOUND_SPEED_MIN
+theta[:, 0] = TRANSMISSION_ANGLE_RANGE
+
+for j in tqdm(range(1, len(SIMULATION_RANGE))):
+    for i in range(0, len(TRANSMISSION_ANGLE_RANGE)):
+        
+        if (z[i, j-1] == SOURCE_DEPTH) and (theta[i, j-1] == 0):
+            c[i, j] = SOURCE_SOUND_SPEED
+            theta[i, j] = 0
+            dz = 0
+            z[i, j] = SOURCE_DEPTH
+            
+        elif (z[i, j-1] &amp;lt; SOURCE_DEPTH) or (z[i, j-1] == SOURCE_DEPTH and theta[i, j-1] &amp;gt; 0):
+            R[i, j] = -c[i, j-1] / (SOUND_GRADIENT_SHALLOW * np.cos(theta[i ,j-1]))
+            theta[i, j] = np.arcsin(
+                SIMULATION_STEPS / R[i, j-1] + np.sin(theta[i, j-1])
+            )
+            dz = R[i, j-1] * (np.cos(theta[i, j-1]) - np.cos(theta[i, j]))
+            z[i, j] = z[i, j-1] + dz
+            c[i, j] = SOURCE_SOUND_SPEED + SOUND_GRADIENT_SHALLOW * (z[i, j] - SOURCE_DEPTH)
+            
+        elif (z[i, j-1] &amp;gt; SOURCE_DEPTH) or (z[i, j-1] == SOURCE_DEPTH and theta[i, j-1] &amp;lt; 0):
+            R[i, j] = -c[i, j-1] / (SOUND_GRADIENT_DEEP * np.cos(theta[i ,j-1]))
+            theta[i, j] = np.arcsin(
+                SIMULATION_STEPS / R[i, j-1] + np.sin(theta[i, j-1])
+            )
+            dz = R[i, j-1] * (np.cos(theta[i, j-1]) - np.cos(theta[i, j]))
+            z[i, j] = z[i, j-1] + dz
+            c[i, j] = SOURCE_SOUND_SPEED + SOUND_GRADIENT_DEEP * (z[i, j] - SOURCE_DEPTH)
+
+plt.figure(figsize=(16,12))
+for i in range(0, len(TRANSMISSION_ANGLE_RANGE)):
+    plt.plot(SIMULATION_RANGE, z[i])
+plt.gca().invert_yaxis()
+plt.title(&#39;Acoustic Ray Tracing&#39;)
+plt.xlabel(&#39;Range (m)&#39;)
+plt.ylabel(&#39;Depth (m)&#39;)
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;100%|██████████| 10000/10000 [00:06&amp;lt;00:00, 1616.31it/s]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./Underwater%20Acoustic%20Ray%20Tracing_11_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;duration_sec = 2
+dpi = 100
+bitrate = 100
+
+fig, ax = plt.subplots(dpi=dpi)
+fig.text(0.89, 0.14, &#39;@Jay Patel&#39;,
+             fontsize=12, color=&#39;black&#39;,
+             ha=&#39;right&#39;, va=&#39;bottom&#39;, alpha=0.75)
+fps = len(SIMULATION_RANGE) // duration_sec
+
+GifWriter = animation.ImageMagickFileWriter(fps,
+                                             bitrate=bitrate
+                                             )
+save_filename = &#39;SOFAR_ray_trace_1.gif&#39;
+with GifWriter.saving(fig, save_filename, dpi=dpi):
+    for i in range(0, len(SIMULATION_RANGE) + 75, 75):
+        plt.cla()
+        ax.set_xlim(0, SIMULATION_RANGE[-1])
+        ax.set_ylim(500, 3500)
+        ax.set_title(f&amp;quot;Acoustic Ray Tracing \nSOFAR Channel&amp;quot;)
+        plt.gca().invert_yaxis()
+        plt.xlabel(&#39;Range (m)&#39;)
+        plt.ylabel(&#39;Depth (m)&#39;)
+        for a in range(0, len(TRANSMISSION_ANGLE_RANGE)):
+            ax.plot(SIMULATION_RANGE[:i], z[a,:i])
+        GifWriter.grab_frame()
+plt.close()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;SOFAR_ray_trace_1.gif&#34; alt=&#34;SegmentLocal&#34; title=&#34;segment&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;1. https://brentonmallen.com/posts/underwater-acoustic-ray-tracing/&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Development of Low Profile Antenna for Point to Train Communication</title>
+      <link>https://patel999jay.github.io/publication/development-of-low-profile-antenna-for-point-to-train-communication/</link>
+      <pubDate>Wed, 17 Aug 2016 19:55:51 -0300</pubDate>
+      <guid>https://patel999jay.github.io/publication/development-of-low-profile-antenna-for-point-to-train-communication/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;A low profile, electrically small with omnidirectional vertically polarized radiation similar to a short monopole antenna is presented
+for UHF (400-520 MHz) band. It has compact and mechanically stable structure for mounting on to the roof of the Heavy duty
+vehicles such as Trains. It can also be employed with a ground plane (roof surface/rooftop) as in vehicle antenna is consider
+advantageous because the desired direction of communication are mostly independent of the orientation of the vehicle. The proposed
+antenna is made up of the compact size to reduce the overall antenna dimension. The simulation is carried out by using CST
+Microwave Studio Program. The effect of the antenna parameters on the impedance bandwidth will be investigated. It is easily
+embedded on the roof of the vehicle. Moreover, It has simple structure, low profile, easily mounted and relative good bandwidth
+(BW). It is also shown that this antenna is nearly omnidirectional over a majority fraction of bandwidth.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ADALM PlutoSDR</title>
+      <link>https://patel999jay.github.io/project/internal-project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>https://patel999jay.github.io/project/internal-project/</guid>
+      <description>&lt;h1 id=&#34;adm-pluto-file-transfer--fm-receiver-plutosdr&#34;&gt;&lt;strong&gt;ADM-Pluto-File-Transfer &amp;amp; FM Receiver PlutoSDR&lt;/strong&gt;&lt;/h1&gt;
+&lt;hr&gt;
+&lt;p&gt;Software-defined radio (SDR) is a radio communication system where components that have been traditionally implemented in hardware (e.g. mixers, filters, amplifiers, modulators/demodulators, detectors, etc.) are instead implemented by means of software on a personal computer or embedded system.[1] While the concept of SDR is not new, the rapidly evolving capabilities of digital electronics render practical many processes which were once only theoretically possible.&lt;/p&gt;
+&lt;h2 id=&#34;software-requirement-&#34;&gt;Software Requirement :&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;  1. GNU Radio software with IIO_Support (win_64) - (https://wiki.analog.com/resources/tools-software/linux-software/gnuradio_windows) 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;hardware-&#34;&gt;Hardware :&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;  1. ADM-Pluto SDR Active Learning Module
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;steps-to-perform-&#34;&gt;Steps to perform :&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Please make sure your pluto sdr connected properly and found from iio, To make sure please perform following command on terminal&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;iio_info -s
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You should have something like this in your command prompt:&lt;/p&gt;
+ &lt;img src=&#34;Images/cmd.PNG&#34;&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;If you found your pluto successfully, Go ahead and open GNU Radio on your computer and open FileTxRx.grc and run the file.(Assuming you know how to run the file in GNU Radio, If not please look for Play arrow in the GNU Radio or press F5).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img src=&#34;Images/FileTxRx.PNG&#34;&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;You may have to provide text file path again in GNU Radio in File Source and File Sink Block. You can use any text file for transmission. You can use the same text file from here - transmissionfile.txt (Please put this file on desktop and browse the same from File source block.)&lt;/li&gt;
+&lt;/ol&gt;
+ &lt;img src=&#34;Images/filesourceblock.PNG&#34;&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Open transmissionfile.txt and review the contents in the file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Make new text file on your desktop and name whatever you want but make sure you have same file extension. (you can also use file here name receivedfile.txt, This may have data in it, Please go aheah and delete all data from file and save that file again, Make it blank so you can see after transmission what data did you receive from Pluto).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;While transmission, you can also see the Python based WX GUI For FFT TX and FFT Rx.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img src=&#34;Images/GUI-TxRx.PNG&#34;&gt;
+&lt;p&gt;If you come across an error on GNU Radio saying that RuntimeError: Unable to set BB rate, Please make sure you provide correct sampling rate in PlutoSDR blocks in GNU Radio. If you don&amp;rsquo;t know how to find out correct sampling rate, Please perform following command on your command prompt and it will give you exact sampling rate.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    iio_attr -u &amp;lt;uri&amp;gt; -c cf-ad9361-lpc voltage0 sampling_frequency_available
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You should have something like this in your command prompt:&lt;/p&gt;
+ &lt;img src=&#34;Images/cmd1.PNG&#34;&gt;
+&lt;p&gt;P.S. If you have more than one sampling rate, try each one and see what is the difference.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;Images/PlutoSink.PNG&#34;&gt;&lt;img src=&#34;Images/PlutoSource.PNG&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;fm-receiver-with-pluto&#34;&gt;FM Receiver with Pluto&lt;/h1&gt;
+&lt;h2 id=&#34;this-version-is-tested-for-gnuradio-38&#34;&gt;&lt;strong&gt;This version is tested for GNURadio 3.8&lt;/strong&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Just download the files from source folder and open fmradio_pluto_3.8.grc in GNU Radio application. You will see something like this:&lt;/li&gt;
+&lt;/ol&gt;
+ &lt;img src=&#34;FMReceiverPluto/images/FMRadio_PlutoSDR_3.8.png&#34;&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Run the file or press F5. It will open the real time FM station (in my case i configure to receive 100.1 MHz station, Halifax, NS, Canada). You can see real time waterfall of FM Station and also can hear the sound too. If you have problem with audio change sampling rate accordingly.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Frequency Display&lt;/strong&gt;
+&lt;img src=&#34;FMReceiverPluto/images/Freq_Display.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Time Domain Display&lt;/strong&gt;
+&lt;img src=&#34;FMReceiverPluto/images/TimeDomain.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Waterfall Display&lt;/strong&gt;
+&lt;img src=&#34;FMReceiverPluto/images/Waterfall_freq_Disp.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Constellation Display&lt;/strong&gt;
+&lt;img src=&#34;FMReceiverPluto/images/Constellation.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;this-version-is-tested-for-gnuradio-37&#34;&gt;&lt;strong&gt;This version is tested for GNURadio 3.7&lt;/strong&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Just download the files from source folder and open fmradio_pluto.grc in GNU Radio application. You will see something like this:&lt;/li&gt;
+&lt;/ol&gt;
+ &lt;img src=&#34;FMReceiverPluto/images/fmradiopluto.PNG&#34;&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Run the file or press F5. It will open the real time FM station (in my case i configure to receive 100.1 MHz station, Halifax, NS, Canada). You can see real time waterfall of FM Station and also can hear the sound too. If you have problem with audio change sampling rate accordingly.&lt;/li&gt;
+&lt;/ol&gt;
+ &lt;img src=&#34;FMReceiverPluto/images/FMwaterfall.PNG&#34;&gt;
+&lt;h2 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;1. Wikipedia, https://en.wikipedia.org/wiki/Software-defined_radio&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Bedford Bathy Plotting using python</title>
+      <link>https://patel999jay.github.io/project/bedford-bathy/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>https://patel999jay.github.io/project/bedford-bathy/</guid>
+      <description>&lt;h1 id=&#34;bedford-bathy-plotting-using-python&#34;&gt;&lt;strong&gt;Bedford Bathy Plotting using Python&lt;/strong&gt;&lt;/h1&gt;
+&lt;hr&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Author : Jay Patel
+# 3D Bedford basin bathy
+
+import plotly.graph_objects as go
+
+import pandas as pd
+
+# Read data from a csv
+z_data = pd.read_csv(&#39;bathy_bedford.csv&#39;)
+
+fig = go.Figure(data=[go.Surface(z=z_data.values)])
+
+fig.update_layout(title=&#39;Bedford Basin Elevation&#39;, autosize=True,
+                   width=900, height=900,
+                   margin=dict(l=65, r=50, b=65, t=90))
+
+fig.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;#  cmap=plt.cm.viridis, linewidth=0.2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;fig.update_traces(contours_z=dict(show=True, usecolormap=True,
+                                  highlightcolor=&amp;quot;limegreen&amp;quot;, project_z=True))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./2.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;surface-plot-with-contours&#34;&gt;Surface Plot With Contours&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import plotly.graph_objects as go
+
+import pandas as pd
+
+# Read data from a csv
+z_data = pd.read_csv(&#39;bathy_bedford.csv&#39;)
+
+fig = go.Figure(data=[go.Surface(z=z_data.values)])
+fig.update_traces(contours_z=dict(show=True, usecolormap=True,
+                                  highlightcolor=&amp;quot;limegreen&amp;quot;, project_z=True))
+fig.update_layout(title=&#39;Bedford Basin Elevation&#39;, autosize=True,
+                   width=900, height=900,
+                   margin=dict(l=65, r=50, b=65, t=90))
+
+fig.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./3.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import plotly.graph_objects as go
+import numpy as np
+import pandas as pd
+
+# Read data from a csv
+z_data = pd.read_csv(&#39;bathy_bedford.csv&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;z = z_data.values
+sh_0, sh_1 = z.shape
+x, y = np.linspace(44.66875, 44.74791667, sh_0), np.linspace(-63.69791667, -63.52708333, sh_1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import plotly.graph_objects as go
+import pandas as pd
+import numpy as np
+# Read data from a csv
+z_data = pd.read_csv(&#39;bathy_bedford.csv&#39;)
+z = z_data.values
+sh_0, sh_1 = z.shape
+x, y = np.linspace(44.66875, 44.74791667, sh_0), np.linspace(-63.69791667, -63.52708333, sh_1)
+fig = go.Figure(data=[go.Surface(z=z, x=x, y=y)])
+fig.update_traces(contours_z=dict(show=True, usecolormap=True,
+                                  highlightcolor=&amp;quot;limegreen&amp;quot;, project_z=True))
+fig.update_layout(title=&#39;Bedford Basin Elevation&#39;, autosize=True,
+                  width=900, height=900, 
+                  margin=dict(l=65, r=50, b=65, t=90))
+fig.update_layout=dict(xaxis=dict(title=&#39;Latitude&#39;),
+                  yaxis=dict(title=&#39;Longitude&#39;))
+fig.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./4.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;configure-surface-contour-levels&#34;&gt;Configure Surface Contour Levels&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import plotly.graph_objects as go
+import pandas as pd
+import numpy as np
+
+# Read data from a csv
+z_data = pd.read_csv(&#39;bathy_bedford.csv&#39;)
+z = z_data.values
+sh_0, sh_1 = z.shape
+x, y = np.linspace(44.66875, 44.74791667, sh_0), np.linspace(-63.69791667, -63.52708333, sh_1)
+# fig = go.Figure(data=[go.Surface(z=z, x=x, y=y)])
+
+fig = go.Figure(go.Surface(
+    contours = {
+        &amp;quot;x&amp;quot;: {&amp;quot;show&amp;quot;: True, &amp;quot;start&amp;quot;: 44.66875, &amp;quot;end&amp;quot;: 44.74791667, &amp;quot;size&amp;quot;: 0.04, &amp;quot;color&amp;quot;:&amp;quot;white&amp;quot;},
+        &amp;quot;z&amp;quot;: {&amp;quot;show&amp;quot;: True, &amp;quot;start&amp;quot;: -63.69791667, &amp;quot;end&amp;quot;: -63.52708333, &amp;quot;size&amp;quot;: 0.05}
+    },
+    z=z, x=x, y=y))
+fig.update_layout(
+        scene = {
+            &amp;quot;xaxis&amp;quot;: {&amp;quot;nticks&amp;quot;: 20},
+            &amp;quot;zaxis&amp;quot;: {&amp;quot;nticks&amp;quot;: 8},
+            &#39;camera_eye&#39;: {&amp;quot;x&amp;quot;: 0, &amp;quot;y&amp;quot;: -1, &amp;quot;z&amp;quot;: 0.5},
+            &amp;quot;aspectratio&amp;quot;: {&amp;quot;x&amp;quot;: 1, &amp;quot;y&amp;quot;: 1, &amp;quot;z&amp;quot;: 0.2}
+        })
+fig.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./5.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import plotly.graph_objects as go
+import pandas as pd
+import numpy as np
+# Read data from a csv
+z_data = pd.read_csv(&#39;bathy_bedford.csv&#39;)
+z = z_data.values
+sh_0, sh_1 = z.shape
+x, y = np.linspace(44.66875, 44.74791667, sh_0), np.linspace(-63.69791667, -63.52708333, sh_1)
+fig = go.Figure(data=[go.Surface(z=z, x=x, y=y)])
+fig.update_traces(contours_z=dict(show=True, usecolormap=True,
+                                  highlightcolor=&amp;quot;limegreen&amp;quot;, project_z=True))
+fig.update_layout(title=&#39;&amp;lt;b&amp;gt;Bedford Basin Elevation&amp;lt;/b&amp;gt;&#39;,xaxis_title=&amp;quot;Latitude&amp;quot;, 
+                  yaxis_title=&amp;quot;Longitude&amp;quot;,autosize=True,
+                  margin=dict(l=65, r=50, b=65, t=90))
+fig.update_layout(scene = dict(
+                    xaxis_title=&#39;Latitude&#39;,
+                    yaxis_title=&#39;Longitude&#39;,
+                    zaxis_title=&#39;Elevation&#39;)
+                    )  
+# fig.update_layout(color=&#39;Elevation&#39;)
+fig.update_layout(coloraxis_colorbar=dict(
+    title=&amp;quot;Elevation&amp;quot;,
+    thicknessmode=&amp;quot;pixels&amp;quot;, thickness=50,
+    lenmode=&amp;quot;pixels&amp;quot;, len=200,
+    yanchor=&amp;quot;top&amp;quot;, y=1,
+    ticks=&amp;quot;outside&amp;quot;, ticksuffix=&amp;quot;&amp;quot;,
+    dtick=5
+))
+fig.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./6.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import plotly.graph_objects as go
+import pandas as pd
+import numpy as np
+# Read data from a csv
+z_data = pd.read_csv(&#39;bathy_bedford.csv&#39;)
+z = z_data.values
+sh_0, sh_1 = z.shape
+x, y = np.linspace(44.66875, 44.74791667, sh_0), np.linspace(-63.69791667, -63.52708333, sh_1)
+fig = go.Figure(data=[go.Surface(z=z, x=x, y=y,colorscale=&#39;Viridis&#39;)])
+&amp;quot;&amp;quot;&amp;quot;The &#39;colorscale&#39; property is a colorscale and may be
+    specified as:
+      - A list of colors that will be spaced evenly to create the colorscale.
+        Many predefined colorscale lists are included in the sequential, diverging,
+        and cyclical modules in the plotly.colors package.
+      - A list of 2-element lists where the first element is the
+        normalized color level value (starting at 0 and ending at 1), 
+        and the second item is a valid color string.
+        (e.g. [[0, &#39;green&#39;], [0.5, &#39;red&#39;], [1.0, &#39;rgb(0, 0, 255)&#39;]])
+      - One of the following named colorscales:
+            [&#39;aggrnyl&#39;, &#39;agsunset&#39;, &#39;algae&#39;, &#39;amp&#39;, &#39;armyrose&#39;, &#39;balance&#39;,
+             &#39;blackbody&#39;, &#39;bluered&#39;, &#39;blues&#39;, &#39;blugrn&#39;, &#39;bluyl&#39;, &#39;brbg&#39;,
+             &#39;brwnyl&#39;, &#39;bugn&#39;, &#39;bupu&#39;, &#39;burg&#39;, &#39;burgyl&#39;, &#39;cividis&#39;, &#39;curl&#39;,
+             &#39;darkmint&#39;, &#39;deep&#39;, &#39;delta&#39;, &#39;dense&#39;, &#39;earth&#39;, &#39;edge&#39;, &#39;electric&#39;,
+             &#39;emrld&#39;, &#39;fall&#39;, &#39;geyser&#39;, &#39;gnbu&#39;, &#39;gray&#39;, &#39;greens&#39;, &#39;greys&#39;,
+             &#39;haline&#39;, &#39;hot&#39;, &#39;hsv&#39;, &#39;ice&#39;, &#39;icefire&#39;, &#39;inferno&#39;, &#39;jet&#39;,
+             &#39;magenta&#39;, &#39;magma&#39;, &#39;matter&#39;, &#39;mint&#39;, &#39;mrybm&#39;, &#39;mygbm&#39;, &#39;oranges&#39;,
+             &#39;orrd&#39;, &#39;oryel&#39;, &#39;peach&#39;, &#39;phase&#39;, &#39;picnic&#39;, &#39;pinkyl&#39;, &#39;piyg&#39;,
+             &#39;plasma&#39;, &#39;plotly3&#39;, &#39;portland&#39;, &#39;prgn&#39;, &#39;pubu&#39;, &#39;pubugn&#39;, &#39;puor&#39;,
+             &#39;purd&#39;, &#39;purp&#39;, &#39;purples&#39;, &#39;purpor&#39;, &#39;rainbow&#39;, &#39;rdbu&#39;, &#39;rdgy&#39;,
+             &#39;rdpu&#39;, &#39;rdylbu&#39;, &#39;rdylgn&#39;, &#39;redor&#39;, &#39;reds&#39;, &#39;solar&#39;, &#39;spectral&#39;,
+             &#39;speed&#39;, &#39;sunset&#39;, &#39;sunsetdark&#39;, &#39;teal&#39;, &#39;tealgrn&#39;, &#39;tealrose&#39;,
+             &#39;tempo&#39;, &#39;temps&#39;, &#39;thermal&#39;, &#39;tropic&#39;, &#39;turbid&#39;, &#39;twilight&#39;,
+             &#39;viridis&#39;, &#39;ylgn&#39;, &#39;ylgnbu&#39;, &#39;ylorbr&#39;, &#39;ylorrd&#39;].
+        Appending &#39;_r&#39; to a named colorscale reverses it.&amp;quot;&amp;quot;&amp;quot;
+fig.update_traces(contours_z=dict(show=True, usecolormap=True,
+                                  highlightcolor=&amp;quot;limegreen&amp;quot;, project_z=True))
+fig.update_layout(title=&#39;Bedford Basin Elevation&#39;,xaxis_title=&amp;quot;Latitude&amp;quot;, 
+                  yaxis_title=&amp;quot;Longitude&amp;quot;,autosize=False,
+                  width=900, height=900, 
+                  margin=dict(l=65, r=50, b=65, t=90))
+fig.update_layout(scene = dict(
+                    xaxis_title=&#39;Latitude&#39;,
+                    yaxis_title=&#39;Longitude&#39;,
+                    zaxis_title=&#39;Elevation&#39;),
+                    margin=dict(r=20, b=10, l=10, t=10))  
+# fig.update_layout(color=&#39;Elevation&#39;)
+fig.update_layout(coloraxis_colorbar=dict(
+    title=&amp;quot;Elevation&amp;quot;,
+    thicknessmode=&amp;quot;pixels&amp;quot;, thickness=50,
+    lenmode=&amp;quot;pixels&amp;quot;, len=200,
+    yanchor=&amp;quot;top&amp;quot;, y=1,
+    ticks=&amp;quot;outside&amp;quot;, ticksuffix=&amp;quot;&amp;quot;,
+    dtick=5
+))
+fig.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./7.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;appendix-bathy-data&#34;&gt;Appendix Bathy Data&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;z_data
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&lt;pre&gt;&lt;code&gt;.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;/style&gt;&lt;/p&gt;
+&lt;table border=&#34;1&#34; class=&#34;dataframe&#34;&gt;
+  &lt;thead&gt;
+    &lt;tr style=&#34;text-align: right;&#34;&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;Unnamed: 0&lt;/th&gt;
+      &lt;th&gt;44.66875&lt;/th&gt;
+      &lt;th&gt;44.67291667&lt;/th&gt;
+      &lt;th&gt;44.67708333&lt;/th&gt;
+      &lt;th&gt;44.68125&lt;/th&gt;
+      &lt;th&gt;44.68541667&lt;/th&gt;
+      &lt;th&gt;44.68958333&lt;/th&gt;
+      &lt;th&gt;44.69375&lt;/th&gt;
+      &lt;th&gt;44.69791667&lt;/th&gt;
+      &lt;th&gt;44.70208333&lt;/th&gt;
+      &lt;th&gt;...&lt;/th&gt;
+      &lt;th&gt;44.71041667&lt;/th&gt;
+      &lt;th&gt;44.71458333&lt;/th&gt;
+      &lt;th&gt;44.71875&lt;/th&gt;
+      &lt;th&gt;44.72291667&lt;/th&gt;
+      &lt;th&gt;44.72708333&lt;/th&gt;
+      &lt;th&gt;44.73125&lt;/th&gt;
+      &lt;th&gt;44.73541667&lt;/th&gt;
+      &lt;th&gt;44.73958333&lt;/th&gt;
+      &lt;th&gt;44.74375&lt;/th&gt;
+      &lt;th&gt;44.74791667&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;lon&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;-63.697917&lt;/td&gt;
+      &lt;td&gt;76.949219&lt;/td&gt;
+      &lt;td&gt;77.085938&lt;/td&gt;
+      &lt;td&gt;94.507813&lt;/td&gt;
+      &lt;td&gt;109.914060&lt;/td&gt;
+      &lt;td&gt;111.292970&lt;/td&gt;
+      &lt;td&gt;88.378906&lt;/td&gt;
+      &lt;td&gt;51.730469&lt;/td&gt;
+      &lt;td&gt;47.687500&lt;/td&gt;
+      &lt;td&gt;59.089844&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;46.628906&lt;/td&gt;
+      &lt;td&gt;39.363281&lt;/td&gt;
+      &lt;td&gt;44.792969&lt;/td&gt;
+      &lt;td&gt;52.582031&lt;/td&gt;
+      &lt;td&gt;41.074219&lt;/td&gt;
+      &lt;td&gt;32.304688&lt;/td&gt;
+      &lt;td&gt;31.945313&lt;/td&gt;
+      &lt;td&gt;37.171875&lt;/td&gt;
+      &lt;td&gt;31.265625&lt;/td&gt;
+      &lt;td&gt;35.207031&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;-63.693750&lt;/td&gt;
+      &lt;td&gt;74.859375&lt;/td&gt;
+      &lt;td&gt;75.480469&lt;/td&gt;
+      &lt;td&gt;88.718750&lt;/td&gt;
+      &lt;td&gt;104.511720&lt;/td&gt;
+      &lt;td&gt;102.984380&lt;/td&gt;
+      &lt;td&gt;72.757813&lt;/td&gt;
+      &lt;td&gt;51.261719&lt;/td&gt;
+      &lt;td&gt;57.562500&lt;/td&gt;
+      &lt;td&gt;68.406250&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;46.140625&lt;/td&gt;
+      &lt;td&gt;35.457031&lt;/td&gt;
+      &lt;td&gt;41.566406&lt;/td&gt;
+      &lt;td&gt;46.582031&lt;/td&gt;
+      &lt;td&gt;44.464844&lt;/td&gt;
+      &lt;td&gt;43.144531&lt;/td&gt;
+      &lt;td&gt;48.738281&lt;/td&gt;
+      &lt;td&gt;41.949219&lt;/td&gt;
+      &lt;td&gt;28.066406&lt;/td&gt;
+      &lt;td&gt;41.425781&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;-63.689583&lt;/td&gt;
+      &lt;td&gt;76.234375&lt;/td&gt;
+      &lt;td&gt;75.566406&lt;/td&gt;
+      &lt;td&gt;80.800781&lt;/td&gt;
+      &lt;td&gt;85.156250&lt;/td&gt;
+      &lt;td&gt;76.046875&lt;/td&gt;
+      &lt;td&gt;55.621094&lt;/td&gt;
+      &lt;td&gt;57.980469&lt;/td&gt;
+      &lt;td&gt;73.234375&lt;/td&gt;
+      &lt;td&gt;78.527344&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;51.320313&lt;/td&gt;
+      &lt;td&gt;30.578125&lt;/td&gt;
+      &lt;td&gt;33.000000&lt;/td&gt;
+      &lt;td&gt;44.218750&lt;/td&gt;
+      &lt;td&gt;57.890625&lt;/td&gt;
+      &lt;td&gt;63.746094&lt;/td&gt;
+      &lt;td&gt;67.226563&lt;/td&gt;
+      &lt;td&gt;60.589844&lt;/td&gt;
+      &lt;td&gt;43.121094&lt;/td&gt;
+      &lt;td&gt;37.597656&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;-63.685417&lt;/td&gt;
+      &lt;td&gt;78.855469&lt;/td&gt;
+      &lt;td&gt;77.718750&lt;/td&gt;
+      &lt;td&gt;70.976563&lt;/td&gt;
+      &lt;td&gt;61.859375&lt;/td&gt;
+      &lt;td&gt;52.851563&lt;/td&gt;
+      &lt;td&gt;54.816406&lt;/td&gt;
+      &lt;td&gt;72.570313&lt;/td&gt;
+      &lt;td&gt;84.394531&lt;/td&gt;
+      &lt;td&gt;86.800781&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;56.378906&lt;/td&gt;
+      &lt;td&gt;30.882813&lt;/td&gt;
+      &lt;td&gt;33.000000&lt;/td&gt;
+      &lt;td&gt;52.328125&lt;/td&gt;
+      &lt;td&gt;71.847656&lt;/td&gt;
+      &lt;td&gt;84.273438&lt;/td&gt;
+      &lt;td&gt;86.675781&lt;/td&gt;
+      &lt;td&gt;79.574219&lt;/td&gt;
+      &lt;td&gt;53.785156&lt;/td&gt;
+      &lt;td&gt;28.941406&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;-63.681250&lt;/td&gt;
+      &lt;td&gt;75.035156&lt;/td&gt;
+      &lt;td&gt;67.761719&lt;/td&gt;
+      &lt;td&gt;68.031250&lt;/td&gt;
+      &lt;td&gt;65.218750&lt;/td&gt;
+      &lt;td&gt;56.160156&lt;/td&gt;
+      &lt;td&gt;68.144531&lt;/td&gt;
+      &lt;td&gt;88.738281&lt;/td&gt;
+      &lt;td&gt;93.468750&lt;/td&gt;
+      &lt;td&gt;92.445313&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;49.884766&lt;/td&gt;
+      &lt;td&gt;24.603516&lt;/td&gt;
+      &lt;td&gt;39.861328&lt;/td&gt;
+      &lt;td&gt;64.859375&lt;/td&gt;
+      &lt;td&gt;78.960938&lt;/td&gt;
+      &lt;td&gt;86.257813&lt;/td&gt;
+      &lt;td&gt;86.726563&lt;/td&gt;
+      &lt;td&gt;84.812500&lt;/td&gt;
+      &lt;td&gt;65.078125&lt;/td&gt;
+      &lt;td&gt;40.824219&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;5&lt;/th&gt;
+      &lt;td&gt;-63.677083&lt;/td&gt;
+      &lt;td&gt;76.906250&lt;/td&gt;
+      &lt;td&gt;68.015625&lt;/td&gt;
+      &lt;td&gt;77.792969&lt;/td&gt;
+      &lt;td&gt;76.507813&lt;/td&gt;
+      &lt;td&gt;65.015625&lt;/td&gt;
+      &lt;td&gt;77.984375&lt;/td&gt;
+      &lt;td&gt;93.171875&lt;/td&gt;
+      &lt;td&gt;95.757813&lt;/td&gt;
+      &lt;td&gt;91.152344&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;38.843773&lt;/td&gt;
+      &lt;td&gt;14.459333&lt;/td&gt;
+      &lt;td&gt;32.611832&lt;/td&gt;
+      &lt;td&gt;63.052898&lt;/td&gt;
+      &lt;td&gt;77.476563&lt;/td&gt;
+      &lt;td&gt;83.761719&lt;/td&gt;
+      &lt;td&gt;84.460938&lt;/td&gt;
+      &lt;td&gt;82.933594&lt;/td&gt;
+      &lt;td&gt;75.851563&lt;/td&gt;
+      &lt;td&gt;53.343750&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;6&lt;/th&gt;
+      &lt;td&gt;-63.672917&lt;/td&gt;
+      &lt;td&gt;86.007813&lt;/td&gt;
+      &lt;td&gt;81.906250&lt;/td&gt;
+      &lt;td&gt;84.183594&lt;/td&gt;
+      &lt;td&gt;79.460938&lt;/td&gt;
+      &lt;td&gt;68.863281&lt;/td&gt;
+      &lt;td&gt;74.460938&lt;/td&gt;
+      &lt;td&gt;85.843750&lt;/td&gt;
+      &lt;td&gt;89.839844&lt;/td&gt;
+      &lt;td&gt;85.406250&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;26.064667&lt;/td&gt;
+      &lt;td&gt;-1.506614&lt;/td&gt;
+      &lt;td&gt;12.861200&lt;/td&gt;
+      &lt;td&gt;38.809372&lt;/td&gt;
+      &lt;td&gt;63.070324&lt;/td&gt;
+      &lt;td&gt;80.605469&lt;/td&gt;
+      &lt;td&gt;85.308594&lt;/td&gt;
+      &lt;td&gt;90.867188&lt;/td&gt;
+      &lt;td&gt;82.867188&lt;/td&gt;
+      &lt;td&gt;51.437500&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;7&lt;/th&gt;
+      &lt;td&gt;-63.668750&lt;/td&gt;
+      &lt;td&gt;95.003906&lt;/td&gt;
+      &lt;td&gt;87.734375&lt;/td&gt;
+      &lt;td&gt;72.562500&lt;/td&gt;
+      &lt;td&gt;59.613281&lt;/td&gt;
+      &lt;td&gt;62.312500&lt;/td&gt;
+      &lt;td&gt;71.199219&lt;/td&gt;
+      &lt;td&gt;72.628906&lt;/td&gt;
+      &lt;td&gt;75.960938&lt;/td&gt;
+      &lt;td&gt;75.221703&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;9.954909&lt;/td&gt;
+      &lt;td&gt;-11.974573&lt;/td&gt;
+      &lt;td&gt;-4.805872&lt;/td&gt;
+      &lt;td&gt;10.340685&lt;/td&gt;
+      &lt;td&gt;43.335861&lt;/td&gt;
+      &lt;td&gt;69.769524&lt;/td&gt;
+      &lt;td&gt;76.273438&lt;/td&gt;
+      &lt;td&gt;85.203125&lt;/td&gt;
+      &lt;td&gt;71.476563&lt;/td&gt;
+      &lt;td&gt;42.464844&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;8&lt;/th&gt;
+      &lt;td&gt;-63.664583&lt;/td&gt;
+      &lt;td&gt;97.148438&lt;/td&gt;
+      &lt;td&gt;82.492188&lt;/td&gt;
+      &lt;td&gt;64.988281&lt;/td&gt;
+      &lt;td&gt;39.218735&lt;/td&gt;
+      &lt;td&gt;43.938225&lt;/td&gt;
+      &lt;td&gt;61.325375&lt;/td&gt;
+      &lt;td&gt;49.881237&lt;/td&gt;
+      &lt;td&gt;48.452190&lt;/td&gt;
+      &lt;td&gt;52.963917&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;-1.673647&lt;/td&gt;
+      &lt;td&gt;-8.128887&lt;/td&gt;
+      &lt;td&gt;-10.653625&lt;/td&gt;
+      &lt;td&gt;-4.688946&lt;/td&gt;
+      &lt;td&gt;14.444967&lt;/td&gt;
+      &lt;td&gt;40.492226&lt;/td&gt;
+      &lt;td&gt;61.402344&lt;/td&gt;
+      &lt;td&gt;61.308594&lt;/td&gt;
+      &lt;td&gt;36.449219&lt;/td&gt;
+      &lt;td&gt;18.914063&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;9&lt;/th&gt;
+      &lt;td&gt;-63.660417&lt;/td&gt;
+      &lt;td&gt;93.011719&lt;/td&gt;
+      &lt;td&gt;83.011719&lt;/td&gt;
+      &lt;td&gt;67.464821&lt;/td&gt;
+      &lt;td&gt;28.027519&lt;/td&gt;
+      &lt;td&gt;13.340724&lt;/td&gt;
+      &lt;td&gt;22.575760&lt;/td&gt;
+      &lt;td&gt;15.632376&lt;/td&gt;
+      &lt;td&gt;6.809888&lt;/td&gt;
+      &lt;td&gt;5.132569&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;-11.897992&lt;/td&gt;
+      &lt;td&gt;-4.807637&lt;/td&gt;
+      &lt;td&gt;3.286820&lt;/td&gt;
+      &lt;td&gt;2.604772&lt;/td&gt;
+      &lt;td&gt;5.671644&lt;/td&gt;
+      &lt;td&gt;15.168005&lt;/td&gt;
+      &lt;td&gt;27.855469&lt;/td&gt;
+      &lt;td&gt;26.628906&lt;/td&gt;
+      &lt;td&gt;10.945313&lt;/td&gt;
+      &lt;td&gt;9.710938&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;10&lt;/th&gt;
+      &lt;td&gt;-63.656250&lt;/td&gt;
+      &lt;td&gt;92.898438&lt;/td&gt;
+      &lt;td&gt;83.511719&lt;/td&gt;
+      &lt;td&gt;55.145008&lt;/td&gt;
+      &lt;td&gt;13.209535&lt;/td&gt;
+      &lt;td&gt;-12.264346&lt;/td&gt;
+      &lt;td&gt;-15.117385&lt;/td&gt;
+      &lt;td&gt;-14.321301&lt;/td&gt;
+      &lt;td&gt;-25.995922&lt;/td&gt;
+      &lt;td&gt;-33.472305&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;-10.248625&lt;/td&gt;
+      &lt;td&gt;8.080005&lt;/td&gt;
+      &lt;td&gt;22.323267&lt;/td&gt;
+      &lt;td&gt;20.934570&lt;/td&gt;
+      &lt;td&gt;18.535183&lt;/td&gt;
+      &lt;td&gt;15.214840&lt;/td&gt;
+      &lt;td&gt;10.484375&lt;/td&gt;
+      &lt;td&gt;12.101563&lt;/td&gt;
+      &lt;td&gt;13.371094&lt;/td&gt;
+      &lt;td&gt;24.375000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;11&lt;/th&gt;
+      &lt;td&gt;-63.652083&lt;/td&gt;
+      &lt;td&gt;84.066406&lt;/td&gt;
+      &lt;td&gt;64.296883&lt;/td&gt;
+      &lt;td&gt;34.605164&lt;/td&gt;
+      &lt;td&gt;2.242018&lt;/td&gt;
+      &lt;td&gt;-22.517729&lt;/td&gt;
+      &lt;td&gt;-30.148781&lt;/td&gt;
+      &lt;td&gt;-34.749718&lt;/td&gt;
+      &lt;td&gt;-41.952374&lt;/td&gt;
+      &lt;td&gt;-41.779312&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;-3.999856&lt;/td&gt;
+      &lt;td&gt;18.022432&lt;/td&gt;
+      &lt;td&gt;42.588451&lt;/td&gt;
+      &lt;td&gt;54.158203&lt;/td&gt;
+      &lt;td&gt;35.542969&lt;/td&gt;
+      &lt;td&gt;23.964844&lt;/td&gt;
+      &lt;td&gt;23.730469&lt;/td&gt;
+      &lt;td&gt;32.246094&lt;/td&gt;
+      &lt;td&gt;38.230469&lt;/td&gt;
+      &lt;td&gt;42.855469&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;12&lt;/th&gt;
+      &lt;td&gt;-63.647917&lt;/td&gt;
+      &lt;td&gt;65.445313&lt;/td&gt;
+      &lt;td&gt;35.112190&lt;/td&gt;
+      &lt;td&gt;6.273511&lt;/td&gt;
+      &lt;td&gt;-16.426867&lt;/td&gt;
+      &lt;td&gt;-32.295547&lt;/td&gt;
+      &lt;td&gt;-41.835163&lt;/td&gt;
+      &lt;td&gt;-51.907791&lt;/td&gt;
+      &lt;td&gt;-56.872074&lt;/td&gt;
+      &lt;td&gt;-45.036800&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;-2.225338&lt;/td&gt;
+      &lt;td&gt;19.091228&lt;/td&gt;
+      &lt;td&gt;53.738281&lt;/td&gt;
+      &lt;td&gt;79.640625&lt;/td&gt;
+      &lt;td&gt;58.265625&lt;/td&gt;
+      &lt;td&gt;38.929688&lt;/td&gt;
+      &lt;td&gt;38.921875&lt;/td&gt;
+      &lt;td&gt;47.968750&lt;/td&gt;
+      &lt;td&gt;60.488281&lt;/td&gt;
+      &lt;td&gt;57.257813&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;13&lt;/th&gt;
+      &lt;td&gt;-63.643750&lt;/td&gt;
+      &lt;td&gt;43.226688&lt;/td&gt;
+      &lt;td&gt;9.875418&lt;/td&gt;
+      &lt;td&gt;-14.144128&lt;/td&gt;
+      &lt;td&gt;-31.821207&lt;/td&gt;
+      &lt;td&gt;-45.913952&lt;/td&gt;
+      &lt;td&gt;-56.445293&lt;/td&gt;
+      &lt;td&gt;-62.944271&lt;/td&gt;
+      &lt;td&gt;-68.338936&lt;/td&gt;
+      &lt;td&gt;-49.653156&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;-0.736164&lt;/td&gt;
+      &lt;td&gt;20.028435&lt;/td&gt;
+      &lt;td&gt;52.000000&lt;/td&gt;
+      &lt;td&gt;77.394531&lt;/td&gt;
+      &lt;td&gt;72.148438&lt;/td&gt;
+      &lt;td&gt;60.503906&lt;/td&gt;
+      &lt;td&gt;59.429688&lt;/td&gt;
+      &lt;td&gt;56.027344&lt;/td&gt;
+      &lt;td&gt;61.492188&lt;/td&gt;
+      &lt;td&gt;60.273438&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;14&lt;/th&gt;
+      &lt;td&gt;-63.639583&lt;/td&gt;
+      &lt;td&gt;14.007681&lt;/td&gt;
+      &lt;td&gt;-8.914713&lt;/td&gt;
+      &lt;td&gt;-18.772408&lt;/td&gt;
+      &lt;td&gt;-34.815582&lt;/td&gt;
+      &lt;td&gt;-55.949837&lt;/td&gt;
+      &lt;td&gt;-66.089462&lt;/td&gt;
+      &lt;td&gt;-65.168015&lt;/td&gt;
+      &lt;td&gt;-66.465927&lt;/td&gt;
+      &lt;td&gt;-45.641136&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;9.421118&lt;/td&gt;
+      &lt;td&gt;38.420048&lt;/td&gt;
+      &lt;td&gt;67.453125&lt;/td&gt;
+      &lt;td&gt;75.691406&lt;/td&gt;
+      &lt;td&gt;78.402344&lt;/td&gt;
+      &lt;td&gt;80.929688&lt;/td&gt;
+      &lt;td&gt;79.390625&lt;/td&gt;
+      &lt;td&gt;64.707031&lt;/td&gt;
+      &lt;td&gt;54.890625&lt;/td&gt;
+      &lt;td&gt;51.156250&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;15&lt;/th&gt;
+      &lt;td&gt;-63.635417&lt;/td&gt;
+      &lt;td&gt;-7.310585&lt;/td&gt;
+      &lt;td&gt;-18.513680&lt;/td&gt;
+      &lt;td&gt;-22.575047&lt;/td&gt;
+      &lt;td&gt;-35.414024&lt;/td&gt;
+      &lt;td&gt;-54.700890&lt;/td&gt;
+      &lt;td&gt;-63.991642&lt;/td&gt;
+      &lt;td&gt;-62.630890&lt;/td&gt;
+      &lt;td&gt;-56.582676&lt;/td&gt;
+      &lt;td&gt;-35.162735&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;26.824617&lt;/td&gt;
+      &lt;td&gt;60.225838&lt;/td&gt;
+      &lt;td&gt;77.328125&lt;/td&gt;
+      &lt;td&gt;71.515625&lt;/td&gt;
+      &lt;td&gt;79.382813&lt;/td&gt;
+      &lt;td&gt;91.691406&lt;/td&gt;
+      &lt;td&gt;88.488281&lt;/td&gt;
+      &lt;td&gt;75.808594&lt;/td&gt;
+      &lt;td&gt;57.250000&lt;/td&gt;
+      &lt;td&gt;43.339844&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;16&lt;/th&gt;
+      &lt;td&gt;-63.631250&lt;/td&gt;
+      &lt;td&gt;-12.959548&lt;/td&gt;
+      &lt;td&gt;-20.553957&lt;/td&gt;
+      &lt;td&gt;-24.011562&lt;/td&gt;
+      &lt;td&gt;-33.425610&lt;/td&gt;
+      &lt;td&gt;-49.952095&lt;/td&gt;
+      &lt;td&gt;-57.807667&lt;/td&gt;
+      &lt;td&gt;-58.452568&lt;/td&gt;
+      &lt;td&gt;-50.320042&lt;/td&gt;
+      &lt;td&gt;-22.114317&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;39.627213&lt;/td&gt;
+      &lt;td&gt;56.666016&lt;/td&gt;
+      &lt;td&gt;64.625000&lt;/td&gt;
+      &lt;td&gt;60.617188&lt;/td&gt;
+      &lt;td&gt;69.382813&lt;/td&gt;
+      &lt;td&gt;84.894531&lt;/td&gt;
+      &lt;td&gt;89.250000&lt;/td&gt;
+      &lt;td&gt;83.457031&lt;/td&gt;
+      &lt;td&gt;64.105469&lt;/td&gt;
+      &lt;td&gt;44.339844&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;17&lt;/th&gt;
+      &lt;td&gt;-63.627083&lt;/td&gt;
+      &lt;td&gt;-13.959131&lt;/td&gt;
+      &lt;td&gt;-20.879896&lt;/td&gt;
+      &lt;td&gt;-24.619675&lt;/td&gt;
+      &lt;td&gt;-30.599531&lt;/td&gt;
+      &lt;td&gt;-42.064625&lt;/td&gt;
+      &lt;td&gt;-46.732735&lt;/td&gt;
+      &lt;td&gt;-45.736958&lt;/td&gt;
+      &lt;td&gt;-38.605583&lt;/td&gt;
+      &lt;td&gt;-8.134238&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;38.142117&lt;/td&gt;
+      &lt;td&gt;44.251953&lt;/td&gt;
+      &lt;td&gt;49.472656&lt;/td&gt;
+      &lt;td&gt;46.933594&lt;/td&gt;
+      &lt;td&gt;51.566406&lt;/td&gt;
+      &lt;td&gt;70.160156&lt;/td&gt;
+      &lt;td&gt;81.511719&lt;/td&gt;
+      &lt;td&gt;80.933594&lt;/td&gt;
+      &lt;td&gt;70.406250&lt;/td&gt;
+      &lt;td&gt;52.523438&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;18&lt;/th&gt;
+      &lt;td&gt;-63.622917&lt;/td&gt;
+      &lt;td&gt;0.690808&lt;/td&gt;
+      &lt;td&gt;-9.467150&lt;/td&gt;
+      &lt;td&gt;-21.900442&lt;/td&gt;
+      &lt;td&gt;-26.936838&lt;/td&gt;
+      &lt;td&gt;-27.090944&lt;/td&gt;
+      &lt;td&gt;-28.230453&lt;/td&gt;
+      &lt;td&gt;-25.843157&lt;/td&gt;
+      &lt;td&gt;-19.252031&lt;/td&gt;
+      &lt;td&gt;-2.559922&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;29.576172&lt;/td&gt;
+      &lt;td&gt;41.527344&lt;/td&gt;
+      &lt;td&gt;44.617188&lt;/td&gt;
+      &lt;td&gt;40.628906&lt;/td&gt;
+      &lt;td&gt;38.910156&lt;/td&gt;
+      &lt;td&gt;55.820313&lt;/td&gt;
+      &lt;td&gt;72.777344&lt;/td&gt;
+      &lt;td&gt;76.660156&lt;/td&gt;
+      &lt;td&gt;72.941406&lt;/td&gt;
+      &lt;td&gt;60.238281&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;19&lt;/th&gt;
+      &lt;td&gt;-63.618750&lt;/td&gt;
+      &lt;td&gt;33.239319&lt;/td&gt;
+      &lt;td&gt;19.398363&lt;/td&gt;
+      &lt;td&gt;-8.281146&lt;/td&gt;
+      &lt;td&gt;-21.531794&lt;/td&gt;
+      &lt;td&gt;-14.405942&lt;/td&gt;
+      &lt;td&gt;-5.457515&lt;/td&gt;
+      &lt;td&gt;-5.439976&lt;/td&gt;
+      &lt;td&gt;-7.815783&lt;/td&gt;
+      &lt;td&gt;-0.274054&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;29.634766&lt;/td&gt;
+      &lt;td&gt;42.472656&lt;/td&gt;
+      &lt;td&gt;45.640625&lt;/td&gt;
+      &lt;td&gt;40.773438&lt;/td&gt;
+      &lt;td&gt;37.476563&lt;/td&gt;
+      &lt;td&gt;48.804688&lt;/td&gt;
+      &lt;td&gt;69.843750&lt;/td&gt;
+      &lt;td&gt;79.410156&lt;/td&gt;
+      &lt;td&gt;73.281250&lt;/td&gt;
+      &lt;td&gt;65.578125&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;20&lt;/th&gt;
+      &lt;td&gt;-63.614583&lt;/td&gt;
+      &lt;td&gt;63.578960&lt;/td&gt;
+      &lt;td&gt;33.142456&lt;/td&gt;
+      &lt;td&gt;-8.284787&lt;/td&gt;
+      &lt;td&gt;-10.527703&lt;/td&gt;
+      &lt;td&gt;4.501016&lt;/td&gt;
+      &lt;td&gt;15.951009&lt;/td&gt;
+      &lt;td&gt;6.856074&lt;/td&gt;
+      &lt;td&gt;-5.995221&lt;/td&gt;
+      &lt;td&gt;2.971732&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;31.964844&lt;/td&gt;
+      &lt;td&gt;38.089844&lt;/td&gt;
+      &lt;td&gt;43.308594&lt;/td&gt;
+      &lt;td&gt;42.519531&lt;/td&gt;
+      &lt;td&gt;44.750000&lt;/td&gt;
+      &lt;td&gt;54.101563&lt;/td&gt;
+      &lt;td&gt;69.886719&lt;/td&gt;
+      &lt;td&gt;82.687500&lt;/td&gt;
+      &lt;td&gt;73.929688&lt;/td&gt;
+      &lt;td&gt;67.136719&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;21&lt;/th&gt;
+      &lt;td&gt;-63.610417&lt;/td&gt;
+      &lt;td&gt;70.817719&lt;/td&gt;
+      &lt;td&gt;25.925608&lt;/td&gt;
+      &lt;td&gt;-10.230622&lt;/td&gt;
+      &lt;td&gt;9.744920&lt;/td&gt;
+      &lt;td&gt;24.152803&lt;/td&gt;
+      &lt;td&gt;21.304670&lt;/td&gt;
+      &lt;td&gt;7.644289&lt;/td&gt;
+      &lt;td&gt;-0.897256&lt;/td&gt;
+      &lt;td&gt;6.740877&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;33.261719&lt;/td&gt;
+      &lt;td&gt;35.636719&lt;/td&gt;
+      &lt;td&gt;38.226563&lt;/td&gt;
+      &lt;td&gt;43.644531&lt;/td&gt;
+      &lt;td&gt;51.324219&lt;/td&gt;
+      &lt;td&gt;59.398438&lt;/td&gt;
+      &lt;td&gt;65.488281&lt;/td&gt;
+      &lt;td&gt;77.003906&lt;/td&gt;
+      &lt;td&gt;81.035156&lt;/td&gt;
+      &lt;td&gt;76.835938&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;22&lt;/th&gt;
+      &lt;td&gt;-63.606250&lt;/td&gt;
+      &lt;td&gt;55.557236&lt;/td&gt;
+      &lt;td&gt;14.203660&lt;/td&gt;
+      &lt;td&gt;-1.720311&lt;/td&gt;
+      &lt;td&gt;16.641088&lt;/td&gt;
+      &lt;td&gt;17.982437&lt;/td&gt;
+      &lt;td&gt;11.728527&lt;/td&gt;
+      &lt;td&gt;5.558494&lt;/td&gt;
+      &lt;td&gt;5.703025&lt;/td&gt;
+      &lt;td&gt;13.886730&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;35.199219&lt;/td&gt;
+      &lt;td&gt;36.750000&lt;/td&gt;
+      &lt;td&gt;35.355469&lt;/td&gt;
+      &lt;td&gt;40.335938&lt;/td&gt;
+      &lt;td&gt;48.804688&lt;/td&gt;
+      &lt;td&gt;53.933594&lt;/td&gt;
+      &lt;td&gt;57.835938&lt;/td&gt;
+      &lt;td&gt;67.910156&lt;/td&gt;
+      &lt;td&gt;80.523438&lt;/td&gt;
+      &lt;td&gt;86.218750&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;23&lt;/th&gt;
+      &lt;td&gt;-63.602083&lt;/td&gt;
+      &lt;td&gt;36.025299&lt;/td&gt;
+      &lt;td&gt;2.190290&lt;/td&gt;
+      &lt;td&gt;-1.339007&lt;/td&gt;
+      &lt;td&gt;7.554595&lt;/td&gt;
+      &lt;td&gt;6.734375&lt;/td&gt;
+      &lt;td&gt;5.597656&lt;/td&gt;
+      &lt;td&gt;4.179688&lt;/td&gt;
+      &lt;td&gt;11.597656&lt;/td&gt;
+      &lt;td&gt;26.957031&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;44.718750&lt;/td&gt;
+      &lt;td&gt;45.003906&lt;/td&gt;
+      &lt;td&gt;39.687500&lt;/td&gt;
+      &lt;td&gt;39.195313&lt;/td&gt;
+      &lt;td&gt;46.054688&lt;/td&gt;
+      &lt;td&gt;47.675781&lt;/td&gt;
+      &lt;td&gt;51.292969&lt;/td&gt;
+      &lt;td&gt;58.550781&lt;/td&gt;
+      &lt;td&gt;69.648438&lt;/td&gt;
+      &lt;td&gt;80.183594&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;24&lt;/th&gt;
+      &lt;td&gt;-63.597917&lt;/td&gt;
+      &lt;td&gt;8.810258&lt;/td&gt;
+      &lt;td&gt;-4.524801&lt;/td&gt;
+      &lt;td&gt;3.006743&lt;/td&gt;
+      &lt;td&gt;5.879006&lt;/td&gt;
+      &lt;td&gt;13.291016&lt;/td&gt;
+      &lt;td&gt;18.996094&lt;/td&gt;
+      &lt;td&gt;20.617188&lt;/td&gt;
+      &lt;td&gt;26.906250&lt;/td&gt;
+      &lt;td&gt;43.632813&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;63.082031&lt;/td&gt;
+      &lt;td&gt;58.554688&lt;/td&gt;
+      &lt;td&gt;49.054688&lt;/td&gt;
+      &lt;td&gt;45.753906&lt;/td&gt;
+      &lt;td&gt;52.464844&lt;/td&gt;
+      &lt;td&gt;47.886719&lt;/td&gt;
+      &lt;td&gt;43.769531&lt;/td&gt;
+      &lt;td&gt;49.820313&lt;/td&gt;
+      &lt;td&gt;60.265625&lt;/td&gt;
+      &lt;td&gt;69.031250&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;25&lt;/th&gt;
+      &lt;td&gt;-63.593750&lt;/td&gt;
+      &lt;td&gt;-10.357846&lt;/td&gt;
+      &lt;td&gt;-2.310211&lt;/td&gt;
+      &lt;td&gt;18.718382&lt;/td&gt;
+      &lt;td&gt;29.412100&lt;/td&gt;
+      &lt;td&gt;43.144531&lt;/td&gt;
+      &lt;td&gt;47.375000&lt;/td&gt;
+      &lt;td&gt;47.613281&lt;/td&gt;
+      &lt;td&gt;46.789063&lt;/td&gt;
+      &lt;td&gt;59.468750&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;75.718750&lt;/td&gt;
+      &lt;td&gt;64.488281&lt;/td&gt;
+      &lt;td&gt;52.425781&lt;/td&gt;
+      &lt;td&gt;54.796875&lt;/td&gt;
+      &lt;td&gt;58.187500&lt;/td&gt;
+      &lt;td&gt;51.171875&lt;/td&gt;
+      &lt;td&gt;40.628906&lt;/td&gt;
+      &lt;td&gt;39.328125&lt;/td&gt;
+      &lt;td&gt;48.031250&lt;/td&gt;
+      &lt;td&gt;54.558594&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;26&lt;/th&gt;
+      &lt;td&gt;-63.589583&lt;/td&gt;
+      &lt;td&gt;-4.446059&lt;/td&gt;
+      &lt;td&gt;15.267798&lt;/td&gt;
+      &lt;td&gt;35.644077&lt;/td&gt;
+      &lt;td&gt;52.505859&lt;/td&gt;
+      &lt;td&gt;66.007813&lt;/td&gt;
+      &lt;td&gt;64.027344&lt;/td&gt;
+      &lt;td&gt;60.007813&lt;/td&gt;
+      &lt;td&gt;61.343750&lt;/td&gt;
+      &lt;td&gt;70.480469&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;73.003906&lt;/td&gt;
+      &lt;td&gt;57.976563&lt;/td&gt;
+      &lt;td&gt;57.664063&lt;/td&gt;
+      &lt;td&gt;70.316406&lt;/td&gt;
+      &lt;td&gt;61.886719&lt;/td&gt;
+      &lt;td&gt;50.070313&lt;/td&gt;
+      &lt;td&gt;41.804688&lt;/td&gt;
+      &lt;td&gt;32.093750&lt;/td&gt;
+      &lt;td&gt;34.121094&lt;/td&gt;
+      &lt;td&gt;39.796875&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;27&lt;/th&gt;
+      &lt;td&gt;-63.585417&lt;/td&gt;
+      &lt;td&gt;10.070802&lt;/td&gt;
+      &lt;td&gt;28.118652&lt;/td&gt;
+      &lt;td&gt;42.909988&lt;/td&gt;
+      &lt;td&gt;55.316406&lt;/td&gt;
+      &lt;td&gt;68.027344&lt;/td&gt;
+      &lt;td&gt;68.339844&lt;/td&gt;
+      &lt;td&gt;63.441406&lt;/td&gt;
+      &lt;td&gt;68.449219&lt;/td&gt;
+      &lt;td&gt;72.671875&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;68.878906&lt;/td&gt;
+      &lt;td&gt;57.375000&lt;/td&gt;
+      &lt;td&gt;72.867188&lt;/td&gt;
+      &lt;td&gt;88.558594&lt;/td&gt;
+      &lt;td&gt;67.378906&lt;/td&gt;
+      &lt;td&gt;46.589844&lt;/td&gt;
+      &lt;td&gt;40.140625&lt;/td&gt;
+      &lt;td&gt;31.371094&lt;/td&gt;
+      &lt;td&gt;26.300781&lt;/td&gt;
+      &lt;td&gt;28.425781&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;28&lt;/th&gt;
+      &lt;td&gt;-63.581250&lt;/td&gt;
+      &lt;td&gt;23.047089&lt;/td&gt;
+      &lt;td&gt;35.031254&lt;/td&gt;
+      &lt;td&gt;47.410156&lt;/td&gt;
+      &lt;td&gt;55.835938&lt;/td&gt;
+      &lt;td&gt;64.968750&lt;/td&gt;
+      &lt;td&gt;65.921875&lt;/td&gt;
+      &lt;td&gt;65.269531&lt;/td&gt;
+      &lt;td&gt;69.433594&lt;/td&gt;
+      &lt;td&gt;68.640625&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;70.011719&lt;/td&gt;
+      &lt;td&gt;68.484375&lt;/td&gt;
+      &lt;td&gt;81.964844&lt;/td&gt;
+      &lt;td&gt;88.378906&lt;/td&gt;
+      &lt;td&gt;71.328125&lt;/td&gt;
+      &lt;td&gt;54.429688&lt;/td&gt;
+      &lt;td&gt;46.496094&lt;/td&gt;
+      &lt;td&gt;37.613281&lt;/td&gt;
+      &lt;td&gt;29.402344&lt;/td&gt;
+      &lt;td&gt;24.605469&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;29&lt;/th&gt;
+      &lt;td&gt;-63.577083&lt;/td&gt;
+      &lt;td&gt;29.660294&lt;/td&gt;
+      &lt;td&gt;43.933594&lt;/td&gt;
+      &lt;td&gt;54.765625&lt;/td&gt;
+      &lt;td&gt;58.503906&lt;/td&gt;
+      &lt;td&gt;59.875000&lt;/td&gt;
+      &lt;td&gt;61.269531&lt;/td&gt;
+      &lt;td&gt;65.808594&lt;/td&gt;
+      &lt;td&gt;68.250000&lt;/td&gt;
+      &lt;td&gt;67.292969&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;70.148438&lt;/td&gt;
+      &lt;td&gt;77.992188&lt;/td&gt;
+      &lt;td&gt;85.140625&lt;/td&gt;
+      &lt;td&gt;82.308594&lt;/td&gt;
+      &lt;td&gt;73.621094&lt;/td&gt;
+      &lt;td&gt;66.183594&lt;/td&gt;
+      &lt;td&gt;63.078125&lt;/td&gt;
+      &lt;td&gt;57.390625&lt;/td&gt;
+      &lt;td&gt;40.878906&lt;/td&gt;
+      &lt;td&gt;25.000000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;30&lt;/th&gt;
+      &lt;td&gt;-63.572917&lt;/td&gt;
+      &lt;td&gt;31.014334&lt;/td&gt;
+      &lt;td&gt;53.011719&lt;/td&gt;
+      &lt;td&gt;65.511719&lt;/td&gt;
+      &lt;td&gt;69.812500&lt;/td&gt;
+      &lt;td&gt;67.406250&lt;/td&gt;
+      &lt;td&gt;64.480469&lt;/td&gt;
+      &lt;td&gt;65.234375&lt;/td&gt;
+      &lt;td&gt;66.082031&lt;/td&gt;
+      &lt;td&gt;67.046875&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;70.800781&lt;/td&gt;
+      &lt;td&gt;80.218750&lt;/td&gt;
+      &lt;td&gt;82.531250&lt;/td&gt;
+      &lt;td&gt;79.597656&lt;/td&gt;
+      &lt;td&gt;74.093750&lt;/td&gt;
+      &lt;td&gt;72.089844&lt;/td&gt;
+      &lt;td&gt;72.535156&lt;/td&gt;
+      &lt;td&gt;68.304688&lt;/td&gt;
+      &lt;td&gt;53.062500&lt;/td&gt;
+      &lt;td&gt;32.714844&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;31&lt;/th&gt;
+      &lt;td&gt;-63.568750&lt;/td&gt;
+      &lt;td&gt;26.085461&lt;/td&gt;
+      &lt;td&gt;48.626953&lt;/td&gt;
+      &lt;td&gt;68.445313&lt;/td&gt;
+      &lt;td&gt;77.644531&lt;/td&gt;
+      &lt;td&gt;72.324219&lt;/td&gt;
+      &lt;td&gt;64.750000&lt;/td&gt;
+      &lt;td&gt;60.253906&lt;/td&gt;
+      &lt;td&gt;59.281250&lt;/td&gt;
+      &lt;td&gt;59.570313&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;74.175781&lt;/td&gt;
+      &lt;td&gt;85.882813&lt;/td&gt;
+      &lt;td&gt;81.031250&lt;/td&gt;
+      &lt;td&gt;76.011719&lt;/td&gt;
+      &lt;td&gt;74.222656&lt;/td&gt;
+      &lt;td&gt;71.539063&lt;/td&gt;
+      &lt;td&gt;68.039063&lt;/td&gt;
+      &lt;td&gt;67.273438&lt;/td&gt;
+      &lt;td&gt;59.007813&lt;/td&gt;
+      &lt;td&gt;35.109375&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;32&lt;/th&gt;
+      &lt;td&gt;-63.564583&lt;/td&gt;
+      &lt;td&gt;15.733856&lt;/td&gt;
+      &lt;td&gt;28.271484&lt;/td&gt;
+      &lt;td&gt;46.269531&lt;/td&gt;
+      &lt;td&gt;63.753906&lt;/td&gt;
+      &lt;td&gt;64.000000&lt;/td&gt;
+      &lt;td&gt;55.468750&lt;/td&gt;
+      &lt;td&gt;47.593750&lt;/td&gt;
+      &lt;td&gt;43.093750&lt;/td&gt;
+      &lt;td&gt;44.507813&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;73.300781&lt;/td&gt;
+      &lt;td&gt;93.609375&lt;/td&gt;
+      &lt;td&gt;85.214844&lt;/td&gt;
+      &lt;td&gt;72.902344&lt;/td&gt;
+      &lt;td&gt;68.187500&lt;/td&gt;
+      &lt;td&gt;62.113281&lt;/td&gt;
+      &lt;td&gt;55.867188&lt;/td&gt;
+      &lt;td&gt;57.050781&lt;/td&gt;
+      &lt;td&gt;48.832031&lt;/td&gt;
+      &lt;td&gt;41.835938&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;33&lt;/th&gt;
+      &lt;td&gt;-63.560417&lt;/td&gt;
+      &lt;td&gt;16.391357&lt;/td&gt;
+      &lt;td&gt;28.580078&lt;/td&gt;
+      &lt;td&gt;28.265625&lt;/td&gt;
+      &lt;td&gt;37.042969&lt;/td&gt;
+      &lt;td&gt;50.828125&lt;/td&gt;
+      &lt;td&gt;42.882813&lt;/td&gt;
+      &lt;td&gt;29.406250&lt;/td&gt;
+      &lt;td&gt;26.296875&lt;/td&gt;
+      &lt;td&gt;34.031250&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;65.316406&lt;/td&gt;
+      &lt;td&gt;89.085938&lt;/td&gt;
+      &lt;td&gt;79.992188&lt;/td&gt;
+      &lt;td&gt;62.281250&lt;/td&gt;
+      &lt;td&gt;57.343750&lt;/td&gt;
+      &lt;td&gt;50.035156&lt;/td&gt;
+      &lt;td&gt;42.109375&lt;/td&gt;
+      &lt;td&gt;37.054688&lt;/td&gt;
+      &lt;td&gt;40.128906&lt;/td&gt;
+      &lt;td&gt;63.527344&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;34&lt;/th&gt;
+      &lt;td&gt;-63.556250&lt;/td&gt;
+      &lt;td&gt;35.735107&lt;/td&gt;
+      &lt;td&gt;51.728516&lt;/td&gt;
+      &lt;td&gt;35.523438&lt;/td&gt;
+      &lt;td&gt;20.843750&lt;/td&gt;
+      &lt;td&gt;34.964844&lt;/td&gt;
+      &lt;td&gt;29.890625&lt;/td&gt;
+      &lt;td&gt;18.320313&lt;/td&gt;
+      &lt;td&gt;21.328125&lt;/td&gt;
+      &lt;td&gt;33.257813&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;47.628906&lt;/td&gt;
+      &lt;td&gt;59.199219&lt;/td&gt;
+      &lt;td&gt;56.316406&lt;/td&gt;
+      &lt;td&gt;43.554688&lt;/td&gt;
+      &lt;td&gt;39.011719&lt;/td&gt;
+      &lt;td&gt;34.664063&lt;/td&gt;
+      &lt;td&gt;31.308594&lt;/td&gt;
+      &lt;td&gt;35.773438&lt;/td&gt;
+      &lt;td&gt;59.132813&lt;/td&gt;
+      &lt;td&gt;83.457031&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;35&lt;/th&gt;
+      &lt;td&gt;-63.552083&lt;/td&gt;
+      &lt;td&gt;53.774876&lt;/td&gt;
+      &lt;td&gt;60.871094&lt;/td&gt;
+      &lt;td&gt;40.660156&lt;/td&gt;
+      &lt;td&gt;18.941406&lt;/td&gt;
+      &lt;td&gt;21.210938&lt;/td&gt;
+      &lt;td&gt;20.207031&lt;/td&gt;
+      &lt;td&gt;18.796875&lt;/td&gt;
+      &lt;td&gt;25.796875&lt;/td&gt;
+      &lt;td&gt;40.980469&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;30.445313&lt;/td&gt;
+      &lt;td&gt;29.199219&lt;/td&gt;
+      &lt;td&gt;31.417969&lt;/td&gt;
+      &lt;td&gt;28.507813&lt;/td&gt;
+      &lt;td&gt;24.871094&lt;/td&gt;
+      &lt;td&gt;25.457031&lt;/td&gt;
+      &lt;td&gt;33.128906&lt;/td&gt;
+      &lt;td&gt;51.968750&lt;/td&gt;
+      &lt;td&gt;77.597656&lt;/td&gt;
+      &lt;td&gt;94.570313&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;36&lt;/th&gt;
+      &lt;td&gt;-63.547917&lt;/td&gt;
+      &lt;td&gt;59.230469&lt;/td&gt;
+      &lt;td&gt;61.367188&lt;/td&gt;
+      &lt;td&gt;51.703125&lt;/td&gt;
+      &lt;td&gt;33.691406&lt;/td&gt;
+      &lt;td&gt;26.390625&lt;/td&gt;
+      &lt;td&gt;21.757813&lt;/td&gt;
+      &lt;td&gt;19.949219&lt;/td&gt;
+      &lt;td&gt;37.359375&lt;/td&gt;
+      &lt;td&gt;56.464844&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;38.128906&lt;/td&gt;
+      &lt;td&gt;30.468750&lt;/td&gt;
+      &lt;td&gt;30.625000&lt;/td&gt;
+      &lt;td&gt;34.699219&lt;/td&gt;
+      &lt;td&gt;36.746094&lt;/td&gt;
+      &lt;td&gt;40.019531&lt;/td&gt;
+      &lt;td&gt;50.718750&lt;/td&gt;
+      &lt;td&gt;66.621094&lt;/td&gt;
+      &lt;td&gt;84.746094&lt;/td&gt;
+      &lt;td&gt;97.382813&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;37&lt;/th&gt;
+      &lt;td&gt;-63.543750&lt;/td&gt;
+      &lt;td&gt;64.832031&lt;/td&gt;
+      &lt;td&gt;66.406250&lt;/td&gt;
+      &lt;td&gt;59.792969&lt;/td&gt;
+      &lt;td&gt;45.585938&lt;/td&gt;
+      &lt;td&gt;34.242188&lt;/td&gt;
+      &lt;td&gt;29.488281&lt;/td&gt;
+      &lt;td&gt;38.558594&lt;/td&gt;
+      &lt;td&gt;64.308594&lt;/td&gt;
+      &lt;td&gt;76.347656&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;61.476563&lt;/td&gt;
+      &lt;td&gt;45.535156&lt;/td&gt;
+      &lt;td&gt;39.082031&lt;/td&gt;
+      &lt;td&gt;46.347656&lt;/td&gt;
+      &lt;td&gt;49.382813&lt;/td&gt;
+      &lt;td&gt;54.738281&lt;/td&gt;
+      &lt;td&gt;62.695313&lt;/td&gt;
+      &lt;td&gt;77.050781&lt;/td&gt;
+      &lt;td&gt;95.820313&lt;/td&gt;
+      &lt;td&gt;99.855469&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;38&lt;/th&gt;
+      &lt;td&gt;-63.539583&lt;/td&gt;
+      &lt;td&gt;73.113281&lt;/td&gt;
+      &lt;td&gt;61.929688&lt;/td&gt;
+      &lt;td&gt;49.589844&lt;/td&gt;
+      &lt;td&gt;38.644531&lt;/td&gt;
+      &lt;td&gt;39.300781&lt;/td&gt;
+      &lt;td&gt;55.171875&lt;/td&gt;
+      &lt;td&gt;74.441406&lt;/td&gt;
+      &lt;td&gt;85.554688&lt;/td&gt;
+      &lt;td&gt;88.195313&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;72.500000&lt;/td&gt;
+      &lt;td&gt;57.628906&lt;/td&gt;
+      &lt;td&gt;44.191406&lt;/td&gt;
+      &lt;td&gt;47.347656&lt;/td&gt;
+      &lt;td&gt;54.886719&lt;/td&gt;
+      &lt;td&gt;62.109375&lt;/td&gt;
+      &lt;td&gt;73.921875&lt;/td&gt;
+      &lt;td&gt;90.792969&lt;/td&gt;
+      &lt;td&gt;101.320310&lt;/td&gt;
+      &lt;td&gt;99.058594&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;39&lt;/th&gt;
+      &lt;td&gt;-63.535417&lt;/td&gt;
+      &lt;td&gt;63.765625&lt;/td&gt;
+      &lt;td&gt;50.531250&lt;/td&gt;
+      &lt;td&gt;45.089844&lt;/td&gt;
+      &lt;td&gt;43.453125&lt;/td&gt;
+      &lt;td&gt;57.082031&lt;/td&gt;
+      &lt;td&gt;78.214844&lt;/td&gt;
+      &lt;td&gt;90.632813&lt;/td&gt;
+      &lt;td&gt;90.097656&lt;/td&gt;
+      &lt;td&gt;85.585938&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;71.574219&lt;/td&gt;
+      &lt;td&gt;60.835938&lt;/td&gt;
+      &lt;td&gt;50.472656&lt;/td&gt;
+      &lt;td&gt;54.304688&lt;/td&gt;
+      &lt;td&gt;69.460938&lt;/td&gt;
+      &lt;td&gt;77.367188&lt;/td&gt;
+      &lt;td&gt;83.960938&lt;/td&gt;
+      &lt;td&gt;95.863281&lt;/td&gt;
+      &lt;td&gt;101.292970&lt;/td&gt;
+      &lt;td&gt;97.675781&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;40&lt;/th&gt;
+      &lt;td&gt;-63.531250&lt;/td&gt;
+      &lt;td&gt;47.578125&lt;/td&gt;
+      &lt;td&gt;44.156250&lt;/td&gt;
+      &lt;td&gt;48.628906&lt;/td&gt;
+      &lt;td&gt;55.949219&lt;/td&gt;
+      &lt;td&gt;64.972656&lt;/td&gt;
+      &lt;td&gt;76.601563&lt;/td&gt;
+      &lt;td&gt;88.078125&lt;/td&gt;
+      &lt;td&gt;92.406250&lt;/td&gt;
+      &lt;td&gt;87.617188&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;68.554688&lt;/td&gt;
+      &lt;td&gt;61.691406&lt;/td&gt;
+      &lt;td&gt;59.355469&lt;/td&gt;
+      &lt;td&gt;67.031250&lt;/td&gt;
+      &lt;td&gt;82.750000&lt;/td&gt;
+      &lt;td&gt;91.019531&lt;/td&gt;
+      &lt;td&gt;90.761719&lt;/td&gt;
+      &lt;td&gt;94.960938&lt;/td&gt;
+      &lt;td&gt;96.988281&lt;/td&gt;
+      &lt;td&gt;93.632813&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;41&lt;/th&gt;
+      &lt;td&gt;-63.527083&lt;/td&gt;
+      &lt;td&gt;41.800781&lt;/td&gt;
+      &lt;td&gt;44.277344&lt;/td&gt;
+      &lt;td&gt;50.859375&lt;/td&gt;
+      &lt;td&gt;59.894531&lt;/td&gt;
+      &lt;td&gt;68.699219&lt;/td&gt;
+      &lt;td&gt;77.902344&lt;/td&gt;
+      &lt;td&gt;88.875000&lt;/td&gt;
+      &lt;td&gt;92.273438&lt;/td&gt;
+      &lt;td&gt;87.335938&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;70.550781&lt;/td&gt;
+      &lt;td&gt;65.195313&lt;/td&gt;
+      &lt;td&gt;65.718750&lt;/td&gt;
+      &lt;td&gt;73.437500&lt;/td&gt;
+      &lt;td&gt;86.222656&lt;/td&gt;
+      &lt;td&gt;93.308594&lt;/td&gt;
+      &lt;td&gt;92.941406&lt;/td&gt;
+      &lt;td&gt;93.285156&lt;/td&gt;
+      &lt;td&gt;90.976563&lt;/td&gt;
+      &lt;td&gt;90.335938&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;42&lt;/th&gt;
+      &lt;td&gt;-63.527083&lt;/td&gt;
+      &lt;td&gt;41.800781&lt;/td&gt;
+      &lt;td&gt;44.277344&lt;/td&gt;
+      &lt;td&gt;50.859375&lt;/td&gt;
+      &lt;td&gt;59.894531&lt;/td&gt;
+      &lt;td&gt;68.699219&lt;/td&gt;
+      &lt;td&gt;77.902344&lt;/td&gt;
+      &lt;td&gt;88.875000&lt;/td&gt;
+      &lt;td&gt;92.273438&lt;/td&gt;
+      &lt;td&gt;87.335938&lt;/td&gt;
+      &lt;td&gt;...&lt;/td&gt;
+      &lt;td&gt;70.550781&lt;/td&gt;
+      &lt;td&gt;65.195313&lt;/td&gt;
+      &lt;td&gt;65.718750&lt;/td&gt;
+      &lt;td&gt;73.437500&lt;/td&gt;
+      &lt;td&gt;86.222656&lt;/td&gt;
+      &lt;td&gt;93.308594&lt;/td&gt;
+      &lt;td&gt;92.941406&lt;/td&gt;
+      &lt;td&gt;93.285156&lt;/td&gt;
+      &lt;td&gt;90.976563&lt;/td&gt;
+      &lt;td&gt;90.335938&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;43 rows × 21 columns&lt;/p&gt;
+&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+import plotly.graph_objects as go
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv(&#39;POINT_DATA_TITLE.csv&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;df.head()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&lt;pre&gt;&lt;code&gt;.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;/style&gt;&lt;/p&gt;
+&lt;table border=&#34;1&#34; class=&#34;dataframe&#34;&gt;
+  &lt;thead&gt;
+    &lt;tr style=&#34;text-align: right;&#34;&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;x&lt;/th&gt;
+      &lt;th&gt;y&lt;/th&gt;
+      &lt;th&gt;z&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;-63.690000&lt;/td&gt;
+      &lt;td&gt;44.738333&lt;/td&gt;
+      &lt;td&gt;57&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;-63.689792&lt;/td&gt;
+      &lt;td&gt;44.738333&lt;/td&gt;
+      &lt;td&gt;57&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;-63.689583&lt;/td&gt;
+      &lt;td&gt;44.738333&lt;/td&gt;
+      &lt;td&gt;57&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;-63.689375&lt;/td&gt;
+      &lt;td&gt;44.738333&lt;/td&gt;
+      &lt;td&gt;56&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;-63.689167&lt;/td&gt;
+      &lt;td&gt;44.738333&lt;/td&gt;
+      &lt;td&gt;56&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import cm
+# from matplotlib.ticker import LinearLocator, FormatStrFormatter
+from matplotlib import rc, rcParams
+from mpl_toolkits.mplot3d import Axes3D
+from scipy.interpolate import griddata
+import matplotlib.gridspec as gridspec
+
+# 2D-arrays from DataFrame
+x1 = np.linspace(df[&#39;x&#39;].min(), df[&#39;x&#39;].max(), len(df[&#39;x&#39;].unique()))
+y1 = np.linspace(df[&#39;y&#39;].min(), df[&#39;y&#39;].max(), len(df[&#39;y&#39;].unique()))
+
+&amp;quot;&amp;quot;&amp;quot;
+x, y via meshgrid for vectorized evaluation of
+2 scalar/vector fields over 2-D grids, given
+one-dimensional coordinate arrays x1, x2,..., xn.
+&amp;quot;&amp;quot;&amp;quot;
+
+x2, y2 = np.meshgrid(x1, y1)
+
+# Interpolate unstructured D-dimensional data.
+z2 = griddata((df[&#39;x&#39;], df[&#39;y&#39;]), df[&#39;z&#39;], (x2, y2), method=&#39;cubic&#39;)
+
+# Ready to plot
+
+fig = plt.figure(211,figsize=(15,20))
+ax = fig.add_subplot(211, projection=&#39;3d&#39;)
+spec = gridspec.GridSpec(ncols=1, nrows=2,
+                         height_ratios=[4, 1])
+
+surf = ax.plot_surface(x2, y2, z2, rstride=1, cstride=1, cmap=cm.terrain,
+                       linewidth=1, antialiased=False)
+ax.view_init(45,-55)
+
+cset = ax.contourf(x2, y2, z2, zdir=&#39;z2&#39;, offset=-80, cmap=cm.terrain, antialiased=True)
+
+rcParams[&#39;legend.fontsize&#39;] = 20
+
+rc(&#39;text&#39;, usetex=True)
+rc(&#39;axes&#39;, linewidth=2)
+rc(&#39;font&#39;, weight=&#39;bold&#39;)
+
+
+rcParams[&#39;text.latex.preamble&#39;] = [r&#39;\usepackage{sfmath} \boldmath&#39;]
+
+ax.xaxis.set_tick_params(labelsize=20)
+ax.yaxis.set_tick_params(labelsize=20)
+ax.zaxis.set_tick_params(labelsize=20)
+ax.set_zticks([-70, -50, -30, -10, 10, 30, 50, 70, 90, 110])
+plt.title(r&#39;\textbf{Bedford Basin Bathymatry}&#39;, fontsize=20)
+plt.xlabel(r&#39;\textbf{Latitude}&#39;, fontsize=20, labelpad= 23)
+plt.ylabel(r&#39;\textbf{Longitude}&#39;, fontsize=20, labelpad= 20)
+ax.set_zlabel(r&#39;\textbf{Elevation}&#39;, fontsize=20, labelpad= 10)
+
+fig.savefig(&#39;Bedford_BASIN_BATHY_view5.png&#39;, dpi=600)
+
+
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+
+fig, ax = plt.subplots(figsize=(15, 1))
+# ax = fig.add_subplot(111)
+fig.subplots_adjust(bottom=0.5)
+
+cmap = mpl.cm.terrain
+norm = mpl.colors.Normalize(vmin=-80, vmax=100)
+
+cb1 = mpl.colorbar.ColorbarBase(ax, cmap=cmap,
+                                norm=norm,
+                                orientation=&#39;horizontal&#39;)
+cb1.set_label(&#39;Elevation&#39;, fontsize=20, weight=&#39;bold&#39;)
+plt.setp(ax.get_xticklabels(), fontsize=20)
+
+fig.savefig(&#39;Bedford_BASIN_BATHY_view8.png&#39;, dpi=600)
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_16_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;output_16_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import matplotlib.pyplot as plt
+import matplotlib as mpl
+
+left, width = 0.07, 0.65
+bottom, height = 0.1, .8
+bottom_h = left_h = left+width+0.02
+
+rect_cones = [left, bottom, width, height]
+rect_box = [left_h, bottom, 0.05, height]
+
+fig = plt.figure(figsize=(14,7), dpi=300)
+
+cones = plt.axes(rect_cones,projection=&#39;3d&#39;)
+box = plt.axes(rect_box)
+
+cones.plot_surface(x2, y2, z2, rstride=1, cstride=1, cmap=cm.terrain,
+                        linewidth=1, antialiased=False)
+cones.set_zlim([-80, 110])
+cones.view_init(45,-55)
+cset = cones.contourf(x2, y2, z2, zdir=&#39;z2&#39;, offset=-80, cmap=cm.terrain, antialiased=True)
+
+rcParams[&#39;legend.fontsize&#39;] = 20
+
+rc(&#39;text&#39;, usetex=True)
+rc(&#39;axes&#39;, linewidth=2)
+rc(&#39;font&#39;, weight=&#39;bold&#39;)
+
+rcParams[&#39;text.latex.preamble&#39;] = [r&#39;\usepackage{sfmath} \boldmath&#39;]
+
+cones.xaxis.set_tick_params(labelsize=20)
+cones.yaxis.set_tick_params(labelsize=20)
+cones.zaxis.set_tick_params(labelsize=20)
+cones.set_xlabel(&#39;Latitude&#39;, fontsize=20, labelpad= 23, weight=&#39;bold&#39;)
+cones.set_ylabel(&#39;Longitude&#39;, fontsize=20, labelpad= 20, weight=&#39;bold&#39;)
+cones.set_zlabel(&#39;Elevation&#39;, fontsize=20, labelpad= 10, weight=&#39;bold&#39;)
+
+fig.suptitle(&#39;Bedford Basin Bathymatry&#39;, fontsize=20, weight=&#39;bold&#39;)
+cmap = mpl.cm.terrain
+norm = mpl.colors.Normalize(vmin=-80, vmax=110)
+
+cb1 = mpl.colorbar.ColorbarBase(box, cmap=cmap,
+                                norm=norm,
+                                orientation=&#39;vertical&#39;, extend=&#39;both&#39;)
+plt.setp(box.get_yticklabels(), fontsize=16);
+
+fig.savefig(&#39;Bedford_BASIN_BATHY_Final_fig.png&#39;, dpi=600)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;output_17_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Design and Simulation of Roof Mounted Low Profile UHF Antenna for Auto Motives</title>
+      <link>https://patel999jay.github.io/publication/design-and-simulation-of-roof-mounted-low-profile-uhf-antenna-for-auto-motives/</link>
+      <pubDate>Wed, 23 Mar 2016 19:35:55 -0300</pubDate>
+      <guid>https://patel999jay.github.io/publication/design-and-simulation-of-roof-mounted-low-profile-uhf-antenna-for-auto-motives/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;A proposed work present UHF (400-520 MHz) low-profile (compact size) antenna for mounting on to the roof of the space constrained auto motives such as Trains, with omnidirectional vertically polarized radiation. The proposed design has less than λ/32 dimension in height. It can also be mounted with a ground plane (roof surface/rooftop). The geometry of the proposed antenna is taken from a short monopole antenna fed at appropriate location for proper impedance matching. The distance between the shorting end and antenna radiator is given by λ/8 and proper feeding position can enable it to match to 50 Ω coaxial line. The antenna is designed and simulated by CST Microwave Studio Program. The effect of the antenna parameters on the bandwidth will be investigated. Moreover, the proposed antenna, easily mounted on vehicle roof, has small dimensions, low profile, easy mounting and relatively good bandwidth (BW). It is also shown that this antenna is nearly omnidirectional in azimuth plane over a majority fraction of bandwidth.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Design and Simulation of UHF antenna for Roof mounted vehicular and heavy duty applications</title>
+      <link>https://patel999jay.github.io/publication/journal-article/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      <guid>https://patel999jay.github.io/publication/journal-article/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;Proposed work presents a UHF (400-520 MHz) antenna with compact structure for mounting on to the roof of Auto motives such as Train and
+Hammers. It can also be employed with a ground plane (roof surface/rooftop)
+as it is considered advantageous because the desired direction of communication are mostly independent of the orientation of the vehicle. The
+proposed antenna is made up of the compact size to reduce the overall antenna dimension. The simulation is carried out by using CST Microwave Studio Program and the effect of the antenna parameters on the bandwidth will be investigated. It is easily embedded on the roof of the vehicle. Moreover, the proposed antenna has simple structure, low profile, easy fabrication and
+relative good bandwidth (BW). It is also shown that this antenna is nearly
+omnidirectional over a majority fraction of bandwidth.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

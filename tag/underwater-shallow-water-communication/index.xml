@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Underwater shallow water communication | Jay Patel</title>
+    <link>https://patel999jay.github.io/tag/underwater-shallow-water-communication/</link>
+      <atom:link href="https://patel999jay.github.io/tag/underwater-shallow-water-communication/index.xml" rel="self" type="application/rss+xml" />
+    <description>Underwater shallow water communication</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2020</copyright><lastBuildDate>Fri, 04 Dec 2020 17:03:18 -0400</lastBuildDate>
+    <image>
+      <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_2.png</url>
+      <title>Underwater shallow water communication</title>
+      <link>https://patel999jay.github.io/tag/underwater-shallow-water-communication/</link>
+    </image>
+    
+    <item>
+      <title>CDMA-based multi-domain communications network for marine robots</title>
+      <link>https://patel999jay.github.io/talk/asacdma2020/</link>
+      <pubDate>Fri, 04 Dec 2020 17:03:18 -0400</pubDate>
+      <guid>https://patel999jay.github.io/talk/asacdma2020/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;A cross-domain communications network for above and below water marine robots, based on code-division multiple access (CDMA), is reported. CDMA is a promising physical layer and multiple access technique for underwater acoustic sensor networks as it: i) is robust to frequency selective fading, ii) compensates for multi-path effects at the receiver, and iii) allows receivers to distinguish amongst signals simultaneously transmitted by multiple devices. Consequently, CDMA increases channel re-use and reduces packet retransmissions, which results in decreased energy consumption and increased network throughput. The proposed CDMA network for autonomous co-ordination and networking is applied to marine robots separated by extended ranges to transmit images / information from underwater to above-water. The work involves a complete communications protocol stack from the physical to the application layer. Simulations of the proposed network were performed with Network Simulator-3 (NS-3). The proposed protocol leverages CDMA properties to achieve multiple access to the scarce underwater bandwidth while previous reported work with underwater channels only consider CDMA for the physical layer encoding. Simulations shows the proposed underwater acoustic network protocol outperforms other existing ones. The next step is preliminary testing in-water.
+</description>
+    </item>
+    
+    <item>
+      <title>Underwater channel characterization for shallow water multi-domain communications</title>
+      <link>https://patel999jay.github.io/talk/icua2020/</link>
+      <pubDate>Wed, 09 Sep 2020 10:30:00 +0000</pubDate>
+      <guid>https://patel999jay.github.io/talk/icua2020/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Go to &lt;a href=&#34;https://patel999jay.github.io/publication/icua-2020/&#34;&gt;&lt;strong&gt;Publication&lt;/strong&gt;&lt;/a&gt; for more details.
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

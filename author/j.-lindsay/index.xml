@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>J. Lindsay | Jay Patel</title>
+    <link>https://patel999jay.github.io/author/j.-lindsay/</link>
+      <atom:link href="https://patel999jay.github.io/author/j.-lindsay/index.xml" rel="self" type="application/rss+xml" />
+    <description>J. Lindsay</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2020</copyright><lastBuildDate>Sun, 16 Jun 2019 11:45:07 -0300</lastBuildDate>
+    <image>
+      <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_2.png</url>
+      <title>J. Lindsay</title>
+      <link>https://patel999jay.github.io/author/j.-lindsay/</link>
+    </image>
+    
+    <item>
+      <title>Collaboration of Multi Domain Marine Robots Towards Above and Below Water Characterization of Floating Targets</title>
+      <link>https://patel999jay.github.io/publication/collaboration-of-multi-domain-marine-robots-towards-above-and-below-water-characterization-of-floating-targets/</link>
+      <pubDate>Sun, 16 Jun 2019 11:45:07 -0300</pubDate>
+      <guid>https://patel999jay.github.io/publication/collaboration-of-multi-domain-marine-robots-towards-above-and-below-water-characterization-of-floating-targets/</guid>
+      <description>&lt;h1 id=&#34;abstract-best-paper&#34;&gt;Abstract (Best Paper)&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;This paper reports on a method to obtain a multi-domain (environment) awareness on a floating target (non-responsive ship, iceberg, other floating structure) using a heterogenous collaborative team of above,
+surface and underwater robots. This allows, for example, a ship approaching
+a non-responsive floating target to get information on the target from a
+safe stand-off prior to getting closer to further investigate or to attempt
+a boarding. This information enhances the safety of the boarding party. The
+ship can be a horizon (6 km) away from the floating target. The above-water
+unmanned aerial vehicles (UAV), integrated with optical cameras, obtains
+measurements of the above-water geometry using visual imagery to create an
+above-water three-dimensional model using photogrammetry methods. The below-water unmanned underwater vehicle is integrated with an imaging and
+profiling bathymetric sonars to capture the submerged hull geometry and
+features. An unmanned surface vehicle (USV) hosts an intelligent node which
+centrally controls the robotic collaboration by autonomously planning and
+distributing the mission for both the UUV and UAV. The results from the two
+are fused to yield a more complete picture of the floating target. We
+present results from simulations and a controlled in-water trial with an
+UUV, USV and UAV. The contributions from this work includes the robotic
+collaboration and autonomy across multiple domains, autonomous mission-planning and the fusing of multi-domain data. The scheduling of
+inter-dependent multi-robot task allocation is addressed in the autonomous
+mission-planning. The approach is validated in simulations and tested
+in-water. The in-water trials highlight the challenges and value of
+integrating sensors on distributed multi-domain robots towards a more
+complete picture on a floating target.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

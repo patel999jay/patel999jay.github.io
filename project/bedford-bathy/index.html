@@ -1,0 +1,2761 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Jay Patel">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Bedford Bathy Plotting using python">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://patel999jay.github.io/project/bedford-bathy/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" integrity="sha256-4w9DunooKSr3MFXHXWyFER38WmPdm361bQS/2KUWZbU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108083777-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-108083777-3', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://patel999jay.github.io/project/bedford-bathy/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@jay_patel888">
+  <meta property="twitter:creator" content="@jay_patel888">
+  
+  <meta property="og:site_name" content="Jay Patel">
+  <meta property="og:url" content="https://patel999jay.github.io/project/bedford-bathy/">
+  <meta property="og:title" content="Bedford Bathy Plotting using python | Jay Patel">
+  <meta property="og:description" content="Bedford Bathy Plotting using python"><meta property="og:image" content="https://patel999jay.github.io/project/bedford-bathy/featured.png">
+  <meta property="twitter:image" content="https://patel999jay.github.io/project/bedford-bathy/featured.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2016-04-27T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2016-04-27T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://patel999jay.github.io/project/bedford-bathy/"
+  },
+  "headline": "Bedford Bathy Plotting using python",
+  
+  "image": [
+    "https://patel999jay.github.io/project/bedford-bathy/featured.png"
+  ],
+  
+  "datePublished": "2016-04-27T00:00:00Z",
+  "dateModified": "2016-04-27T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Jay Patel"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jay Patel",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Bedford Bathy Plotting using python"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Bedford Bathy Plotting using python | Jay Patel</title>
+
+</head>
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Jay Patel</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Jay Patel</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#featured"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/cv.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article article-project">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+<div class="article-container pt-3">
+  <h1>Bedford Bathy Plotting using python</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Apr 27, 2016
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="btn-links mb-3">
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1" href="https://colab.research.google.com/drive/1gezBYOxQ_v80eUiJAAeiKEmW7km1do6U?usp=sharing" target="_blank" rel="noopener">
+  Code
+</a>
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1" href="https://drive.google.com/drive/folders/1bnOpvQ7nQXSxNH53VPKrGiElZQ3_JUkS?usp=sharing" target="_blank" rel="noopener">
+  Dataset
+</a>
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+  <a class="btn btn-outline-primary my-1 mr-1" href="https://twitter.com/jay_patel888" target="_blank" rel="noopener">
+    <i class="fab fa-twitter mr-1"></i>
+    Follow
+  </a>
+
+
+</div>
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 720px;">
+  <div style="position: relative">
+    <img src="/project/bedford-bathy/featured_hu26ad150ce0e6ac02d0928f466411dde4_214125_720x0_resize_lanczos_2.png" alt="" class="featured-image">
+    <span class="article-header-caption">Photo by rawpixel on Unsplash</span>
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h1 id="bedford-bathy-plotting-using-python"><strong>Bedford Bathy Plotting using Python</strong></h1>
+<hr>
+<pre><code class="language-python"># Author : Jay Patel
+# 3D Bedford basin bathy
+
+import plotly.graph_objects as go
+
+import pandas as pd
+
+# Read data from a csv
+z_data = pd.read_csv('bathy_bedford.csv')
+
+fig = go.Figure(data=[go.Surface(z=z_data.values)])
+
+fig.update_layout(title='Bedford Basin Elevation', autosize=True,
+                   width=900, height=900,
+                   margin=dict(l=65, r=50, b=65, t=90))
+
+fig.show()
+</code></pre>
+<p><img src="./1.png" alt="png"></p>
+<pre><code class="language-python">#  cmap=plt.cm.viridis, linewidth=0.2
+</code></pre>
+<pre><code class="language-python">fig.update_traces(contours_z=dict(show=True, usecolormap=True,
+                                  highlightcolor=&quot;limegreen&quot;, project_z=True))
+</code></pre>
+<p><img src="./2.png" alt="png"></p>
+<h1 id="surface-plot-with-contours">Surface Plot With Contours</h1>
+<pre><code class="language-python">import plotly.graph_objects as go
+
+import pandas as pd
+
+# Read data from a csv
+z_data = pd.read_csv('bathy_bedford.csv')
+
+fig = go.Figure(data=[go.Surface(z=z_data.values)])
+fig.update_traces(contours_z=dict(show=True, usecolormap=True,
+                                  highlightcolor=&quot;limegreen&quot;, project_z=True))
+fig.update_layout(title='Bedford Basin Elevation', autosize=True,
+                   width=900, height=900,
+                   margin=dict(l=65, r=50, b=65, t=90))
+
+fig.show()
+</code></pre>
+<p><img src="./3.png" alt="png"></p>
+<pre><code class="language-python">import plotly.graph_objects as go
+import numpy as np
+import pandas as pd
+
+# Read data from a csv
+z_data = pd.read_csv('bathy_bedford.csv')
+</code></pre>
+<pre><code class="language-python">z = z_data.values
+sh_0, sh_1 = z.shape
+x, y = np.linspace(44.66875, 44.74791667, sh_0), np.linspace(-63.69791667, -63.52708333, sh_1)
+</code></pre>
+<pre><code class="language-python">import plotly.graph_objects as go
+import pandas as pd
+import numpy as np
+# Read data from a csv
+z_data = pd.read_csv('bathy_bedford.csv')
+z = z_data.values
+sh_0, sh_1 = z.shape
+x, y = np.linspace(44.66875, 44.74791667, sh_0), np.linspace(-63.69791667, -63.52708333, sh_1)
+fig = go.Figure(data=[go.Surface(z=z, x=x, y=y)])
+fig.update_traces(contours_z=dict(show=True, usecolormap=True,
+                                  highlightcolor=&quot;limegreen&quot;, project_z=True))
+fig.update_layout(title='Bedford Basin Elevation', autosize=True,
+                  width=900, height=900, 
+                  margin=dict(l=65, r=50, b=65, t=90))
+fig.update_layout=dict(xaxis=dict(title='Latitude'),
+                  yaxis=dict(title='Longitude'))
+fig.show()
+</code></pre>
+<p><img src="./4.png" alt="png"></p>
+<h1 id="configure-surface-contour-levels">Configure Surface Contour Levels</h1>
+<pre><code class="language-python">import plotly.graph_objects as go
+import pandas as pd
+import numpy as np
+
+# Read data from a csv
+z_data = pd.read_csv('bathy_bedford.csv')
+z = z_data.values
+sh_0, sh_1 = z.shape
+x, y = np.linspace(44.66875, 44.74791667, sh_0), np.linspace(-63.69791667, -63.52708333, sh_1)
+# fig = go.Figure(data=[go.Surface(z=z, x=x, y=y)])
+
+fig = go.Figure(go.Surface(
+    contours = {
+        &quot;x&quot;: {&quot;show&quot;: True, &quot;start&quot;: 44.66875, &quot;end&quot;: 44.74791667, &quot;size&quot;: 0.04, &quot;color&quot;:&quot;white&quot;},
+        &quot;z&quot;: {&quot;show&quot;: True, &quot;start&quot;: -63.69791667, &quot;end&quot;: -63.52708333, &quot;size&quot;: 0.05}
+    },
+    z=z, x=x, y=y))
+fig.update_layout(
+        scene = {
+            &quot;xaxis&quot;: {&quot;nticks&quot;: 20},
+            &quot;zaxis&quot;: {&quot;nticks&quot;: 8},
+            'camera_eye': {&quot;x&quot;: 0, &quot;y&quot;: -1, &quot;z&quot;: 0.5},
+            &quot;aspectratio&quot;: {&quot;x&quot;: 1, &quot;y&quot;: 1, &quot;z&quot;: 0.2}
+        })
+fig.show()
+</code></pre>
+<p><img src="./5.png" alt="png"></p>
+<pre><code class="language-python">import plotly.graph_objects as go
+import pandas as pd
+import numpy as np
+# Read data from a csv
+z_data = pd.read_csv('bathy_bedford.csv')
+z = z_data.values
+sh_0, sh_1 = z.shape
+x, y = np.linspace(44.66875, 44.74791667, sh_0), np.linspace(-63.69791667, -63.52708333, sh_1)
+fig = go.Figure(data=[go.Surface(z=z, x=x, y=y)])
+fig.update_traces(contours_z=dict(show=True, usecolormap=True,
+                                  highlightcolor=&quot;limegreen&quot;, project_z=True))
+fig.update_layout(title='&lt;b&gt;Bedford Basin Elevation&lt;/b&gt;',xaxis_title=&quot;Latitude&quot;, 
+                  yaxis_title=&quot;Longitude&quot;,autosize=True,
+                  margin=dict(l=65, r=50, b=65, t=90))
+fig.update_layout(scene = dict(
+                    xaxis_title='Latitude',
+                    yaxis_title='Longitude',
+                    zaxis_title='Elevation')
+                    )  
+# fig.update_layout(color='Elevation')
+fig.update_layout(coloraxis_colorbar=dict(
+    title=&quot;Elevation&quot;,
+    thicknessmode=&quot;pixels&quot;, thickness=50,
+    lenmode=&quot;pixels&quot;, len=200,
+    yanchor=&quot;top&quot;, y=1,
+    ticks=&quot;outside&quot;, ticksuffix=&quot;&quot;,
+    dtick=5
+))
+fig.show()
+</code></pre>
+<p><img src="./6.png" alt="png"></p>
+<pre><code class="language-python">import plotly.graph_objects as go
+import pandas as pd
+import numpy as np
+# Read data from a csv
+z_data = pd.read_csv('bathy_bedford.csv')
+z = z_data.values
+sh_0, sh_1 = z.shape
+x, y = np.linspace(44.66875, 44.74791667, sh_0), np.linspace(-63.69791667, -63.52708333, sh_1)
+fig = go.Figure(data=[go.Surface(z=z, x=x, y=y,colorscale='Viridis')])
+&quot;&quot;&quot;The 'colorscale' property is a colorscale and may be
+    specified as:
+      - A list of colors that will be spaced evenly to create the colorscale.
+        Many predefined colorscale lists are included in the sequential, diverging,
+        and cyclical modules in the plotly.colors package.
+      - A list of 2-element lists where the first element is the
+        normalized color level value (starting at 0 and ending at 1), 
+        and the second item is a valid color string.
+        (e.g. [[0, 'green'], [0.5, 'red'], [1.0, 'rgb(0, 0, 255)']])
+      - One of the following named colorscales:
+            ['aggrnyl', 'agsunset', 'algae', 'amp', 'armyrose', 'balance',
+             'blackbody', 'bluered', 'blues', 'blugrn', 'bluyl', 'brbg',
+             'brwnyl', 'bugn', 'bupu', 'burg', 'burgyl', 'cividis', 'curl',
+             'darkmint', 'deep', 'delta', 'dense', 'earth', 'edge', 'electric',
+             'emrld', 'fall', 'geyser', 'gnbu', 'gray', 'greens', 'greys',
+             'haline', 'hot', 'hsv', 'ice', 'icefire', 'inferno', 'jet',
+             'magenta', 'magma', 'matter', 'mint', 'mrybm', 'mygbm', 'oranges',
+             'orrd', 'oryel', 'peach', 'phase', 'picnic', 'pinkyl', 'piyg',
+             'plasma', 'plotly3', 'portland', 'prgn', 'pubu', 'pubugn', 'puor',
+             'purd', 'purp', 'purples', 'purpor', 'rainbow', 'rdbu', 'rdgy',
+             'rdpu', 'rdylbu', 'rdylgn', 'redor', 'reds', 'solar', 'spectral',
+             'speed', 'sunset', 'sunsetdark', 'teal', 'tealgrn', 'tealrose',
+             'tempo', 'temps', 'thermal', 'tropic', 'turbid', 'twilight',
+             'viridis', 'ylgn', 'ylgnbu', 'ylorbr', 'ylorrd'].
+        Appending '_r' to a named colorscale reverses it.&quot;&quot;&quot;
+fig.update_traces(contours_z=dict(show=True, usecolormap=True,
+                                  highlightcolor=&quot;limegreen&quot;, project_z=True))
+fig.update_layout(title='Bedford Basin Elevation',xaxis_title=&quot;Latitude&quot;, 
+                  yaxis_title=&quot;Longitude&quot;,autosize=False,
+                  width=900, height=900, 
+                  margin=dict(l=65, r=50, b=65, t=90))
+fig.update_layout(scene = dict(
+                    xaxis_title='Latitude',
+                    yaxis_title='Longitude',
+                    zaxis_title='Elevation'),
+                    margin=dict(r=20, b=10, l=10, t=10))  
+# fig.update_layout(color='Elevation')
+fig.update_layout(coloraxis_colorbar=dict(
+    title=&quot;Elevation&quot;,
+    thicknessmode=&quot;pixels&quot;, thickness=50,
+    lenmode=&quot;pixels&quot;, len=200,
+    yanchor=&quot;top&quot;, y=1,
+    ticks=&quot;outside&quot;, ticksuffix=&quot;&quot;,
+    dtick=5
+))
+fig.show()
+</code></pre>
+<p><img src="./7.png" alt="png"></p>
+<h1 id="appendix-bathy-data">Appendix Bathy Data</h1>
+<pre><code class="language-python">z_data
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>44.66875</th>
+      <th>44.67291667</th>
+      <th>44.67708333</th>
+      <th>44.68125</th>
+      <th>44.68541667</th>
+      <th>44.68958333</th>
+      <th>44.69375</th>
+      <th>44.69791667</th>
+      <th>44.70208333</th>
+      <th>...</th>
+      <th>44.71041667</th>
+      <th>44.71458333</th>
+      <th>44.71875</th>
+      <th>44.72291667</th>
+      <th>44.72708333</th>
+      <th>44.73125</th>
+      <th>44.73541667</th>
+      <th>44.73958333</th>
+      <th>44.74375</th>
+      <th>44.74791667</th>
+    </tr>
+    <tr>
+      <th>lon</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-63.697917</td>
+      <td>76.949219</td>
+      <td>77.085938</td>
+      <td>94.507813</td>
+      <td>109.914060</td>
+      <td>111.292970</td>
+      <td>88.378906</td>
+      <td>51.730469</td>
+      <td>47.687500</td>
+      <td>59.089844</td>
+      <td>...</td>
+      <td>46.628906</td>
+      <td>39.363281</td>
+      <td>44.792969</td>
+      <td>52.582031</td>
+      <td>41.074219</td>
+      <td>32.304688</td>
+      <td>31.945313</td>
+      <td>37.171875</td>
+      <td>31.265625</td>
+      <td>35.207031</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-63.693750</td>
+      <td>74.859375</td>
+      <td>75.480469</td>
+      <td>88.718750</td>
+      <td>104.511720</td>
+      <td>102.984380</td>
+      <td>72.757813</td>
+      <td>51.261719</td>
+      <td>57.562500</td>
+      <td>68.406250</td>
+      <td>...</td>
+      <td>46.140625</td>
+      <td>35.457031</td>
+      <td>41.566406</td>
+      <td>46.582031</td>
+      <td>44.464844</td>
+      <td>43.144531</td>
+      <td>48.738281</td>
+      <td>41.949219</td>
+      <td>28.066406</td>
+      <td>41.425781</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-63.689583</td>
+      <td>76.234375</td>
+      <td>75.566406</td>
+      <td>80.800781</td>
+      <td>85.156250</td>
+      <td>76.046875</td>
+      <td>55.621094</td>
+      <td>57.980469</td>
+      <td>73.234375</td>
+      <td>78.527344</td>
+      <td>...</td>
+      <td>51.320313</td>
+      <td>30.578125</td>
+      <td>33.000000</td>
+      <td>44.218750</td>
+      <td>57.890625</td>
+      <td>63.746094</td>
+      <td>67.226563</td>
+      <td>60.589844</td>
+      <td>43.121094</td>
+      <td>37.597656</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-63.685417</td>
+      <td>78.855469</td>
+      <td>77.718750</td>
+      <td>70.976563</td>
+      <td>61.859375</td>
+      <td>52.851563</td>
+      <td>54.816406</td>
+      <td>72.570313</td>
+      <td>84.394531</td>
+      <td>86.800781</td>
+      <td>...</td>
+      <td>56.378906</td>
+      <td>30.882813</td>
+      <td>33.000000</td>
+      <td>52.328125</td>
+      <td>71.847656</td>
+      <td>84.273438</td>
+      <td>86.675781</td>
+      <td>79.574219</td>
+      <td>53.785156</td>
+      <td>28.941406</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-63.681250</td>
+      <td>75.035156</td>
+      <td>67.761719</td>
+      <td>68.031250</td>
+      <td>65.218750</td>
+      <td>56.160156</td>
+      <td>68.144531</td>
+      <td>88.738281</td>
+      <td>93.468750</td>
+      <td>92.445313</td>
+      <td>...</td>
+      <td>49.884766</td>
+      <td>24.603516</td>
+      <td>39.861328</td>
+      <td>64.859375</td>
+      <td>78.960938</td>
+      <td>86.257813</td>
+      <td>86.726563</td>
+      <td>84.812500</td>
+      <td>65.078125</td>
+      <td>40.824219</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>-63.677083</td>
+      <td>76.906250</td>
+      <td>68.015625</td>
+      <td>77.792969</td>
+      <td>76.507813</td>
+      <td>65.015625</td>
+      <td>77.984375</td>
+      <td>93.171875</td>
+      <td>95.757813</td>
+      <td>91.152344</td>
+      <td>...</td>
+      <td>38.843773</td>
+      <td>14.459333</td>
+      <td>32.611832</td>
+      <td>63.052898</td>
+      <td>77.476563</td>
+      <td>83.761719</td>
+      <td>84.460938</td>
+      <td>82.933594</td>
+      <td>75.851563</td>
+      <td>53.343750</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>-63.672917</td>
+      <td>86.007813</td>
+      <td>81.906250</td>
+      <td>84.183594</td>
+      <td>79.460938</td>
+      <td>68.863281</td>
+      <td>74.460938</td>
+      <td>85.843750</td>
+      <td>89.839844</td>
+      <td>85.406250</td>
+      <td>...</td>
+      <td>26.064667</td>
+      <td>-1.506614</td>
+      <td>12.861200</td>
+      <td>38.809372</td>
+      <td>63.070324</td>
+      <td>80.605469</td>
+      <td>85.308594</td>
+      <td>90.867188</td>
+      <td>82.867188</td>
+      <td>51.437500</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>-63.668750</td>
+      <td>95.003906</td>
+      <td>87.734375</td>
+      <td>72.562500</td>
+      <td>59.613281</td>
+      <td>62.312500</td>
+      <td>71.199219</td>
+      <td>72.628906</td>
+      <td>75.960938</td>
+      <td>75.221703</td>
+      <td>...</td>
+      <td>9.954909</td>
+      <td>-11.974573</td>
+      <td>-4.805872</td>
+      <td>10.340685</td>
+      <td>43.335861</td>
+      <td>69.769524</td>
+      <td>76.273438</td>
+      <td>85.203125</td>
+      <td>71.476563</td>
+      <td>42.464844</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>-63.664583</td>
+      <td>97.148438</td>
+      <td>82.492188</td>
+      <td>64.988281</td>
+      <td>39.218735</td>
+      <td>43.938225</td>
+      <td>61.325375</td>
+      <td>49.881237</td>
+      <td>48.452190</td>
+      <td>52.963917</td>
+      <td>...</td>
+      <td>-1.673647</td>
+      <td>-8.128887</td>
+      <td>-10.653625</td>
+      <td>-4.688946</td>
+      <td>14.444967</td>
+      <td>40.492226</td>
+      <td>61.402344</td>
+      <td>61.308594</td>
+      <td>36.449219</td>
+      <td>18.914063</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>-63.660417</td>
+      <td>93.011719</td>
+      <td>83.011719</td>
+      <td>67.464821</td>
+      <td>28.027519</td>
+      <td>13.340724</td>
+      <td>22.575760</td>
+      <td>15.632376</td>
+      <td>6.809888</td>
+      <td>5.132569</td>
+      <td>...</td>
+      <td>-11.897992</td>
+      <td>-4.807637</td>
+      <td>3.286820</td>
+      <td>2.604772</td>
+      <td>5.671644</td>
+      <td>15.168005</td>
+      <td>27.855469</td>
+      <td>26.628906</td>
+      <td>10.945313</td>
+      <td>9.710938</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>-63.656250</td>
+      <td>92.898438</td>
+      <td>83.511719</td>
+      <td>55.145008</td>
+      <td>13.209535</td>
+      <td>-12.264346</td>
+      <td>-15.117385</td>
+      <td>-14.321301</td>
+      <td>-25.995922</td>
+      <td>-33.472305</td>
+      <td>...</td>
+      <td>-10.248625</td>
+      <td>8.080005</td>
+      <td>22.323267</td>
+      <td>20.934570</td>
+      <td>18.535183</td>
+      <td>15.214840</td>
+      <td>10.484375</td>
+      <td>12.101563</td>
+      <td>13.371094</td>
+      <td>24.375000</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>-63.652083</td>
+      <td>84.066406</td>
+      <td>64.296883</td>
+      <td>34.605164</td>
+      <td>2.242018</td>
+      <td>-22.517729</td>
+      <td>-30.148781</td>
+      <td>-34.749718</td>
+      <td>-41.952374</td>
+      <td>-41.779312</td>
+      <td>...</td>
+      <td>-3.999856</td>
+      <td>18.022432</td>
+      <td>42.588451</td>
+      <td>54.158203</td>
+      <td>35.542969</td>
+      <td>23.964844</td>
+      <td>23.730469</td>
+      <td>32.246094</td>
+      <td>38.230469</td>
+      <td>42.855469</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>-63.647917</td>
+      <td>65.445313</td>
+      <td>35.112190</td>
+      <td>6.273511</td>
+      <td>-16.426867</td>
+      <td>-32.295547</td>
+      <td>-41.835163</td>
+      <td>-51.907791</td>
+      <td>-56.872074</td>
+      <td>-45.036800</td>
+      <td>...</td>
+      <td>-2.225338</td>
+      <td>19.091228</td>
+      <td>53.738281</td>
+      <td>79.640625</td>
+      <td>58.265625</td>
+      <td>38.929688</td>
+      <td>38.921875</td>
+      <td>47.968750</td>
+      <td>60.488281</td>
+      <td>57.257813</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>-63.643750</td>
+      <td>43.226688</td>
+      <td>9.875418</td>
+      <td>-14.144128</td>
+      <td>-31.821207</td>
+      <td>-45.913952</td>
+      <td>-56.445293</td>
+      <td>-62.944271</td>
+      <td>-68.338936</td>
+      <td>-49.653156</td>
+      <td>...</td>
+      <td>-0.736164</td>
+      <td>20.028435</td>
+      <td>52.000000</td>
+      <td>77.394531</td>
+      <td>72.148438</td>
+      <td>60.503906</td>
+      <td>59.429688</td>
+      <td>56.027344</td>
+      <td>61.492188</td>
+      <td>60.273438</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>-63.639583</td>
+      <td>14.007681</td>
+      <td>-8.914713</td>
+      <td>-18.772408</td>
+      <td>-34.815582</td>
+      <td>-55.949837</td>
+      <td>-66.089462</td>
+      <td>-65.168015</td>
+      <td>-66.465927</td>
+      <td>-45.641136</td>
+      <td>...</td>
+      <td>9.421118</td>
+      <td>38.420048</td>
+      <td>67.453125</td>
+      <td>75.691406</td>
+      <td>78.402344</td>
+      <td>80.929688</td>
+      <td>79.390625</td>
+      <td>64.707031</td>
+      <td>54.890625</td>
+      <td>51.156250</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>-63.635417</td>
+      <td>-7.310585</td>
+      <td>-18.513680</td>
+      <td>-22.575047</td>
+      <td>-35.414024</td>
+      <td>-54.700890</td>
+      <td>-63.991642</td>
+      <td>-62.630890</td>
+      <td>-56.582676</td>
+      <td>-35.162735</td>
+      <td>...</td>
+      <td>26.824617</td>
+      <td>60.225838</td>
+      <td>77.328125</td>
+      <td>71.515625</td>
+      <td>79.382813</td>
+      <td>91.691406</td>
+      <td>88.488281</td>
+      <td>75.808594</td>
+      <td>57.250000</td>
+      <td>43.339844</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>-63.631250</td>
+      <td>-12.959548</td>
+      <td>-20.553957</td>
+      <td>-24.011562</td>
+      <td>-33.425610</td>
+      <td>-49.952095</td>
+      <td>-57.807667</td>
+      <td>-58.452568</td>
+      <td>-50.320042</td>
+      <td>-22.114317</td>
+      <td>...</td>
+      <td>39.627213</td>
+      <td>56.666016</td>
+      <td>64.625000</td>
+      <td>60.617188</td>
+      <td>69.382813</td>
+      <td>84.894531</td>
+      <td>89.250000</td>
+      <td>83.457031</td>
+      <td>64.105469</td>
+      <td>44.339844</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>-63.627083</td>
+      <td>-13.959131</td>
+      <td>-20.879896</td>
+      <td>-24.619675</td>
+      <td>-30.599531</td>
+      <td>-42.064625</td>
+      <td>-46.732735</td>
+      <td>-45.736958</td>
+      <td>-38.605583</td>
+      <td>-8.134238</td>
+      <td>...</td>
+      <td>38.142117</td>
+      <td>44.251953</td>
+      <td>49.472656</td>
+      <td>46.933594</td>
+      <td>51.566406</td>
+      <td>70.160156</td>
+      <td>81.511719</td>
+      <td>80.933594</td>
+      <td>70.406250</td>
+      <td>52.523438</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>-63.622917</td>
+      <td>0.690808</td>
+      <td>-9.467150</td>
+      <td>-21.900442</td>
+      <td>-26.936838</td>
+      <td>-27.090944</td>
+      <td>-28.230453</td>
+      <td>-25.843157</td>
+      <td>-19.252031</td>
+      <td>-2.559922</td>
+      <td>...</td>
+      <td>29.576172</td>
+      <td>41.527344</td>
+      <td>44.617188</td>
+      <td>40.628906</td>
+      <td>38.910156</td>
+      <td>55.820313</td>
+      <td>72.777344</td>
+      <td>76.660156</td>
+      <td>72.941406</td>
+      <td>60.238281</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>-63.618750</td>
+      <td>33.239319</td>
+      <td>19.398363</td>
+      <td>-8.281146</td>
+      <td>-21.531794</td>
+      <td>-14.405942</td>
+      <td>-5.457515</td>
+      <td>-5.439976</td>
+      <td>-7.815783</td>
+      <td>-0.274054</td>
+      <td>...</td>
+      <td>29.634766</td>
+      <td>42.472656</td>
+      <td>45.640625</td>
+      <td>40.773438</td>
+      <td>37.476563</td>
+      <td>48.804688</td>
+      <td>69.843750</td>
+      <td>79.410156</td>
+      <td>73.281250</td>
+      <td>65.578125</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>-63.614583</td>
+      <td>63.578960</td>
+      <td>33.142456</td>
+      <td>-8.284787</td>
+      <td>-10.527703</td>
+      <td>4.501016</td>
+      <td>15.951009</td>
+      <td>6.856074</td>
+      <td>-5.995221</td>
+      <td>2.971732</td>
+      <td>...</td>
+      <td>31.964844</td>
+      <td>38.089844</td>
+      <td>43.308594</td>
+      <td>42.519531</td>
+      <td>44.750000</td>
+      <td>54.101563</td>
+      <td>69.886719</td>
+      <td>82.687500</td>
+      <td>73.929688</td>
+      <td>67.136719</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>-63.610417</td>
+      <td>70.817719</td>
+      <td>25.925608</td>
+      <td>-10.230622</td>
+      <td>9.744920</td>
+      <td>24.152803</td>
+      <td>21.304670</td>
+      <td>7.644289</td>
+      <td>-0.897256</td>
+      <td>6.740877</td>
+      <td>...</td>
+      <td>33.261719</td>
+      <td>35.636719</td>
+      <td>38.226563</td>
+      <td>43.644531</td>
+      <td>51.324219</td>
+      <td>59.398438</td>
+      <td>65.488281</td>
+      <td>77.003906</td>
+      <td>81.035156</td>
+      <td>76.835938</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>-63.606250</td>
+      <td>55.557236</td>
+      <td>14.203660</td>
+      <td>-1.720311</td>
+      <td>16.641088</td>
+      <td>17.982437</td>
+      <td>11.728527</td>
+      <td>5.558494</td>
+      <td>5.703025</td>
+      <td>13.886730</td>
+      <td>...</td>
+      <td>35.199219</td>
+      <td>36.750000</td>
+      <td>35.355469</td>
+      <td>40.335938</td>
+      <td>48.804688</td>
+      <td>53.933594</td>
+      <td>57.835938</td>
+      <td>67.910156</td>
+      <td>80.523438</td>
+      <td>86.218750</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>-63.602083</td>
+      <td>36.025299</td>
+      <td>2.190290</td>
+      <td>-1.339007</td>
+      <td>7.554595</td>
+      <td>6.734375</td>
+      <td>5.597656</td>
+      <td>4.179688</td>
+      <td>11.597656</td>
+      <td>26.957031</td>
+      <td>...</td>
+      <td>44.718750</td>
+      <td>45.003906</td>
+      <td>39.687500</td>
+      <td>39.195313</td>
+      <td>46.054688</td>
+      <td>47.675781</td>
+      <td>51.292969</td>
+      <td>58.550781</td>
+      <td>69.648438</td>
+      <td>80.183594</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>-63.597917</td>
+      <td>8.810258</td>
+      <td>-4.524801</td>
+      <td>3.006743</td>
+      <td>5.879006</td>
+      <td>13.291016</td>
+      <td>18.996094</td>
+      <td>20.617188</td>
+      <td>26.906250</td>
+      <td>43.632813</td>
+      <td>...</td>
+      <td>63.082031</td>
+      <td>58.554688</td>
+      <td>49.054688</td>
+      <td>45.753906</td>
+      <td>52.464844</td>
+      <td>47.886719</td>
+      <td>43.769531</td>
+      <td>49.820313</td>
+      <td>60.265625</td>
+      <td>69.031250</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>-63.593750</td>
+      <td>-10.357846</td>
+      <td>-2.310211</td>
+      <td>18.718382</td>
+      <td>29.412100</td>
+      <td>43.144531</td>
+      <td>47.375000</td>
+      <td>47.613281</td>
+      <td>46.789063</td>
+      <td>59.468750</td>
+      <td>...</td>
+      <td>75.718750</td>
+      <td>64.488281</td>
+      <td>52.425781</td>
+      <td>54.796875</td>
+      <td>58.187500</td>
+      <td>51.171875</td>
+      <td>40.628906</td>
+      <td>39.328125</td>
+      <td>48.031250</td>
+      <td>54.558594</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>-63.589583</td>
+      <td>-4.446059</td>
+      <td>15.267798</td>
+      <td>35.644077</td>
+      <td>52.505859</td>
+      <td>66.007813</td>
+      <td>64.027344</td>
+      <td>60.007813</td>
+      <td>61.343750</td>
+      <td>70.480469</td>
+      <td>...</td>
+      <td>73.003906</td>
+      <td>57.976563</td>
+      <td>57.664063</td>
+      <td>70.316406</td>
+      <td>61.886719</td>
+      <td>50.070313</td>
+      <td>41.804688</td>
+      <td>32.093750</td>
+      <td>34.121094</td>
+      <td>39.796875</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>-63.585417</td>
+      <td>10.070802</td>
+      <td>28.118652</td>
+      <td>42.909988</td>
+      <td>55.316406</td>
+      <td>68.027344</td>
+      <td>68.339844</td>
+      <td>63.441406</td>
+      <td>68.449219</td>
+      <td>72.671875</td>
+      <td>...</td>
+      <td>68.878906</td>
+      <td>57.375000</td>
+      <td>72.867188</td>
+      <td>88.558594</td>
+      <td>67.378906</td>
+      <td>46.589844</td>
+      <td>40.140625</td>
+      <td>31.371094</td>
+      <td>26.300781</td>
+      <td>28.425781</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>-63.581250</td>
+      <td>23.047089</td>
+      <td>35.031254</td>
+      <td>47.410156</td>
+      <td>55.835938</td>
+      <td>64.968750</td>
+      <td>65.921875</td>
+      <td>65.269531</td>
+      <td>69.433594</td>
+      <td>68.640625</td>
+      <td>...</td>
+      <td>70.011719</td>
+      <td>68.484375</td>
+      <td>81.964844</td>
+      <td>88.378906</td>
+      <td>71.328125</td>
+      <td>54.429688</td>
+      <td>46.496094</td>
+      <td>37.613281</td>
+      <td>29.402344</td>
+      <td>24.605469</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>-63.577083</td>
+      <td>29.660294</td>
+      <td>43.933594</td>
+      <td>54.765625</td>
+      <td>58.503906</td>
+      <td>59.875000</td>
+      <td>61.269531</td>
+      <td>65.808594</td>
+      <td>68.250000</td>
+      <td>67.292969</td>
+      <td>...</td>
+      <td>70.148438</td>
+      <td>77.992188</td>
+      <td>85.140625</td>
+      <td>82.308594</td>
+      <td>73.621094</td>
+      <td>66.183594</td>
+      <td>63.078125</td>
+      <td>57.390625</td>
+      <td>40.878906</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>-63.572917</td>
+      <td>31.014334</td>
+      <td>53.011719</td>
+      <td>65.511719</td>
+      <td>69.812500</td>
+      <td>67.406250</td>
+      <td>64.480469</td>
+      <td>65.234375</td>
+      <td>66.082031</td>
+      <td>67.046875</td>
+      <td>...</td>
+      <td>70.800781</td>
+      <td>80.218750</td>
+      <td>82.531250</td>
+      <td>79.597656</td>
+      <td>74.093750</td>
+      <td>72.089844</td>
+      <td>72.535156</td>
+      <td>68.304688</td>
+      <td>53.062500</td>
+      <td>32.714844</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>-63.568750</td>
+      <td>26.085461</td>
+      <td>48.626953</td>
+      <td>68.445313</td>
+      <td>77.644531</td>
+      <td>72.324219</td>
+      <td>64.750000</td>
+      <td>60.253906</td>
+      <td>59.281250</td>
+      <td>59.570313</td>
+      <td>...</td>
+      <td>74.175781</td>
+      <td>85.882813</td>
+      <td>81.031250</td>
+      <td>76.011719</td>
+      <td>74.222656</td>
+      <td>71.539063</td>
+      <td>68.039063</td>
+      <td>67.273438</td>
+      <td>59.007813</td>
+      <td>35.109375</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>-63.564583</td>
+      <td>15.733856</td>
+      <td>28.271484</td>
+      <td>46.269531</td>
+      <td>63.753906</td>
+      <td>64.000000</td>
+      <td>55.468750</td>
+      <td>47.593750</td>
+      <td>43.093750</td>
+      <td>44.507813</td>
+      <td>...</td>
+      <td>73.300781</td>
+      <td>93.609375</td>
+      <td>85.214844</td>
+      <td>72.902344</td>
+      <td>68.187500</td>
+      <td>62.113281</td>
+      <td>55.867188</td>
+      <td>57.050781</td>
+      <td>48.832031</td>
+      <td>41.835938</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>-63.560417</td>
+      <td>16.391357</td>
+      <td>28.580078</td>
+      <td>28.265625</td>
+      <td>37.042969</td>
+      <td>50.828125</td>
+      <td>42.882813</td>
+      <td>29.406250</td>
+      <td>26.296875</td>
+      <td>34.031250</td>
+      <td>...</td>
+      <td>65.316406</td>
+      <td>89.085938</td>
+      <td>79.992188</td>
+      <td>62.281250</td>
+      <td>57.343750</td>
+      <td>50.035156</td>
+      <td>42.109375</td>
+      <td>37.054688</td>
+      <td>40.128906</td>
+      <td>63.527344</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>-63.556250</td>
+      <td>35.735107</td>
+      <td>51.728516</td>
+      <td>35.523438</td>
+      <td>20.843750</td>
+      <td>34.964844</td>
+      <td>29.890625</td>
+      <td>18.320313</td>
+      <td>21.328125</td>
+      <td>33.257813</td>
+      <td>...</td>
+      <td>47.628906</td>
+      <td>59.199219</td>
+      <td>56.316406</td>
+      <td>43.554688</td>
+      <td>39.011719</td>
+      <td>34.664063</td>
+      <td>31.308594</td>
+      <td>35.773438</td>
+      <td>59.132813</td>
+      <td>83.457031</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>-63.552083</td>
+      <td>53.774876</td>
+      <td>60.871094</td>
+      <td>40.660156</td>
+      <td>18.941406</td>
+      <td>21.210938</td>
+      <td>20.207031</td>
+      <td>18.796875</td>
+      <td>25.796875</td>
+      <td>40.980469</td>
+      <td>...</td>
+      <td>30.445313</td>
+      <td>29.199219</td>
+      <td>31.417969</td>
+      <td>28.507813</td>
+      <td>24.871094</td>
+      <td>25.457031</td>
+      <td>33.128906</td>
+      <td>51.968750</td>
+      <td>77.597656</td>
+      <td>94.570313</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>-63.547917</td>
+      <td>59.230469</td>
+      <td>61.367188</td>
+      <td>51.703125</td>
+      <td>33.691406</td>
+      <td>26.390625</td>
+      <td>21.757813</td>
+      <td>19.949219</td>
+      <td>37.359375</td>
+      <td>56.464844</td>
+      <td>...</td>
+      <td>38.128906</td>
+      <td>30.468750</td>
+      <td>30.625000</td>
+      <td>34.699219</td>
+      <td>36.746094</td>
+      <td>40.019531</td>
+      <td>50.718750</td>
+      <td>66.621094</td>
+      <td>84.746094</td>
+      <td>97.382813</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>-63.543750</td>
+      <td>64.832031</td>
+      <td>66.406250</td>
+      <td>59.792969</td>
+      <td>45.585938</td>
+      <td>34.242188</td>
+      <td>29.488281</td>
+      <td>38.558594</td>
+      <td>64.308594</td>
+      <td>76.347656</td>
+      <td>...</td>
+      <td>61.476563</td>
+      <td>45.535156</td>
+      <td>39.082031</td>
+      <td>46.347656</td>
+      <td>49.382813</td>
+      <td>54.738281</td>
+      <td>62.695313</td>
+      <td>77.050781</td>
+      <td>95.820313</td>
+      <td>99.855469</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>-63.539583</td>
+      <td>73.113281</td>
+      <td>61.929688</td>
+      <td>49.589844</td>
+      <td>38.644531</td>
+      <td>39.300781</td>
+      <td>55.171875</td>
+      <td>74.441406</td>
+      <td>85.554688</td>
+      <td>88.195313</td>
+      <td>...</td>
+      <td>72.500000</td>
+      <td>57.628906</td>
+      <td>44.191406</td>
+      <td>47.347656</td>
+      <td>54.886719</td>
+      <td>62.109375</td>
+      <td>73.921875</td>
+      <td>90.792969</td>
+      <td>101.320310</td>
+      <td>99.058594</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>-63.535417</td>
+      <td>63.765625</td>
+      <td>50.531250</td>
+      <td>45.089844</td>
+      <td>43.453125</td>
+      <td>57.082031</td>
+      <td>78.214844</td>
+      <td>90.632813</td>
+      <td>90.097656</td>
+      <td>85.585938</td>
+      <td>...</td>
+      <td>71.574219</td>
+      <td>60.835938</td>
+      <td>50.472656</td>
+      <td>54.304688</td>
+      <td>69.460938</td>
+      <td>77.367188</td>
+      <td>83.960938</td>
+      <td>95.863281</td>
+      <td>101.292970</td>
+      <td>97.675781</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>-63.531250</td>
+      <td>47.578125</td>
+      <td>44.156250</td>
+      <td>48.628906</td>
+      <td>55.949219</td>
+      <td>64.972656</td>
+      <td>76.601563</td>
+      <td>88.078125</td>
+      <td>92.406250</td>
+      <td>87.617188</td>
+      <td>...</td>
+      <td>68.554688</td>
+      <td>61.691406</td>
+      <td>59.355469</td>
+      <td>67.031250</td>
+      <td>82.750000</td>
+      <td>91.019531</td>
+      <td>90.761719</td>
+      <td>94.960938</td>
+      <td>96.988281</td>
+      <td>93.632813</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>-63.527083</td>
+      <td>41.800781</td>
+      <td>44.277344</td>
+      <td>50.859375</td>
+      <td>59.894531</td>
+      <td>68.699219</td>
+      <td>77.902344</td>
+      <td>88.875000</td>
+      <td>92.273438</td>
+      <td>87.335938</td>
+      <td>...</td>
+      <td>70.550781</td>
+      <td>65.195313</td>
+      <td>65.718750</td>
+      <td>73.437500</td>
+      <td>86.222656</td>
+      <td>93.308594</td>
+      <td>92.941406</td>
+      <td>93.285156</td>
+      <td>90.976563</td>
+      <td>90.335938</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>-63.527083</td>
+      <td>41.800781</td>
+      <td>44.277344</td>
+      <td>50.859375</td>
+      <td>59.894531</td>
+      <td>68.699219</td>
+      <td>77.902344</td>
+      <td>88.875000</td>
+      <td>92.273438</td>
+      <td>87.335938</td>
+      <td>...</td>
+      <td>70.550781</td>
+      <td>65.195313</td>
+      <td>65.718750</td>
+      <td>73.437500</td>
+      <td>86.222656</td>
+      <td>93.308594</td>
+      <td>92.941406</td>
+      <td>93.285156</td>
+      <td>90.976563</td>
+      <td>90.335938</td>
+    </tr>
+  </tbody>
+</table>
+<p>43 rows × 21 columns</p>
+</div>
+<pre><code class="language-python">import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+import plotly.graph_objects as go
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv('POINT_DATA_TITLE.csv')
+</code></pre>
+<pre><code class="language-python">df.head()
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x</th>
+      <th>y</th>
+      <th>z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-63.690000</td>
+      <td>44.738333</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-63.689792</td>
+      <td>44.738333</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-63.689583</td>
+      <td>44.738333</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-63.689375</td>
+      <td>44.738333</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-63.689167</td>
+      <td>44.738333</td>
+      <td>56</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import cm
+# from matplotlib.ticker import LinearLocator, FormatStrFormatter
+from matplotlib import rc, rcParams
+from mpl_toolkits.mplot3d import Axes3D
+from scipy.interpolate import griddata
+import matplotlib.gridspec as gridspec
+
+# 2D-arrays from DataFrame
+x1 = np.linspace(df['x'].min(), df['x'].max(), len(df['x'].unique()))
+y1 = np.linspace(df['y'].min(), df['y'].max(), len(df['y'].unique()))
+
+&quot;&quot;&quot;
+x, y via meshgrid for vectorized evaluation of
+2 scalar/vector fields over 2-D grids, given
+one-dimensional coordinate arrays x1, x2,..., xn.
+&quot;&quot;&quot;
+
+x2, y2 = np.meshgrid(x1, y1)
+
+# Interpolate unstructured D-dimensional data.
+z2 = griddata((df['x'], df['y']), df['z'], (x2, y2), method='cubic')
+
+# Ready to plot
+
+fig = plt.figure(211,figsize=(15,20))
+ax = fig.add_subplot(211, projection='3d')
+spec = gridspec.GridSpec(ncols=1, nrows=2,
+                         height_ratios=[4, 1])
+
+surf = ax.plot_surface(x2, y2, z2, rstride=1, cstride=1, cmap=cm.terrain,
+                       linewidth=1, antialiased=False)
+ax.view_init(45,-55)
+
+cset = ax.contourf(x2, y2, z2, zdir='z2', offset=-80, cmap=cm.terrain, antialiased=True)
+
+rcParams['legend.fontsize'] = 20
+
+rc('text', usetex=True)
+rc('axes', linewidth=2)
+rc('font', weight='bold')
+
+
+rcParams['text.latex.preamble'] = [r'\usepackage{sfmath} \boldmath']
+
+ax.xaxis.set_tick_params(labelsize=20)
+ax.yaxis.set_tick_params(labelsize=20)
+ax.zaxis.set_tick_params(labelsize=20)
+ax.set_zticks([-70, -50, -30, -10, 10, 30, 50, 70, 90, 110])
+plt.title(r'\textbf{Bedford Basin Bathymatry}', fontsize=20)
+plt.xlabel(r'\textbf{Latitude}', fontsize=20, labelpad= 23)
+plt.ylabel(r'\textbf{Longitude}', fontsize=20, labelpad= 20)
+ax.set_zlabel(r'\textbf{Elevation}', fontsize=20, labelpad= 10)
+
+fig.savefig('Bedford_BASIN_BATHY_view5.png', dpi=600)
+
+
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+
+fig, ax = plt.subplots(figsize=(15, 1))
+# ax = fig.add_subplot(111)
+fig.subplots_adjust(bottom=0.5)
+
+cmap = mpl.cm.terrain
+norm = mpl.colors.Normalize(vmin=-80, vmax=100)
+
+cb1 = mpl.colorbar.ColorbarBase(ax, cmap=cmap,
+                                norm=norm,
+                                orientation='horizontal')
+cb1.set_label('Elevation', fontsize=20, weight='bold')
+plt.setp(ax.get_xticklabels(), fontsize=20)
+
+fig.savefig('Bedford_BASIN_BATHY_view8.png', dpi=600)
+plt.show()
+</code></pre>
+<p><img src="output_16_0.png" alt="png"></p>
+<p><img src="output_16_1.png" alt="png"></p>
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import matplotlib as mpl
+
+left, width = 0.07, 0.65
+bottom, height = 0.1, .8
+bottom_h = left_h = left+width+0.02
+
+rect_cones = [left, bottom, width, height]
+rect_box = [left_h, bottom, 0.05, height]
+
+fig = plt.figure(figsize=(14,7), dpi=300)
+
+cones = plt.axes(rect_cones,projection='3d')
+box = plt.axes(rect_box)
+
+cones.plot_surface(x2, y2, z2, rstride=1, cstride=1, cmap=cm.terrain,
+                        linewidth=1, antialiased=False)
+cones.set_zlim([-80, 110])
+cones.view_init(45,-55)
+cset = cones.contourf(x2, y2, z2, zdir='z2', offset=-80, cmap=cm.terrain, antialiased=True)
+
+rcParams['legend.fontsize'] = 20
+
+rc('text', usetex=True)
+rc('axes', linewidth=2)
+rc('font', weight='bold')
+
+rcParams['text.latex.preamble'] = [r'\usepackage{sfmath} \boldmath']
+
+cones.xaxis.set_tick_params(labelsize=20)
+cones.yaxis.set_tick_params(labelsize=20)
+cones.zaxis.set_tick_params(labelsize=20)
+cones.set_xlabel('Latitude', fontsize=20, labelpad= 23, weight='bold')
+cones.set_ylabel('Longitude', fontsize=20, labelpad= 20, weight='bold')
+cones.set_zlabel('Elevation', fontsize=20, labelpad= 10, weight='bold')
+
+fig.suptitle('Bedford Basin Bathymatry', fontsize=20, weight='bold')
+cmap = mpl.cm.terrain
+norm = mpl.colors.Normalize(vmin=-80, vmax=110)
+
+cb1 = mpl.colorbar.ColorbarBase(box, cmap=cmap,
+                                norm=norm,
+                                orientation='vertical', extend='both')
+plt.setp(box.get_yticklabels(), fontsize=16);
+
+fig.savefig('Bedford_BASIN_BATHY_Final_fig.png', dpi=600)
+</code></pre>
+<p><img src="output_17_0.png" alt="png"></p>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/python/">python</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://patel999jay.github.io/project/bedford-bathy/&amp;text=Bedford%20Bathy%20Plotting%20using%20python" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://patel999jay.github.io/project/bedford-bathy/&amp;t=Bedford%20Bathy%20Plotting%20using%20python" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Bedford%20Bathy%20Plotting%20using%20python&amp;body=https://patel999jay.github.io/project/bedford-bathy/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://patel999jay.github.io/project/bedford-bathy/&amp;title=Bedford%20Bathy%20Plotting%20using%20python" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Bedford%20Bathy%20Plotting%20using%20python%20https://patel999jay.github.io/project/bedford-bathy/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://patel999jay.github.io/project/bedford-bathy/&amp;title=Bedford%20Bathy%20Plotting%20using%20python" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/jay-patel/avatar_huc4372bc14b703c1cdea0a20f2d6ce22f_71696_270x270_fill_q90_lanczos_center.jpg" alt="Jay Patel">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="https://patel999jay.github.io/">Jay Patel</a></h5>
+        <h6 class="card-subtitle">PhD Student in Electrical &amp; Computer Engineering</h6>
+        <p class="card-text">My research interests include electronics &amp; communications, distributed underwater robotics, mobile computing and programmable matter.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:patel.jay@dal.ca" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/jay_patel888" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/patel999jay" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/files/cv.pdf" >
+        <i class="ai ai-cv"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+
+
+
+<div class="article-widget">
+  
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/project/internal-project/" rel="next">ADALM PlutoSDR</a>
+  </div>
+  
+  
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/fft-fun/">FFT Fun</a></li>
+      
+      <li><a href="/post/cdma-using-python/">CDMA signal using python</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+    <div class="project-related-pages content-widget-hr">
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+    </div>
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.4.8/mermaid.min.js" integrity="sha256-lyWCDMnMeZiXRi7Zl54sZGKYmgQs4izcT7+tKc+KUBk=" crossorigin="anonymous" title="mermaid"></script>
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/python.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.66c553246b0f279a03be6e5597f72b52.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    Copyright Jay Patel © 2020
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    Published with
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic Website Builder</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

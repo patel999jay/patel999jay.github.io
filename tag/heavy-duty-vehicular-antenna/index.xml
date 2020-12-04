@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Heavy duty vehicular antenna | Jay Patel</title>
+    <link>https://patel999jay.github.io/tag/heavy-duty-vehicular-antenna/</link>
+      <atom:link href="https://patel999jay.github.io/tag/heavy-duty-vehicular-antenna/index.xml" rel="self" type="application/rss+xml" />
+    <description>Heavy duty vehicular antenna</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2020</copyright><lastBuildDate>Tue, 01 Sep 2015 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_2.png</url>
+      <title>Heavy duty vehicular antenna</title>
+      <link>https://patel999jay.github.io/tag/heavy-duty-vehicular-antenna/</link>
+    </image>
+    
+    <item>
+      <title>Design and Simulation of UHF antenna for Roof mounted vehicular and heavy duty applications</title>
+      <link>https://patel999jay.github.io/publication/journal-article/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      <guid>https://patel999jay.github.io/publication/journal-article/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;Proposed work presents a UHF (400-520 MHz) antenna with compact structure for mounting on to the roof of Auto motives such as Train and
+Hammers. It can also be employed with a ground plane (roof surface/rooftop)
+as it is considered advantageous because the desired direction of communication are mostly independent of the orientation of the vehicle. The
+proposed antenna is made up of the compact size to reduce the overall antenna dimension. The simulation is carried out by using CST Microwave Studio Program and the effect of the antenna parameters on the bandwidth will be investigated. It is easily embedded on the roof of the vehicle. Moreover, the proposed antenna has simple structure, low profile, easy fabrication and
+relative good bandwidth (BW). It is also shown that this antenna is nearly
+omnidirectional over a majority fraction of bandwidth.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mae Seto | Jay Patel</title>
+    <link>https://patel999jay.github.io/author/mae-seto/</link>
+      <atom:link href="https://patel999jay.github.io/author/mae-seto/index.xml" rel="self" type="application/rss+xml" />
+    <description>Mae Seto</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2020</copyright><lastBuildDate>Fri, 04 Dec 2020 17:03:18 -0400</lastBuildDate>
+    <image>
+      <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_2.png</url>
+      <title>Mae Seto</title>
+      <link>https://patel999jay.github.io/author/mae-seto/</link>
+    </image>
+    
+    <item>
+      <title>CDMA-based multi-domain communications network for marine robots</title>
+      <link>https://patel999jay.github.io/talk/asacdma2020/</link>
+      <pubDate>Fri, 04 Dec 2020 17:03:18 -0400</pubDate>
+      <guid>https://patel999jay.github.io/talk/asacdma2020/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;A cross-domain communications network for above and below water marine robots, based on code-division multiple access (CDMA), is reported. CDMA is a promising physical layer and multiple access technique for underwater acoustic sensor networks as it: i) is robust to frequency selective fading, ii) compensates for multi-path effects at the receiver, and iii) allows receivers to distinguish amongst signals simultaneously transmitted by multiple devices. Consequently, CDMA increases channel re-use and reduces packet retransmissions, which results in decreased energy consumption and increased network throughput. The proposed CDMA network for autonomous co-ordination and networking is applied to marine robots separated by extended ranges to transmit images / information from underwater to above-water. The work involves a complete communications protocol stack from the physical to the application layer. Simulations of the proposed network were performed with Network Simulator-3 (NS-3). The proposed protocol leverages CDMA properties to achieve multiple access to the scarce underwater bandwidth while previous reported work with underwater channels only consider CDMA for the physical layer encoding. Simulations shows the proposed underwater acoustic network protocol outperforms other existing ones. The next step is preliminary testing in-water.
+</description>
+    </item>
+    
+    <item>
+      <title>Underwater channel characterization for shallow water multi-domain communications</title>
+      <link>https://patel999jay.github.io/publication/icua-2020/</link>
+      <pubDate>Wed, 09 Sep 2020 13:31:52 -0300</pubDate>
+      <guid>https://patel999jay.github.io/publication/icua-2020/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;The underwater acoustic (UWA) channel is challenging as a propagation medium for wireless transmissions due to its spatial-temporal variability from high ambient noise, limited bandwidth, frequency-dependent losses, variable latency and time-space-frequency variable multi-path effects. Prior to deploying marine robots, the UWA channel should be characterized for its local sound velocity profile, at both source and receiver(s) depths, bottom cover (e.g. sand, silt, mud, etc.) and bathymetry. At the transmission end, it matters the signal’s carrier frequency, bandwidth, and pulse characteristics. With knowledge of both, it is possible to assess the operational communications range. This is especially so to develop and evaluate new medium access control (MAC) and routing level protocols. As a part of a project, three heterogeneous marine robots (unmanned underwater vehicle (UUV), unmanned surface vehicle (USV), and unmanned aerial vehicle (UAV)) collaboratively acquired situational awareness on a non-responsive floating target. This paper reports on the communications aspect.  It presents models that assess the impact of the relative placement between a transmitter (USV) and receiver (UUV) through ray tracing and several sea-bed environmental/UWA channel conditions on operational communication range between UUV \&amp; USV.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Underwater channel characterization for shallow water multi-domain communications</title>
+      <link>https://patel999jay.github.io/talk/icua2020/</link>
+      <pubDate>Wed, 09 Sep 2020 10:30:00 +0000</pubDate>
+      <guid>https://patel999jay.github.io/talk/icua2020/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Go to &lt;a href=&#34;https://patel999jay.github.io/publication/icua-2020/&#34;&gt;&lt;strong&gt;Publication&lt;/strong&gt;&lt;/a&gt; for more details.
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Live RF Image Transmission Using OFDM With RPi and PlutoSDR</title>
+      <link>https://patel999jay.github.io/publication/live-rf-image-transmission-using-ofdm-with-rpi-and-plutosdr/</link>
+      <pubDate>Wed, 02 Sep 2020 11:33:35 -0300</pubDate>
+      <guid>https://patel999jay.github.io/publication/live-rf-image-transmission-using-ofdm-with-rpi-and-plutosdr/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;Orthogonal Frequency Division Multiplexing (OFDM) is a multi-carrier digital communication technique which solves most of the digital
+communication problems such as inter-symbol interference (ISI), lower data
+rate, inter-carrier interference (ICI). It adds up an excessive amount of
+low data rate carriers to assemble high data rate communication system.
+Each low data rate carrier provides enough long symbol periods, which
+results in eliminating ISI. Orthogonality enables excellent feature providing each carrier a way to be closed spaced, although overlapped without ICI. The main contribution of this research is to demonstrate the OFDM concept in real time RF Communication while investigating its critical performance analysis. This framework integrates more than one embedded platforms such as RPi, Analog PlutoSDR and MATLAB. This may be an efficient way to transmit live images/video feed from one place to another for surveillance purposes. This research is more focused on transmitting live image taken with constant rate from Rpi video-camera to Analog Pluto, which transmit image over Radio channel and receive the same with different PlutoSDR at remote location.</description>
+    </item>
+    
+    <item>
+      <title>CDMA-Based Multi-Domain Communications Network for Marine Robots</title>
+      <link>https://patel999jay.github.io/publication/conference-paper/</link>
+      <pubDate>Mon, 23 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>https://patel999jay.github.io/publication/conference-paper/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;This paper reports on a cross-domain communication system for marine robots based on code-division multiple access (CDMA). The underwater communications channel is a difficult transmission medium due to its link quality variability which depends on location and the application. It also depends on environmental parameters which can vary temporally from hours to days to months to season. Understanding the channel characteristics for data transmission is essential to the development and evaluation of existing or new MAC and Routing Level protocols which better utilize the limited resources within this unpredictable channel. CDMA is the most promising physical layer and multiple access technique for underwater acoustic sensor networks because it: i) is robust to frequency selective fading, ii) compensates for multi-path effects at the receiver, and iii) allows receivers to distinguish among signals
+simultaneously transmitted by multiple devices. For these reasons, CDMA increases channel re-use and reduces packet retransmissions, which results in decreased energy consumption and increased network throughput. Development of a framework for autonomous co-ordination and networking of marine robot teams from extended ranges to transmit images/information from underwater to above
+water is proposed using CDMA which is a complete stack of communications protocol from the physical to the application layer for marine robots that spans multiple domains, i.e. under, on and above water. Simulation of the proposed network was performed using network simulator-3 (NS-3). The proposed protocol edge CDMA properties provide multiple access to the limited underwater bandwidth whereas previous reported work only considered CDMA for the physical layer. Simulations show the proposed protocol outperforms existing underwater acoustic network protocols.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Collaboration of Multi Domain Marine Robots Towards Above and Below Water Characterization of Floating Targets</title>
+      <link>https://patel999jay.github.io/publication/collaboration-of-multi-domain-marine-robots-towards-above-and-below-water-characterization-of-floating-targets/</link>
+      <pubDate>Sun, 16 Jun 2019 11:45:07 -0300</pubDate>
+      <guid>https://patel999jay.github.io/publication/collaboration-of-multi-domain-marine-robots-towards-above-and-below-water-characterization-of-floating-targets/</guid>
+      <description>&lt;h1 id=&#34;abstract-best-paper&#34;&gt;Abstract (Best Paper)&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;This paper reports on a method to obtain a multi-domain (environment) awareness on a floating target (non-responsive ship, iceberg, other floating structure) using a heterogenous collaborative team of above,
+surface and underwater robots. This allows, for example, a ship approaching
+a non-responsive floating target to get information on the target from a
+safe stand-off prior to getting closer to further investigate or to attempt
+a boarding. This information enhances the safety of the boarding party. The
+ship can be a horizon (6 km) away from the floating target. The above-water
+unmanned aerial vehicles (UAV), integrated with optical cameras, obtains
+measurements of the above-water geometry using visual imagery to create an
+above-water three-dimensional model using photogrammetry methods. The below-water unmanned underwater vehicle is integrated with an imaging and
+profiling bathymetric sonars to capture the submerged hull geometry and
+features. An unmanned surface vehicle (USV) hosts an intelligent node which
+centrally controls the robotic collaboration by autonomously planning and
+distributing the mission for both the UUV and UAV. The results from the two
+are fused to yield a more complete picture of the floating target. We
+present results from simulations and a controlled in-water trial with an
+UUV, USV and UAV. The contributions from this work includes the robotic
+collaboration and autonomy across multiple domains, autonomous mission-planning and the fusing of multi-domain data. The scheduling of
+inter-dependent multi-robot task allocation is addressed in the autonomous
+mission-planning. The approach is validated in simulations and tested
+in-water. The in-water trials highlight the challenges and value of
+integrating sensors on distributed multi-domain robots towards a more
+complete picture on a floating target.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

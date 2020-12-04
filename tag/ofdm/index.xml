@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OFDM | Jay Patel</title>
+    <link>https://patel999jay.github.io/tag/ofdm/</link>
+      <atom:link href="https://patel999jay.github.io/tag/ofdm/index.xml" rel="self" type="application/rss+xml" />
+    <description>OFDM</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2020</copyright><lastBuildDate>Wed, 02 Sep 2020 11:33:35 -0300</lastBuildDate>
+    <image>
+      <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_2.png</url>
+      <title>OFDM</title>
+      <link>https://patel999jay.github.io/tag/ofdm/</link>
+    </image>
+    
+    <item>
+      <title>Live RF Image Transmission Using OFDM With RPi and PlutoSDR</title>
+      <link>https://patel999jay.github.io/publication/live-rf-image-transmission-using-ofdm-with-rpi-and-plutosdr/</link>
+      <pubDate>Wed, 02 Sep 2020 11:33:35 -0300</pubDate>
+      <guid>https://patel999jay.github.io/publication/live-rf-image-transmission-using-ofdm-with-rpi-and-plutosdr/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;Orthogonal Frequency Division Multiplexing (OFDM) is a multi-carrier digital communication technique which solves most of the digital
+communication problems such as inter-symbol interference (ISI), lower data
+rate, inter-carrier interference (ICI). It adds up an excessive amount of
+low data rate carriers to assemble high data rate communication system.
+Each low data rate carrier provides enough long symbol periods, which
+results in eliminating ISI. Orthogonality enables excellent feature providing each carrier a way to be closed spaced, although overlapped without ICI. The main contribution of this research is to demonstrate the OFDM concept in real time RF Communication while investigating its critical performance analysis. This framework integrates more than one embedded platforms such as RPi, Analog PlutoSDR and MATLAB. This may be an efficient way to transmit live images/video feed from one place to another for surveillance purposes. This research is more focused on transmitting live image taken with constant rate from Rpi video-camera to Analog Pluto, which transmit image over Radio channel and receive the same with different PlutoSDR at remote location.</description>
+    </item>
+    
+  </channel>
+</rss>

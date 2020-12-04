@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>monopole antennas | Jay Patel</title>
+    <link>https://patel999jay.github.io/tag/monopole-antennas/</link>
+      <atom:link href="https://patel999jay.github.io/tag/monopole-antennas/index.xml" rel="self" type="application/rss+xml" />
+    <description>monopole antennas</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2020</copyright><lastBuildDate>Wed, 23 Mar 2016 19:35:55 -0300</lastBuildDate>
+    <image>
+      <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_2.png</url>
+      <title>monopole antennas</title>
+      <link>https://patel999jay.github.io/tag/monopole-antennas/</link>
+    </image>
+    
+    <item>
+      <title>Design and Simulation of Roof Mounted Low Profile UHF Antenna for Auto Motives</title>
+      <link>https://patel999jay.github.io/publication/design-and-simulation-of-roof-mounted-low-profile-uhf-antenna-for-auto-motives/</link>
+      <pubDate>Wed, 23 Mar 2016 19:35:55 -0300</pubDate>
+      <guid>https://patel999jay.github.io/publication/design-and-simulation-of-roof-mounted-low-profile-uhf-antenna-for-auto-motives/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;A proposed work present UHF (400-520 MHz) low-profile (compact size) antenna for mounting on to the roof of the space constrained auto motives such as Trains, with omnidirectional vertically polarized radiation. The proposed design has less than λ/32 dimension in height. It can also be mounted with a ground plane (roof surface/rooftop). The geometry of the proposed antenna is taken from a short monopole antenna fed at appropriate location for proper impedance matching. The distance between the shorting end and antenna radiator is given by λ/8 and proper feeding position can enable it to match to 50 Ω coaxial line. The antenna is designed and simulated by CST Microwave Studio Program. The effect of the antenna parameters on the bandwidth will be investigated. Moreover, the proposed antenna, easily mounted on vehicle roof, has small dimensions, low profile, easy mounting and relatively good bandwidth (BW). It is also shown that this antenna is nearly omnidirectional in azimuth plane over a majority fraction of bandwidth.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
