@@ -803,10 +803,6 @@ from matplotlib import rcParams
 import matplotlib.pylab as plt
 rcParams.update({'font.size': 12})
 </code></pre>
-<pre><code class="language-python">25000
-</code></pre>
-<pre><code>25000
-</code></pre>
 <pre><code class="language-python">f = 25000
 t=np.linspace(0,8/f,400)
 
@@ -831,10 +827,6 @@ print(&quot;Our PRN chip:&quot;, str(prn_seq).replace('-1','0'))
 prn_seq[int(100*f_prn)%16]
 </code></pre>
 <pre><code>-1
-</code></pre>
-<pre><code class="language-python">25e3 / 10
-</code></pre>
-<pre><code>2500.0
 </code></pre>
 <pre><code class="language-python">f_prn =  25e3 / .10
 prn_seq[int(100*f_prn)%16]
@@ -904,8 +896,6 @@ plt.ylim([-1.5,1.5])
 plt.grid()
 plt.xlabel('Time(s)',size=16)
 </code></pre>
-<pre><code>Text(0.5, 0, 'Time(s)')
-</code></pre>
 <p><img src="output_12_1.png" alt="png"></p>
 <p>Now we see the phase shifts! To make what&rsquo;s going on even clearer, lets overlay the PRN back on the chart to see how the phase shifts coincide with the edges of our PRN:</p>
 <pre><code class="language-python">f_prn = f_prn =  25e3/10
@@ -922,8 +912,6 @@ plt.ylim([-1.5,1.5])
 plt.grid()
 
 plt.xlabel('Time(s)',size=16)
-</code></pre>
-<pre><code>Text(0.5, 0, 'Time(s)')
 </code></pre>
 <p><img src="output_14_1.png" alt="png"></p>
 <pre><code class="language-python">f_prn = f_prn =  25e3/10
@@ -945,13 +933,7 @@ for i in np.arange(16):
 
 plt.xlabel('Time(s)',size=16)
 </code></pre>
-<pre><code>Text(0.5, 0, 'Time(s)')
-</code></pre>
 <p><img src="output_15_1.png" alt="png"></p>
-<pre><code class="language-python">t[-1]/16.
-</code></pre>
-<pre><code>0.0003
-</code></pre>
 <h2>Exercise</h2>
 <ol>
 <li>generate a sequence of codes with size 32 (PRN).</li>
@@ -980,8 +962,6 @@ plt.grid()
 
 plt.xlabel('Time[s]',size=16)
 </code></pre>
-<pre><code>Text(0.5, 0, 'Time[s]')
-</code></pre>
 <p><img src="output_20_1.png" alt="png"></p>
 <pre><code class="language-python">f_prn = f_prn =  25e3/10
 t=np.linspace(0,4/f_prn,400)
@@ -997,8 +977,6 @@ xt=t[-1]/32.
 for i in np.arange(32):
     plt.text((i+1/2.)*xt,1.2*prn_seq[i],prn_seq[i])
 plt.xlabel('Time[s]',size=16)
-</code></pre>
-<pre><code>Text(0.5, 0, 'Time[s]')
 </code></pre>
 <p><img src="output_21_1.png" alt="png"></p>
 
@@ -1393,7 +1371,7 @@ plt.xlabel('Time[s]',size=16)
   
 
   <p class="powered-by">
-    Copyright Jay Patel © 2020
+    Copyright Jay Patel © 2021
   </p>
 
   
