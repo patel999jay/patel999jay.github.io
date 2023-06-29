@@ -834,7 +834,7 @@
 <h1 id="installation">Installation</h1>
 <ul>
 <li>Please download newer version from 
-<a href="https://oalib-acoustics.org/" target="_blank" rel="noopener">Bellhop</a> or 
+<a href="http://oalib.hlsresearch.com/AcousticsToolbox/atWin10_2020_11_4.zip" target="_blank" rel="noopener">Bellhop</a> or 
 <a href="http://telecom.dei.unipd.it/ns/woss/files/at.zip" target="_blank" rel="noopener">Bellhop Mirror</a>.</li>
 <li>Unzip the downloaded file to local machine and go to that folder.</li>
 <li>If you&rsquo;re using the Unix base system then open command prompt and go to the same folder where you extracted your zip.</li>
@@ -845,7 +845,7 @@ sudo make install
 </code></pre>
 <ul>
 <li>If you&rsquo;re using bellhop on Windows 10 machine then you also need to download the Win10 Binary executable files from 
-<a href="http://oalib.hlsresearch.com/AcousticsToolbox/" target="_blank" rel="noopener">here</a>. Please also extract that to the folder at.</li>
+<a href="http://oalib.hlsresearch.com/AcousticsToolbox/atWin10_2020_11_4.zip" target="_blank" rel="noopener">here</a>. Please also extract that to the folder at.</li>
 </ul>
 <h1 id="detailed-installation-instructions-based-on-os">Detailed Installation Instructions based on OS</h1>
 <ul>
@@ -858,11 +858,10 @@ sudo make install
 <li>
 <a href="https://pypi.org/project/arlpy/" target="_blank" rel="noopener">More Details</a></li>
 </ul>
-<h1 id="sound-speed-profile">Sound Speed Profile</h1>
+<h4 id="sound-speed-profile-of-bedford-basin-taken-on-13-10-17">Sound Speed Profile of Bedford Basin (taken on 13-10-17)</h4>
 <p><img src="SSP-all.png" alt="Sound Speed Profile" title="Sound Speed Profile of Bedford Basin (taken on 13-10-17)"></p>
 <h3><center> Figure 2: Sound Speed Profile </center></h3>
-<pre><code class="language-python">How to Plot SSP's using ARLPY ?
-</code></pre>
+<h4 id="how-to-plot-ssps-using-arlpy-">How to Plot SSP&rsquo;s using ARLPY ?</h4>
 <pre><code class="language-python"># SSP Plotting using ARLPY
 
 import arlpy.uwapm as pm
@@ -881,14 +880,13 @@ env = pm.create_env2d(soundspeed=ssp)
 pm.plot_ssp(env, width=500)
 </code></pre>
 <div class="bk-root" id="a0bacd1a-271d-46fe-a1e7-f64469b6c690" data-root-id="16075"></div>
-<pre><code class="language-python">Plotting an Environment
-</code></pre>
+<h2 id="plotting-an-environment">Plotting an Environment</h2>
 <pre><code class="language-python"># Plotting an Environment using ARLPY
 
 pm.plot_env(env, width=900)
 </code></pre>
 <div class="bk-root" id="b93da247-88a6-4697-9087-37648db4f726" data-root-id="16908"></div>
-<h1 id="eigenrays">Eigenrays</h1>
+<h4 id="eigenrays">Eigenrays</h4>
 <ul>
 <li><strong>Eigenray</strong> plots show just the rays that connect the source to a receiver.</li>
 </ul>
@@ -901,10 +899,11 @@ env = pm.create_env2d()
 rays = pm.compute_eigenrays(env)
 pm.plot_rays(rays, env=env, width=900)
 </code></pre>
+<p><img src="arlpy_eigen.png" alt="Eigenrays" title="Eigenrays using ARLPY"></p>
+<h3><center> Figure 3: Eigenrays using ARLPY </center></h3>
 <div class="bk-root" id="07ffdb99-a83e-40f2-9174-79fb8ffb398f" data-root-id="17789"></div>
-<pre><code class="language-python"># compute the arrival structure at the receiver
-
-arrivals = pm.compute_arrivals(env)
+<h4 id="compute-the-arrival-structure-at-the-receiver">compute the arrival structure at the receiver</h4>
+<pre><code class="language-python">arrivals = pm.compute_arrivals(env)
 pm.plot_arrivals(arrivals, width=900)
 </code></pre>
 <div class="bk-root" id="c7d45a3f-b745-451f-9b23-2223610326ec" data-root-id="19976"></div>
@@ -1120,9 +1119,9 @@ plt.imshow(Z)
 plt.show()
 </code></pre>
 <p><img src="output_30_0.png" alt="png"></p>
-<h3><center> Figure 3: Bedford Basin Bathy 2D </center> </h3>
+<h3><center> Figure 4: Bedford Basin Bathy 2D </center> </h3>
 <p><img src="Bedford_Bathy_plotly.png" alt="Bedford Basin Bathy 3D" title="Bedford Basin Bathy 3D"></p>
-<h3><center> Figure 4: Bedford Basin Bathy 3D </center> </h3>
+<h3><center> Figure 5: Bedford Basin Bathy 3D </center> </h3>
 <p>or place lots of receivers in a grid to visualize the acoustic pressure field (or equivalently transmission loss). We can modify the environment (env) without having to recreate it, as it is simply a Python dictionary object:</p>
 <pre><code class="language-python">env['rx_range'] = np.linspace(0, 1000, 1001)
 env['rx_depth'] = np.linspace(0, 30, 301)
@@ -1638,7 +1637,7 @@ pm.plot_arrivals(arrivals, dB=True, width=900)
   
 
   <p class="powered-by">
-    Copyright Jay Patel © 2021
+    Copyright Jay Patel © 2023
   </p>
 
   
