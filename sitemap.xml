@@ -1,344 +1,208 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://patel999jay.github.io/authors/</loc>
     <lastmod>2020-12-04T17:03:18-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/talk/asacdma2020/</loc>
     <lastmod>2020-12-04T17:03:18-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/</loc>
     <lastmod>2020-12-04T17:03:18-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/author/jay-patel/</loc>
     <lastmod>2020-12-04T17:03:18-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/author/mae-seto/</loc>
     <lastmod>2020-12-04T17:03:18-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/talk/</loc>
     <lastmod>2020-12-04T17:03:18-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tags/</loc>
     <lastmod>2020-12-04T17:03:18-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/underwater-acoustic-communication/</loc>
     <lastmod>2020-12-04T17:03:18-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/underwater-channel-characterization/</loc>
     <lastmod>2020-12-04T17:03:18-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/underwater-shallow-water-communication/</loc>
     <lastmod>2020-12-04T17:03:18-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/bellhop-channel-modelling/</loc>
     <lastmod>2020-10-19T19:46:19-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/heterogeneous-marine-robots/</loc>
     <lastmod>2020-10-19T19:46:19-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/network-simulator-3/</loc>
     <lastmod>2020-10-19T19:46:19-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/post/</loc>
     <lastmod>2020-10-19T19:46:19-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/post/woss-integration-ns3/</loc>
     <lastmod>2020-10-19T19:46:19-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/publication-type/1/</loc>
     <lastmod>2020-09-09T13:31:52-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/publication_types/</loc>
     <lastmod>2020-09-09T13:31:52-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/publication/</loc>
     <lastmod>2020-09-09T13:31:52-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/publication/icua-2020/</loc>
     <lastmod>2020-09-09T13:31:52-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/talk/icua2020/</loc>
     <lastmod>2020-09-09T10:30:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/post/fft-fun/</loc>
     <lastmod>2020-09-04T14:30:36-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/python/</loc>
     <lastmod>2020-09-04T14:30:36-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/post/bellhop-acoustic-toolbox/</loc>
     <lastmod>2020-09-03T18:51:27-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/publication/live-rf-image-transmission-using-ofdm-with-rpi-and-plutosdr/</loc>
     <lastmod>2020-09-02T11:33:35-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/matlab/</loc>
     <lastmod>2020-09-02T11:33:35-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/ofdm/</loc>
     <lastmod>2020-09-02T11:33:35-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/plutosdr/</loc>
     <lastmod>2020-09-02T11:33:35-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/publication-type/8/</loc>
     <lastmod>2020-03-20T20:16:50-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/author/dr-j-m-rathod/</loc>
     <lastmod>2020-03-20T20:16:50-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/publication/low-cost-design-of-uhf-antenna-for-roof-mounted-vehicular-and-heavy-duty-applications/</loc>
     <lastmod>2020-03-20T20:16:50-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/author/niraj-tevar/</loc>
     <lastmod>2020-03-20T20:16:50-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/uhf-antenna/</loc>
     <lastmod>2020-03-20T20:16:50-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/publication/conference-paper/</loc>
     <lastmod>2019-09-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/cross-layer-protocols/</loc>
     <lastmod>2019-09-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/network-reliability/</loc>
     <lastmod>2019-09-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/robotics/</loc>
     <lastmod>2019-09-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/security-protocols/</loc>
     <lastmod>2019-09-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/author/a.-moore/</loc>
     <lastmod>2019-06-16T11:45:07-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/acoustic-propagation/</loc>
     <lastmod>2019-06-16T11:45:07-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/autonomous-mission-planning/</loc>
     <lastmod>2019-06-16T11:45:07-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/autonomy/</loc>
     <lastmod>2019-06-16T11:45:07-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/publication/collaboration-of-multi-domain-marine-robots-towards-above-and-below-water-characterization-of-floating-targets/</loc>
     <lastmod>2019-06-16T11:45:07-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/author/e.-gregson/</loc>
     <lastmod>2019-06-16T11:45:07-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/author/j.-lindsay/</loc>
     <lastmod>2019-06-16T11:45:07-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/author/j.-ross/</loc>
     <lastmod>2019-06-16T11:45:07-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/marine-robotics/</loc>
     <lastmod>2019-06-16T11:45:07-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/post/cdma-using-python/</loc>
     <lastmod>2019-09-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/post/jupyter/</loc>
     <lastmod>2019-09-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/post/underwateracousticsonar/</loc>
     <lastmod>2019-09-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/author/author/</loc>
     <lastmod>2016-08-17T19:55:51-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/publication/development-of-low-profile-antenna-for-point-to-train-communication/</loc>
     <lastmod>2016-08-17T19:55:51-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/author/mehul-makwana/</loc>
     <lastmod>2016-08-17T19:55:51-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/project/internal-project/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/project/bedford-bathy/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/project/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/sdr/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/publication/design-and-simulation-of-roof-mounted-low-profile-uhf-antenna-for-auto-motives/</loc>
     <lastmod>2016-03-23T19:35:55-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/low-profile-antennas/</loc>
     <lastmod>2016-03-23T19:35:55-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/monopole-antennas/</loc>
     <lastmod>2016-03-23T19:35:55-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/omnidirectional-antenna/</loc>
     <lastmod>2016-03-23T19:35:55-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/roof-mounted-antennas/</loc>
     <lastmod>2016-03-23T19:35:55-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/uhf-antennas/</loc>
     <lastmod>2016-03-23T19:35:55-03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/publication-type/2/</loc>
     <lastmod>2015-09-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/publication/journal-article/</loc>
     <lastmod>2015-09-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/heavy-duty-vehicular-antenna/</loc>
     <lastmod>2015-09-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/tag/roof-mounted-antenna/</loc>
     <lastmod>2015-09-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/author/tanvi-shah/</loc>
     <lastmod>2015-09-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://patel999jay.github.io/categories/</loc>
   </url>
-  
 </urlset>

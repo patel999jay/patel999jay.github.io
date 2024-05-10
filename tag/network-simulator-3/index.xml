@@ -5,9 +5,9 @@
     <link>https://patel999jay.github.io/tag/network-simulator-3/</link>
       <atom:link href="https://patel999jay.github.io/tag/network-simulator-3/index.xml" rel="self" type="application/rss+xml" />
     <description>Network Simulator 3</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2023</copyright><lastBuildDate>Mon, 19 Oct 2020 19:46:19 -0300</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2024</copyright><lastBuildDate>Mon, 19 Oct 2020 19:46:19 -0300</lastBuildDate>
     <image>
-      <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_2.png</url>
+      <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_3.png</url>
       <title>Network Simulator 3</title>
       <link>https://patel999jay.github.io/tag/network-simulator-3/</link>
     </image>
@@ -378,11 +378,15 @@ sudo apt-get install libtool m4 automake
 &lt;/ul&gt;
 &lt;h2 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;http://telecom.dei.unipd.it/ns/woss/,&#34;&gt;http://telecom.dei.unipd.it/ns/woss/,&lt;/a&gt; Special Thanks to &lt;strong&gt;
+&lt;li&gt;
+&lt;a href=&#34;http://telecom.dei.unipd.it/ns/woss/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://telecom.dei.unipd.it/ns/woss/&lt;/a&gt;, Special Thanks to &lt;strong&gt;
 &lt;a href=&#34;https://github.com/MetalKnight&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Federico Guerra&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.nsnam.org/&#34;&gt;https://www.nsnam.org/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/MetalKnight/woss-ns3&#34;&gt;https://github.com/MetalKnight/woss-ns3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/javirg/SWAN-Support/blob/master/recipes/build_linux_netcdf.md&#34;&gt;https://github.com/javirg/SWAN-Support/blob/master/recipes/build_linux_netcdf.md&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://www.nsnam.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.nsnam.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/MetalKnight/woss-ns3&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/MetalKnight/woss-ns3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/javirg/SWAN-Support/blob/master/recipes/build_linux_netcdf.md&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/javirg/SWAN-Support/blob/master/recipes/build_linux_netcdf.md&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>

@@ -5,9 +5,9 @@
     <link>https://patel999jay.github.io/</link>
       <atom:link href="https://patel999jay.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Jay Patel</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2023</copyright><lastBuildDate>Fri, 04 Dec 2020 17:03:18 -0400</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2024</copyright><lastBuildDate>Fri, 04 Dec 2020 17:03:18 -0400</lastBuildDate>
     <image>
-      <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_2.png</url>
+      <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_3.png</url>
       <title>Jay Patel</title>
       <link>https://patel999jay.github.io/</link>
     </image>
@@ -388,11 +388,15 @@ sudo apt-get install libtool m4 automake
 &lt;/ul&gt;
 &lt;h2 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;http://telecom.dei.unipd.it/ns/woss/,&#34;&gt;http://telecom.dei.unipd.it/ns/woss/,&lt;/a&gt; Special Thanks to &lt;strong&gt;
+&lt;li&gt;
+&lt;a href=&#34;http://telecom.dei.unipd.it/ns/woss/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://telecom.dei.unipd.it/ns/woss/&lt;/a&gt;, Special Thanks to &lt;strong&gt;
 &lt;a href=&#34;https://github.com/MetalKnight&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Federico Guerra&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.nsnam.org/&#34;&gt;https://www.nsnam.org/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/MetalKnight/woss-ns3&#34;&gt;https://github.com/MetalKnight/woss-ns3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/javirg/SWAN-Support/blob/master/recipes/build_linux_netcdf.md&#34;&gt;https://github.com/javirg/SWAN-Support/blob/master/recipes/build_linux_netcdf.md&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://www.nsnam.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.nsnam.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/MetalKnight/woss-ns3&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/MetalKnight/woss-ns3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/javirg/SWAN-Support/blob/master/recipes/build_linux_netcdf.md&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/javirg/SWAN-Support/blob/master/recipes/build_linux_netcdf.md&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>
@@ -594,8 +598,10 @@ ani.save(fn+&#39;.gif&#39;,writer=&#39;imagemagick&#39;,fps=1000/50)
 &lt;p&gt;&lt;img src=&#34;rotate_azimuth_angle_3d_surf.gif&#34; alt=&#34;rotate_azimuth_angle_3d_surf&#34; title=&#34;3D rotating image&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;references-&#34;&gt;References :&lt;/h1&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;http://ataspinar.com/2018/04/04/machine-learning-with-signal-processing-techniques/&#34;&gt;http://ataspinar.com/2018/04/04/machine-learning-with-signal-processing-techniques/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;FFT, Valerio Velardo - The Sound of AI, &lt;a href=&#34;https://github.com/musikalkemist/AudioSignalProcessingForML&#34;&gt;https://github.com/musikalkemist/AudioSignalProcessingForML&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;http://ataspinar.com/2018/04/04/machine-learning-with-signal-processing-techniques/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://ataspinar.com/2018/04/04/machine-learning-with-signal-processing-techniques/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;FFT, Valerio Velardo - The Sound of AI, 
+&lt;a href=&#34;https://github.com/musikalkemist/AudioSignalProcessingForML&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/musikalkemist/AudioSignalProcessingForML&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>
@@ -1055,8 +1061,10 @@ pm.plot_arrivals(arrivals, dB=True, width=900)
 &lt;/ul&gt;
 &lt;h2 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;http://oalib.hlsresearch.com/AcousticsToolbox/&#34;&gt;http://oalib.hlsresearch.com/AcousticsToolbox/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://arlpy.readthedocs.io/en/latest/_static/bellhop.html&#34;&gt;https://arlpy.readthedocs.io/en/latest/_static/bellhop.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;http://oalib.hlsresearch.com/AcousticsToolbox/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://oalib.hlsresearch.com/AcousticsToolbox/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://arlpy.readthedocs.io/en/latest/_static/bellhop.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://arlpy.readthedocs.io/en/latest/_static/bellhop.html&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>
@@ -1366,7 +1374,8 @@ date: 2019-09-01
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;jupyter nbconvert index.ipynb --to markdown --NbConvertApp.output_files_dir=.
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
-&lt;p&gt;This post was created with Jupyter. The orginal files can be found at &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&#34;&gt;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This post was created with Jupyter. The orginal files can be found at 
+&lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
