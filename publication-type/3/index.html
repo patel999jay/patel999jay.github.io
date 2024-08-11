@@ -30,7 +30,7 @@
   
     
   
-  <meta name="description" content="PhD Student in Electrical &amp; Computer Engineering">
+  <meta name="description" content="PhD in Electrical &amp; Computer Engineering">
 
   
   <link rel="alternate" hreflang="en-us" href="https://patel999jay.github.io/publication-type/3/">
@@ -222,6 +222,44 @@
 
 
 
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108083777-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-108083777-3', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
   
 
 
@@ -233,8 +271,8 @@
   
 
   <link rel="manifest" href="/index.webmanifest">
-  <link rel="icon" type="image/png" href="/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_32x32_fill_lanczos_center_2.png">
-  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_192x192_fill_lanczos_center_2.png">
+  <link rel="icon" type="image/png" href="/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_32x32_fill_lanczos_center_3.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_192x192_fill_lanczos_center_3.png">
 
   <link rel="canonical" href="https://patel999jay.github.io/publication-type/3/">
 
@@ -251,13 +289,16 @@
   
   <meta property="twitter:card" content="summary">
   
+  <meta property="twitter:site" content="@jay_patel888">
+  <meta property="twitter:creator" content="@jay_patel888">
+  
   <meta property="og:site_name" content="Jay Patel">
   <meta property="og:url" content="https://patel999jay.github.io/publication-type/3/">
   <meta property="og:title" content="3 | Jay Patel">
-  <meta property="og:description" content="PhD Student in Electrical &amp; Computer Engineering"><meta property="og:image" content="https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_2.png">
-  <meta property="twitter:image" content="https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  <meta property="og:description" content="PhD in Electrical &amp; Computer Engineering"><meta property="og:image" content="https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_3.png">
+  <meta property="twitter:image" content="https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_3.png"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2019-04-07T00:00:00&#43;00:00">
+    <meta property="og:updated_time" content="2024-08-11T11:58:49-03:00">
   
 
   
@@ -345,7 +386,7 @@
 
     
     
-    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
 
       
       <ul class="navbar-nav d-md-inline-flex">
@@ -490,6 +531,35 @@
         
 
         <li class="nav-item">
+          <a class="nav-link " href="/#featured"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
           <a class="nav-link " href="/#contact"><span>Contact</span></a>
         </li>
 
@@ -597,10 +667,10 @@
     
     
     <div>
-      <h2><a href="/publication/preprint/" >An example preprint / working paper</a></h2>
+      <h2><a href="/publication/shallow-water-low-frequency-propagation-loss-predictions-and-measurements-towards-acoustic-range-characterization/" >Shallow water Low-Frequency propagation Loss Predictions and measurements towards acoustic range characterization</a></h2>
       <div class="article-style">
         
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum.
+          Abstract Low-frequency ship noise negatively impacts marine ecosystems and interferes with marine mammal communications. In an effort to manage and reduce ship noise in marine environments, high-fidelity propagation loss measurements were conducted across multiple locations to develop a principled shallow water ranging methodology that improves the accuracy of shallow water ship ranging.
         
       </div>
     </div>
@@ -718,7 +788,7 @@
     
     
     
-    <script src="/js/academic.min.66c553246b0f279a03be6e5597f72b52.js"></script>
+    <script src="/js/academic.min.72756512af279b10e3e4b09540ed6e9f.js"></script>
 
     
 
@@ -734,7 +804,7 @@
   
 
   <p class="powered-by">
-    Copyright Jay Patel © 2020
+    Copyright Jay Patel © 2024
   </p>
 
   
