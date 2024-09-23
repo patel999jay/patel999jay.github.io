@@ -1,0 +1,22 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Patel ;Jay;;;
+FN:Jay Patel 
+ORG:Intelligent Systems Lab (ISL Lab),
+ADR;TYPE=WORK:C-151, ISL Lab, 5269 Morris Street,  
+Dalhousie University, Halifax, Nova Scotia, Canada B3H 4R2
+TITLE:Electrical Engineer | Post-doctoral Fellow
+TEL;TYPE=CELL:+1902-(818)-8034
+TEL;TYPE=WORK:+1902-(719)-9960
+TEL;TYPE=HOME:
+TEL;TYPE=MSG:
+EMAIL;TYPE=WORK:patel.jay@dal.ca
+URL;TYPE=Digital Business Card:https://patel999jay.github.io/vcard/jaypatel
+URL:https://patel999jay.github.io/
+URL;TYPE=Website:https://patel999jay.github.io/
+URL;TYPE=GitHub:https://github.com/patel999jay
+URL;TYPE=LinkedIn:https://linkedin.com/in/patel999jay/
+KEY;TYPE=PGP;ENCODING=b:
+NOTE:
+UID:EnBizCard-100126381
+END:VCARD
