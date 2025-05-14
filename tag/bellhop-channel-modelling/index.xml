@@ -5,7 +5,7 @@
     <link>https://patel999jay.github.io/tag/bellhop-channel-modelling/</link>
       <atom:link href="https://patel999jay.github.io/tag/bellhop-channel-modelling/index.xml" rel="self" type="application/rss+xml" />
     <description>Bellhop Channel Modelling</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2024</copyright><lastBuildDate>Mon, 19 Oct 2020 19:46:19 -0300</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2025</copyright><lastBuildDate>Mon, 19 Oct 2020 19:46:19 -0300</lastBuildDate>
     <image>
       <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_3.png</url>
       <title>Bellhop Channel Modelling</title>
@@ -449,13 +449,20 @@ sudo apt-get install libtool m4 automake
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;installation&#34;&gt;Installation&lt;/h1&gt;
+&lt;h1 id=&#34;-installation&#34;&gt;🔧 Installation&lt;/h1&gt;
+&lt;!-- - Please download newer version from [Bellhop](http://oalib.hlsresearch.com/AcousticsToolbox/at_2024_12_25.zip), [Bellhop Mirror#1](http://oalib.hlsresearch.com/AcousticsToolbox/atWin10_2020_11_4.zip) or [Bellhop Mirror#2](https://woss.dei.unipd.it/woss/files/at_2024_10_29.zip).
+- Unzip the downloaded file to local machine and go to that folder. --&gt;
+&lt;h3 id=&#34;-download&#34;&gt;📥 Download&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;Please download newer version from 
-&lt;a href=&#34;http://oalib.hlsresearch.com/AcousticsToolbox/at_2023_5_18.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Bellhop&lt;/a&gt;, 
-&lt;a href=&#34;http://oalib.hlsresearch.com/AcousticsToolbox/atWin10_2020_11_4.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Bellhop Mirror#1&lt;/a&gt; or 
-&lt;a href=&#34;http://telecom.dei.unipd.it/ns/woss/files/at.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Bellhop Mirror#2&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Unzip the downloaded file to local machine and go to that folder.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;
+&lt;a href=&#34;http://oalib.hlsresearch.com/AcousticsToolbox/at_2024_12_25.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Latest Source Code (2024_12_25)&lt;/a&gt;&lt;/strong&gt; (For Mac/Linux/Windows – must be built)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;
+&lt;a href=&#34;http://oalib.hlsresearch.com/AcousticsToolbox/atWin10_2020_11_4.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Windows 10 Binary (2020_11_4)&lt;/a&gt;&lt;/strong&gt; (older, includes MATLAB I/O)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 &lt;strong&gt;Note:&lt;/strong&gt; Always check compile dates. Windows binaries are slower; building from source on your native architecture is recommended.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
 &lt;li&gt;If you&amp;rsquo;re using the Unix base system then open command prompt and go to the same folder where you extracted your zip.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;pre&gt;&lt;code&gt;cd at/at
@@ -466,7 +473,15 @@ sudo make install
 &lt;li&gt;If you&amp;rsquo;re using bellhop on Windows 10 machine then you also need to download the Win10 Binary executable files from 
 &lt;a href=&#34;http://oalib.hlsresearch.com/AcousticsToolbox/atWin10_2020_11_4.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;. Please also extract that to the folder at.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;detailed-installation-instructions-based-on-os&#34;&gt;Detailed Installation Instructions based on OS&lt;/h1&gt;
+&lt;p&gt;If something fails, run &lt;code&gt;make clean&lt;/code&gt; and retry.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Edit &lt;code&gt;Makefile&lt;/code&gt; for proper architecture&lt;/strong&gt;, Example for Linux-based machines:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;export FFLAGS= -march=native -Bstatic -Waliasing -Wampersand -Wintrinsics-std -Wno-tabs -Wintrinsic-shadow -Wline-truncation -std=gnu -O1 -ffast-math -funroll-all-loops -fomit-frame-pointer -mtune=native
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;More help: 
+&lt;a href=&#34;https://github.com/patel999jay/Bellhop-ARLPY-ECED6575/issues/3&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Issue #3 on GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;detailed-installation-instructions-based-on-os&#34;&gt;Detailed Installation Instructions based on OS&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;a href=&#34;Installation_Manual_draft.pdf&#34;&gt;Windows 10&lt;/a&gt;&lt;/li&gt;
@@ -477,9 +492,64 @@ sudo make install
 &lt;li&gt;
 &lt;a href=&#34;https://pypi.org/project/arlpy/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;More Details&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;sound-speed-profile-of-bedford-basin-taken-on-13-10-17&#34;&gt;Sound Speed Profile of Bedford Basin (taken on 13-10-17)&lt;/h4&gt;
+&lt;h1 id=&#34;-bellhop-2d-classic&#34;&gt;📏 Bellhop 2D (Classic)&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Bellhop&lt;/strong&gt; computes underwater acoustic propagation using Gaussian beam tracing in a 2D vertical slice (range-depth). It is ideal for scenarios assuming cylindrical symmetry.&lt;/p&gt;
+&lt;h3 id=&#34;sample-input-structure-explanation&#34;&gt;Sample Input Structure Explanation&lt;/h3&gt;
+&lt;p&gt;Below is an annotated breakdown of a typical &lt;code&gt;*.ENV&lt;/code&gt; input file for 2D Bellhop:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;&#39;arlpy&#39;                             / Graph Title - just for Fortran/MATLAB
+25000.000000                        / FREQUENCY
+1                                   / [UNUSED]
+&#39;SVWT*&#39;                             / (SSP INTERP METHOD)(TOP LAYER)(BOTTOM ATTENUATION UNITS)(VOLUME ATTENUATION)
+1 0.0 100.000000                    / [UNUSED] [UNUSED] [MAX DEPTH]
+
+0.000000   1540.400000              / [DEPTH] [SOUND SPEED]
+10.000000  1540.500000              / [DEPTH] [SOUND SPEED]
+20.000000  1540.700000              / [DEPTH] [SOUND SPEED]
+30.000000  1534.400000              / [DEPTH] [SOUND SPEED]
+50.000000  1523.300000              / [DEPTH] [SOUND SPEED]
+75.000000  1519.600000              / [DEPTH] [SOUND SPEED]
+100.000000 1518.500000              / [DEPTH] [SOUND SPEED]
+
+&#39;A&#39; 0.000000                        / (BOTTOM LAYER)(EXTERNAL BATHYMETRY) [SIGMA BOTTOM ROUGHNESS]
+100.000000 1600.000000 0.0 1.200000 1.000000 / [MAX DEPTH] [BOTTOM SOUND SPEED] [UNUSED] [DENSITY BOTTOM] [ATTENUATION BOTTOM]
+
+1                                   / [NUMBER SOURCES]
+50.000000                            / [SOURCE DEPTHS 1:N (m)]
+
+1                                   / [NUMBER RECEIVER DEPTHS]
+8.000000                             / [RECEIVER DEPTHS 1:N (m)]
+
+1                                   / [NUMBER RECEIVER RANGES]
+2.000000                             / [RECEIVER RANGES 1:N (km)]
+
+&#39;R *&#39;                               / (RUN TYPE)(BEAM TYPE)(EXTERNAL SOURCE BEAM PATTERN) ; typically &#39;R&#39;, &#39;C&#39;, &#39;I&#39;, &#39;S&#39;
+
+0                                   / [NUMBER OF BEAMS]; 0 means bellhop auto-calculates
+-80.000000 80.000000                / [MIN ANGLE] [MAX ANGLE]
+
+0.0 101.000000 2.020000             / [STEP SIZE] [DEPTH BOX] [RANGE BOX]; 0 = default step size
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;explanation-of-bellhop-2d-parameters&#34;&gt;Explanation of Bellhop 2D Parameters&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;TITLE&lt;/code&gt;: Descriptive label.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FREQ&lt;/code&gt;: Acoustic frequency in Hz.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NMEDIA&lt;/code&gt;: Usually set to 1 for a single ocean medium.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SSPOPT&lt;/code&gt;: Interpolation method for SSP (e.g., &amp;lsquo;SVN&amp;rsquo;).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DEPTH&lt;/code&gt;, &lt;code&gt;SSP&lt;/code&gt;: Depth/sound speed pairs.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NSD&lt;/code&gt;, &lt;code&gt;SD&lt;/code&gt;: Number and values of source depths.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NRD&lt;/code&gt;, &lt;code&gt;RD&lt;/code&gt;: Number and values of receiver depths.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NRR&lt;/code&gt;, &lt;code&gt;RR&lt;/code&gt;: Number and values of receiver ranges.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;OPTION&lt;/code&gt;: Run type (e.g., &amp;lsquo;R&amp;rsquo; for rays, &amp;lsquo;C&amp;rsquo; for coherent TL).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NBEAMS&lt;/code&gt;: Number of beams (or 0 for auto).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ALPHA&lt;/code&gt;: Launch angles in degrees.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;STEP&lt;/code&gt;, &lt;code&gt;ZBOX&lt;/code&gt;, &lt;code&gt;RBOX&lt;/code&gt;: Step size and simulation domain bounds.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Bellhop 2D is particularly suitable for quick channel performance estimation and visualizing ray paths and arrival structures in a vertically stratified ocean.&lt;/p&gt;
+&lt;p&gt;For visual tools like &lt;code&gt;plotray&lt;/code&gt;, &lt;code&gt;plotshd&lt;/code&gt;, and &lt;code&gt;plotarr&lt;/code&gt;, use output files &lt;code&gt;.RAY&lt;/code&gt;, &lt;code&gt;.SHD&lt;/code&gt;, and &lt;code&gt;.ARR&lt;/code&gt; respectively.&lt;/p&gt;
+&lt;h2 id=&#34;-visualizing-with-arlpy&#34;&gt;📊 Visualizing with ARLPY&lt;/h2&gt;
+&lt;h4 id=&#34;sound-speed-profile&#34;&gt;Sound Speed Profile&lt;/h4&gt;
 &lt;p&gt;&lt;img src=&#34;SSP-all.png&#34; alt=&#34;Sound Speed Profile&#34; title=&#34;Sound Speed Profile of Bedford Basin (taken on 13-10-17)&#34;&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;center&gt; Figure 2: Sound Speed Profile &lt;/center&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;center&gt; Figure 2: Sound Speed Profile of Bedford Basin (taken on 13-10-17)&lt;/center&gt;&lt;/h3&gt;
 &lt;h4 id=&#34;how-to-plot-ssps-using-arlpy-&#34;&gt;How to Plot SSP&amp;rsquo;s using ARLPY ?&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# SSP Plotting using ARLPY
 
@@ -521,7 +591,9 @@ pm.plot_rays(rays, env=env, width=900)
 &lt;p&gt;&lt;img src=&#34;arlpy_eigen.png&#34; alt=&#34;Eigenrays&#34; title=&#34;Eigenrays using ARLPY&#34;&gt;&lt;/p&gt;
 &lt;h3&gt;&lt;center&gt; Figure 3: Eigenrays using ARLPY &lt;/center&gt;&lt;/h3&gt;
 &lt;div class=&#34;bk-root&#34; id=&#34;07ffdb99-a83e-40f2-9174-79fb8ffb398f&#34; data-root-id=&#34;17789&#34;&gt;&lt;/div&gt;
-&lt;h4 id=&#34;compute-the-arrival-structure-at-the-receiver&#34;&gt;compute the arrival structure at the receiver&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;compute the arrival structure at the receiver&lt;/li&gt;
+&lt;/ul&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;arrivals = pm.compute_arrivals(env)
 pm.plot_arrivals(arrivals, width=900)
 &lt;/code&gt;&lt;/pre&gt;
@@ -633,8 +705,7 @@ plt.plot(np.abs(ir), fs=96000, width=900)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;bk-root&#34; id=&#34;d5bf8847-edc7-4005-936c-220cbdf19b56&#34; data-root-id=&#34;21610&#34;&gt;&lt;/div&gt;
 &lt;h1 id=&#34;bathymetry&#34;&gt;Bathymetry&lt;/h1&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Let&#39;s first start off by defining our bathymetry, a steep up-slope for the first 300 m, and then a gentle downslope:
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let&amp;rsquo;s first start off by defining our bathymetry, a steep up-slope for the first 300 m, and then a gentle downslope:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# add/change bathy to env
 bathy = [
     [0, 30],    # 30 m water depth at the transmitter
@@ -661,45 +732,45 @@ env = pm.create_env2d(
     tx_depth=15
 )
 pm.print_env(env)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;                name : arlpy
-   bottom_absorption : 1.0
-      bottom_density : 1200
-    bottom_roughness : 0
-   bottom_soundspeed : 1450
-               depth : [[   0.   30.]
-                        [ 300.   20.]
-                        [1000.   25.]]
-        depth_interp : linear
-           frequency : 25000
-           max_angle : 80
-           min_angle : -80
-              nbeams : 0
-            rx_depth : 10
-            rx_range : 1000
-          soundspeed : [[   0. 1540.]
-                        [  10. 1530.]
-                        [  20. 1532.]
-                        [  25. 1533.]
-                        [  30. 1535.]]
-   soundspeed_interp : spline
-             surface : None
-      surface_interp : linear
-            tx_depth : 15
-   tx_directionality : None
-                type : 2D
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;pm.plot_env(env, width=900)
+
+
+                    name : arlpy
+       bottom_absorption : 1.0
+          bottom_density : 1200
+        bottom_roughness : 0
+       bottom_soundspeed : 1450
+                   depth : [[   0.   30.]
+                            [ 300.   20.]
+                            [1000.   25.]]
+            depth_interp : linear
+               frequency : 25000
+               max_angle : 80
+               min_angle : -80
+                  nbeams : 0
+                rx_depth : 10
+                rx_range : 1000
+              soundspeed : [[   0. 1540.]
+                            [  10. 1530.]
+                            [  20. 1532.]
+                            [  25. 1533.]
+                            [  30. 1535.]]
+       soundspeed_interp : spline
+                 surface : None
+          surface_interp : linear
+                tx_depth : 15
+       tx_directionality : None
+                    type : 2D
+
+
+pm.plot_env(env, width=900)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;bk-root&#34; id=&#34;c5164586-1f1f-4d18-8448-3758c15fadd2&#34; data-root-id=&#34;22674&#34;&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Looks more interesting! Let&#39;s see what the eigenrays look like, and also the arrival structure:
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Looks more interesting! Let&amp;rsquo;s see what the eigenrays look like, and also the arrival structure:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;rays = pm.compute_eigenrays(env)
 pm.plot_rays(rays, env=env, width=900)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;bk-root&#34; id=&#34;69a277ca-3514-4c29-96fd-abebc426ee09&#34; data-root-id=&#34;23803&#34;&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;We could also ignore the receiver, and plot rays launched at various angles:
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We could also ignore the receiver, and plot rays launched at various angles:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;rays = pm.compute_rays(env)
 pm.plot_rays(rays, env=env, width=900)
 &lt;/code&gt;&lt;/pre&gt;
@@ -746,6 +817,10 @@ plt.show()
 env[&#39;rx_depth&#39;] = np.linspace(0, 30, 301)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id=&#34;transmission-loss&#34;&gt;Transmission Loss&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;The number of beams, NBeams, should normally be set to 0, allowing BELLHOP to automatically select the appropriate value. The number
+needed increases with frequency and the maximum range to a receiver.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;- RUN TYPE BELLHOP
 
 OPTION(1:1):           &#39;R&#39; generates a ray file
@@ -755,10 +830,7 @@ OPTION(1:1):           &#39;R&#39; generates a ray file
                        &#39;C&#39; Coherent     TL calculation
                        &#39;I&#39; Incoherent   TL calculation
                        &#39;S&#39; Semicoherent TL calculation
-                            (Lloyd mirror source pattern)
-                        
-- The number of beams, NBeams, should normally be set to 0, allowing BELLHOP to automatically select the appropriate value. The number
-needed increases with frequency and the maximum range to a receiver. 
+                            (Lloyd mirror source pattern)                        
 &lt;/code&gt;&lt;/pre&gt;
 &lt;ul&gt;
 &lt;li&gt;The pressure field, p, is then calculated for the specified grid of receivers, with a scaling such that $20\ log10(|p|)$ is the transmission loss in dB.&lt;/li&gt;
@@ -773,8 +845,9 @@ pm.plot_transmission_loss(tloss, env=env, clim=[-60,-30], width=900)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;bk-root&#34; id=&#34;7e97fc3b-0e9e-4475-9ccc-25cf2a7885c4&#34; data-root-id=&#34;28892&#34;&gt;&lt;/div&gt;
 &lt;h1 id=&#34;source-directionality&#34;&gt;Source directionality&lt;/h1&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Now, let&#39;s use a directional transmitter instead of an omni-directional one:
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Now, let&amp;rsquo;s use a directional transmitter instead of an omni-directional one:&lt;/li&gt;
+&lt;/ul&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;beampattern = np.array([
     [-180,  10], [-170, -10], [-160,   0], [-150, -20], [-140, -10], [-130, -30],
     [-120, -20], [-110, -40], [-100, -30], [-90 , -50], [-80 , -30], [-70 , -40],
@@ -790,15 +863,17 @@ env[&#39;tx_directionality&#39;] = beampattern
 pm.plot_transmission_loss(tloss, env=env, clim=[-60,-30], width=900)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;bk-root&#34; id=&#34;a435b52d-d78f-4da7-8dcb-b4400d56e61c&#34; data-root-id=&#34;30243&#34;&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Now you can see the directionality and the sidelobe structure of the transmitter.
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Now you can see the directionality and the sidelobe structure of the transmitter.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tloss = pm.compute_transmission_loss(env, mode=&#39;incoherent&#39;)
 pm.plot_transmission_loss(tloss, env=env, clim=[-60,-30], width=900)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;bk-root&#34; id=&#34;9f5afa51-942b-494f-9c27-661c6b034380&#34; data-root-id=&#34;31610&#34;&gt;&lt;/div&gt;
 &lt;h1 id=&#34;undulating-water-surface&#34;&gt;Undulating water surface&lt;/h1&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Finally, let&#39;s try adding a long wavelength swell on the water surface:
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Finally, let&amp;rsquo;s try adding a long wavelength swell on the water surface:&lt;/li&gt;
+&lt;/ul&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;surface = np.array([[r, 0.5+0.5*np.sin(2*np.pi*0.005*r)] for r in np.linspace(0,1000,1001)])
 env[&#39;surface&#39;] = surface
 &lt;/code&gt;&lt;/pre&gt;
@@ -810,12 +885,13 @@ pm.plot_transmission_loss(tloss, env=env, clim=[-60,-30], width=900)
 pm.plot_transmission_loss(tloss, env=env, clim=[-60,-30], width=900)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;bk-root&#34; id=&#34;0757c4b3-0752-4e16-a332-a81931113f4d&#34; data-root-id=&#34;34392&#34;&gt;&lt;/div&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Now, if I placed a receiver at 800 m, and 15 m depth, roughly where we see some focusing, what would the eigenrays and arrival structure look like?
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Now, if I placed a receiver at 800 m, and 15 m depth, roughly where we see some focusing, what would the eigenrays and arrival structure look like?&lt;/li&gt;
+&lt;/ul&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;env[&#39;rx_range&#39;] = 800
 env[&#39;rx_depth&#39;] = 15
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;rays = pm.compute_eigenrays(env)
+
+rays = pm.compute_eigenrays(env)
 pm.plot_rays(rays, env=env, width=900)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;bk-root&#34; id=&#34;139c90d1-7728-41ea-98a5-430e8356b006&#34; data-root-id=&#34;35807&#34;&gt;&lt;/div&gt;
@@ -824,7 +900,7 @@ pm.plot_arrivals(arrivals, dB=True, width=900)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;bk-root&#34; id=&#34;2d262be4-2935-4759-8703-788ae855b9bb&#34; data-root-id=&#34;37450&#34;&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; We plotted the amplitudes in dB, as the later arrivals are much weaker than the first one, and better visualized in a logarithmic scale.&lt;/p&gt;
-&lt;h1 id=&#34;bellhop3d&#34;&gt;Bellhop3D&lt;/h1&gt;
+&lt;h1 id=&#34;bellhop3d--3d-beam-tracing-for-complex-ocean-environments&#34;&gt;Bellhop3D – 3D Beam Tracing for Complex Ocean Environments&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;BELLHOP3D&lt;/strong&gt; is a beam tracing model for predicting acoustic pressure fields in ocean environments.&lt;/p&gt;
@@ -844,21 +920,131 @@ pm.plot_arrivals(arrivals, dB=True, width=900)
 &lt;li&gt;Geometric Hat-Beams in Cartesian Coordinates&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Bellhop3D&lt;/strong&gt; is an advanced extension of the classic Bellhop model, enabling simulation of &lt;strong&gt;3D acoustic propagation&lt;/strong&gt; in ocean environments. While standard Bellhop operates in a 2D vertical slice, Bellhop3D incorporates &lt;strong&gt;azimuthal variation&lt;/strong&gt;, allowing researchers and engineers to analyze how sound behaves over both range and bearing — critical for &lt;strong&gt;non-homogeneous or anisotropic ocean environments&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;-nx2d-strategy-aka-25d-modeling&#34;&gt;🔄 Nx2D Strategy (a.k.a. 2.5D Modeling)&lt;/h3&gt;
+&lt;p&gt;Rather than solving full 3D ray equations (which is computationally intensive), Bellhop3D uses an efficient approximation called &lt;strong&gt;Nx2D&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It performs &lt;strong&gt;multiple 2D Bellhop simulations&lt;/strong&gt; along evenly spaced &lt;strong&gt;radials (bearings)&lt;/strong&gt; originating from the source.&lt;/li&gt;
+&lt;li&gt;These slices are then combined to estimate the 3D pressure field.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This approach enables practical yet accurate modeling of complex underwater sound propagation in &lt;strong&gt;shallow waters&lt;/strong&gt;, &lt;strong&gt;canyons&lt;/strong&gt;, or areas with &lt;strong&gt;bathymetric variation across bearings&lt;/strong&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-beam-types-supported&#34;&gt;🎯 Beam Types Supported&lt;/h3&gt;
+&lt;p&gt;Bellhop3D allows users to choose different ray-tracing approximations, depending on the accuracy and speed required:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Beam Type&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Cerveny Beams&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;High-precision beams based on dynamic ray tracing and Gaussian beam theory&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Geometric Hat Beams&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Simple beams with a &amp;ldquo;hat&amp;rdquo;-shaped energy profile&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Geometric Gaussian Beams&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Smoother, energy-preserving Gaussian profile rays&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Cartesian Hat Beams&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Hat-beams mapped to Cartesian coordinates for ease of use&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚙️ Each type balances &lt;strong&gt;accuracy&lt;/strong&gt;, &lt;strong&gt;computational cost&lt;/strong&gt;, and &lt;strong&gt;ease of interpretation&lt;/strong&gt;, depending on the simulation objective.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-typical-use-cases&#34;&gt;🧪 Typical Use Cases&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Swarm AUV/ASV coordination:&lt;/strong&gt; Model bearing-dependent connectivity between vehicles.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Marine mammal localization:&lt;/strong&gt; Estimate direction-dependent transmission paths.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Harbor acoustic surveillance:&lt;/strong&gt; Analyze channel distortion around structures.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Littoral zone propagation:&lt;/strong&gt; Resolve shallow water effects like refraction and bottom reflection by bearing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-implementation-steps&#34;&gt;🛠️ Implementation Steps&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Define environment (&lt;code&gt;.env&lt;/code&gt;) and transmission parameters.&lt;/li&gt;
+&lt;li&gt;Choose radial resolution (e.g., every 5° or 10° around the source).&lt;/li&gt;
+&lt;li&gt;Run Bellhop on each bearing (automated script).&lt;/li&gt;
+&lt;li&gt;Interpolate results into a 3D field.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This can be scripted in &lt;strong&gt;Python, MATLAB&lt;/strong&gt;, or automated using custom wrappers in &lt;strong&gt;arlpy&lt;/strong&gt;, depending on your workflow.&lt;/p&gt;
+&lt;h3 id=&#34;sample-input-structure-explanation-1&#34;&gt;Sample Input Structure Explanation&lt;/h3&gt;
+&lt;p&gt;Below is an annotated breakdown of a typical &lt;code&gt;*.ENV&lt;/code&gt; input file for Bellhop3D:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;&#39;Munk profile&#39;        ! TITLE: Descriptive label for the simulation
+50.0                  ! FREQ: Frequency in Hz
+1                     ! NMEDIA: Number of media layers (usually 1 for ocean)
+&#39;CVW&#39;                 ! SSPOPT: Sound speed interpolation type (e.g., C-linear, CVN, CVW)
+51  0.0  20000.0      ! Number of SSP points, min and max depth
+...                  ! Depth/sound speed profile follows
+&#39;A&#39; 0.0               ! Altimetry model (usually flat surface)
+20000.0  1600.00 0.0 1.8 0.8 /  ! Bathymetry: depth, speed, density, etc.
+
+# Source coordinates
+1                     ! NSx: number of source x positions
+0.0 /                 ! x coordinate(s) in km
+1                     ! NSy
+0.0 /                 ! y coordinate(s) in km
+1                     ! NSz
+1000.0 /              ! Source depth in m
+
+# Receiver grid
+501                   ! NRz
+0 5000 /              ! Receiver depths (0 to 5000 m)
+1001                  ! NR
+0.0  100.0 /          ! Receiver ranges (0 to 100 km)
+2                     ! Ntheta
+0.0 1.0 /             ! Receiver bearings (degrees)
+
+# Run type (e.g., coherent, Gaussian beam, Nx2D)
+&#39;CG   3&#39;              ! Option string: C=Coherent, G=Geometric beams, 3=3D mode
+
+# Beam fans
+51 6                  ! Nalpha, ISINGLE: Number of elevation beams and single-beam index
+-14.66 14.66 /        ! Alpha (declination angles)
+11 46                 ! Nbeta, ISINGLE: Number of azimuth beams and index
+-2  2 /               ! Beta (bearing angles)
+
+# Numerical integration
+100.0  100.0 100.0 20500.0 ! STEP, Box%x, Box%y, Box%z (m, km, km, m)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;explanation-of-bellhop3d-parameters&#34;&gt;Explanation of Bellhop3D Parameters&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;NSx&lt;/code&gt;, &lt;code&gt;NSy&lt;/code&gt;, &lt;code&gt;NSz&lt;/code&gt;: Number of source positions in x, y, and z.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NRz&lt;/code&gt;, &lt;code&gt;NR&lt;/code&gt;, &lt;code&gt;Ntheta&lt;/code&gt;: Number of receiver positions in depth, range, and bearing.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Alpha&lt;/code&gt;, &lt;code&gt;Beta&lt;/code&gt;: Beam angles in elevation and azimuth.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;STEP&lt;/code&gt;: Integration step size.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Box%{x,y,z}&lt;/code&gt;: Dimensions of the domain for ray propagation.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;OPTION(1:6)&lt;/code&gt;: Specifies run type, beam type, directionality, source model, grid type, and dimensionality.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;You can also download the sample notebook from 
 &lt;a href=&#34;bellhop.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;All code and setup files are also available on 
+&lt;p&gt;All code and setup files are also available on 📁 
 &lt;a href=&#34;https://github.com/patel999jay/Bellhop-ARLPY-ECED6575&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;
-&lt;a href=&#34;http://oalib.hlsresearch.com/AcousticsToolbox/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://oalib.hlsresearch.com/AcousticsToolbox/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;a href=&#34;https://arlpy.readthedocs.io/en/latest/_static/bellhop.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://arlpy.readthedocs.io/en/latest/_static/bellhop.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Technical documentation: 
+&lt;a href=&#34;http://oalib.hlsresearch.com/AcousticsToolbox/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Ocean Acoustics Toolbox&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ARLPY Technical documentation: 
+&lt;a href=&#34;https://arlpy.readthedocs.io/en/latest/_static/bellhop.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ARLPY Docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;📁 GitHub Repository (Code + Examples): 
+&lt;a href=&#34;https://github.com/patel999jay/Bellhop-ARLPY-ECED6575&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Bellhop ARLPY ECED6575&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>
