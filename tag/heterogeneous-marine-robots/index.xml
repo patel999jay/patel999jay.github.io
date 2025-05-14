@@ -5,7 +5,7 @@
     <link>https://patel999jay.github.io/tag/heterogeneous-marine-robots/</link>
       <atom:link href="https://patel999jay.github.io/tag/heterogeneous-marine-robots/index.xml" rel="self" type="application/rss+xml" />
     <description>Heterogeneous marine robots</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2025</copyright><lastBuildDate>Mon, 19 Oct 2020 19:46:19 -0300</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2025</copyright><lastBuildDate>Wed, 14 May 2025 16:37:27 -0300</lastBuildDate>
     <image>
       <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_3.png</url>
       <title>Heterogeneous marine robots</title>
@@ -13,397 +13,9 @@
     </image>
     
     <item>
-      <title>WOSS Integration with NS-3</title>
-      <link>https://patel999jay.github.io/post/woss-integration-ns3/</link>
-      <pubDate>Mon, 19 Oct 2020 19:46:19 -0300</pubDate>
-      <guid>https://patel999jay.github.io/post/woss-integration-ns3/</guid>
-      <description>&lt;h1 id=&#34;woss-integration-framework-with-acoustic-toolbox-with-ns3-dev-with-database-netcdf4-and-hdf5-support&#34;&gt;WOSS Integration Framework with Acoustic Toolbox with NS3-dev (with Database, NETCDF4 and HDF5 support)&lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;WOSS&lt;/code&gt; is a multi-threaded C++ framework that permits the integration of any existing underwater channel simulator that expects environmental data as input and provides as output a channel realization.&lt;/p&gt;
-&lt;p&gt;Currently, &lt;code&gt;WOSS&lt;/code&gt; integrates the &lt;code&gt;Bellhop ray-tracing&lt;/code&gt; program.&lt;/p&gt;
-&lt;p&gt;Thanks to its automation the user only has to specify the location in the world and the time where the simulation should take place. This is done by setting the simulated date and the wanted latitude and longitude of every node involved. The simulator automatically handles the rest (see technical description).&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;WOSS&lt;/code&gt; can be integrated in any network simulator or simulation tool that supports &lt;code&gt;C++&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;You can find the &lt;code&gt;WOSS&lt;/code&gt; repository 
-&lt;a href=&#34;https://github.com/MetalKnight/woss-ns3&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; on github&lt;/p&gt;
-&lt;p&gt;&amp;lsquo;woss-ns3&amp;rsquo; relies on the following libraries:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;- WOSS
-- NetCDF
-- Acoustic Toolbox
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;First make sure you have &lt;code&gt;gfortran&lt;/code&gt;,&lt;code&gt;gcc&lt;/code&gt; and &lt;code&gt;gcxx compiler&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Please checked if the GNU Fortran compiler was in my system by typing &lt;code&gt;gfortran --version&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;GNU Fortran (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0
-Copyright (C) 2017 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If you go for the GNU compiler, type:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export FC=gfortran
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&#34;install-latest-acoustic-toolbox-march-2019&#34;&gt;Install latest &lt;code&gt;Acoustic Toolbox&lt;/code&gt; (March 2019)&lt;/h1&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd ${HOME}/Documents
-wget http://telecom.dei.unipd.it/ns/woss/files/at.zip
-tar -xzf at.zip
-cd at/at
-make
-sudo make install
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Once installed, let&amp;rsquo;s tell the system where to find our new libraries: (Please replace &lt;code&gt;ns&lt;/code&gt; with your &lt;code&gt;hostname&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export PATH=/home/ns/Documents/at/at/Bellhop:/home/ns/Documents/at/at/:$PATH
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;You have to build support for &lt;code&gt;NETCDF4&lt;/code&gt; and &lt;code&gt;HDF5&lt;/code&gt; for &lt;code&gt;NS3&lt;/code&gt;, &lt;code&gt;WOSS&lt;/code&gt; and &lt;code&gt;Acoustic Toolbox&lt;/code&gt;, Please make sure you follow this  steps for installation :&lt;/p&gt;
-&lt;h5 id=&#34;export-environment&#34;&gt;export environment&lt;/h5&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export F77=gfortran
-export FC=gfortran
-export CC=gcc
-export CXX=g++
-export CFLAGS=-fPIC
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;step-1-install-compilers-and-building-tools&#34;&gt;Step 1. Install compilers and building tools&lt;/h2&gt;
-&lt;p&gt;First let&amp;rsquo;s check which Linux are you running with the command:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;lsb_release -ds
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Will return something like:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Debian GNU/Linux 9.8 (stretch)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;For &lt;em&gt;Debian/Ubuntu/Linux Mint&lt;/em&gt;:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get update
-sudo apt-get install wget nano gfortran m4 build-essential
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;step-2-install-netcdf&#34;&gt;Step 2. Install &lt;code&gt;NETCDF&lt;/code&gt;&lt;/h2&gt;
-&lt;p&gt;Until version 4.1.3, &lt;code&gt;NETCDF&lt;/code&gt; was bundled in a single package. Since then, has been split off into independent distributions (&lt;code&gt;netCDF-C&lt;/code&gt;, &lt;code&gt;netCDF-Fortran&lt;/code&gt;, &lt;code&gt;netCDF-Java&lt;/code&gt;, &lt;code&gt;netCDF-Python&lt;/code&gt;, &lt;code&gt;netCDF-C++&lt;/code&gt; and so on).&lt;/p&gt;
-&lt;p&gt;Let&amp;rsquo;s start with downloading and installing &lt;code&gt;netCDF-C&lt;/code&gt; in a new folder called &lt;code&gt;netcdf&lt;/code&gt; in user home directory (e.g. &lt;code&gt;/home/ns/&lt;/code&gt;):&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://telecom.dei.unipd.it/ns/woss/files/netcdf-c-4.7.3.tar.gz
-tar -xzf netcdf-c-4.7.3.tar.gz
-cd netcdf-c-4.7.3
-./configure --prefix=${HOME}/netcdf --disable-dap --disable-netcdf-4 --enable-shared
-make
-make check
-sudo make install
-cd ${HOME}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;step-3-now-please-install-hdf5-support-for-netcdf&#34;&gt;Step 3. Now please install &lt;code&gt;HDF5&lt;/code&gt; support for &lt;code&gt;NETCDF&lt;/code&gt;&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://telecom.dei.unipd.it/ns/woss/files/hdf5-1.8.13.tar.gz
-tar -xzf hdf5-1.8.13.tar.gz
-cd hdf5-1.8.13
-./configure --enable-shared --prefix=${HOME}/netcdf --disable-dap --enable-fortran #If above command didn&#39;t work then please try ./configure --enable-shared --prefix=${HOME}/netcdf 
-make
-make check
-sudo make install
-cd ${HOME}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;step-4-again-configure-netcdf-with-hdf5-support&#34;&gt;Step 4. Again configure &lt;code&gt;NETCDF&lt;/code&gt; with &lt;code&gt;HDF5&lt;/code&gt; support&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd netcdf-c-4.7.3
-./configure --prefix=${HOME}/netcdf --disable-dap --enable-netcdf-4 --enable-shared CPPFLAGS=&amp;quot;$CPPFLAGS -I${HOME}/netcdf/include&amp;quot; LDFLAGS=&amp;quot;$LDFLAGS -L${HOME}/netcdf/lib&amp;quot; --enable-fortran --enable-cxx
-make
-make check
-sudo make install
-cd ${HOME}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;step-5-now-install-netcdf4-c-support&#34;&gt;Step 5. Now install &lt;code&gt;NETCDF4 C++&lt;/code&gt; support&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://telecom.dei.unipd.it/ns/woss/files/netcdf-cxx4-4.3.1.tar.gz
-tar -xzf netcdf-cxx4-4.3.1.tar.gz
-cd netcdf-cxx4-4.3.1
-./configure --prefix=${HOME}/netcdf --enable-shared CPPFLAGS=&amp;quot;$CPPFLAGS -I${HOME}/netcdf/include&amp;quot; LDFLAGS=&amp;quot;$LDFLAGS -L${HOME}/netcdf/lib&amp;quot; 
-make
-make check
-sudo make install
-cd ${HOME}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Once installed, let&amp;rsquo;s tell the system where to find our new libraries and export variables to .bashrc:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export NETCDF=${HOME}/netcdf
-export PATH=$NETCDF/bin:$PATH
-export NETCDF_INCDIR=$NETCDF/include 
-export NETCDF_LIBDIR=$NETCDF/lib
-export LD_LIBRARY_PATH=$NETCDF/lib:$LD_LIBRARY_PATH
-export PATH NETCDF
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;step-6-install-woss-library-support&#34;&gt;Step 6. Install &lt;code&gt;WOSS&lt;/code&gt; library support&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://telecom.dei.unipd.it/ns/woss/files/WOSS-v1.10.0.tar.gz
-tar -xzf WOSS-v1.10.0.tar.gz 
-cd woss-1.10.0
-./autogen.sh 
-./configure --with-netcdf4=${HOME}/netcdf --with-pthread
-make
-make check
-sudo make install
-wget http://telecom.dei.unipd.it/ns/woss/files/WOSS-dbs-v1.4.0.tar.gz
-tar -xzf WOSS-dbs-v1.4.0.tar.gz
-cd dbs/bathymetry
-wget https://www.bodc.ac.uk/data/open_download/gebco/GEBCO_15SEC/zip/  #this is almost ~ 12 GB database.
-tar -xzf GEBCO_2019.zip #This is database used by WOSS, more details are available on http://telecom.dei.unipd.it/ns/woss/doxygen/database.html
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&#34;ns3-dev-installation&#34;&gt;&lt;code&gt;NS3-dev&lt;/code&gt; Installation&lt;/h1&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd Documents/
-mkdir workspace
-cd workspace
-wget https://www.nsnam.org/release/ns-allinone-3.30.tar.bz2
-tar xjf ns-allinone-3.30.tar.bz2
-cd ns-allinone-3.30/
-./build.py --enable-examples --enable-tests
-cd ns-3.30/
-./waf --run scratch/scratch-simulator #To check everything working fine 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Please don&amp;rsquo;t use sudo to build ns3-dev as it makes conficts when woss try to call bellhop.exe in runtime, to chech you have correctly set your PATH for acoustic toolbox,&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;which bellhop.exe
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;It will show you path of your bellhop.exe, same like this,&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/home/ns/Documents/at/bin/bellhop.exe
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&#34;configure-woss-libraries-for-ns3-dev&#34;&gt;configure &lt;code&gt;WOSS&lt;/code&gt; libraries for &lt;code&gt;ns3-dev&lt;/code&gt;&lt;/h1&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd ${HOME}/Documents/workspace/ns-allinone-3.30/ns-3.30/src
-git clone https://github.com/MetalKnight/woss-ns3.git
-tar xjf woss-ns3-master.zip #Remove zip file from src folder as this will conflict while building NS-3
-mv woss-ns3-master woss-ns3 #Rename folder as woss-ns3, make sure folder name is correct to avoid config errors
-cd ..
-./waf -d debug --enable-tests --enable-examples --enable-sudo --with-woss-source=/home/ns/woss-1.10.0/ --with-woss-library=/home/ns/woss-1.10.0/woss --with-netcdf4-install=${HOME}/netcdf configure CXXFLAGS=&amp;quot;-Wall -Werror -Wno-unused-variable&amp;quot;  #this configure your ns3, Please make sure woss source(in my case i.e /home/ns/woss-1.10.0/) is correct and installed woss library (in my case i.e /home/ns/woss-1.10.0/woss) is provided with correct path, also make sure you put the correct path for netCDF(in my case i.e${HOME}/netcdf)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;You can see, &lt;code&gt;./waf&lt;/code&gt; will configure and please check if you got message in second last command line saying&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# WOSS Integration Framework    : enabled
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In my case, It looks like,&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;medit@medit-Vostro-230:~/Documents/workspace/ns-allinone-3.30/ns-3.30$ ./waf -d debug --enable-tests --enable-examples --enable-sudo --with-woss-source=/home/medit/woss-1.9.0/ --with-woss-library=/home/medit/woss-1.9.0/woss --with-netcdf4-install=${HOME}/netcdf configure
-Setting top to                           : /home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30 
-Setting out to                           : /home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30/build 
-Checking for &#39;gcc&#39; (C compiler)          : /usr/bin/gcc 
-Checking for cc version                  : 7.4.0 
-Checking for &#39;g++&#39; (C++ compiler)        : /usr/bin/g++ 
-Checking for compilation flag -Wl,--soname=foo support : ok 
-Checking for compilation flag -std=c++11 support       : ok 
-Checking boost includes                                : headers not found, please provide a --boost-includes argument (see help) 
-Checking boost includes                                : headers not found, please provide a --boost-includes argument (see help) 
-Checking for program &#39;python&#39;                          : /usr/bin/python3 
-Checking for python version &amp;gt;= 2.3                     : 3.6.9 
-python-config                                          : not found 
-Checking for library python3.6m in LIBDIR              : not found 
-Checking for library python3.6m in python_LIBPL        : yes 
-Checking for header Python.h                           : Distutils not installed? Broken python installation? Get python-config now! 
-Checking for click location                            : not found 
-Checking for program &#39;pkg-config&#39;                      : /usr/bin/pkg-config 
-Checking for &#39;gtk+-3.0&#39;                                : not found 
-Checking for &#39;libxml-2.0&#39;                              : not found 
-checking for uint128_t                                 : not found 
-checking for __uint128_t                               : yes 
-Checking high precision implementation                 : 128-bit integer (default) 
-Checking for header stdint.h                           : yes 
-Checking for header inttypes.h                         : yes 
-Checking for header sys/inttypes.h                     : not found 
-Checking for header sys/types.h                        : yes 
-Checking for header sys/stat.h                         : yes 
-Checking for header dirent.h                           : yes 
-Checking for header stdlib.h                           : yes 
-Checking for header signal.h                           : yes 
-Checking for header pthread.h                          : yes 
-Checking for header stdint.h                           : yes 
-Checking for header inttypes.h                         : yes 
-Checking for header sys/inttypes.h                     : not found 
-Checking for library rt                                : yes 
-Checking for header sys/ioctl.h                        : yes 
-Checking for header net/if.h                           : yes 
-Checking for header net/ethernet.h                     : yes 
-Checking for header linux/if_tun.h                     : yes 
-Checking for header netpacket/packet.h                 : yes 
-Checking for NSC location                              : not found 
-Checking for &#39;sqlite3&#39;                                 : not found 
-Checking for header linux/if_tun.h                     : yes 
-Checking the given WOSS source code path               : /home/ns/woss-1.9.0/ (given) 
-Checking the given WOSS library path                   : /home/ns/woss-1.9.0/woss (given) 
-Checking the given NetCDF4 and HDF5 install path       : /home/ns/netcdf (given) 
-WOSS source code path is valid                         : /home/ns/woss-1.9.0/woss  
-WOSS source code path is valid                         : /home/ns/woss-1.9.0/woss/woss_def  
-WOSS source code path is valid                         : /home/ns/woss-1.9.0/woss/woss_db  
-Checking the given WOSS library                        : yes 
-NetCDF4 and HDF5 source code path                      : /home/ns/netcdf/include  
-Checking the given NETCDF4 and HDF5 libraries          : yes 
-Checking for program &#39;sudo&#39;                            : /usr/bin/sudo 
-Checking for program &#39;valgrind&#39;                        : not found 
-Checking for &#39;gsl&#39;                                     : not found 
-libgcrypt-config                                       : not found 
-Checking for compilation flag -fstrict-aliasing support : ok 
-Checking for compilation flag -fstrict-aliasing support : ok 
-Checking for compilation flag -Wstrict-aliasing support : ok 
-Checking for compilation flag -Wstrict-aliasing support : ok 
-Checking for program &#39;doxygen&#39;                          : not found 
----- Summary of optional NS-3 features:
-Build profile                 : debug
-Build directory               : 
-BRITE Integration             : not enabled (BRITE not enabled (see option --with-brite))
-DES Metrics event collection  : not enabled (defaults to disabled)
-Emulation FdNetDevice         : enabled
-Examples                      : enabled
-File descriptor NetDevice     : enabled
-GNU Scientific Library (GSL)  : not enabled (GSL not found)
-Gcrypt library                : not enabled (libgcrypt not found: you can use libgcrypt-config to find its location.)
-GtkConfigStore                : not enabled (library &#39;gtk+-3.0 &amp;gt;= 3.0&#39; not found)
-MPI Support                   : not enabled (option --enable-mpi not selected)
-NS-3 Click Integration        : not enabled (nsclick not enabled (see option --with-nsclick))
-NS-3 OpenFlow Integration     : not enabled (Required boost libraries not found)
-Network Simulation Cradle     : not enabled (NSC not found (see option --with-nsc))
-PlanetLab FdNetDevice         : not enabled (PlanetLab operating system not detected (see option --force-planetlab))
-PyViz visualizer              : not enabled (Python Bindings are needed but not enabled)
-Python Bindings               : not enabled (Python library or headers missing)
-Real Time Simulator           : enabled
-SQlite stats data output      : not enabled (library &#39;sqlite3&#39; not found)
-Tap Bridge                    : enabled
-Tap FdNetDevice               : enabled
-Tests                         : enabled
-Threading Primitives          : enabled
-Use sudo to set suid bit      : enabled
-WOSS Integration Framework    : enabled
-XmlIo                         : not enabled (library &#39;libxml-2.0 &amp;gt;= 2.7&#39; not found)
-&#39;configure&#39; finished successfully (2.808s)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Check out second last line to make sure everything is perfectly configure.&lt;/p&gt;
-&lt;p&gt;Then build your &lt;code&gt;ns3&lt;/code&gt; again,&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./waf build CXXFLAGS=&amp;quot;-Wall -Werror -Wno-unused-variable&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;you&amp;rsquo;ll see the following,&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Waf: Leaving directory `/home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
-Build commands will be stored in build/compile_commands.json
-&#39;build&#39; finished successfully (11m35.055s)
-
-Modules built:
-antenna                   aodv                      applications              
-bridge                    buildings                 config-store              
-core                      csma                      csma-layout               
-dsdv                      dsr                       energy                    
-fd-net-device             flow-monitor              internet                  
-internet-apps             lr-wpan                   lte                       
-mesh                      mobility                  mpi                       
-netanim (no Python)       network                   nix-vector-routing        
-olsr                      point-to-point            point-to-point-layout     
-propagation               sixlowpan                 spectrum                  
-stats                     tap-bridge                test (no Python)          
-topology-read             traffic-control           uan                       
-virtual-net-device        wave                      wifi                      
-wimax                     woss-ns3 (no Python)      
-
-Modules not built (see ns-3 tutorial for explanation):
-brite                     click                     openflow                  
-visualizer                
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Please run one of the example from scratch,&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./waf --run scratch/scratch-simulator
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If you see the below output, Hola ! Its working now.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Waf: Entering directory `/home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
-Waf: Leaving directory `/home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
-Build commands will be stored in build/compile_commands.json
-&#39;build&#39; finished successfully (0.749s)
-Scratch Simulator
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Then Run WOSS Aloha Example with following example (please note that scratch folder is not yet added to module so you have to manually run your examples from the woss-ns3/examples folder itself.)&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;medit@medit-Vostro-230:~/Documents/workspace/ns-allinone-3.30/ns-3.30$ ./waf --run src/woss-ns3/examples/woss-aloha-example 
-Waf: Entering directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
-Waf: Leaving directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
-Build commands will be stored in build/compile_commands.json
-&#39;build&#39; finished successfully (1.731s)
-WossManagerResDbMT::checkConcurrentThreads() 6
-WossManagerResDbMT::checkConcurrentThreads() 4
-Received a packet of size 1000 bytes
-Received a total of 1000 bytes at sink
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&#34;troubleshoot&#34;&gt;Troubleshoot&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;If you&amp;rsquo;re running example and run into problem with tap-creator like following then you have to manually change few settings.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./waf --run src/woss-ns3/examples/woss-aloha-example --command-template=&amp;quot;gdb --args %s &amp;lt;args&amp;gt;&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Waf: Entering directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
-* Several tasks use the same identifier. Please check the information on
-   https://waf.io/apidocs/Task.html?highlight=uid#waflib.Task.Task.uid
-  - object &#39;SuidBuild_task&#39; (
-	{task 140252058325512: SuidBuild_task  -&amp;gt; }) defined in &#39;tap-creator&#39;
-  - object &#39;SuidBuild_task&#39; (
-	{task 140252058325624: SuidBuild_task  -&amp;gt; }) defined in &#39;tap-creator&#39;
-  - object &#39;SuidBuild_task&#39; (
-	{task 140252058325736: SuidBuild_task  -&amp;gt; }) defined in &#39;tap-creator&#39;
-Waf: Leaving directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
-Build commands will be stored in build/compile_commands.json
-&#39;build&#39; finished successfully (2.892s)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;first figure out the problem with gdb command by running following command,&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./waf --run src/woss-ns3/examples/woss-aloha-example --command-template=&amp;quot;gdb --args %s &amp;lt;args
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Then maybe the easier one for the time being, open the /home/usr/netcdf/include/ncGroup.h
-and remove the line 18 from that file, which is not used by the library anyway.&lt;/p&gt;
-&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;If you&amp;rsquo;re not able to find or use the common shared files/library,&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;medit@medit-Vostro-230:~/Documents/workspace/ns-allinone-3.30/ns-3.30$ ./waf --run src/woss-ns3/examples/woss-aloha-example 
-Waf: Entering directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
-Waf: Leaving directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
-Build commands will be stored in build/compile_commands.json
-&#39;build&#39; finished successfully (1.713s)
-/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build/src/woss-ns3/examples/ns3.30-woss-aloha-example-debug: error while loading shared libraries: libWOSS.so.0: cannot open shared object file: No such file or directory
-Command [&#39;/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build/src/woss-ns3/examples/ns3.30-woss-aloha-example-debug&#39;] exited with code 127
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;please do following to solve the error,&lt;/p&gt;
-&lt;p&gt;Edit /etc/ld.so.conf or create something in /etc/ld.so.conf.d/ to add /usr/local/lib and /usr/local/lib64. Then run ldconfig.&lt;/p&gt;
-&lt;p&gt;In my case,&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo nano /etc/ld.so.conf
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Please make sure you have the correct lib in the same file, in my case it was,&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;include /etc/ld.so.conf.d/*.conf
-add /usr/local/lib:/usr/local/lib64  //added by Jay to access common or shared libraries
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;save the same file and configure again by&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo ldconfig
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;It should work now. In my case, it worked&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;medit@medit-Vostro-230:~/Documents/workspace/ns-allinone-3.30/ns-3.30$ ./waf --run src/woss-ns3/examples/woss-aloha-example 
-Waf: Entering directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
-Waf: Leaving directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
-Build commands will be stored in build/compile_commands.json
-&#39;build&#39; finished successfully (1.731s)
-WossManagerResDbMT::checkConcurrentThreads() 6
-WossManagerResDbMT::checkConcurrentThreads() 4
-Received a packet of size 1000 bytes
-Received a total of 1000 bytes at sink
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ol start=&#34;3&#34;&gt;
-&lt;li&gt;If you get the error of &lt;code&gt;./autogen.sh: 3: ./autogen.sh: aclocal: not found&lt;/code&gt; or &lt;code&gt;./autogen.sh: 3: ./autogen.sh: libtoolize: not found&lt;/code&gt;
-then please install automake essentials for build in the ubuntu. You can also install with following commands:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get install autotools-dev
-sudo apt-get install automake
-sudo apt-get install libtool m4 automake
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;you-can-also-download-all-this-instruction-to-your-local-machine&#34;&gt;You can also download all this instruction to your local machine.&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;a href=&#34;Custom-WOSS.updated-md.pdf&#34;&gt;Download&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;a href=&#34;http://telecom.dei.unipd.it/ns/woss/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://telecom.dei.unipd.it/ns/woss/&lt;/a&gt;, Special Thanks to &lt;strong&gt;
-&lt;a href=&#34;https://github.com/MetalKnight&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Federico Guerra&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;a href=&#34;https://www.nsnam.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.nsnam.org/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;a href=&#34;https://github.com/MetalKnight/woss-ns3&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/MetalKnight/woss-ns3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;a href=&#34;https://github.com/javirg/SWAN-Support/blob/master/recipes/build_linux_netcdf.md&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/javirg/SWAN-Support/blob/master/recipes/build_linux_netcdf.md&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Underwater channel characterization for shallow water multi-domain communications</title>
-      <link>https://patel999jay.github.io/publication/icua-2020/</link>
-      <pubDate>Wed, 09 Sep 2020 13:31:52 -0300</pubDate>
-      <guid>https://patel999jay.github.io/publication/icua-2020/</guid>
-      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
-&lt;p align=&#34;justify&#34;&gt;The underwater acoustic (UWA) channel is challenging as a propagation medium for wireless transmissions due to its spatial-temporal variability from high ambient noise, limited bandwidth, frequency-dependent losses, variable latency and time-space-frequency variable multi-path effects. Prior to deploying marine robots, the UWA channel should be characterized for its local sound velocity profile, at both source and receiver(s) depths, bottom cover (e.g. sand, silt, mud, etc.) and bathymetry. At the transmission end, it matters the signal’s carrier frequency, bandwidth, and pulse characteristics. With knowledge of both, it is possible to assess the operational communications range. This is especially so to develop and evaluate new medium access control (MAC) and routing level protocols. As a part of a project, three heterogeneous marine robots (unmanned underwater vehicle (UUV), unmanned surface vehicle (USV), and unmanned aerial vehicle (UAV)) collaboratively acquired situational awareness on a non-responsive floating target. This paper reports on the communications aspect.  It presents models that assess the impact of the relative placement between a transmitter (USV) and receiver (UUV) through ray tracing and several sea-bed environmental/UWA channel conditions on operational communication range between UUV \&amp; USV.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>Bellhop Acoustic Toolbox</title>
       <link>https://patel999jay.github.io/post/bellhop-acoustic-toolbox/</link>
-      <pubDate>Thu, 03 Sep 2020 18:51:27 -0300</pubDate>
+      <pubDate>Wed, 14 May 2025 16:37:27 -0300</pubDate>
       <guid>https://patel999jay.github.io/post/bellhop-acoustic-toolbox/</guid>
       <description>&lt;h1 id=&#34;bellhop---ocean-simulation-modeling&#34;&gt;Bellhop - Ocean simulation modeling&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;What is BELLHOP ?&lt;/strong&gt;&lt;/p&gt;
@@ -1047,6 +659,394 @@ pm.plot_arrivals(arrivals, dB=True, width=900)
 &lt;a href=&#34;https://github.com/patel999jay/Bellhop-ARLPY-ECED6575&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Bellhop ARLPY ECED6575&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>WOSS Integration with NS-3</title>
+      <link>https://patel999jay.github.io/post/woss-integration-ns3/</link>
+      <pubDate>Mon, 19 Oct 2020 19:46:19 -0300</pubDate>
+      <guid>https://patel999jay.github.io/post/woss-integration-ns3/</guid>
+      <description>&lt;h1 id=&#34;woss-integration-framework-with-acoustic-toolbox-with-ns3-dev-with-database-netcdf4-and-hdf5-support&#34;&gt;WOSS Integration Framework with Acoustic Toolbox with NS3-dev (with Database, NETCDF4 and HDF5 support)&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;WOSS&lt;/code&gt; is a multi-threaded C++ framework that permits the integration of any existing underwater channel simulator that expects environmental data as input and provides as output a channel realization.&lt;/p&gt;
+&lt;p&gt;Currently, &lt;code&gt;WOSS&lt;/code&gt; integrates the &lt;code&gt;Bellhop ray-tracing&lt;/code&gt; program.&lt;/p&gt;
+&lt;p&gt;Thanks to its automation the user only has to specify the location in the world and the time where the simulation should take place. This is done by setting the simulated date and the wanted latitude and longitude of every node involved. The simulator automatically handles the rest (see technical description).&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;WOSS&lt;/code&gt; can be integrated in any network simulator or simulation tool that supports &lt;code&gt;C++&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You can find the &lt;code&gt;WOSS&lt;/code&gt; repository 
+&lt;a href=&#34;https://github.com/MetalKnight/woss-ns3&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; on github&lt;/p&gt;
+&lt;p&gt;&amp;lsquo;woss-ns3&amp;rsquo; relies on the following libraries:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;- WOSS
+- NetCDF
+- Acoustic Toolbox
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;First make sure you have &lt;code&gt;gfortran&lt;/code&gt;,&lt;code&gt;gcc&lt;/code&gt; and &lt;code&gt;gcxx compiler&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Please checked if the GNU Fortran compiler was in my system by typing &lt;code&gt;gfortran --version&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;GNU Fortran (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0
+Copyright (C) 2017 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you go for the GNU compiler, type:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export FC=gfortran
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;install-latest-acoustic-toolbox-march-2019&#34;&gt;Install latest &lt;code&gt;Acoustic Toolbox&lt;/code&gt; (March 2019)&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd ${HOME}/Documents
+wget http://telecom.dei.unipd.it/ns/woss/files/at.zip
+tar -xzf at.zip
+cd at/at
+make
+sudo make install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once installed, let&amp;rsquo;s tell the system where to find our new libraries: (Please replace &lt;code&gt;ns&lt;/code&gt; with your &lt;code&gt;hostname&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export PATH=/home/ns/Documents/at/at/Bellhop:/home/ns/Documents/at/at/:$PATH
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You have to build support for &lt;code&gt;NETCDF4&lt;/code&gt; and &lt;code&gt;HDF5&lt;/code&gt; for &lt;code&gt;NS3&lt;/code&gt;, &lt;code&gt;WOSS&lt;/code&gt; and &lt;code&gt;Acoustic Toolbox&lt;/code&gt;, Please make sure you follow this  steps for installation :&lt;/p&gt;
+&lt;h5 id=&#34;export-environment&#34;&gt;export environment&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export F77=gfortran
+export FC=gfortran
+export CC=gcc
+export CXX=g++
+export CFLAGS=-fPIC
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-1-install-compilers-and-building-tools&#34;&gt;Step 1. Install compilers and building tools&lt;/h2&gt;
+&lt;p&gt;First let&amp;rsquo;s check which Linux are you running with the command:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;lsb_release -ds
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Will return something like:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Debian GNU/Linux 9.8 (stretch)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;For &lt;em&gt;Debian/Ubuntu/Linux Mint&lt;/em&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get update
+sudo apt-get install wget nano gfortran m4 build-essential
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-2-install-netcdf&#34;&gt;Step 2. Install &lt;code&gt;NETCDF&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Until version 4.1.3, &lt;code&gt;NETCDF&lt;/code&gt; was bundled in a single package. Since then, has been split off into independent distributions (&lt;code&gt;netCDF-C&lt;/code&gt;, &lt;code&gt;netCDF-Fortran&lt;/code&gt;, &lt;code&gt;netCDF-Java&lt;/code&gt;, &lt;code&gt;netCDF-Python&lt;/code&gt;, &lt;code&gt;netCDF-C++&lt;/code&gt; and so on).&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s start with downloading and installing &lt;code&gt;netCDF-C&lt;/code&gt; in a new folder called &lt;code&gt;netcdf&lt;/code&gt; in user home directory (e.g. &lt;code&gt;/home/ns/&lt;/code&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://telecom.dei.unipd.it/ns/woss/files/netcdf-c-4.7.3.tar.gz
+tar -xzf netcdf-c-4.7.3.tar.gz
+cd netcdf-c-4.7.3
+./configure --prefix=${HOME}/netcdf --disable-dap --disable-netcdf-4 --enable-shared
+make
+make check
+sudo make install
+cd ${HOME}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-3-now-please-install-hdf5-support-for-netcdf&#34;&gt;Step 3. Now please install &lt;code&gt;HDF5&lt;/code&gt; support for &lt;code&gt;NETCDF&lt;/code&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://telecom.dei.unipd.it/ns/woss/files/hdf5-1.8.13.tar.gz
+tar -xzf hdf5-1.8.13.tar.gz
+cd hdf5-1.8.13
+./configure --enable-shared --prefix=${HOME}/netcdf --disable-dap --enable-fortran #If above command didn&#39;t work then please try ./configure --enable-shared --prefix=${HOME}/netcdf 
+make
+make check
+sudo make install
+cd ${HOME}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-4-again-configure-netcdf-with-hdf5-support&#34;&gt;Step 4. Again configure &lt;code&gt;NETCDF&lt;/code&gt; with &lt;code&gt;HDF5&lt;/code&gt; support&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd netcdf-c-4.7.3
+./configure --prefix=${HOME}/netcdf --disable-dap --enable-netcdf-4 --enable-shared CPPFLAGS=&amp;quot;$CPPFLAGS -I${HOME}/netcdf/include&amp;quot; LDFLAGS=&amp;quot;$LDFLAGS -L${HOME}/netcdf/lib&amp;quot; --enable-fortran --enable-cxx
+make
+make check
+sudo make install
+cd ${HOME}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-5-now-install-netcdf4-c-support&#34;&gt;Step 5. Now install &lt;code&gt;NETCDF4 C++&lt;/code&gt; support&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://telecom.dei.unipd.it/ns/woss/files/netcdf-cxx4-4.3.1.tar.gz
+tar -xzf netcdf-cxx4-4.3.1.tar.gz
+cd netcdf-cxx4-4.3.1
+./configure --prefix=${HOME}/netcdf --enable-shared CPPFLAGS=&amp;quot;$CPPFLAGS -I${HOME}/netcdf/include&amp;quot; LDFLAGS=&amp;quot;$LDFLAGS -L${HOME}/netcdf/lib&amp;quot; 
+make
+make check
+sudo make install
+cd ${HOME}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once installed, let&amp;rsquo;s tell the system where to find our new libraries and export variables to .bashrc:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export NETCDF=${HOME}/netcdf
+export PATH=$NETCDF/bin:$PATH
+export NETCDF_INCDIR=$NETCDF/include 
+export NETCDF_LIBDIR=$NETCDF/lib
+export LD_LIBRARY_PATH=$NETCDF/lib:$LD_LIBRARY_PATH
+export PATH NETCDF
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-6-install-woss-library-support&#34;&gt;Step 6. Install &lt;code&gt;WOSS&lt;/code&gt; library support&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget http://telecom.dei.unipd.it/ns/woss/files/WOSS-v1.10.0.tar.gz
+tar -xzf WOSS-v1.10.0.tar.gz 
+cd woss-1.10.0
+./autogen.sh 
+./configure --with-netcdf4=${HOME}/netcdf --with-pthread
+make
+make check
+sudo make install
+wget http://telecom.dei.unipd.it/ns/woss/files/WOSS-dbs-v1.4.0.tar.gz
+tar -xzf WOSS-dbs-v1.4.0.tar.gz
+cd dbs/bathymetry
+wget https://www.bodc.ac.uk/data/open_download/gebco/GEBCO_15SEC/zip/  #this is almost ~ 12 GB database.
+tar -xzf GEBCO_2019.zip #This is database used by WOSS, more details are available on http://telecom.dei.unipd.it/ns/woss/doxygen/database.html
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;ns3-dev-installation&#34;&gt;&lt;code&gt;NS3-dev&lt;/code&gt; Installation&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd Documents/
+mkdir workspace
+cd workspace
+wget https://www.nsnam.org/release/ns-allinone-3.30.tar.bz2
+tar xjf ns-allinone-3.30.tar.bz2
+cd ns-allinone-3.30/
+./build.py --enable-examples --enable-tests
+cd ns-3.30/
+./waf --run scratch/scratch-simulator #To check everything working fine 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Please don&amp;rsquo;t use sudo to build ns3-dev as it makes conficts when woss try to call bellhop.exe in runtime, to chech you have correctly set your PATH for acoustic toolbox,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;which bellhop.exe
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It will show you path of your bellhop.exe, same like this,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/home/ns/Documents/at/bin/bellhop.exe
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;configure-woss-libraries-for-ns3-dev&#34;&gt;configure &lt;code&gt;WOSS&lt;/code&gt; libraries for &lt;code&gt;ns3-dev&lt;/code&gt;&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd ${HOME}/Documents/workspace/ns-allinone-3.30/ns-3.30/src
+git clone https://github.com/MetalKnight/woss-ns3.git
+tar xjf woss-ns3-master.zip #Remove zip file from src folder as this will conflict while building NS-3
+mv woss-ns3-master woss-ns3 #Rename folder as woss-ns3, make sure folder name is correct to avoid config errors
+cd ..
+./waf -d debug --enable-tests --enable-examples --enable-sudo --with-woss-source=/home/ns/woss-1.10.0/ --with-woss-library=/home/ns/woss-1.10.0/woss --with-netcdf4-install=${HOME}/netcdf configure CXXFLAGS=&amp;quot;-Wall -Werror -Wno-unused-variable&amp;quot;  #this configure your ns3, Please make sure woss source(in my case i.e /home/ns/woss-1.10.0/) is correct and installed woss library (in my case i.e /home/ns/woss-1.10.0/woss) is provided with correct path, also make sure you put the correct path for netCDF(in my case i.e${HOME}/netcdf)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can see, &lt;code&gt;./waf&lt;/code&gt; will configure and please check if you got message in second last command line saying&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# WOSS Integration Framework    : enabled
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In my case, It looks like,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;medit@medit-Vostro-230:~/Documents/workspace/ns-allinone-3.30/ns-3.30$ ./waf -d debug --enable-tests --enable-examples --enable-sudo --with-woss-source=/home/medit/woss-1.9.0/ --with-woss-library=/home/medit/woss-1.9.0/woss --with-netcdf4-install=${HOME}/netcdf configure
+Setting top to                           : /home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30 
+Setting out to                           : /home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30/build 
+Checking for &#39;gcc&#39; (C compiler)          : /usr/bin/gcc 
+Checking for cc version                  : 7.4.0 
+Checking for &#39;g++&#39; (C++ compiler)        : /usr/bin/g++ 
+Checking for compilation flag -Wl,--soname=foo support : ok 
+Checking for compilation flag -std=c++11 support       : ok 
+Checking boost includes                                : headers not found, please provide a --boost-includes argument (see help) 
+Checking boost includes                                : headers not found, please provide a --boost-includes argument (see help) 
+Checking for program &#39;python&#39;                          : /usr/bin/python3 
+Checking for python version &amp;gt;= 2.3                     : 3.6.9 
+python-config                                          : not found 
+Checking for library python3.6m in LIBDIR              : not found 
+Checking for library python3.6m in python_LIBPL        : yes 
+Checking for header Python.h                           : Distutils not installed? Broken python installation? Get python-config now! 
+Checking for click location                            : not found 
+Checking for program &#39;pkg-config&#39;                      : /usr/bin/pkg-config 
+Checking for &#39;gtk+-3.0&#39;                                : not found 
+Checking for &#39;libxml-2.0&#39;                              : not found 
+checking for uint128_t                                 : not found 
+checking for __uint128_t                               : yes 
+Checking high precision implementation                 : 128-bit integer (default) 
+Checking for header stdint.h                           : yes 
+Checking for header inttypes.h                         : yes 
+Checking for header sys/inttypes.h                     : not found 
+Checking for header sys/types.h                        : yes 
+Checking for header sys/stat.h                         : yes 
+Checking for header dirent.h                           : yes 
+Checking for header stdlib.h                           : yes 
+Checking for header signal.h                           : yes 
+Checking for header pthread.h                          : yes 
+Checking for header stdint.h                           : yes 
+Checking for header inttypes.h                         : yes 
+Checking for header sys/inttypes.h                     : not found 
+Checking for library rt                                : yes 
+Checking for header sys/ioctl.h                        : yes 
+Checking for header net/if.h                           : yes 
+Checking for header net/ethernet.h                     : yes 
+Checking for header linux/if_tun.h                     : yes 
+Checking for header netpacket/packet.h                 : yes 
+Checking for NSC location                              : not found 
+Checking for &#39;sqlite3&#39;                                 : not found 
+Checking for header linux/if_tun.h                     : yes 
+Checking the given WOSS source code path               : /home/ns/woss-1.9.0/ (given) 
+Checking the given WOSS library path                   : /home/ns/woss-1.9.0/woss (given) 
+Checking the given NetCDF4 and HDF5 install path       : /home/ns/netcdf (given) 
+WOSS source code path is valid                         : /home/ns/woss-1.9.0/woss  
+WOSS source code path is valid                         : /home/ns/woss-1.9.0/woss/woss_def  
+WOSS source code path is valid                         : /home/ns/woss-1.9.0/woss/woss_db  
+Checking the given WOSS library                        : yes 
+NetCDF4 and HDF5 source code path                      : /home/ns/netcdf/include  
+Checking the given NETCDF4 and HDF5 libraries          : yes 
+Checking for program &#39;sudo&#39;                            : /usr/bin/sudo 
+Checking for program &#39;valgrind&#39;                        : not found 
+Checking for &#39;gsl&#39;                                     : not found 
+libgcrypt-config                                       : not found 
+Checking for compilation flag -fstrict-aliasing support : ok 
+Checking for compilation flag -fstrict-aliasing support : ok 
+Checking for compilation flag -Wstrict-aliasing support : ok 
+Checking for compilation flag -Wstrict-aliasing support : ok 
+Checking for program &#39;doxygen&#39;                          : not found 
+---- Summary of optional NS-3 features:
+Build profile                 : debug
+Build directory               : 
+BRITE Integration             : not enabled (BRITE not enabled (see option --with-brite))
+DES Metrics event collection  : not enabled (defaults to disabled)
+Emulation FdNetDevice         : enabled
+Examples                      : enabled
+File descriptor NetDevice     : enabled
+GNU Scientific Library (GSL)  : not enabled (GSL not found)
+Gcrypt library                : not enabled (libgcrypt not found: you can use libgcrypt-config to find its location.)
+GtkConfigStore                : not enabled (library &#39;gtk+-3.0 &amp;gt;= 3.0&#39; not found)
+MPI Support                   : not enabled (option --enable-mpi not selected)
+NS-3 Click Integration        : not enabled (nsclick not enabled (see option --with-nsclick))
+NS-3 OpenFlow Integration     : not enabled (Required boost libraries not found)
+Network Simulation Cradle     : not enabled (NSC not found (see option --with-nsc))
+PlanetLab FdNetDevice         : not enabled (PlanetLab operating system not detected (see option --force-planetlab))
+PyViz visualizer              : not enabled (Python Bindings are needed but not enabled)
+Python Bindings               : not enabled (Python library or headers missing)
+Real Time Simulator           : enabled
+SQlite stats data output      : not enabled (library &#39;sqlite3&#39; not found)
+Tap Bridge                    : enabled
+Tap FdNetDevice               : enabled
+Tests                         : enabled
+Threading Primitives          : enabled
+Use sudo to set suid bit      : enabled
+WOSS Integration Framework    : enabled
+XmlIo                         : not enabled (library &#39;libxml-2.0 &amp;gt;= 2.7&#39; not found)
+&#39;configure&#39; finished successfully (2.808s)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Check out second last line to make sure everything is perfectly configure.&lt;/p&gt;
+&lt;p&gt;Then build your &lt;code&gt;ns3&lt;/code&gt; again,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./waf build CXXFLAGS=&amp;quot;-Wall -Werror -Wno-unused-variable&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;you&amp;rsquo;ll see the following,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Waf: Leaving directory `/home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (11m35.055s)
+
+Modules built:
+antenna                   aodv                      applications              
+bridge                    buildings                 config-store              
+core                      csma                      csma-layout               
+dsdv                      dsr                       energy                    
+fd-net-device             flow-monitor              internet                  
+internet-apps             lr-wpan                   lte                       
+mesh                      mobility                  mpi                       
+netanim (no Python)       network                   nix-vector-routing        
+olsr                      point-to-point            point-to-point-layout     
+propagation               sixlowpan                 spectrum                  
+stats                     tap-bridge                test (no Python)          
+topology-read             traffic-control           uan                       
+virtual-net-device        wave                      wifi                      
+wimax                     woss-ns3 (no Python)      
+
+Modules not built (see ns-3 tutorial for explanation):
+brite                     click                     openflow                  
+visualizer                
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Please run one of the example from scratch,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./waf --run scratch/scratch-simulator
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you see the below output, Hola ! Its working now.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Waf: Entering directory `/home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Waf: Leaving directory `/home/ns/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (0.749s)
+Scratch Simulator
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then Run WOSS Aloha Example with following example (please note that scratch folder is not yet added to module so you have to manually run your examples from the woss-ns3/examples folder itself.)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;medit@medit-Vostro-230:~/Documents/workspace/ns-allinone-3.30/ns-3.30$ ./waf --run src/woss-ns3/examples/woss-aloha-example 
+Waf: Entering directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Waf: Leaving directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (1.731s)
+WossManagerResDbMT::checkConcurrentThreads() 6
+WossManagerResDbMT::checkConcurrentThreads() 4
+Received a packet of size 1000 bytes
+Received a total of 1000 bytes at sink
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;troubleshoot&#34;&gt;Troubleshoot&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;If you&amp;rsquo;re running example and run into problem with tap-creator like following then you have to manually change few settings.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./waf --run src/woss-ns3/examples/woss-aloha-example --command-template=&amp;quot;gdb --args %s &amp;lt;args&amp;gt;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Waf: Entering directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+* Several tasks use the same identifier. Please check the information on
+   https://waf.io/apidocs/Task.html?highlight=uid#waflib.Task.Task.uid
+  - object &#39;SuidBuild_task&#39; (
+	{task 140252058325512: SuidBuild_task  -&amp;gt; }) defined in &#39;tap-creator&#39;
+  - object &#39;SuidBuild_task&#39; (
+	{task 140252058325624: SuidBuild_task  -&amp;gt; }) defined in &#39;tap-creator&#39;
+  - object &#39;SuidBuild_task&#39; (
+	{task 140252058325736: SuidBuild_task  -&amp;gt; }) defined in &#39;tap-creator&#39;
+Waf: Leaving directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (2.892s)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;first figure out the problem with gdb command by running following command,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./waf --run src/woss-ns3/examples/woss-aloha-example --command-template=&amp;quot;gdb --args %s &amp;lt;args
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then maybe the easier one for the time being, open the /home/usr/netcdf/include/ncGroup.h
+and remove the line 18 from that file, which is not used by the library anyway.&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;If you&amp;rsquo;re not able to find or use the common shared files/library,&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;medit@medit-Vostro-230:~/Documents/workspace/ns-allinone-3.30/ns-3.30$ ./waf --run src/woss-ns3/examples/woss-aloha-example 
+Waf: Entering directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Waf: Leaving directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (1.713s)
+/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build/src/woss-ns3/examples/ns3.30-woss-aloha-example-debug: error while loading shared libraries: libWOSS.so.0: cannot open shared object file: No such file or directory
+Command [&#39;/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build/src/woss-ns3/examples/ns3.30-woss-aloha-example-debug&#39;] exited with code 127
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;please do following to solve the error,&lt;/p&gt;
+&lt;p&gt;Edit /etc/ld.so.conf or create something in /etc/ld.so.conf.d/ to add /usr/local/lib and /usr/local/lib64. Then run ldconfig.&lt;/p&gt;
+&lt;p&gt;In my case,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo nano /etc/ld.so.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Please make sure you have the correct lib in the same file, in my case it was,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;include /etc/ld.so.conf.d/*.conf
+add /usr/local/lib:/usr/local/lib64  //added by Jay to access common or shared libraries
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;save the same file and configure again by&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo ldconfig
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It should work now. In my case, it worked&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;medit@medit-Vostro-230:~/Documents/workspace/ns-allinone-3.30/ns-3.30$ ./waf --run src/woss-ns3/examples/woss-aloha-example 
+Waf: Entering directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Waf: Leaving directory `/home/medit/Documents/workspace/ns-allinone-3.30/ns-3.30/build&#39;
+Build commands will be stored in build/compile_commands.json
+&#39;build&#39; finished successfully (1.731s)
+WossManagerResDbMT::checkConcurrentThreads() 6
+WossManagerResDbMT::checkConcurrentThreads() 4
+Received a packet of size 1000 bytes
+Received a total of 1000 bytes at sink
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;If you get the error of &lt;code&gt;./autogen.sh: 3: ./autogen.sh: aclocal: not found&lt;/code&gt; or &lt;code&gt;./autogen.sh: 3: ./autogen.sh: libtoolize: not found&lt;/code&gt;
+then please install automake essentials for build in the ubuntu. You can also install with following commands:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get install autotools-dev
+sudo apt-get install automake
+sudo apt-get install libtool m4 automake
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;you-can-also-download-all-this-instruction-to-your-local-machine&#34;&gt;You can also download all this instruction to your local machine.&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;Custom-WOSS.updated-md.pdf&#34;&gt;Download&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;a href=&#34;http://telecom.dei.unipd.it/ns/woss/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://telecom.dei.unipd.it/ns/woss/&lt;/a&gt;, Special Thanks to &lt;strong&gt;
+&lt;a href=&#34;https://github.com/MetalKnight&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Federico Guerra&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://www.nsnam.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.nsnam.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/MetalKnight/woss-ns3&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/MetalKnight/woss-ns3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/javirg/SWAN-Support/blob/master/recipes/build_linux_netcdf.md&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/javirg/SWAN-Support/blob/master/recipes/build_linux_netcdf.md&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Underwater channel characterization for shallow water multi-domain communications</title>
+      <link>https://patel999jay.github.io/publication/icua-2020/</link>
+      <pubDate>Wed, 09 Sep 2020 13:31:52 -0300</pubDate>
+      <guid>https://patel999jay.github.io/publication/icua-2020/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p align=&#34;justify&#34;&gt;The underwater acoustic (UWA) channel is challenging as a propagation medium for wireless transmissions due to its spatial-temporal variability from high ambient noise, limited bandwidth, frequency-dependent losses, variable latency and time-space-frequency variable multi-path effects. Prior to deploying marine robots, the UWA channel should be characterized for its local sound velocity profile, at both source and receiver(s) depths, bottom cover (e.g. sand, silt, mud, etc.) and bathymetry. At the transmission end, it matters the signal’s carrier frequency, bandwidth, and pulse characteristics. With knowledge of both, it is possible to assess the operational communications range. This is especially so to develop and evaluate new medium access control (MAC) and routing level protocols. As a part of a project, three heterogeneous marine robots (unmanned underwater vehicle (UUV), unmanned surface vehicle (USV), and unmanned aerial vehicle (UAV)) collaboratively acquired situational awareness on a non-responsive floating target. This paper reports on the communications aspect.  It presents models that assess the impact of the relative placement between a transmitter (USV) and receiver (UUV) through ray tracing and several sea-bed environmental/UWA channel conditions on operational communication range between UUV \&amp; USV.&lt;/p&gt;</description>
     </item>
     
   </channel>

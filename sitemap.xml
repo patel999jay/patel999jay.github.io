@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://patel999jay.github.io/authors/</loc>
+    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/post/bellhop-acoustic-toolbox/</loc>
+    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/tag/bellhop-channel-modelling/</loc>
+    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/tag/heterogeneous-marine-robots/</loc>
+    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/</loc>
+    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/author/jay-patel/</loc>
+    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/post/</loc>
+    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/tags/</loc>
+    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/tag/underwater-acoustic-communication/</loc>
+    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
+  </url><url>
     <loc>https://patel999jay.github.io/publication-type/3/</loc>
     <lastmod>2024-08-11T11:58:49-03:00</lastmod>
   </url><url>
@@ -10,15 +37,6 @@
   </url><url>
     <loc>https://patel999jay.github.io/tag/acoustic-field-modelling/</loc>
     <lastmod>2024-08-11T11:58:49-03:00</lastmod>
-  </url><url>
-    <loc>https://patel999jay.github.io/authors/</loc>
-    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
-  </url><url>
-    <loc>https://patel999jay.github.io/</loc>
-    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
-  </url><url>
-    <loc>https://patel999jay.github.io/author/jay-patel/</loc>
-    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
   </url><url>
     <loc>https://patel999jay.github.io/author/mae-seto/</loc>
     <lastmod>2024-08-11T11:58:49-03:00</lastmod>
@@ -41,9 +59,6 @@
     <loc>https://patel999jay.github.io/tag/sonar/</loc>
     <lastmod>2024-08-11T11:58:49-03:00</lastmod>
   </url><url>
-    <loc>https://patel999jay.github.io/tags/</loc>
-    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
-  </url><url>
     <loc>https://patel999jay.github.io/tag/underwater-acoustic-system-design/</loc>
     <lastmod>2024-08-11T11:58:49-03:00</lastmod>
   </url><url>
@@ -56,26 +71,14 @@
     <loc>https://patel999jay.github.io/talk/</loc>
     <lastmod>2020-12-04T17:03:18-04:00</lastmod>
   </url><url>
-    <loc>https://patel999jay.github.io/tag/underwater-acoustic-communication/</loc>
-    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
-  </url><url>
     <loc>https://patel999jay.github.io/tag/underwater-channel-characterization/</loc>
     <lastmod>2020-12-04T17:03:18-04:00</lastmod>
   </url><url>
     <loc>https://patel999jay.github.io/tag/underwater-shallow-water-communication/</loc>
     <lastmod>2020-12-04T17:03:18-04:00</lastmod>
   </url><url>
-    <loc>https://patel999jay.github.io/tag/bellhop-channel-modelling/</loc>
-    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
-  </url><url>
-    <loc>https://patel999jay.github.io/tag/heterogeneous-marine-robots/</loc>
-    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
-  </url><url>
     <loc>https://patel999jay.github.io/tag/network-simulator-3/</loc>
     <lastmod>2020-10-19T19:46:19-03:00</lastmod>
-  </url><url>
-    <loc>https://patel999jay.github.io/post/</loc>
-    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
   </url><url>
     <loc>https://patel999jay.github.io/post/woss-integration-ns3/</loc>
     <lastmod>2020-10-19T19:46:19-03:00</lastmod>
@@ -94,9 +97,6 @@
   </url><url>
     <loc>https://patel999jay.github.io/tag/python/</loc>
     <lastmod>2020-09-04T14:30:36-03:00</lastmod>
-  </url><url>
-    <loc>https://patel999jay.github.io/post/bellhop-acoustic-toolbox/</loc>
-    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
   </url><url>
     <loc>https://patel999jay.github.io/publication/live-rf-image-transmission-using-ofdm-with-rpi-and-plutosdr/</loc>
     <lastmod>2020-09-02T11:33:35-03:00</lastmod>
