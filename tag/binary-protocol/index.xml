@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Binary Protocol | Jay Patel</title>
+    <link>https://patel999jay.github.io/tag/binary-protocol/</link>
+      <atom:link href="https://patel999jay.github.io/tag/binary-protocol/index.xml" rel="self" type="application/rss+xml" />
+    <description>Binary Protocol</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Copyright Jay Patel © 2025</copyright><lastBuildDate>Mon, 19 May 2025 17:35:48 -0300</lastBuildDate>
+    <image>
+      <url>https://patel999jay.github.io/images/icon_hu0f6e84e9ab2e4a261b0b52bea5579b58_240147_512x512_fill_lanczos_center_3.png</url>
+      <title>Binary Protocol</title>
+      <link>https://patel999jay.github.io/tag/binary-protocol/</link>
+    </image>
+    
+    <item>
+      <title>🐍 ProtocolDataUnits: A Python Package</title>
+      <link>https://patel999jay.github.io/post/protocoldataunits-python-package/</link>
+      <pubDate>Mon, 19 May 2025 17:35:48 -0300</pubDate>
+      <guid>https://patel999jay.github.io/post/protocoldataunits-python-package/</guid>
+      <description>&lt;h3 id=&#34;protocoldataunits-a-python-package-for-encodingdecoding-protocol-data-units&#34;&gt;ProtocolDataUnits: A Python Package for Encoding/Decoding Protocol Data Units&lt;/h3&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://pypi.org/project/ProtocolDataUnits/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;ProtocolDataUnits&lt;/code&gt;&lt;/a&gt; is a lightweight Python package designed to simplify encoding and decoding of binary messages defined by &lt;strong&gt;Protocol Data Units (PDUs)&lt;/strong&gt; — especially in embedded, network, and robotics applications.&lt;/p&gt;
+&lt;p&gt;It was inspired by the robust features of the 
+&lt;a href=&#34;https://github.com/org-arl/ProtocolDataUnits.jl&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ProtocolDataUnits.jl&lt;/a&gt; Julia package written by Dr Mandar Chitre and has been reimagined for Python with additional flexibility and compatibility.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;-features&#34;&gt;✨ Features&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Define &lt;strong&gt;nested PDUs&lt;/strong&gt; with complex field structures&lt;/li&gt;
+&lt;li&gt;Automatic handling of &lt;strong&gt;bit- and byte-aligned fields&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Support for endian configuration and padding&lt;/li&gt;
+&lt;li&gt;Easy-to-define PDU schemas via dictionaries&lt;/li&gt;
+&lt;li&gt;Clean CLI tool and Python API&lt;/li&gt;
+&lt;li&gt;Integrated encoder and decoder with sanity checks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;-installation&#34;&gt;🔧 Installation&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip install ProtocolDataUnits
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;-example-usage&#34;&gt;📦 Example Usage&lt;/h4&gt;
+&lt;p&gt;Here is an example to define and use a PDU schema:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from protocoldataunits import encode_pdu, decode_pdu
+
+schema = {
+    &#39;type&#39;: &#39;pdu&#39;,
+    &#39;fields&#39;: [
+        {&#39;name&#39;: &#39;version&#39;, &#39;type&#39;: &#39;uint&#39;, &#39;size&#39;: 4},
+        {&#39;name&#39;: &#39;msg_type&#39;, &#39;type&#39;: &#39;uint&#39;, &#39;size&#39;: 4},
+        {&#39;name&#39;: &#39;length&#39;, &#39;type&#39;: &#39;uint&#39;, &#39;size&#39;: 8},
+        {&#39;name&#39;: &#39;payload&#39;, &#39;type&#39;: &#39;bytes&#39;, &#39;size&#39;: 3},
+    ]
+}
+
+data = {
+    &#39;version&#39;: 1,
+    &#39;msg_type&#39;: 2,
+    &#39;length&#39;: 3,
+    &#39;payload&#39;: b&#39;abc&#39;
+}
+
+binary = encode_pdu(schema, data)
+decoded = decode_pdu(schema, binary)
+print(decoded)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;-use-cases&#34;&gt;🧠 Use Cases&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Building custom communication stacks (e.g., WHOI micromodem, Subnero modems)&lt;/li&gt;
+&lt;li&gt;Packing/unpacking binary telemetry and metadata&lt;/li&gt;
+&lt;li&gt;Generating interoperable messages between embedded systems&lt;/li&gt;
+&lt;li&gt;Simulating protocol behavior in test environments&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;-project-links&#34;&gt;🔗 Project Links&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;📦 PyPI: 
+&lt;a href=&#34;https://pypi.org/project/ProtocolDataUnits/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ProtocolDataUnits&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;💻 GitHub: 
+&lt;a href=&#34;https://github.com/patel999jay/ProtocolDataUnits&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;patel999jay/ProtocolDataUnits&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you&amp;rsquo;re interested in contributing or need support for your own PDU design, feel free to open an issue or feature request.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;-notes&#34;&gt;📌 Notes&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Endianness and alignment are critical: make sure to define them explicitly in advanced use cases,&lt;/li&gt;
+&lt;li&gt;You can enable &lt;code&gt;compress=True&lt;/code&gt; to minimize bit-level padding,&lt;/li&gt;
+&lt;li&gt;Nested fields are supported via &lt;code&gt;pdu_fragment&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

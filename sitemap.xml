@@ -3,7 +3,40 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://patel999jay.github.io/authors/</loc>
-    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
+    <lastmod>2025-05-19T17:35:48-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/tag/binary-protocol/</loc>
+    <lastmod>2025-05-19T17:35:48-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/categories/</loc>
+    <lastmod>2025-05-19T17:35:48-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/tag/communication/</loc>
+    <lastmod>2025-05-19T17:35:48-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/</loc>
+    <lastmod>2025-05-19T17:35:48-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/author/jay-patel/</loc>
+    <lastmod>2025-05-19T17:35:48-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/tag/pdu/</loc>
+    <lastmod>2025-05-19T17:35:48-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/post/</loc>
+    <lastmod>2025-05-19T17:35:48-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/category/python/</loc>
+    <lastmod>2025-05-19T17:35:48-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/tag/python/</loc>
+    <lastmod>2025-05-19T17:35:48-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/tags/</loc>
+    <lastmod>2025-05-19T17:35:48-03:00</lastmod>
+  </url><url>
+    <loc>https://patel999jay.github.io/post/protocoldataunits-python-package/</loc>
+    <lastmod>2025-05-19T17:35:48-03:00</lastmod>
   </url><url>
     <loc>https://patel999jay.github.io/post/bellhop-acoustic-toolbox/</loc>
     <lastmod>2025-05-14T16:37:27-03:00</lastmod>
@@ -12,18 +45,6 @@
     <lastmod>2025-05-14T16:37:27-03:00</lastmod>
   </url><url>
     <loc>https://patel999jay.github.io/tag/heterogeneous-marine-robots/</loc>
-    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
-  </url><url>
-    <loc>https://patel999jay.github.io/</loc>
-    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
-  </url><url>
-    <loc>https://patel999jay.github.io/author/jay-patel/</loc>
-    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
-  </url><url>
-    <loc>https://patel999jay.github.io/post/</loc>
-    <lastmod>2025-05-14T16:37:27-03:00</lastmod>
-  </url><url>
-    <loc>https://patel999jay.github.io/tags/</loc>
     <lastmod>2025-05-14T16:37:27-03:00</lastmod>
   </url><url>
     <loc>https://patel999jay.github.io/tag/underwater-acoustic-communication/</loc>
@@ -93,9 +114,6 @@
     <lastmod>2020-09-09T10:30:00+00:00</lastmod>
   </url><url>
     <loc>https://patel999jay.github.io/post/fft-fun/</loc>
-    <lastmod>2020-09-04T14:30:36-03:00</lastmod>
-  </url><url>
-    <loc>https://patel999jay.github.io/tag/python/</loc>
     <lastmod>2020-09-04T14:30:36-03:00</lastmod>
   </url><url>
     <loc>https://patel999jay.github.io/publication/live-rf-image-transmission-using-ofdm-with-rpi-and-plutosdr/</loc>
@@ -230,6 +248,6 @@
     <loc>https://patel999jay.github.io/author/tanvi-shah/</loc>
     <lastmod>2015-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://patel999jay.github.io/categories/</loc>
+    <loc>https://patel999jay.github.io/tag/encoding/decoding/</loc>
   </url>
 </urlset>
